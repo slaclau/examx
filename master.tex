@@ -1,0 +1,71 @@
+\documentclass[a4paper]{ltxdoc}
+\usepackage{readprov}
+\ReadFileInfos{examx.dtx}
+\ReadFileInfos{styles.dtx}
+
+% Set up the Index and Change History to use \part
+\IndexPrologue{\part*{Index}%
+    \markboth{Index}{Index}%
+    \addcontentsline{toc}{part}{Index}%
+    The italic numbers denote the pages where the
+    corresponding entry is described,
+    numbers underlined point to the definition,
+    all others indicate the places where it is used.}
+
+\GlossaryPrologue{\part*{Change History}%
+    %                Allow control names to be hyphenated here...
+    {\GlossaryParms\ttfamily\hyphenchar\font=`\-}%
+    \markboth{Change History}{Change History}%
+    \addcontentsline{toc}{part}{Change History}}
+
+% The standard \changes command modified slightly to better cope with
+% this multiple file document.
+\makeatletter
+\def\@changes@iso@date#1/#2/#3/#4\space{#1\if\relax#2\relax\else-#2-#3\fi\space}
+\def\changes@#1#2#3{%
+    \let\protect\@unexpandable@protect
+    \edef\@tempa{\noexpand\glossary{\@changes@iso@date#2///\space
+            \currentfile\space#1\levelchar
+            \ifx\saved@macroname\@empty
+            \space
+            \actualchar
+            \generalname
+            \else
+            \expandafter\@gobble
+            \saved@macroname
+            \actualchar
+            \string\verb\quotechar*%
+            \verbatimchar\saved@macroname
+            \verbatimchar
+            \fi
+            :\levelchar #3}}%
+    \@tempa\endgroup\@esphack}
+
+
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{IndexColumns}{2}
+\RecordChanges
+\begin{document}
+	\providecommand{\Lopt}[1]{\textsf {#1}}
+	\providecommand{\file}[1]{\texttt {#1}}
+	\providecommand{\Lcount}[1]{\textsl {\small#1}}
+	\providecommand{\pstyle}[1]{\textsl {#1}}
+	\title{Using the \textsf{examx} class\thanks{This document 
+	corresponds to \file{examx.dtx}~\UseVersionOf{examx.dtx}, dated 
+	\UseDateOf{examx.dtx} and 
+	\file{styles.dtx}~\UseVersionOf{styles.dtx}, dated 
+	\UseDateOf{styles.dtx}.}}
+	\author{Sebastien Laclau \\ 
+	\texttt{slaclau@wellingtoncollege.org.uk} \\ 
+	\texttt{seb.laclau@gmail.com}}
+	\maketitle
+	\tableofcontents
+	\renewcommand{\maketitle}{}
+	\renewcommand{\tableofcontents}{}
+    \DocInclude{userguide}
+	\DocInclude{examx}
+    \DocInclude{styles}
+    \PrintIndex
+    \PrintChanges
+\end{document}

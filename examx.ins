@@ -1,0 +1,82 @@
+%%
+%% Copyright (C) 2022 by Sebastien Laclau
+%%
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%%
+%% http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%%
+\input docstrip.tex
+
+\keepsilent
+
+\usedir{tex/latex/examx}
+
+\preamble
+
+This is a generated file.
+
+Copyright (C) 2022 by Sebastien Laclau
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3 of this license or (at your option) any later
+version. The latest version of this license is in:
+
+http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of
+LaTeX version 2005/12/01 or later.
+
+\endpreamble
+
+\askforoverwritefalse
+\generate{
+    \file{examx.cls}{
+        \from{examx.dtx}{class}
+    }
+	\file{default.clo}{
+		\from{styles.dtx}{default,all}
+	}
+    \file{OCRALevel.clo}{
+        \from{styles.dtx}{OCRALevel,all}
+    }
+    \file{OCRALevelanswerbook.clo}{
+        \from{styles.dtx}{OCRALevel,answerbook}
+    }
+    \file{advancedanswerbook.clo}{
+        \from{styles.dtx}{advanced,answerbook}
+        \from{styles.dtx}{default,answerbookbackcover}
+    }
+    \file{veryadvancedanswerbook.clo}{
+        \from{styles.dtx}{veryadvanced,answerbook}
+        \from{styles.dtx}{default,answerbookbackcover}
+    }
+    \file{WellyOCRcovers.clo}{
+        \from{styles.dtx}{WellyOCR,covers}
+    }
+}
+
+\Msg{*********************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the}
+\Msg{* following files into a directory searched by TeX:}
+\Msg{*}
+\Msg{* \space\space examx.cls}
+\Msg{* \space\space OCRALevel.clo}
+\Msg{* \space\space OCRALevelanswerbook.clo}
+\Msg{* \space\space advancedanswerbook.clo}
+\Msg{* \space\space veryadvancedanswerbook.clo}
+\Msg{*}
+\Msg{* To produce the documentation run the file examx.dtx}
+\Msg{* through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{*********************************************************}
+
+\endbatchfile
