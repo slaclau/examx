@@ -8,6 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
+%% SVN keywords: $Revision$
 %% 
 %% Copyright (C) 2022 by Sebastien Laclau
 %% 
