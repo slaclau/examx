@@ -494,7 +494,6 @@ There are \pointsinrange{Core} marks available.\\
             \oldquestion[#1] \@droptrue
         \fi
         \@storequestiondata{\thequestion}{#2}{0}}
-    \if@drop DROPTRUE \else DROPFALSE \fi
     }
 }
 %    \end{macrocode}
@@ -655,6 +654,7 @@ There are \pointsinrange{Core} marks available.\\
 %    \begin{macrocode}
 \newcommand{\solnorhook}{}
 \newcommand{\@solnorhook}{
+        \if@drop DROPTRUE \else DROPFALSE \fi
     \@droppoints
     \renewcommand{\examx@partshook}{}
     \renewcommand{\examx@subpartshook}{}
