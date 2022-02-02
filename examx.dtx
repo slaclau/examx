@@ -34,7 +34,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/01/28 v1.01a
+	[2022/01/28 v1.01
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -201,18 +201,11 @@
         {\examx@answerbookstyle}  not found}}
     \fi
 }
-\DeclareStringOption[\relax]{solutionstyle}
-%\def\blanksol{blank}
+\DeclareStringOption[]{solutionstyle}
 \AtEndOfClass{
-%    \ifx\examx@solutionstyle\blanksol
- %       \def\examx@solutionstyle\relax
-  %  \fi
-   % \ifx\examx@solutionstyle\relax\else
-        \csname soln\examx@solutionstyle \endcsname}
-    %\fi}
+    \csname soln\examx@solutionstyle \endcsname}
 %    \end{macrocode}
-%    \changes{v1.0a}{2022/02/02}{Restructure solution style option to 
-%deal with default and blank}
+
 % \subsubsection{Other options}
 
 %    \begin{macrocode}
