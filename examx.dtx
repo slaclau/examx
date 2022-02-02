@@ -202,14 +202,14 @@
     \fi
 }
 \DeclareStringOption[\relax]{solutionstyle}
-\def\blanksol{blank}
+%\def\blanksol{blank}
 \AtEndOfClass{
-    \ifx\examx@solutionstyle\blanksol
-        \def\examx@solutionstyle\relax
-    \fi
-    \ifx\examx@solutionstyle\relax\else
-        \csname soln\examx@solutionstyle \endcsname
-    \fi}
+%    \ifx\examx@solutionstyle\blanksol
+ %       \def\examx@solutionstyle\relax
+  %  \fi
+   % \ifx\examx@solutionstyle\relax\else
+        \csname soln\examx@solutionstyle \endcsname}
+    %\fi}
 %    \end{macrocode}
 %    \changes{v1.0a}{2022/02/02}{Restructure solution style option to 
 %deal with default and blank}
