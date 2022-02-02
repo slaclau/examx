@@ -203,7 +203,7 @@
 }
 \DeclareStringOption{solutionstyle}[\relax]
 \AtEndOfClass{
-    \ifx\examx@solutionstyle\relax
+    \if\examx@solutionstyle\relax
         \AtBeginDocument{TEST}
     \else
         \csname soln\examx@solutionstyle \endcsname
