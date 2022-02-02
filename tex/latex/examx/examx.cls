@@ -341,6 +341,7 @@ There are \pointsinrange{Core} marks available.\\
 \renewcommand{\solutiontitle}{}
 \newcommand{\solnor}[2][1]{%
     \begingroup
+    SOLNOR
     \@solnorhook
     \ifsoln
     \begin{solution}
