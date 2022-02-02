@@ -34,7 +34,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/01/28 v1.01
+	[2022/01/28 v1.01a
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -202,7 +202,12 @@
     \fi
 }
 \DeclareStringOption[]{solutionstyle}
-\AtEndOfClass{\csname soln\examx@solutionstyle \endcsname}
+\def\blank{blank}
+\AtEndOfClass{
+    \ifx\examx@solutionstyle\blank \def\examx@solutionstyle\relax \fi
+    \changes{v1.0a}{2022/02/02}{Added solution style blank to call 
+    \cs{soln}}
+    \csname soln\examx@solutionstyle \endcsname}
 %    \end{macrocode}
 
 % \subsubsection{Other options}
