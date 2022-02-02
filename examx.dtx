@@ -201,9 +201,12 @@
         {\examx@answerbookstyle}  not found}}
     \fi
 }
-\DeclareStringOption[]{solutionstyle}
+\DeclareStringOption{solutionstyle}[\relax]
 \AtEndOfClass{
-    \csname soln\examx@solutionstyle \endcsname}
+    \ifx\examx@solutionstyle\relax\else
+        \csname soln\examx@solutionstyle \endcsname
+    \fi
+}
 %    \end{macrocode}
 
 % \subsubsection{Other options}
