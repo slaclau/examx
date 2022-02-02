@@ -202,9 +202,9 @@
     \fi
 }
 \DeclareStringOption[]{solutionstyle}
-\def\blank{blank}
+\def\blanksol{blank}
 \AtEndOfClass{
-    \ifx\examx@solutionstyle\blank \def\examx@solutionstyle\relax \fi
+    \ifx\examx@solutionstyle\blanksol \def\examx@solutionstyle\relax \fi
     \csname soln\examx@solutionstyle \endcsname}
 %    \end{macrocode}
 %    \changes{v1.0a}{2022/02/02}{Added solution style blank to call 
