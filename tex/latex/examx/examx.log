@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=latex 2021.12.15)  2 FEB 2022 11:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=latex 2021.12.15)  2 FEB 2022 20:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -61,8 +61,8 @@ clo
 
 Processing file examx.dtx (class) -> examx.cls
 File examx.dtx ended by \endinput.
-Lines  processed: 882
-Comments removed: 389
+Lines  processed: 884
+Comments removed: 391
 Comments  passed: 0
 Codelines passed: 484
 
@@ -87,8 +87,8 @@ Processing file styles.dtx (default,all) -> default.clo
 clo
                            (WellyOCR,covers) -> WellyOCRcovers.clo
 File styles.dtx ended by \endinput.
-Lines  processed: 856
-Comments removed: 122
+Lines  processed: 858
+Comments removed: 124
 Comments  passed: 0
 Codelines passed: 707
 
@@ -98,8 +98,8 @@ clo
                            (default,answerbookbackcover) -> veryadvancedanswerb
 ook.clo
 File styles.dtx  ended by \endinput.
-Lines  processed: 856
-Comments removed: 122
+Lines  processed: 858
+Comments removed: 124
 Comments  passed: 0
 Codelines passed: 707
 
@@ -121,8 +121,8 @@ Codelines passed: 707
 *********************************************************
 Overall statistics:
 Files  processed: 3
-Lines  processed: 2594
-Comments removed: 633
+Lines  processed: 2600
+Comments removed: 639
 Comments  passed: 0
 Codelines passed: 1898
  ) 
