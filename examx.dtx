@@ -201,15 +201,18 @@
         {\examx@answerbookstyle}  not found}}
     \fi
 }
-\DeclareStringOption[dots]{solutionstyle}
+\DeclareStringOption[\relax]{solutionstyle}
 %\def\blanksol{blank}
 \AtEndOfClass{
-%    \ifx\examx@solutionstyle\blanksol \def\examx@solutionstyle\relax 
-%\fi
-    \csname soln\examx@solutionstyle \endcsname}
+    \ifx\examx@solutionstyle\blanksol
+        \def\examx@solutionstyle\relax
+    \fi
+    \ifx\examx@solutionstyle\relax\else
+        \csname soln\examx@solutionstyle \endcsname
+    \fi}
 %    \end{macrocode}
-%    \changes{v1.0a}{2022/02/02}{Added solution style blank to call 
-%\cs{soln}}
+%    \changes{v1.0a}{2022/02/02}{Restructure solution style option to 
+%deal with default and blank}
 % \subsubsection{Other options}
 
 %    \begin{macrocode}
