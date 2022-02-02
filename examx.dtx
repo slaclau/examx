@@ -34,7 +34,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/02/02 v1.02
+	[2022/02/02 v1.02a
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -654,8 +654,6 @@ There are \pointsinrange{Core} marks available.\\
 %    \begin{macrocode}
 \newcommand{\solnorhook}{}
 \newcommand{\@solnorhook}{
-        \if@drop DROPTRUE \else DROPFALSE \fi
-    \@droppoints
     \renewcommand{\examx@partshook}{}
     \renewcommand{\examx@subpartshook}{}
     \solnorhook
@@ -672,6 +670,7 @@ There are \pointsinrange{Core} marks available.\\
 %switches described previously.
 %    \begin{macrocode}
 \newcommand{\solnor}[2][1]{%
+    \@droppoints
     \begingroup
     \@solnorhook
     \ifsoln
@@ -699,6 +698,8 @@ There are \pointsinrange{Core} marks available.\\
     \if@drop DROPTRUE \else DROPFALSE \fi
 }
 %    \end{macrocode}
+%\changes{v1.02a}{2022/02/02}{Fixed issue with extra points being 
+%dropped}
 %\end{macro}
 
 %\begin{macro}{\solnordots}
