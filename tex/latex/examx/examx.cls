@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2021/06/01]
 \ProvidesClass{examx}
-[2022/02/02 v1.02
+[2022/02/02 v1.02a
  Adds features to the exam class]
 
 
@@ -333,15 +333,14 @@ There are \pointsinrange{Core} marks available.\\
 
 \newcommand{\solnorhook}{}
 \newcommand{\@solnorhook}{
-    \@droppoints
     \renewcommand{\examx@partshook}{}
     \renewcommand{\examx@subpartshook}{}
     \solnorhook
 }
 \renewcommand{\solutiontitle}{}
 \newcommand{\solnor}[2][1]{%
+    \@droppoints
     \begingroup
-    SOLNOR
     \@solnorhook
     \ifsoln
     \begin{solution}

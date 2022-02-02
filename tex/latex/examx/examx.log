@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=latex 2021.12.15)  2 FEB 2022 11:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=latex 2021.12.15)  2 FEB 2022 11:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -61,10 +61,10 @@ clo
 
 Processing file examx.dtx (class) -> examx.cls
 File examx.dtx ended by \endinput.
-Lines  processed: 881
-Comments removed: 387
+Lines  processed: 882
+Comments removed: 389
 Comments  passed: 0
-Codelines passed: 485
+Codelines passed: 484
 
 \openout0 = `./default.clo'.
 
@@ -121,10 +121,10 @@ Codelines passed: 707
 *********************************************************
 Overall statistics:
 Files  processed: 3
-Lines  processed: 2593
-Comments removed: 631
+Lines  processed: 2594
+Comments removed: 633
 Comments  passed: 0
-Codelines passed: 1899
+Codelines passed: 1898
  ) 
 Here is how much of TeX's memory you used:
  408 strings out of 480271
