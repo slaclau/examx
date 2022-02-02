@@ -672,7 +672,6 @@ There are \pointsinrange{Core} marks available.\\
 %    \begin{macrocode}
 \newcommand{\solnor}[2][1]{%
     \begingroup
-    SOLNOR
     \@solnorhook
     \ifsoln
     \begin{solution}
@@ -696,6 +695,7 @@ There are \pointsinrange{Core} marks available.\\
     \end{solutionorgrid}
     \fi\fi\fi\fi\fi
     \endgroup
+    \if@drop DROPTRUE \else DROPFALSE \fi
 }
 %    \end{macrocode}
 %\end{macro}
