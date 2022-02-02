@@ -31,7 +31,7 @@
 %<*driver>
 \ProvidesFile{styles.dtx}
 %</driver>
-	[2022/01/31 v1.0
+	[2022/01/31 v1.1
 %<!driver> standard latex class option file]
 %<*driver>
 ]
@@ -104,11 +104,32 @@
 % \section{The {\sc docstrip} modules}
 %
 % The following modules are used in the implementation to direct
-% {\sc docstrip} in generating the external files:
+% {\sc docstrip} in generating the external files. The first set refer 
+%to styles, complete or incomplete. The next set are secondary guards 
+%used to separate between parts of a style and the whole style. 
+%Finally, 
+%there is the driver guard:
 % \begin{center}
     % \begin{tabular}{ll}
-        %   class  & produce the documentclass \textsf{examx}\\
-        %   driver & produce a documentation driver file \\
+        %   default             & produce the style used by default \\
+        %   OCRALevel           & imitates the style of an OCR A Level 
+        %paper \\
+        %   WellyOCR            & incomplete style used for covers only 
+        %\\
+        %   advanced            & incomplete style used for answerbook 
+        %only \\
+        %   veryadvanced        & incomplete style used for answerbook 
+        %only \\
+        % \hline
+        %   all                 & included in the complete style \\
+        %   covers              & included in the cover style \\
+        %   answerbook          & included in the answer book style \\
+        %   formulaesheet       & included in the formulae sheet style 
+        %\\
+        %   answerbookbackcover & used to include the default answer 
+        %book back covers in other styles \\
+        % \hline
+        %   driver        & produce a documentation driver file
         % \end{tabular}
     % \end{center}
 %
@@ -121,7 +142,8 @@
 %</default>
 %\subsubsection{Answer book}
 %    \begin{macrocode}
-%<*default&(answerbookbackcover|answerbook|all)>
+%<*default>
+%<*answerbookbackcover|answerbook|all>
 \renewcommand{\answerbookbackcover}{
     \begin{center}
         \large\bf ADDITIONAL ANSWER SPACE
@@ -142,7 +164,8 @@
     \newpage
     \fillwithdottedlines{\stretch{1}}
 }
-%</default&(answerbookbackcover|answerbook|all)>
+%</answerbookbackcover|answerbook|all>
+%</default>
 %    \end{macrocode}
 %\subsection{OCRALevel style}
 %\subsubsection{Initial code}
@@ -201,14 +224,133 @@
 
 \pointname{}
 \pointformat{\bfseries[\thepoints]}
-%</OCRALevel>
 %    \end{macrocode}
-
+%
+%\subsubsection{Formulae sheet}
+%\begin{macro}
+%    This code redefines the formulae sheet.
+%    \begin{macrocode}
+%<formulaesheet|all>
+\newgeometry{left=0.86 in,right=0.86 in,top=1 in,bottom=1 in}
+\savegeometry{formulaesheet}
+\loadgeometry{main}
+\renewcommand{\formulaesheet}{
+    \loadgeometry{formulaesheet}
+    \def\preheading{\vspace{0.25 in}}
+    \def\postheading{\vspace{0.08 in}}
+    \newcommand{\heading}[1]{\preheading {\bf ##1} \par \postheading}
+    \begin{center}
+        {\bf Formulae \par A Level Mathematics A (H240)}
+    \end{center}
+    \begin{flushleft}
+        \heading{Arithmetic series}
+        $S_n=\frac{1}{2}n(a+l)=\frac{1}{2}n\{2a+(n-1)d\}$ \par
+        \heading{Geometric series}
+        $S_n=\dfrac{a(1-r^n)}{1-r}$ \par
+        $S_\infty=\dfrac{a}{1-r}$ for $\abs{r}<1$ \par
+        \heading{Binomial series}
+        $(a+b)^n=a^n+\prescript{n}{}{C_1}a^{n-1}b+\prescript{n}{}{C_2}a^{n-2}b^2+\ldots+\prescript{n}{}{C_r}a^{n-r}b^r+\ldots+b^n$
+         \quad ($n\in\nats$), where 
+        $\prescript{n}{}{C_r}=\colvec{n\\r}=\dfrac{n!}{r!(n-r)!}$ \par
+        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2}x^2+\ldots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\ldots$
+         \quad ($\abs{x}<1$) \par
+        \heading{Differentiation}
+        \begin{tabular}{|p{2.56 in}|p{2.56 in}|}
+            \multicolumn{1}{l}{$f(x)$} & \multicolumn{1}{l}{$f'(x)$} \\ 
+            \hline
+            $\tan kx$ & $k\sec^2 kx$ \\ \hline
+            $\sec x$ & $\sec x \tan x$ \\ \hline
+            $\cot x$ & $-\csc^2 x$ \\ \hline
+            $\csc x$ & $-\csc x \cot x$ \\ \hline
+        \end{tabular}
+        
+        \vspace{.1 in}
+        Quotient rule $y=\dfrac{u}{v}$, 
+        $\dydx=\dfrac{v\dudx-u\dvdx}{v^2}$ \par
+        \heading{Differentiation from first principles}
+        $f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$ \par
+        \heading{Integration}
+        $\displaystyle\int\frac{f'(x)}{f(x)}\,\dx=\ln\abs{f(x)}+c$ \par
+        $\displaystyle\int 
+        f'(x)\left(f(x)\right)^n\,\dx=\dfrac{1}{n+1}\left(f(x)\right)^{n+1}+c$
+         \par
+        Integration by parts $\displaystyle\int u\dvdx\,\dx=uv-\int 
+        v\dudx\,\dx$ \par
+        \heading{Small angle approximations}
+        $\sin\theta\approx\theta$, $\cos\theta=1-\frac{1}{2}\theta^2$, 
+        $\tan\theta=\theta$ where $\theta$ is measured in radians
+        \newpage
+        \heading{Trigonometric identities}
+        $\sin(A\pm B)=\sin A\cos B\pm \cos A\sin B$ 
+        $\phantom{\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}}$ \par
+        $\cos(A\pm B)=\cos A\cos B\mp \sin A\sin B$ 
+        $\phantom{\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}}$ \par
+        $\tan(A\pm B)=\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}$ \quad 
+        $\left(A\pm B\neq (k+\frac{1}{2}\pi)\right)$ \par
+        \heading{Numerical methods}
+        Trapezium rule: $\int_a^b y\,\dx\approx 
+        h\{(y_0+y_n)+2(y_1+y_2+\ldots+y_{n-1})\}$, where 
+        $h=\dfrac{b-a}{n}$ \par
+        The Newton-Raphson iteration for solving $f(x)=0$: 
+        $x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}$ \par
+        \heading{Probability}
+        $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ \par
+        $P(A\cap B)=P(A)P(B|A)=P(B)P(A|B)$ {\bf or} 
+        $P(A|B)=\dfrac{P(A\cap B)}{P(B)}$ \par
+        \heading{Standard deviation}
+        $\sqrt{\dfrac{\sum(x-\bar{x})^2}{n}}=\sqrt{\dfrac{\sum 
+        x^2}{n}-\bar{x}^2}$ {\bf or} $\sqrt{\dfrac{\sum 
+        f(x-\bar{x})^2}{\sum f}}=\sqrt{\dfrac{\sum fx^2}{\sum 
+        f}-\bar{x}^2}$ \par
+        \heading{The binomial distribution}
+        If $X{\sim}B(n,p)$ then $P(X=x)=\colvec{n \\ x}p^x(1-p)^{n-x}$, 
+        Mean of $X$ is $np$, Variance of $X$ is $np(1-p)$ \par
+        \heading{Hypothesis test for the mean of a normal distribution}
+        If $X{\sim}N(\mu,\sigma^2)$ then 
+        $\bar{X}{\sim}N\left(\mu,\dfrac{\sigma^2}{n}\right)$ and 
+        $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)$ \par
+        \heading{Percentage points of the normal distribution}
+        If $Z$ has a normal distribution with mean $0$ and variance $1$ 
+        then, for each value of $p$, the table gives the value of $z$
+        such that $P(Z\leq z)=p$. \par
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                $p$ & 0.75  & 0.90  & 0.95  & 0.975 & 0.99  & 0.995 & 
+                0.9975 & 0.999 & 0.9995 \\ \hline
+                $z$ & 0.674 & 1.282 & 1.645 & 1.960 & 2.326 & 2.576 & 
+                2.807 & 3.090 & 3.291 \\ \hline
+            \end{tabular}
+        \end{center}
+        
+        \heading{Kinematics}
+        {\setlength\tabcolsep{0 pt}
+            \begin{tabular}{p{3 in} p{3 in}}
+                
+                Motion in a straight line & Motion in two dimensions \\
+                $v=u+at$                  & $\vec{v}=\vec{u}+\vec{a}t$ 
+                \\
+                $s=ut+\frac{1}{2}at^2$    & 
+                $\vec{s}=\vec{u}+\frac{1}{2}\vec{a}t^2$ \\
+                $s=\frac{1}{2}(u+v)t$     & 
+                $\vec{s}=\frac{1}{2}(\vec{u}+\vec{v})$ \\
+                $v^2=u^2+2as$             & \\
+                $s=vt-\frac{1}{2}at^2$    & 
+                $\vec{s}=\vec{v}-\frac{1}{2}\vec{a}t^2$
+        \end{tabular}}
+    \end{flushleft}
+    \newpage
+    \loadgeometry{main}
+}
+%</formulaesheet|all>
+%    \end{macrocode}
+%\end{macro}
+%\changes{2022/02/02}{v1.0a}{Moved the definition of the OCR A Level 
+%formulae sheet to this file}
 %\subsubsection{Answer book}
-
 %    The remaining code concerns the answer book.
 %    \begin{macrocode}
-%<*OCRALevel&(answerbook|all)>
+%<answerbook|all>
 \newcounter{numberofquestions}
 \newcounter{maxlinesinpage}
 \setcounter{maxlinesinpage}{31}
@@ -423,7 +565,8 @@
     \end{center}
     \loadgeometry{main}
 }
-%</OCRALevel&(answerbook|all)>
+%</answerbook|all>
+%</OCRALevel>
 %    \end{macrocode}
 
 %\section{Incomplete styles}
@@ -713,4 +856,6 @@
 %</veryadvanced&answerbook>
 %    \end{macrocode}
 % \Finale
+
+%\changes{2022/02/02}{v1.1}{Redid guards}
 \endinput
