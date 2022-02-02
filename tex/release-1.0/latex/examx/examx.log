@@ -1,0 +1,138 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=latex 2021.12.15)  2 FEB 2022 10:16
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**examx.ins
+(./examx.ins
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2021-11-22>
+(c:/texlive/2021/texmf-dist/tex/latex/base/docstrip.tex
+\blockLevel=\count183
+\emptyLines=\count184
+\processedLines=\count185
+\commentsRemoved=\count186
+\commentsPassed=\count187
+\codeLinesPassed=\count188
+\TotalprocessedLines=\count189
+\TotalcommentsRemoved=\count190
+\TotalcommentsPassed=\count191
+\TotalcodeLinesPassed=\count192
+\NumberOfFiles=\count193
+\inFile=\read2
+\inputcheck=\read3
+\off@0=\count194
+\off@1=\count195
+\off@2=\count196
+\off@3=\count197
+\off@4=\count198
+\off@5=\count199
+\off@6=\count266
+\off@7=\count267
+\off@8=\count268
+\off@9=\count269
+\off@10=\count270
+\off@11=\count271
+\off@12=\count272
+\off@13=\count273
+\off@14=\count274
+\off@15=\count275
+\@maxfiles=\count276
+\@maxoutfiles=\count277
+
+Utility: `docstrip' v2.6a <2020-11-23>
+English documentation    <2020-11-23>
+
+**********************************************************
+* This program converts documented macro-files into fast *
+* loadable files by stripping off (nearly) all comments! *
+**********************************************************
+
+********************************************************
+* No Configuration file found, using default settings. *
+********************************************************
+
+)
+
+Generating file(s) ./examx.cls ./default.clo ./OCRALevel.clo ./OCRALevelanswerb
+ook.clo ./advancedanswerbook.clo ./veryadvancedanswerbook.clo ./WellyOCRcovers.
+clo 
+\openout0 = `./examx.cls'.
+
+
+Processing file examx.dtx (class) -> examx.cls
+File examx.dtx ended by \endinput.
+Lines  processed: 880
+Comments removed: 387
+Comments  passed: 0
+Codelines passed: 484
+
+\openout0 = `./default.clo'.
+
+\openout1 = `./OCRALevel.clo'.
+
+\openout2 = `./OCRALevelanswerbook.clo'.
+
+\openout3 = `./advancedanswerbook.clo'.
+
+\openout4 = `./veryadvancedanswerbook.clo'.
+
+\openout5 = `./WellyOCRcovers.clo'.
+
+
+Processing file styles.dtx (default,all) -> default.clo
+                           (OCRALevel,all) -> OCRALevel.clo
+                           (OCRALevel,answerbook) -> OCRALevelanswerbook.clo
+                           (advanced,answerbook) -> advancedanswerbook.clo
+                           (veryadvanced,answerbook) -> veryadvancedanswerbook.
+clo
+                           (WellyOCR,covers) -> WellyOCRcovers.clo
+File styles.dtx ended by \endinput.
+Lines  processed: 856
+Comments removed: 122
+Comments  passed: 0
+Codelines passed: 707
+
+
+Processing file styles.dtx (default,answerbookbackcover) -> advancedanswerbook.
+clo
+                           (default,answerbookbackcover) -> veryadvancedanswerb
+ook.clo
+File styles.dtx  ended by \endinput.
+Lines  processed: 856
+Comments removed: 122
+Comments  passed: 0
+Codelines passed: 707
+
+*********************************************************
+*
+* To finish the installation you have to move the
+* following files into a directory searched by TeX:
+*
+*   examx.cls
+*   OCRALevel.clo
+*   OCRALevelanswerbook.clo
+*   advancedanswerbook.clo
+*   veryadvancedanswerbook.clo
+*
+* To produce the documentation run the file examx.dtx
+* through LaTeX.
+*
+* Happy TeXing!
+*********************************************************
+Overall statistics:
+Files  processed: 3
+Lines  processed: 2592
+Comments removed: 631
+Comments  passed: 0
+Codelines passed: 1898
+ ) 
+Here is how much of TeX's memory you used:
+ 408 strings out of 480271
+ 4674 string characters out of 5896626
+ 300904 words of memory out of 5000000
+ 18375 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
+ 36 hyphenation exceptions out of 8191
+ 14i,0n,19p,313b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+No pages of output.
