@@ -16,16 +16,74 @@
 % \fi
 %
 % \iffalse
+
+% \section{Identification}
+%
+%    Announce the file name and its version:
+%
+%    \begin{macrocode}
 %<*driver>
-\ProvidesFile{userguide.dtx}
+\ProvidesFile{userguide.dtx}[2022/02/01 v1.0
+%    \end{macrocode}
+%
+%\section{Driver}
+%
+% The next bit of code contains the documentation driver file for
+% \TeX{}, i.e., the file that will produce the documentation you are
+% currently reading. It will be extracted from this file by the
+% {\sc docstrip} program.
+%
+%    \begin{macrocode}
+%<*driver>
+]
 \documentclass{ltxdoc}
+%    \end{macrocode}
+%    Some things do not need indexing.
+%    \begin{macrocode}
+%    \end{macrocode}
+%    We do want an index, using line numbers, and a change log.
+%    \begin{macrocode}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+%    \end{macrocode}
+%    The following code retrieves the date and version information from 
+%the file.
+%    \begin{macrocode}
+\GetFileInfo{userguide.dtx}
+%    \end{macrocode}
+%    Here are some commonly used abbreviations:
+%    \begin{macrocode}
+\providecommand{\Lopt}[1]{\textsf {#1}}
+\providecommand{\file}[1]{\texttt {#1}}
+\providecommand{\Lcount}[1]{\textsl {\small#1}}
+\providecommand{\pstyle}[1]{\textsl {#1}}
+%    \end{macrocode}
+%    We also want the full details.
+%    \begin{macrocode}
 \begin{document}
 	\DocInput{userguide.dtx}
+    \PrintIndex
+    \PrintChanges
 \end{document}
 %</driver>
+%    \end{macrocode}
+%
 % \fi
-
-%TEST
+%
+% \CheckSum{0}
+%
+% \changes{v1.0}{2022/02/01}{Initial version}
+%
+%
+%
+%
+% \title{User guide for the \textsf{examx} class\thanks{This document
+    % corresponds to \file{userguide.dtx}~\fileversion,
+    % dated \filedate.}}
+% \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk} 
+%\\ \texttt{seb.laclau@gmail.com}}
+%
+% \maketitle
+%
+% \StopEventually{}
