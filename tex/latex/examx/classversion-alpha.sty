@@ -65,16 +65,13 @@ release information for
     \loop
         \item
         \stepcounter{classversion@int}
-        \file{\csname 
-        \alphalph{\theclassversion@release}file\alphalph{\theclassversion@int}\endcsname}~\csname
-         
-        \alphalph{\theclassversion@release}version\alphalph{\theclassversion@int}\endcsname,
+        \file{\csname\alphalph{\theclassversion@release}file\alphalph{\theclassversion@int}\endcsname}~
+        \csname\alphalph{\theclassversion@release}version\alphalph{\theclassversion@int}\endcsname,
          dated 
-        \csname 
-        \alphalph{\theclassversion@release}date\alphalph{\theclassversion@int}\endcsname
+        \csname\alphalph{\theclassversion@release}date\alphalph{\theclassversion@int}\endcsname
        
-        {\color{red}(expecting \csname 
-            \alphalph{\theclassversion@release}eversion\alphalph{\theclassversion@int}\endcsname)}
+        {\color{red}(expecting 
+        \csname\alphalph{\theclassversion@release}eversion\alphalph{\theclassversion@int}\endcsname)}
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
     \end{enumerate}
