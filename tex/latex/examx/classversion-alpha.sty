@@ -14,7 +14,7 @@ versioning classes]
 \NewDocumentCommand{\Release}{m}{
     \gdef\classversion@currentRelease{#1}
     \let\oldtitle\@title
-    \title{\oldtitle a}
+    \title{\oldtitle\space \classversion@currentRelease}
 }
 
 \ExplSyntaxOn
