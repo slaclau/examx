@@ -7,18 +7,22 @@ versioning classes]
 \RequirePackage{alphalph}
 \RequirePackage{ifthen}
 
+% Typesetting commands
 \providecommand*{\file}[1]{\texttt {#1}}
 \providecommand*{\Lpack}[1]{\textsf {#1}}
 
 \def\classname#1{\gdef\@classname{#1} \title{Installation check and 
 release information for 
-\Lpack{\@classname} class \classversion@currentRelease}}
+\Lpack{\@classname} up to release \classversion@currentRelease}}
 
+%Counts number of files - reset by new release
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
+%Counts number of releases
 \newcounter{classversion@release}
 \setcounter{classversion@release}{0}
 
+%Scratch counters
 \newcounter{classversion@int}
 \newcounter{classversion@iint}
 
@@ -136,11 +140,11 @@ release information for
 
 \NewDocumentCommand{\releasehistory}{}{
     \begingroup
-    \setcounter{classversion@iint}{0}
+    \setcounter{classversion@iint}{\theclassversion@release}
     \loop
-        \stepcounter{classversion@iint}
         \thisrelease{\theclassversion@iint}
-    \ifnum\theclassversion@iint<\theclassversion@release
+        \addtocounter{classversion@iint}{-1}
+    \ifnum\theclassversion@iint>0
     \repeat
     \endgroup
 }
