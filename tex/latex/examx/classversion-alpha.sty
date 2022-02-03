@@ -59,7 +59,8 @@ release information for
         \file{\csname 
         file\alphalph{\theclassversion@int}\endcsname}~\csname 
         version\alphalph{\theclassversion@int}\endcsname
-        {\if\tempc\tempd\else{\space \bfseries\color{red} (expecting 
+        {\expandafter\ifx\tempa\tempb\else{\space \bfseries\color{red} 
+        (expecting 
         \tempd)}\fi}, 
         dated \csname date\alphalph{\theclassversion@int}\endcsname
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
