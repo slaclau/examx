@@ -34,7 +34,7 @@ versioning classes]
     \setcounter{int}{0}
     
     \newtoks\tablines
-    \newcommand{\addtomytablines}[1]{\tablines\expandafter{\the\tablines#1}}
+    \newcommand{\addtomytablines}[1]{\tablines\expandafter{\the\tablines##1}}
     \loop
         \expandafter\addtomytablines\expandafter{\theint & & &\\}
         \stepcounter{int}
