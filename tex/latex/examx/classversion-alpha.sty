@@ -32,7 +32,7 @@ release information for
 }
 
 \ExplSyntaxOn
-\cs_new:cpx {thisrelease} {m}{\csname release\alphalph{#1}
+\cs_new:cpx {thisreleasenumber} {m}{\csname release\alphalph{#1}
 
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
@@ -113,7 +113,7 @@ release information for
     \end{enumerate}
     \endgroup
 }
-\NewDocumentCommand{\thisrelease}{O{Release \thisrelease{#2}} m}{
+\NewDocumentCommand{\thisrelease}{O{Release \thisreleasenumber{#2}} m}{
     \section*{#1}
     \begingroup
     \setcounter{classversion@int}{0}
