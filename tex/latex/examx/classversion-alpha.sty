@@ -12,5 +12,5 @@ versioning classes]
 \NewDocumentCommand{\NewRelease}{m}{
     \addtocounter{classversion@releaseRevision}{1}
     \gdef\classversion@currentRelease{#1}
-    \classversion@currentRelease
+    \xdef\classversion@currentRelease{\classversion@currentRelease,#1}
 }
