@@ -6,9 +6,18 @@ versioning classes]
 \RequirePackage{readprov}
 \RequirePackage{alphalph}
 
+\newcounter{classversion@file}
+\setcounter{classversion@file}{0}
+
 \def\classversion@releases{}
 
 \NewDocumentCommand{\Release}{m}{
     \gdef\classversion@currentRelease{#1}
     \classversion@currentRelease
+}
+
+\NewDocumentCommand{\IncludeFileInRelease}{m}{
+    \stepcounter{classversion@file}
+    \NewDocumentCommand{\csname file 
+    \alphalph{\theclassversion@file}\endcsname}{}{\alphalph\theclassversion@file}}
 }
