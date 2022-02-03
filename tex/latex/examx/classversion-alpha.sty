@@ -32,6 +32,6 @@ versioning classes]
     
     \loop
         \stepcounter{int}
-        \UseVersionOf{\csname file\alphalph{\theint} \endcsname}
+        \UseVersionOf{\csname file\alphalph{\theint}\endcsname}
     \ifnum\theint<\NumberOfFilesInRelease \repeat
 }
