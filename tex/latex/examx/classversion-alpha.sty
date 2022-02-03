@@ -33,14 +33,16 @@ release information for
     {release\alphalph{\theclassversion@release}} {#1}
     
     \setcounter{classversion@file}{0}
+    
+    \newcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
 
 \NewDocumentCommand{\thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
-    
-\NewDocumentCommand{\examx@numberoffilesinthisrelease}{m}
-    {}
 
+\NewDocumentCommand{\classversion@filesinthisrelease}{m}
+    {\number{classversion@filesinrelease\alphalph{#1}}
+\def\test\classversion@filesinthisrelease{1}
 
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
@@ -73,10 +75,8 @@ release information for
     \cs_new:cpx 
     {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {\UseDateOf{#1}}
-     
-    \cs_renew:cpx 
-    {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
-    {\UseDateOf{#1}}
+    
+    \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
 \ExplSyntaxOff
 
