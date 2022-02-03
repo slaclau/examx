@@ -38,7 +38,7 @@ versioning classes]
             \stepcounter{int}
             \expandafter\def\expandafter\mylines\expandafter{%
                 \mylines            
-                \csname file\alphalph{\theint}\endcsname & 
+                \theint & \csname file\alphalph{\theint}\endcsname & 
                 \UseVersionOf{\csname file\alphalph{\theint}\endcsname} 
                 & \UseDateOf{\csname file\alphalph{\theint}\endcsname} 
                 \\
@@ -47,7 +47,7 @@ versioning classes]
     
     \begin{center}
     \begin{tabular}{l l l}
-        Filename & version & date \\
+        File number & Filename & version & date \\
         \mylines
     \end{tabular}
     \end{center}
