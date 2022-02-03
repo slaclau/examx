@@ -6,6 +6,10 @@ versioning classes]
 \RequirePackage{readprov}
 \RequirePackage{alphalph}
 
+\def\classname#1{\gdef\@classname{#1}}
+\def\title
+\def\@title\@classname
+
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
 
@@ -14,7 +18,7 @@ versioning classes]
 \NewDocumentCommand{\Release}{m}{
     \gdef\classversion@currentRelease{#1}
     \let\oldtitle\@title
-    \title{\oldtitle\space release\space\classversion@currentRelease}
+%    \title{\oldtitle\space release\space\classversion@currentRelease}
 }
 
 \ExplSyntaxOn
