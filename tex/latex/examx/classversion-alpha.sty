@@ -156,8 +156,9 @@ release information for
     \classversion@thisreleasesummary{#2}
     \paragraph*{Manifest}
     This release consists of the following 
-    \classversion@filesinthisrelease{#2}\space 
-    files:
+    \classversion@filesinthisrelease{#2}\space
+    
+    \ifnum\classversion@filesinthisrelease{#2}>1 files \else file \fi:
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
