@@ -66,8 +66,7 @@ release information for
         \edef\tempb{\csname 
         eversion\alphalph{\theclassversion@int}\endcsname}
         \file{\csname 
-        \alphalph{\theclassversion@file}file\alphalph{\theclassversion@int}\endcsname}~\csname
-         
+        file\alphalph{\theclassversion@int}\endcsname}~\csname 
         version\alphalph{\theclassversion@int}\endcsname, dated 
         \csname date\alphalph{\theclassversion@int}\endcsname
        
@@ -88,9 +87,7 @@ release information for
             \item
             \stepcounter{classversion@int}
             \file{\csname 
-            \alphalph{\theclassversion@file} 
-            file\alphalph{\theclassversion@int}\endcsname}~\csname
-             
+            file\alphalph{\theclassversion@int}\endcsname}~\csname 
             eversion\alphalph{\theclassversion@int}\endcsname
         \ifnum\theclassversion@int<\NumberOfFilesInRelease 
         \repeat
