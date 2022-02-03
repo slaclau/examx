@@ -38,16 +38,14 @@ versioning classes]
             \addtocounter{int}{1}
             \expandafter\def\expandafter\mylines\expandafter{%
                 \mylines            
-                \theint & \csname file\alphalph{\theint}\endcsname & 
-                \UseVersionOf{\csname file\alphalph{\theint}\endcsname} 
-                & \UseDateOf{\csname file\alphalph{\theint}\endcsname} 
+                \theint  
                 \\
             }%
         \repeat
     
     \begin{center}
-    \begin{tabular}{l l l l}
-        File number & Filename & version & date \\
+    \begin{tabular}{l}
+        File number \\
         \mylines
     \end{tabular}
     \end{center}
