@@ -59,12 +59,12 @@ release information for
     \csname theclassversion@filesinrelease\alphalph{#1} \endcsname}
 %This preamble command follows \NewRelease and signifies a file that is 
 %part of that release
+\ExplSyntaxOn
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
     
     \ReadFileInfos{#1}
     
-    \ExplSyntaxOn
     \cs_new:cpx 
     {file\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {#1}
