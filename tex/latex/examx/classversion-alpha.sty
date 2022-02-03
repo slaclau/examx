@@ -47,10 +47,10 @@ versioning classes]
     \setcounter{int}{0}
     \begin{enumerate}
     \loop
-        \edef\tempa{\csname version\alphalph{\theint}\endcsname}
-        \edef\tempb{\csname eversion\alphalph{\theint}\endcsname}
         \item
         \stepcounter{int}
+        \edef\tempa{\csname version\alphalph{\theint}\endcsname}
+        \edef\tempb{\csname eversion\alphalph{\theint}\endcsname}
         \csname file\alphalph{\theint}\endcsname~\csname 
         version\alphalph{\theint}\endcsname
         \ifx\tempa\tempb\else {\color{red} expecting \tempb} \fi, dated 
