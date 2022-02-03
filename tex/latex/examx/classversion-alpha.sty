@@ -43,7 +43,7 @@ release information for
 
 \NewDocumentCommand{\classversion@filesinthisrelease}{m}
     {\number{classversion@filesinrelease\alphalph{#1}}
-\def\test\classversion@filesinthisrelease{1}
+\def\test{\classversion@filesinthisrelease{1}}
 
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
