@@ -69,10 +69,10 @@ documentation for the examx class]
     \DocInclude{examx-styles}
     
     \begingroup
-    \def\endash{--}
-    \catcode`\-\active
-    \def-{\futurelet\temp\indexdash}
-    \def\indexdash{\ifx\temp-\endash\fi}
+        \def\endash{--}
+        \catcode`\-\active
+        \def-{\futurelet\temp\indexdash}
+        \def\indexdash{\ifx\temp-\endash\fi}
     
     \PrintIndex
     \endgroup
@@ -84,3 +84,4 @@ documentation for the examx class]
 % \changes{2022/02/01}{v1.0a}{Changed index to two column and 
 %reformatted change log to account for multiple files}
 % \changes{v1.0.1}{2022/02/03}{Start of semver}
+% \changes{v1.0.1}{2022/02/03}{Removed hyphen from index page numbers}
