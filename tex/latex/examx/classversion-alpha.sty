@@ -48,7 +48,10 @@ versioning classes]
         \item
         \stepcounter{int}
         \csname file\alphalph{\theint}\endcsname~\csname 
-        version\alphalph{\theint}\endcsname, dated \csname 
+        version\alphalph{\theint}\endcsname
+        \ifx{\csname eversion\alphalph{\theint}\endcsname}\relax TEST 
+        \fi
+        , dated \csname 
         date\alphalph{\theint}\endcsname
     \ifnum\theint<\NumberOfFilesInRelease    
     \repeat
