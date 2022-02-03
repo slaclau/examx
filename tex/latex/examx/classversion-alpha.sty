@@ -4,14 +4,14 @@ versioning classes]
 \RequirePackage{xparse}
 \RequirePackage{readprov}
 
-\newcounter{classversion@releaseRevision}
-\setcounter{classversion@releaseRevision}{0}
+\newcounter{classversion@releasenumber}
+\setcounter{classversion@releasenumber}{0}
 
 \def\classversion@releases{}
 
 \NewDocumentCommand{\NewRelease}{m}{
-    \addtocounter{classversion@releaseRevision}{1}
+    \addtocounter{classversion@releasenumber}{1}
     \gdef\classversion@currentRelease{#1}
     \xdef\classversion@releases{\classversion@releases,#1}
-    \classversion@releases
+    \classversion@releases[\theclassversion@releasenumber]
 }
