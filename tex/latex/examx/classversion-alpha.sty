@@ -6,9 +6,8 @@ versioning classes]
 \RequirePackage{readprov}
 \RequirePackage{alphalph}
 
-\def\classname#1{\gdef\@classname{#1}}
-\def\title
-\def\@title\@classname
+\def\classname#1{\gdef\@classname{#1} \title{Release information for 
+\textsf{\@classname} class \classversion@currentversion}
 
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
