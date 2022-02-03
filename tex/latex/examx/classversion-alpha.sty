@@ -6,6 +6,9 @@ versioning classes]
 \RequirePackage{readprov}
 \RequirePackage{alphalph}
 
+\providecommand*{\file}[1]{\texttt {#1}}         % typeset a file
+\providecommand*{\Lpack}[1]{\textsf {#1}}        % typeset a package
+
 \def\classname#1{\gdef\@classname{#1} \title{Installation check and 
 release information for 
 \textsf{\@classname} class \classversion@currentRelease}}
@@ -65,7 +68,7 @@ release information for
 }
 \NewDocumentCommand{\release}{O{Release manifest}}{
     \section*{#1}
-    This release (\classversion@currentRelease) of \textsf{\@classname} 
+    This release (\classversion@currentRelease) of \Lpack{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
     \begingroup
     \setcounter{classversion@int}{0}
@@ -73,8 +76,8 @@ release information for
         \loop
             \item
             \stepcounter{classversion@int}
-            \csname 
-            file\alphalph{\theclassversion@int}\endcsname~\csname 
+            \file{\csname 
+            file\alphalph{\theclassversion@int}\endcsname}~\csname 
             version\alphalph{\theclassversion@int}\endcsname, dated 
             \csname date\alphalph{\theclassversion@int}\endcsname
         \ifnum\theclassversion@int<\NumberOfFilesInRelease 
