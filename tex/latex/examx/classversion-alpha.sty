@@ -29,7 +29,7 @@ release information for
 
 %This preamble command signifies the beginning of a new release
 \ExplSyntaxOn
-\NewDocumentCommand{\NewRelease}{m}{
+\NewDocumentCommand{\NewRelease}{m O{\relax}}{
     \gdef\classversion@currentRelease{#1} %This provides the current 
     %release version number
     
@@ -39,6 +39,10 @@ release information for
     %lower case letter representing the release number
     \cs_new:cpx 
     {release\alphalph{\theclassversion@release}} {#1}
+    
+    %And the change summary
+    \cs_new:cpx 
+    {summary\alphalph{\theclassversion@release}} {#2}
     
     %We reset this counter to zero
     \setcounter{classversion@file}{0}
@@ -50,15 +54,22 @@ release information for
     \setcounter{classversion@filesinrelease
         \alphalph{\theclassversion@release}}{0}
 }
+
 %This converts a release number to a release version number
 \NewDocumentCommand{\classversion@thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
+%This converts a release number to a change summary
+\NewDocumentCommand{\classversion@thisreleasesummary}{m}
+{\csname summary\alphalph{#1}\endcsname} 
+    
+    
 %This returns the number of files in a release given the release number
 \NewDocumentCommand{\classversion@filesinthisrelease}{m}{
     \csname theclassversion@filesinrelease\alphalph{#1} \endcsname}
+
 %This preamble command follows \NewRelease and signifies a file that is 
 %part of that release
-\NewDocumentCommand{\IncludeFileInRelease}{m m}{
+\NewDocumentCommand{\IncludeFileInRelease}{m m}}{
     \stepcounter{classversion@file}
     
     \ReadFileInfos{#1}
@@ -77,14 +88,14 @@ release information for
     
     \cs_new:cpx 
     {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
-     {\UseDateOf{#1}}
+    {\UseDateOf{#1}}
       
     \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
 \ExplSyntaxOff
 
-%\NewDocumentCommand{\classversion@filesinthisrelease{\theclassversion@release}}{}{\theclassversion@file}
-
+%This prints a section to check the installation compared to the latest 
+%release
 \NewDocumentCommand{\installation}{O{Installation check}}{
     \section*{#1}
     This installation of \textsf{\@classname} 
@@ -113,6 +124,7 @@ release information for
     \end{enumerate}
     \endgroup
 }
+%This prints a section to show latest release
 \NewDocumentCommand{\latestrelease}{O{Release manifest}}{
     \section*{#1}
     This release (\classversion@currentRelease) of \Lpack{\@classname} 
@@ -135,9 +147,12 @@ release information for
     \end{enumerate}
     \endgroup
 }
+
+%This prints a section to show a specific release
 \NewDocumentCommand{\thisrelease}{O{Release 
 \classversion@thisreleasenumber{#2}} m}{
     \section*{#1}
+    \classversion@thisreleasesummary{#2}
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
@@ -154,6 +169,8 @@ release information for
     \endgroup
 }
 
+%This prints a section to show each release, starting with the most 
+%recent
 \NewDocumentCommand{\releasehistory}{}{
     \begingroup
     \setcounter{classversion@iint}{\theclassversion@release}
