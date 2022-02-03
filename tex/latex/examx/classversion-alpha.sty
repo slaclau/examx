@@ -21,6 +21,8 @@ release information for
 
 \newcounter{classversion@int}
 
+\ExplSyntaxOn
+
 \NewDocumentCommand{\NewRelease}{m}{
     \gdef\classversion@currentRelease{#1}
     
@@ -32,7 +34,6 @@ release information for
     \setcounter{classversion@file}{0}
 }
 
-\ExplSyntaxOn
 %%\cs_new:cpx {thisreleasenumber}{m}
 %    {\csname release\alphalph{#1}\endcsname}
 
