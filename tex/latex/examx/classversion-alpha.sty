@@ -29,7 +29,8 @@ versioning classes]
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
-\NewDocumentCommand{\PrintReleaseFileInfo}{}{
+\NewDocumentCommand{\manifest}{}{
+    \section*{Manifest}
     \newcounter{int}
     \setcounter{int}{0}
     \begin{enumerate}
