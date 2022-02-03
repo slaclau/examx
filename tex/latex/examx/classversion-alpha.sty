@@ -27,8 +27,6 @@ release information for
 \newcounter{classversion@int}
 \newcounter{classversion@iint}
 
-\ExplSyntaxOn
-
 %This preamble command signifies the beginning of a new release
 \NewDocumentCommand{\NewRelease}{m}{
     \gdef\classversion@currentRelease{#1} %This provides the current 
@@ -36,31 +34,37 @@ release information for
     
     \stepcounter{classversion@release}
     
-    %We define a command to return the version number given a lower 
-    %case letter
+    %We define a command to return the release version number given a 
+    %lower case letter representing the release number
+    \ExplSyntaxOn
     \cs_new:cpx 
     {release\alphalph{\theclassversion@release}} {#1}
+    \ExplSyntaxOff
     
     %We reset this counter to zero
     \setcounter{classversion@file}{0}
     
+    %We define a counter for this release to count its files and set it 
+    %to zero
     \newcounter{classversion@filesinrelease
         \alphalph{\theclassversion@release}}
     \setcounter{classversion@filesinrelease
         \alphalph{\theclassversion@release}}{0}
 }
-
-\NewDocumentCommand{\thisreleasenumber}{m}
+%This converts a release number to a release version number
+\NewDocumentCommand{\classversion@thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
-
+%This returns the number of files in a release given the release number
 \NewDocumentCommand{\classversion@filesinthisrelease}{m}{
     \csname theclassversion@filesinrelease\alphalph{#1} \endcsname}
-
+%This preamble command follows \NewRelease and signifies a file that is 
+%part of that release
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
     
     \ReadFileInfos{#1}
     
+    \ExplSyntaxOn
     \cs_new:cpx 
     {file\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {#1}
@@ -76,17 +80,17 @@ release information for
     \cs_new:cpx 
     {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {\UseDateOf{#1}}
+    \ExplSyntaxOff
       
     \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
-\ExplSyntaxOff
-
-\NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
 \NewDocumentCommand{\installation}{O{Installation check}}{
     \section*{#1}
     This installation of \textsf{\@classname} 
-    consists of the following \NumberOfFilesInRelease\space files:
+    consists of the following 
+    \classversion@filesinthisrelease{\theclassversion@release}\space 
+    files:
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
@@ -103,7 +107,8 @@ release information for
             
             {\color{red}(expecting \csname 
             eversion\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@int}\endcsname)}
-    \ifnum\theclassversion@int<\NumberOfFilesInRelease    
+    \ifnum\theclassversion@int<\classversion@filesinthisrelease{\theclassversion@release}
+        
     \repeat
     \end{enumerate}
     \endgroup
@@ -111,7 +116,9 @@ release information for
 \NewDocumentCommand{\latestrelease}{O{Release manifest}}{
     \section*{#1}
     This release (\classversion@currentRelease) of \Lpack{\@classname} 
-    consists of the following \NumberOfFilesInRelease\space files:
+    consists of the following 
+    \classversion@filesinthisrelease{\theclassversion@release}\space 
+    files:
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
@@ -122,12 +129,14 @@ release information for
             \alphalph{\theclassversion@int}\endcsname}~
             \csname eversion\AlphAlph{\theclassversion@release}
             \alphalph{\theclassversion@int}\endcsname
-        \ifnum\theclassversion@int<\NumberOfFilesInRelease 
+        \ifnum\theclassversion@int<\classversion@filesinthisrelease{\theclassversion@release}
+         
         \repeat
     \end{enumerate}
     \endgroup
 }
-\NewDocumentCommand{\thisrelease}{O{Release \thisreleasenumber{#2}} m}{
+\NewDocumentCommand{\thisrelease}{O{Release 
+\classversion@thisreleasenumber{#2}} m}{
     \section*{#1}
     \begingroup
     \setcounter{classversion@int}{0}
