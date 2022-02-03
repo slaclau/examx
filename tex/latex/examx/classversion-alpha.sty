@@ -38,6 +38,8 @@ versioning classes]
         \csname file\alphalph{\theint}\endcsname~\UseVersionOf{\csname 
         file\alphalph{\theint}\endcsname}, dated \UseDateOf{\csname 
         file\alphalph{\theint}\endcsname}
+    \ifnum\theint<\NumberOfFilesInRelease
+    \repeat
 }
 
 
