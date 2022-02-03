@@ -31,7 +31,7 @@ versioning classes]
     \cs_new:cpx {version\alphalph{\theclassversion@file}}  
     {\UseVersionOf{#1}}
     \cs_new:cpx {eversion\alphalph{\theclassversion@file}} {
-%        \IfNoValueTF{#2}{\UseVersionOf{#1}}{#2}
+        \IfNoValueTF{#2}{\UseVersionOf{#1}}{#2}
     }
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
 }
