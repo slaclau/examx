@@ -47,6 +47,10 @@ release information for
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
     
     \cs_new:cpx 
+    {file\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
+     {#1}
+    
+    \cs_new:cpx 
     {version\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
     {\ignorespaces\UseVersionOf{#1}\ignorespaces}
     
