@@ -85,7 +85,7 @@ release information for
     \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
 
-\NewDocumentCommand{\classversion@filesinlatestrelease}{}{\theclassversion@file}
+\NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
 \NewDocumentCommand{\installation}{O{Installation check}}{
     \section*{#1}
@@ -109,7 +109,7 @@ release information for
             
             {\color{red}(expecting \csname 
             eversion\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@int}\endcsname)}
-    \ifnum\theclassversion@int<\classversion@filesinlatestrelease    
+    \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
     \end{enumerate}
     \endgroup
@@ -117,8 +117,7 @@ release information for
 \NewDocumentCommand{\latestrelease}{O{Release manifest}}{
     \section*{#1}
     This release (\classversion@currentRelease) of \Lpack{\@classname} 
-    consists of the following \classversion@filesinlatestrelease\space 
-    files:
+    consists of the following \NumberOfFilesInRelease\space files:
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
@@ -129,7 +128,7 @@ release information for
             \alphalph{\theclassversion@int}\endcsname}~
             \csname eversion\AlphAlph{\theclassversion@release}
             \alphalph{\theclassversion@int}\endcsname
-        \ifnum\theclassversion@int<\classversion@filesinlatestrelease 
+        \ifnum\theclassversion@int<\NumberOfFilesInRelease 
         \repeat
     \end{enumerate}
     \endgroup
