@@ -35,12 +35,18 @@ release information for
     
     \ReadFileInfos{#1}
     
-    \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
+    \cs_new:cpx 
+    {\alphalph{\theclassversion@release}file\alphalph{\theclassversion@file}}
+     {#1}
     
-    \cs_new:cpx {version\alphalph{\theclassversion@file}}  
+    \cs_new:cpx 
+    {\alphalph{\theclassversion@release}version\alphalph{\theclassversion@file}}
+      
     {\ignorespaces\UseVersionOf{#1}\ignorespaces}
     
-    \cs_new:cpx {eversion\alphalph{\theclassversion@file}} 
+    \cs_new:cpx 
+    {\alphalph{\theclassversion@release}eversion\alphalph{\theclassversion@file}}
+     
     {\ignorespaces#2\ignorespaces}
     
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
@@ -59,16 +65,16 @@ release information for
     \loop
         \item
         \stepcounter{classversion@int}
-        \edef\tempa{\csname 
-        version\alphalph{\theclassversion@int}\endcsname}
-        \edef\tempb{\csname 
-        eversion\alphalph{\theclassversion@int}\endcsname}
         \file{\csname 
-        file\alphalph{\theclassversion@int}\endcsname}~\csname 
-        version\alphalph{\theclassversion@int}\endcsname, dated 
-        \csname date\alphalph{\theclassversion@int}\endcsname
+        \alphalph{\theclassversion@release}file\alphalph{\theclassversion@int}\endcsname}~\csname
+         
+        \alphalph{\theclassversion@release}version\alphalph{\theclassversion@int}\endcsname,
+         dated 
+        \csname 
+        \alphalph{\theclassversion@release}date\alphalph{\theclassversion@int}\endcsname
        
-        {\color{red}(expecting \tempb)}
+        {\color{red}(expecting \csname 
+            \alphalph{\theclassversion@release}eversion\alphalph{\theclassversion@int}\endcsname)}
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
     \end{enumerate}
@@ -85,8 +91,11 @@ release information for
             \item
             \stepcounter{classversion@int}
             \file{\csname 
-            file\alphalph{\theclassversion@int}\endcsname}~\csname 
-            eversion\alphalph{\theclassversion@int}\endcsname
+            \csname 
+            \alphalph{\theclassversion@release}eversion\alphalph{\theclassversion@int}\endcsnamefile\alphalph{\theclassversion@int}\endcsname}~\csname
+             
+            \csname 
+            \alphalph{\theclassversion@release}eversion\alphalph{\theclassversion@int}\endcsnameeversion\alphalph{\theclassversion@int}\endcsname
         \ifnum\theclassversion@int<\NumberOfFilesInRelease 
         \repeat
     \end{enumerate}
