@@ -41,7 +41,7 @@ release information for
 \NewDocumentCommand{\thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
 
-\cs_new:cpx {classversion@filesinthisrelease}{#1}
+\cs_set:Npn \classversion_filesinthisrelease:n {#1}
     {\value{classversion@filesinrelease\alphalph{#1}}
 %\def\test{\classversion@filesinthisrelease{1}}
 
