@@ -32,6 +32,7 @@ versioning classes]
 \NewDocumentCommand{\PrintReleaseFileInfo}{}{
     \newcounter{int}
     \setcounter{int}{0}
+    \begin{center}
     \begin{tabular}{l l l}
         Filename & version & date \\
         \loop
@@ -41,4 +42,5 @@ versioning classes]
             \UseDateOf{\csname file\alphalph{\theint}\endcsname} \\
         \ifnum\theint<\NumberOfFilesInRelease \repeat
     \end{tabular}
+    \end{center}
 }
