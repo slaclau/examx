@@ -24,14 +24,14 @@
 %    Announce the file name and its version:
 %
 %    \begin{macrocode}
-%<default&all>\ProvidesFile{default.clo}
-%<OCRALevel&all>\ProvidesFile{OCRALevel.clo}
-%<OCRALevel&answerbook>\ProvidesFile{OCRALevelanswerbook.clo}
-%<advanced&answerbook>\ProvidesFile{advancedanswerbook.clo}
-%<veryadvanced&answerbook>\ProvidesFile{veryadvancedanswerbook.clo}
-%<WellyOCR&covers>\ProvidesFile{WellyOCRcovers.clo}
+%<default&all>\ProvidesFile{examx-default.clo}
+%<OCRALevel&all>\ProvidesFile{examx-OCRALevel.clo}
+%<OCRALevel&answerbook>\ProvidesFile{examx-OCRALevelanswerbook.clo}
+%<advanced&answerbook>\ProvidesFile{examx-advancedanswerbook.clo}
+%<veryadvanced&answerbook>\ProvidesFile{examx-veryadvancedanswerbook.clo}
+%<WellyOCR&covers>\ProvidesFile{examx-WellyOCRcovers.clo}
 %<*driver>
-\ProvidesFile{styles.dtx}
+\ProvidesFile{examx-styles.dtx}
 %</driver>
 	[2022/01/31 v1.01
 %<!driver> standard latex class option file]
@@ -67,7 +67,7 @@
 %    The following code retrieves the date and version information from 
 %the file.
 %    \begin{macrocode}
-\GetFileInfo{styles.dtx}
+\GetFileInfo{examx-styles.dtx}
 %    \end{macrocode}
 %    Here are some commonly used abbreviations:
 %    \begin{macrocode}
@@ -76,7 +76,7 @@
 %    We also want the full details.
 %    \begin{macrocode}
 \begin{document}
-	\DocInput{styles.dtx}
+	\DocInput{examx-styles.dtx}
 	\PrintIndex
 	\PrintChanges
 \end{document}
@@ -93,7 +93,7 @@
 %
 %
 % \title{Styles for the \textsf{examx} class\thanks{This document
-	% corresponds to \file{styles.dtx}~\fileversion,
+	% corresponds to \file{examx-styles.dtx}~\fileversion,
 	% dated \filedate.}}
 % \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk} \\ \texttt{seb.laclau@gmail.com}}
 %
