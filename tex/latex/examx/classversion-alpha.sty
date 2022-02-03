@@ -20,6 +20,7 @@ release information for
 \setcounter{classversion@release}{0}
 
 \newcounter{classversion@int}
+\newcounter{classversion@iint}
 
 \ExplSyntaxOn
 
@@ -135,11 +136,11 @@ release information for
 
 \NewDocumentCommand{\releasehistory}{}{
     \begingroup
-    \setcounter{classversion@int}{0}
+    \setcounter{classversion@iint}{0}
     \loop
-        \stepcounter{classversion@int}
-        \thisrelease{\theclassversion@int}
-    \ifnum\theclassversion@int<\theclassversion@release
+        \stepcounter{classversion@iint}
+        \thisrelease{\theclassversion@iint}
+    \ifnum\theclassversion@iint<\theclassversion@release
     \repeat
     \endgroup
 }
