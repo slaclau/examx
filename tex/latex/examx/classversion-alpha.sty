@@ -16,8 +16,9 @@ versioning classes]
     \classversion@currentRelease
 }
 
+\ExplSyntaxOn
+
 \NewDocumentCommand{\IncludeFileInRelease}{m}{
     \stepcounter{classversion@file}
-    \expandafter\def{\csname file 
-    \alphalph{\theclassversion@file}\endcsname}{TEST}
+    \cs_new:cpx {file\alphalph{\theclassversion@file}} {Test}
 }
