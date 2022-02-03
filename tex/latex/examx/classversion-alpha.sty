@@ -36,7 +36,8 @@ versioning classes]
     \newtoks\tablines
     \newcommand{\addtomytablines}[1]{\tablines\expandafter{\the\tablines##1}}
     \loop
-        \expandafter\addtomytablines\expandafter{\theint & & &\\}
+        \expandafter\addtomytablines\expandafter{\number\arabic{int} & 
+        & &\\}
         \stepcounter{int}
     \ifnum \theint<\NumberOfFilesInRelease
     \repeat
