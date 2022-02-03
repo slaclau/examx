@@ -34,14 +34,14 @@ release information for
     
     \setcounter{classversion@file}{0}
     
-\newcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
+    \newcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
 
 \NewDocumentCommand{\thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
 
-\NewDocumentCommand{\classversion@filesinthisrelease}{m}{%
-    \value{classversion@filesinrelease\alphalph{1}}
+\NewDocumentCommand{\classversion@filesinthisrelease}{m}{
+    \value{classversion@filesinrelease\alphalph{1}}}
 %\def\test{\classversion@filesinthisrelease{1}}
 
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
