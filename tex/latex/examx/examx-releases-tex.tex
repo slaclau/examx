@@ -15,7 +15,13 @@
 \begin{document}
 \maketitle
 
+\newcounter{int}
+\setcounter{int}{1}
 
+\edef\tempa{\csname 
+    version\alphalph{\theint}\endcsname}
+\edef\tempb{\csname 
+    eversion\alphalph{\theint}\endcsname}
 
 \installation
 \release
