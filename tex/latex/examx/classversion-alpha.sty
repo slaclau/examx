@@ -152,7 +152,12 @@ release information for
 \NewDocumentCommand{\thisrelease}{O{Release 
 \classversion@thisreleasenumber{#2}} m}{
     \section*{#1}
+    \paragraph{Change summary}
     \classversion@thisreleasesummary{#2}
+    \paragraph*{Manifest}
+    This release consists of the following 
+    \classversion@filesinthisrelease{#2}\space 
+    files:
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
