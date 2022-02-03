@@ -39,9 +39,9 @@ versioning classes]
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
-\NewDocumentCommand{\manifest}{}{
-    \section*{Manifest}
-    This release (\classversion@currentRelease) of \textsf{\@classname} 
+\NewDocumentCommand{\thisinstallation}{}{
+    \section*{Installation}
+    This installation of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
     \newcounter{int}
     \setcounter{int}{0}
@@ -55,11 +55,26 @@ versioning classes]
         version\alphalph{\theint}\endcsname
         {\ifx\tempa\tempb\else{\space \bfseries\color{red} (expecting 
         \tempb)}\fi}, 
-        dated 
-        \csname 
-        date\alphalph{\theint}\endcsname
+        dated \csname date\alphalph{\theint}\endcsname
     \ifnum\theint<\NumberOfFilesInRelease    
     \repeat
+    \end{enumerate}
+}
+\NewDocumentCommand{\releasemanifest}{}{
+    \section*{Release manifest}
+    This release (\classversion@currentRelease) of \textsf{\@classname} 
+    consists of the following \NumberOfFilesInRelease\space files:
+    \newcounter{int}
+    \setcounter{int}{0}
+    \begin{enumerate}
+        \loop
+            \item
+            \stepcounter{int}
+            \csname file\alphalph{\theint}\endcsname~\csname 
+            version\alphalph{\theint}\endcsname, dated \csname 
+            date\alphalph{\theint}\endcsname
+        \ifnum\theint<\NumberOfFilesInRelease    
+        \repeat
     \end{enumerate}
 }
 
