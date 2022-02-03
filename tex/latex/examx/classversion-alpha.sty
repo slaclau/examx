@@ -20,7 +20,18 @@ versioning classes]
 \NewDocumentCommand{\IncludeFileInRelease}{m}{
     \stepcounter{classversion@file}
     \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
+    \ReadFileInfos{#1}
 }
 \ExplSyntaxOff
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
+
+\NewDocumentCommand{\PrintReleaseFileInfo}{}{
+    \newcounter{int}
+    \setcounter{int}{0}
+    
+    \loop
+        \stepcounter{int}
+        \UseVersionOf{\csname file \alphalph{\theint} \endcsname}
+    \ifnum\theint>\NumberOfFilesInRelease \break
+}
