@@ -84,19 +84,19 @@ release information for
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
-    \loop
-        \item
-        \stepcounter{classversion@int}
-        \edef\tempa{\csname 
-        version\alphalph{\theclassversion@int}\endcsname}
-        \edef\tempb{\csname 
-        eversion\alphalph{\theclassversion@int}\endcsname}
-        \file{\csname 
-        file\alphalph{\theclassversion@int}\endcsname}~\csname 
-        version\alphalph{\theclassversion@int}\endcsname, dated 
-        \csname date\alphalph{\theclassversion@int}\endcsname
-       
-        {\color{red}(expecting \tempb)}
+        \loop
+            \item
+            \stepcounter{classversion@int}
+            \file{\csname file\AlphAlph{\theclassversion@release}
+            \alphalph{\theclassversion@int}\endcsname}~
+            \csname version\AlphAlph{\theclassversion@release}
+            \alphalph{\theclassversion@int}\endcsname, dated 
+            \csname date\AlphAlph{\theclassversion@release}
+            \alphalph{\theclassversion@int}\endcsname
+            
+            {\color{red}(expecting \csname 
+            eversion\AlphAlph{\theclassversion@release}
+            \alphalph{\theclassversion@int}\endcsname)}
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
     \end{enumerate}
