@@ -32,15 +32,20 @@ versioning classes]
 \NewDocumentCommand{\PrintReleaseFileInfo}{}{
     \newcounter{int}
     \setcounter{int}{0}
-    \begin{center}
-    \begin{tabular}{l l l}
-        Filename & version & date \\
+    
+    \def\mylines{%
         \loop
             \stepcounter{int}
-            \csname file\alphalph{\theint}\endcsname & 
+            \csname file\alphalph{\theint}\endcsname &             
             \UseVersionOf{\csname file\alphalph{\theint}\endcsname} & 
             \UseDateOf{\csname file\alphalph{\theint}\endcsname} \\
         \ifnum\theint<\NumberOfFilesInRelease \repeat
+    }%
+    
+    \begin{center}
+    \begin{tabular}{l l l}
+        Filename & version & date \\
+        \mylines
     \end{tabular}
     \end{center}
 }
