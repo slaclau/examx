@@ -1,0 +1,323 @@
+%%
+%% This is file `examx-OCRALevelanswerbook.clo',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% examx-styles.dtx  (with options: `OCRALevel,answerbook')
+%% 
+%% This is a generated file.
+%% 
+%% SVN keywords: $Revision: 110 $
+%% 
+%% Copyright (C) 2022 by Sebastien Laclau
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2008 or later.
+%% 
+
+\ProvidesFile{examx-OCRALevelanswerbook.clo}
+[2022/01/31 v1.01
+ standard latex class option file]
+    % \begin{tabular}{ll}
+        %   default             & produce the style used by default \\
+        %   OCRALevel           & imitates the style of an OCR A Level
+        %paper \\
+        %   WellyOCR            & incomplete style used for covers only
+        %\\
+        %   advanced            & incomplete style used for answerbook
+        %only \\
+        %   veryadvanced        & incomplete style used for answerbook
+        %only \\
+        % \hline
+        %   all                 & included in the complete style \\
+        %   covers              & included in the cover style \\
+        %   answerbook          & included in the answer book style \\
+        %   formulaesheet       & included in the formulae sheet style
+        %\\
+        %   answerbookbackcover & used to include the default answer
+        %book back covers in other styles \\
+        % \hline
+        %   driver        & produce a documentation driver file
+        % \end{tabular}
+    % \end{center}
+\@alwaysdroppointsatright
+\soln
+
+\sisetup{inter-unit-product = \,} %Configures siunitx to use a
+
+\setmainfont{Times New Roman}
+
+\titleformat{\section}{\centering\bf}{Section \Alph{section}:
+}{0pt}{}
+
+\geometry{left=0.86 in,right=1.14 in,top=1 in,bottom=1 in}
+\savegeometry{main}
+\newgeometry{left=0.68 in,right=0.68 in,top=1 in,bottom=1 in}
+\savegeometry{answerbook}
+\loadgeometry{main}
+
+\footer{}{}{\bf\oddeven{Turn over}{}}
+\header{}{\bf \thepage}{}
+
+\renewcommand{\questionpaperend}{
+    \footer{}{}{}
+    \begin{center}
+        \ifprintanswers {\bf END OF MARKSCHEME} \else {\bf END OF
+        QUESTION PAPER} \fi
+        \oddeven{\newpage {\bf This page is intentionally
+        blank}}{}
+    \end{center}
+}
+\renewcommand{\questionpaperstart}{
+    \ifprintanswers \else
+    \begin{center}
+        Answer {\bf all} the questions.
+    \end{center}
+    \fi
+}
+\renewcommand{\questionshook}{\setlength{\itemsep}{1in}}
+\renewcommand{\partshook}{\setlength{\topsep}{\baselineskip}
+\setlength{\itemsep}{\baselineskip}}
+\renewcommand{\solnorhook}{
+    \renewcommand{\partshook}{\setlength{\itemsep}{\baselineskip}}
+}
+
+\renewcommand{\questionlabel}{\bfseries\thequestion.}
+\renewcommand{\partlabel}{\bfseries(\thepartno)}
+\renewcommand{\subpartlabel}{\bfseries(\thesubpart)}
+\renewcommand{\subsubpartlabel}{\bfseries(\thesubsubpart)}
+
+\pointname{}
+\pointformat{\bfseries[\thepoints]}
+\newcounter{numberofquestions}
+\newcounter{maxlinesinpage}
+\setcounter{maxlinesinpage}{31}
+\newcounter{currentline}
+\newcounter{currentlineinquestion}
+\newcounter{questionnumber}
+\newcounter{numlinesinquestion}
+\newcounter{partlevel}
+
+\newcounter{tempa}
+\newcounter{tempb}
+\newcounter{tempc}
+\newcounter{linesleft}
+\newcounter{lastques}
+
+\newif\ifquestioncomplete
+\def\lpos{0}
+\def\mpos{0.59 in}
+\def\rpos{6.89 in}
+\def\lineheight{.76}
+
+\newcommand{\blankrow}{
+    \draw (\mpos,-1-\thecurrentline)--(\rpos,-1-\thecurrentline);
+    \draw (\lpos,-\thecurrentline)--(\lpos,-1-\thecurrentline);
+    \draw (\mpos,-\thecurrentline)--(\mpos,-1-\thecurrentline);
+    \draw (\rpos,-\thecurrentline)--(\rpos,-1-\thecurrentline);
+}
+\newcommand{\pagestartrule}{
+    \draw (\lpos,0)--(\rpos,0);
+}
+\newcommand{\pageendrule}[1][\themaxlinesinpage]{
+    \draw (\lpos,-#1)--(\rpos,-#1);
+}
+
+\renewcommand{\answerbookpages}{
+    \newcounter{int}
+
+    \newcounter{arraycard}
+    \def\arrayLength##1{%
+        \setcounter{arraycard}{0}%
+        \foreach \x in ##1{%
+            \stepcounter{arraycard}%
+        }%
+        %
+    }
+    \newcommand{\setcountertoarraylength}[2]{
+        \arrayLength{##2}
+        \setcounter{##1}{\thearraycard}
+    }
+
+    \footer{}{}{}
+    \loadgeometry{answerbook}
+    \setcountertoarraylength{numberofquestions}{\@questionorpartnumber}
+    \addtocounter{numberofquestions}{-1}
+
+    \xdef\qs{{\@questionorpartnumber}}
+    \xdef\lines{{\@lines}}
+    \xdef\ip{{\@partlevel}}
+
+    \setcounter{numlinesinquestion}{0}
+    \setcounter{int}{1}
+    \setcounter{tempa}{1}
+    \setcounter{linesleft}{0}
+    \setcounter{currentlineinquestion}{1} 
+
+    \loop
+    \begin{center}
+        \begin{tikzpicture}[yscale=\lineheight]
+        \pagestartrule
+        \setcounter{currentline}{0} 
+        \foreach \n in {1,...,\themaxlinesinpage}{
+            \blankrow
+            \addtocounter{currentline}{1}
+        }
+        \pageendrule
+
+        \setcounter{currentline}{0}
+        \setcounter{int}{\thetempa}
+        \foreach \n in {\theint,...,\thenumberofquestions}{
+            \pgfmathsetcounter{questionnumber}{\qs[\n]}
+            \pgfmathsetcounter{partlevel}{\ip[\n]}
+            \ifnum \thelinesleft>0
+            \draw[draw=none]
+            (\mpos,-1)--(\rpos,-1)node[pos=0.08,above]{\bf
+            (continued)};
+            \setcounter{numlinesinquestion}{\thelinesleft}
+            \else
+            \ifnum \thecurrentline=0 \else \ifnum \thepartlevel>0
+            \draw[very thick]
+            (\lpos,-\thecurrentline)--(\rpos,-\thecurrentline);
+            \fi \fi
+            \pgfmathsetcounter{numlinesinquestion}{\lines[\n]}
+            \fi
+
+            \ifnum \thecurrentline=\themaxlinesinpage \else
+            \ifnum \thepartlevel=-1
+            \draw
+            (\lpos,-1-\thecurrentline)--(\rpos,-1-\thecurrentline)node[pos=0.5,above]{\bf
+             Section \Alph{questionnumber}:
+            \nameref{sec:\Alph{questionnumber}}};
+            \ifnum \thecurrentline=0 \draw[white,thick]
+            (\lpos,0)--(\rpos,0); \fi
+            \draw[white,thick]
+            (\lpos,-\thecurrentline)--(\lpos,-1-\thecurrentline);
+            \draw[white,thick]
+            (\mpos,-\thecurrentline)--(\mpos,-1-\thecurrentline);
+            \draw[white,thick]
+            (\rpos,-\thecurrentline)--(\rpos,-1-\thecurrentline);
+            \fi \ifnum \thepartlevel=0
+            \setcounter{lastques}{\thequestionnumber}
+            \ifnum \thenumlinesinquestion=0 \else
+            \draw[draw=none]
+            (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\bf
+             \thelastques}; \fi
+            \fi \ifnum \thepartlevel=1
+            \draw[draw=none]
+            (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\bf
+             \thelastques(\alph{questionnumber})};
+            \fi
+            \fi
+            \addtocounter{tempa}{1}
+            \addtocounter{currentline}{\thenumlinesinquestion}
+            \setcounter{linesleft}{0}
+
+            \ifnum \n=\thenumberofquestions \else
+            \setcounter{tempb}{\n}
+            \addtocounter{tempb}{1}
+            \pgfmathsetcounter{tempb}{\ip[\thetempb]}
+
+            \ifnum \thetempb=0\ifnum \thepartlevel=-1 \else
+            \breakforeach \fi \fi
+            \fi
+            \ifnum \thecurrentline>\themaxlinesinpage
+            \addtocounter{tempa}{-1}
+            \setcounter{linesleft}{\thecurrentline}
+            \addtocounter{linesleft}{-\themaxlinesinpage}
+            \draw[draw=none]
+            (\mpos,-\themaxlinesinpage)--(\rpos,-\themaxlinesinpage)node[pos=0.77,above]{\bf
+             (answer space continued on next page)};
+            \breakforeach
+            \fi
+        }
+        \ifnum \thelinesleft=0
+        \draw[very thick]
+        (\lpos,-\themaxlinesinpage)--(\rpos,-\themaxlinesinpage);
+        \fi
+        \oddeven{\draw[draw=none]
+        (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{\bf
+         Turn over};}{}
+        \end{tikzpicture}
+    \end{center}
+    \newpage
+    \ifnum \thetempa<\thenumberofquestions
+    \repeat
+    \loadgeometry{main}
+}
+
+\renewcommand{\answerbookbackcover}{
+    \loadgeometry{answerbook}
+    \begin{center}
+        \large\bf ADDITIONAL ANSWER SPACE
+    \end{center}
+    If additional space is required, you should use the following
+    lined page(s). The question number(s) must be clearly shown
+    in the margin(s).
+
+    \begin{center}
+        \begin{tikzpicture}[yscale=\lineheight]
+        \pagestartrule
+        \setcounter{currentline}{0} 
+        \foreach \n in {1,...,21}{
+            \blankrow
+            \addtocounter{currentline}{1}
+        }
+        \pageendrule[21]
+        \end{tikzpicture}
+    \end{center}
+    \loadgeometry{main}
+}
+
+\renewcommand{\doubleanswerbookbackcover}{
+    \loadgeometry{answerbook}
+    \begin{center}
+        \large\bf ADDITIONAL ANSWER SPACE
+    \end{center}
+    If additional space is required, you should use the following
+    lined page(s). The question number(s) must be clearly shown
+    in the margin(s).
+
+    \begin{center}
+        \begin{tikzpicture}[yscale=\lineheight]
+        \pagestartrule
+        \setcounter{currentline}{0} 
+        \foreach \n in {1,...,25}{
+            \blankrow
+            \addtocounter{currentline}{1}
+        }
+        \pageendrule[25]
+        \end{tikzpicture}
+    \end{center}
+    \newpage
+    \begin{center}
+        \begin{tikzpicture}[yscale=\lineheight]
+        \pagestartrule
+        \setcounter{currentline}{0} 
+        \foreach \n in {1,...,28}{
+            \blankrow
+            \addtocounter{currentline}{1}
+        }
+        \pageendrule[28]
+        \end{tikzpicture}
+    \end{center}
+    \loadgeometry{main}
+}
+
+
+
+
+
+
+
+\endinput
+%%
+%% End of file `examx-OCRALevelanswerbook.clo'.
