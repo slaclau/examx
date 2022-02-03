@@ -33,20 +33,17 @@ versioning classes]
     \newcounter{int}
     \setcounter{int}{0}
     
-    \def\mylines{}%
-        \loop\ifnum\theint<\NumberOfFilesInRelease 
-            \addtocounter{int}{1}
-            \let\oldmylines\mylines
-            \def\mylines{%
-                \oldmylines            
-                \arabic{int}  
-                \\
-            }%
-        \repeat
+    \newtoks\tablines
+    \newcommand{\addtomytablines}[1]{\tablines\expandafter{\the\tablines#1}}
+    \loop
+        \expandafter\addtomytablines\expandafter{\theint & & &\\}
+        \stepcounter{imt}
+    \ifnum \theint<\NumberOfFilesInRelease
+    \repeat
     
     \begin{center}
     \begin{tabular}{l}
-        File number \\
+        File number & & & \\
         \mylines
     \end{tabular}
     \end{center}
