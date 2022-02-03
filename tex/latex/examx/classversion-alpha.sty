@@ -5,15 +5,9 @@ versioning classes]
 \RequirePackage{pgf}
 \RequirePackage{readprov}
 
-\newcounter{classversion@releasenumber}
-\setcounter{classversion@releasenumber}{0}
-
 \def\classversion@releases{}
 
-\NewDocumentCommand{\NewRelease}{m}{
-    \addtocounter{classversion@releasenumber}{1}
+\NewDocumentCommand{\Release}{m}{
     \gdef\classversion@currentRelease{#1}
-    \xdef\classversion@releases{\classversion@releases,#1}
-    \xdef\temp{{\classversion@releases}}
-    \begin{tikzpicture}\temp[1];\end{tikzpicture}
+    \classversion@currentRelease
 }
