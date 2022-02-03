@@ -16,9 +16,10 @@
 
 \versionb
 \eversionb
+\def\tempa{\csname eversion\alphalph{2}\endcsname}
+\def\tempb{\csname version\alphalph{2}\endcsname}
 
-\ifx{\expandafter\csname 
-eversion\alphalph{2}\endcsname}{\expandafter\csname 
-version\alphalph{2}\endcsname} TESTA \else TESTB \fi
+
+\ifx\tempa\tempb equal \else dif \fi
 \manifest
 \end{document}
