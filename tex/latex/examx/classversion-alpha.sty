@@ -47,17 +47,15 @@ release information for
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
     
     \cs_new:cpx 
-    {version\AlphAlph{\theclassversion@file}\alphalph{\theclassversion@file}}
-      
+    {version\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
     {\ignorespaces\UseVersionOf{#1}\ignorespaces}
     
     \cs_new:cpx 
-    {eversion\AlphAlph{\theclassversion@file}\alphalph{\theclassversion@file}}
-     
+    {eversion\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
     {\ignorespaces#2\ignorespaces}
     
     \cs_new:cpx 
-    {date\AlphAlph{\theclassversion@file}\alphalph{\theclassversion@file}}
+    {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {\UseDateOf{#1}}
 }
 \ExplSyntaxOff
