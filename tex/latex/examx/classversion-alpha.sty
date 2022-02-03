@@ -53,7 +53,8 @@ versioning classes]
         \edef\tempb{\csname eversion\alphalph{\theint}\endcsname}
         \csname file\alphalph{\theint}\endcsname~\csname 
         version\alphalph{\theint}\endcsname
-        \ifx\tempa\tempb\else {\color{red} expecting \tempb} \fi, dated 
+        {\ifx\tempa\tempb\else {\color{red} expecting \tempb} \fi}, 
+        dated 
         \csname 
         date\alphalph{\theint}\endcsname
     \ifnum\theint<\NumberOfFilesInRelease    
