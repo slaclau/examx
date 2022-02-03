@@ -38,7 +38,7 @@ versioning classes]
     \loop
         \stepcounter{int}
         \expandafter\addtomytablines\expandafter{\number\arabic{int} &
-             file\expandafter\alphalph{\number\arabic{int}} &
+             file\alphalph\expandafter{\number\arabic{int}} &
             \UseVersionOf{\csname 
             file\alphalph{\number\arabic{int}}\endcsname} &
             \UseDateOf{\csname 
