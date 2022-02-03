@@ -138,7 +138,8 @@ release information for
         \file{\csname         
         file\AlphAlph{#2}\alphalph{\theclassversion@int}\endcsname}~\csname
          eversion\AlphAlph{#2}\alphalph{\theclassversion@int}\endcsname
-        \ifnum\theclassversion@int<\NumberOfFilesInRelease
+        \ifnum\theclassversion@int<
+            \classversion@filesinthisrelease{#2}
         \repeat
     \end{enumerate}
     \endgroup
