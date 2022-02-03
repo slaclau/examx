@@ -39,7 +39,7 @@ release information for
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
-\NewDocumentCommand{\thisinstallation}{O{Installation}}{
+\NewDocumentCommand{\installation}{O{Installation checl}}{
     \section*{#1}
     This installation of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
@@ -63,7 +63,7 @@ release information for
     \end{enumerate}
     \endgroup
 }
-\NewDocumentCommand{\releasemanifest}{O{Release manifest}}{
+\NewDocumentCommand{\release}{O{Release manifest}}{
     \section*{#1}
     This release (\classversion@currentRelease) of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
