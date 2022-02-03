@@ -33,13 +33,16 @@ versioning classes]
     \newcounter{int}
     \setcounter{int}{0}
     
-    \def\mylines{%
+    \def\mylines{}%
         \loop
             \stepcounter{int}
-            \csname file\alphalph{\theint}\endcsname & &      
-            \UseVersionOf{\csname file\alphalph{\theint}\endcsname} & 
-            \UseDateOf{\csname file\alphalph{\theint}\endcsname} \\
-            
+            \expandafter\def\expandafter\mylines\expandafter{%
+                \mylines            
+                \csname file\alphalph{\theint}\endcsname & 
+                \UseVersionOf{\csname file\alphalph{\theint}\endcsname} 
+                & \UseDateOf{\csname file\alphalph{\theint}\endcsname} 
+                \\
+            }%
         \ifnum\theint<\NumberOfFilesInRelease \repeat
     }%
     
