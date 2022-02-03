@@ -53,14 +53,16 @@ release information for
         \item
         \stepcounter{classversion@int}
         \edef\tempa{\csname 
-        version\alphalph{\theclassversion@int}\endcsname}
+        version\alphalph{\theclassversion@int}\endcsname} 
+        \edef\tempc\tempa
         \edef\tempb{\csname 
-        eversion\alphalph{\theclassversion@int}\endcsname}
+        eversion\alphalph{\theclassversion@int}\endcsname} 
+        \edef\tempd\tempb
         \file{\csname 
         file\alphalph{\theclassversion@int}\endcsname}~\csname 
         version\alphalph{\theclassversion@int}\endcsname
-        {\if\tempa\tempb\else{\space \bfseries\color{red} (expecting 
-        \tempb)}\fi}, 
+        {\if\tempc\tempd\else{\space \bfseries\color{red} (expecting 
+        \tempd)}\fi}, 
         dated \csname date\alphalph{\theclassversion@int}\endcsname
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
