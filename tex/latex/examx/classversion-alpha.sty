@@ -80,10 +80,10 @@ release information for
     \cs_new:cpx 
     {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {\UseDateOf{#1}}
-    \ExplSyntaxOff
       
     \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
+\ExplSyntaxOff
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
