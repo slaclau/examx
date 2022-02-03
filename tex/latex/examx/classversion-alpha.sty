@@ -69,16 +69,16 @@ versioning classes]
     \begingroup
     \newcounter{int}
     \setcounter{int}{0}
-    \begin{enumerate}
-        \loop
-            \item
-            \stepcounter{int}
-            \csname file\alphalph{\theint}\endcsname~\csname 
-            version\alphalph{\theint}\endcsname, dated \csname 
-            date\alphalph{\theint}\endcsname
-        \ifnum\theint<\NumberOfFilesInRelease 
-        \repeat
-    \end{enumerate}
+%    \begin{enumerate}
+%        \loop
+%            \item
+%            \stepcounter{int}
+%            \csname file\alphalph{\theint}\endcsname~\csname 
+%            version\alphalph{\theint}\endcsname, dated \csname 
+%            date\alphalph{\theint}\endcsname
+%        \ifnum\theint<\NumberOfFilesInRelease 
+%        \repeat
+%    \end{enumerate}
     \endgroup
 }
 
