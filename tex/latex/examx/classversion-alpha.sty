@@ -15,12 +15,12 @@ versioning classes]
 release information for 
 \Lpack{\@classname} up to release \classversion@currentRelease}}
 
-%Counts number of files - reset by new release
-\newcounter{classversion@file}
-\setcounter{classversion@file}{0}
+
 %Counts number of releases
 \newcounter{classversion@release}
 \setcounter{classversion@release}{0}
+%Counts number of files - reset by new release
+\newcounter{classversion@file}{classversion@release}
 
 %Scratch counters
 \newcounter{classversion@int}
@@ -28,14 +28,19 @@ release information for
 
 \ExplSyntaxOn
 
+%This preamble command signifies the beginning of a new release
 \NewDocumentCommand{\NewRelease}{m}{
-    \gdef\classversion@currentRelease{#1}
+    \gdef\classversion@currentRelease{#1} %This provides the current 
+    %release version number
     
     \stepcounter{classversion@release}
     
+    %We define a command to return the version number given a lower 
+    %case letter
     \cs_new:cpx 
     {release\alphalph{\theclassversion@release}} {#1}
     
+    %We reset this counter to zero
     \setcounter{classversion@file}{0}
     
     \newcounter{classversion@filesinrelease
