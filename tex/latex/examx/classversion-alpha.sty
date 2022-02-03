@@ -20,7 +20,8 @@ release information for
 \newcounter{classversion@release}
 \setcounter{classversion@release}{0}
 %Counts number of files - reset by new release
-\newcounter{classversion@file}{classversion@release}
+\newcounter{classversion@file}
+\setcounter{classversion@file}{0}
 
 %Scratch counters
 \newcounter{classversion@int}
@@ -41,7 +42,7 @@ release information for
     {release\alphalph{\theclassversion@release}} {#1}
     
     %We reset this counter to zero
-%    \setcounter{classversion@file}{0}
+    \setcounter{classversion@file}{0}
     
     \newcounter{classversion@filesinrelease
         \alphalph{\theclassversion@release}}
