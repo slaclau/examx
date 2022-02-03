@@ -24,7 +24,7 @@ versioning classes]
 }
 
 \ExplSyntaxOn
-\NewDocumentCommand{\IncludeFileInRelease}{m O{\relax}}{
+\NewDocumentCommand{\IncludeFileInNextRelease}{m O{\relax}}{
     \stepcounter{classversion@file}
     \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
     \ReadFileInfos{#1}
