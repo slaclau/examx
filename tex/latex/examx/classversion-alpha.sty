@@ -52,9 +52,9 @@ release information for
     \loop
         \item
         \stepcounter{classversion@int}
-        \xdef\tempa{\csname 
+        \edef\tempa{\csname 
         version\alphalph{\theclassversion@int}\endcsname}
-        \xdef\tempb{\csname 
+        \edef\tempb{\csname 
         eversion\alphalph{\theclassversion@int}\endcsname}
         \file{\csname 
         file\alphalph{\theclassversion@int}\endcsname}~\csname 
