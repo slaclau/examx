@@ -67,7 +67,16 @@ documentation for the examx class]
     \DocInclude{examx-userguide}
 	\DocInclude{examx}
     \DocInclude{examx-styles}
+    
+    \begingroup
+    \def\endash{--}
+    \catcode`\-\active
+    \def-{\futurelet\temp\indexdash}
+    \def\indexdash{\ifx\temp-\endash\fi}
+    
     \PrintIndex
+    \endgroup
+    
     \PrintChanges
 \end{document}
 
