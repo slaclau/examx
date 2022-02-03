@@ -32,16 +32,16 @@ versioning classes]
 \NewDocumentCommand{\PrintReleaseFileInfo}{}{
     \newcounter{int}
     \setcounter{int}{0}
-
+    \begin{enumerate}
     \loop
+        \item
         \stepcounter{int}
         \csname file\alphalph{\theint}\endcsname~\UseVersionOf{\csname 
         file\alphalph{\theint}\endcsname}, dated \UseDateOf{\csname 
         file\alphalph{\theint}\endcsname}
-    \ifnum\theint<\NumberOfFilesInRelease
-    
-    
+    \ifnum\theint<\NumberOfFilesInRelease    
     \repeat
+    \end{enumerate}
 }
 
 
