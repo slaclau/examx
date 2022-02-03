@@ -27,7 +27,7 @@ release information for
 }
 
 \ExplSyntaxOn
-\IncludeFileInRelease{m o}{
+\NewDocumentCommand{\IncludeFileInRelease}{m o}{
     \stepcounter{classversion@file}
     \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
     \ReadFileInfos{#1}
