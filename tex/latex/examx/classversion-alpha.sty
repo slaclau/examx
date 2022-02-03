@@ -109,11 +109,19 @@ release information for
     \end{enumerate}
     \endgroup
 }
-
-
-
-
-%
-%& \csname file\alphalph{\theint}\endcsname & 
-%\UseVersionOf{\csname file\alphalph{\theint}\endcsname} 
-%& \UseDateOf{\csname file\alphalph{\theint}\endcsname}
+\NewDocumentCommand{\thisrelease}{O{Release manifest} m}{
+    \section*{#1}
+    \begingroup
+    \setcounter{classversion@int}{0}
+    \begin{enumerate}
+        \loop
+        \item
+        \stepcounter{classversion@int}
+        \file{\csname 
+        file\AlphAlph{#2}\alphalph{\theclassversion@int}\endcsname}~\csname
+         eversion\AlphAlph{#2}\alphalph{\theclassversion@int}\endcsname
+        \ifnum\theclassversion@int<\NumberOfFilesInRelease 
+        \repeat
+    \end{enumerate}
+    \endgroup
+}
