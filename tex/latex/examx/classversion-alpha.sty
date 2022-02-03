@@ -52,14 +52,14 @@ release information for
     \loop
         \item
         \stepcounter{classversion@int}
-        \edef\tempa{\csname 
+        \xdef\tempa{\csname 
         version\alphalph{\theclassversion@int}\endcsname}
-        \edef\tempb{\csname 
+        \xdef\tempb{\csname 
         eversion\alphalph{\theclassversion@int}\endcsname}
         \file{\csname 
         file\alphalph{\theclassversion@int}\endcsname}~\csname 
         version\alphalph{\theclassversion@int}\endcsname
-        {\ifx\expandafter\tempa\tempb\else{\space \bfseries\color{red} 
+        {\ifx\tempa\tempb\else{\space \bfseries\color{red} 
         (expecting 
         \tempd)}\fi}, 
         dated \csname date\alphalph{\theclassversion@int}\endcsname
