@@ -116,7 +116,7 @@ release information for
     \end{enumerate}
     \endgroup
 }
-\NewDocumentCommand{\thisrelease}{O{Release} m}{
+\NewDocumentCommand{\thisrelease}{O{Release \thisreleasenumber{#2}} m}{
     \section*{#1}
     \begingroup
     \setcounter{classversion@int}{0}
