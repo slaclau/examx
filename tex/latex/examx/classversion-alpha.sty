@@ -35,7 +35,7 @@ versioning classes]
     
     \def\mylines{}%
         \loop\ifnum\theint<\NumberOfFilesInRelease 
-            \stepcounter{int}
+            \addtocounter{int}{1}
             \expandafter\def\expandafter\mylines\expandafter{%
                 \mylines            
                 \theint & \csname file\alphalph{\theint}\endcsname & 
