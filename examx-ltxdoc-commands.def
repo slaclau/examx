@@ -1,0 +1,4 @@
+\newcommand*{\Lopt}[1]{\textsf {#1}}
+\newcommand*{\file}[1]{\texttt {#1}}
+\newcommand*{\Lcount}[1]{\textsl {\small#1}}
+\newcommand*{\pstyle}[1]{\textsl {#1}}
