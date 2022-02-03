@@ -88,7 +88,9 @@ release information for
 \NewDocumentCommand{\installation}{O{Installation check}}{
     \section*{#1}
     This installation of \textsf{\@classname} 
-    consists of the following \NumberOfFilesInRelease\space files:
+    consists of the following 
+    \classversion@filesinthisrelease{\theclassversion@release}\space 
+    files:
     \begingroup
     \setcounter{classversion@int}{0}
     \begin{enumerate}
