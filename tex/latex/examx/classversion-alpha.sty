@@ -34,7 +34,7 @@ versioning classes]
     \setcounter{int}{0}
     
     \def\mylines{}%
-        \loop
+        \loop\ifnum\theint<\NumberOfFilesInRelease 
             \stepcounter{int}
             \expandafter\def\expandafter\mylines\expandafter{%
                 \mylines            
@@ -43,7 +43,7 @@ versioning classes]
                 & \UseDateOf{\csname file\alphalph{\theint}\endcsname} 
                 \\
             }%
-        \ifnum\theint<\NumberOfFilesInRelease \repeat
+        \repeat
     
     \begin{center}
     \begin{tabular}{l l l l}
