@@ -16,18 +16,20 @@ release information for
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
 \newcounter{classversion@release}
-\setcounter{classversion@release}{1}
 
 \newcounter{classversion@int}
 
 \NewDocumentCommand{\newrelease}{m}{
     \gdef\classversion@currentRelease{#1}
-    \stepcounter{classversion@release}
-    \setcounter{classversion@file}{0}
+%    \newcounter{int}
+%    \setcounter{int}{0}
+%    \loop
 }
 
+
+
 \ExplSyntaxOn
-\NewDocumentCommand{\IncludeFileInRelease}{m o}{
+\NewDocumentCommand{\IncludeFileInNextRelease}{m o}{
     \stepcounter{classversion@file}
     \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
     \ReadFileInfos{#1}
@@ -59,8 +61,7 @@ release information for
         \file{\csname 
         file\alphalph{\theclassversion@int}\endcsname}~\csname 
         version\alphalph{\theclassversion@int}\endcsname
-        {\ifx\tempa\tempb\else{\space \bfseries\color{red} 
-        (expecting 
+        {\ifx\tempa\tempb\else{\space \bfseries\color{red} (expecting 
         \tempb)}\fi}, 
         dated \csname date\alphalph{\theclassversion@int}\endcsname
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
@@ -80,7 +81,7 @@ release information for
             \stepcounter{classversion@int}
             \file{\csname 
             file\alphalph{\theclassversion@int}\endcsname}~\csname 
-            eversion\alphalph{\theclassversion@int}\endcsname
+            version\alphalph{\theclassversion@int}\endcsname
         \ifnum\theclassversion@int<\NumberOfFilesInRelease 
         \repeat
     \end{enumerate}
