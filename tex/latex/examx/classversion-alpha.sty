@@ -1,3 +1,11 @@
 \ProvidesPackage{classversion-alpha}
 \RequirePackage{readprov}
 
+\newcounter{classversion@releaseRevision}
+\setcounter{classversion@releaseRevision}{0}
+
+\def\classversion@releases
+
+\NewDocumentCommand{\NewRelease}{#1}{
+    \addtocounter{classversion@releaseRevision}
+}
