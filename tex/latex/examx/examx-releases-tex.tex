@@ -17,7 +17,8 @@
 \versionb
 \eversionb
 
-\ifx{\csname eversion\alphalph{2}\endcsname}{\csname 
+\ifx{\expandafter\csname 
+eversion\alphalph{2}\endcsname}{\expandafter\csname 
 version\alphalph{2}\endcsname} TESTA \else TESTB \fi
 \manifest
 \end{document}
