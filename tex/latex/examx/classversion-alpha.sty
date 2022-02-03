@@ -18,6 +18,7 @@ versioning classes]
 
 \NewDocumentCommand{\IncludeFileInRelease}{m}{
     \stepcounter{classversion@file}
-    \def{\csname file \alphalph{\theclassversion@file}\endcsname}
+    \expandafter\def{\csname file 
+    \alphalph{\theclassversion@file}\endcsname}
     {\alphalph{\theclassversion@file}}
 }
