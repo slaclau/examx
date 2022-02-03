@@ -127,8 +127,17 @@ release information for
         \file{\csname         
         file\AlphAlph{#2}\alphalph{\theclassversion@int}\endcsname}~\csname
          eversion\AlphAlph{#2}\alphalph{\theclassversion@int}\endcsname
-        \ifnum\theclassversion@int<\NumberOfFilesInRelease 
+        \ifnum\theclassversion@int<\NumberOfFilesInRelease
         \repeat
     \end{enumerate}
     \endgroup
+}
+
+\NewDocumentCommand{\releasehistory}{}{
+    \begingroup
+    \setcounter{classversion@int}{0}
+    \loop
+        \stepcounter{classversion@int}
+        \thisrelease{\theclassversion@int}
+    \ifnum\theclassversion@int<\theclassversion@release
 }
