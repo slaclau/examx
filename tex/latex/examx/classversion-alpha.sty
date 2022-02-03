@@ -59,11 +59,11 @@ release information for
         \edef\tempb{\csname 
         eversion\alphalph{\theclassversion@int}\endcsname}
         \file{\csname 
-        file\alphalph{\theclassversion@int}\endcsname}~(\csname 
-        version\alphalph{\theclassversion@int}\endcsname)
+        file\alphalph{\theclassversion@int}\endcsname}~\csname 
+        version\alphalph{\theclassversion@int}\endcsname
         {\ifthenelse{\equal{\tempa}{\tempb}}
             {}
-            {\space (expecting \tempb)}}, dated 
+            {\space \bfseries\color{red} (expecting \tempb)}}, dated 
             \csname date\alphalph{\theclassversion@int}\endcsname
     \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
