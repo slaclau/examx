@@ -30,7 +30,7 @@ versioning classes]
     \ReadFileInfos{#1}
     \cs_new:cpx {version\alphalph{\theclassversion@file}} 
     {\UseVersionOf{#1}}
-    \cs_new:cpx {date\alphalph{\theclassversion@file}} {UseDateOf{#1}}
+    \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
 }
 \ExplSyntaxOff
 
