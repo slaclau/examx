@@ -37,14 +37,16 @@ versioning classes]
     \newcommand{\addtomytablines}[1]{\tablines\expandafter{\the\tablines##1}}
     \loop
         \stepcounter{int}
-        \expandafter\addtomytablines\expandafter{\number\arabic{int} & 
-        & &\\}
+        \expandafter\addtomytablines\expandafter{\number\arabic{int} &
+            \csname file\alphalph{\theint}\endcsname &
+            \UseVersionOf{\csname file\alphalph{\theint}\endcsname} &
+            \UseDateOf{\csname file\alphalph{\theint}\endcsname}\\}
     \ifnum \theint<\NumberOfFilesInRelease
     \repeat
     
     \begin{center}
     \begin{tabular}{l l l l}
-        File number & & & \\
+        File number & File name & File version & File Date \\
         \the\tablines
     \end{tabular}
     \end{center}
