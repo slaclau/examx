@@ -46,10 +46,11 @@ release information for
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
     
     \cs_new:cpx {versiondiffers\alphalph{\theclassversion@file}} {
-        \def\tempqqa{\ignorespaces\UseVersionOf{#1}\ignorespaces}
-        \def\tempqqb{\ignorespaces#2\ignorespaces}
+        \cs_new:cpx {tempa} 
+        {\ignorespaces\UseVersionOf{#1}\ignorespaces}
+        \cs_new:cpx {tempb} {\ignorespaces#2\ignorespaces}
         
-        \temqqpa or \tempqqb
+        \tempa or \tempb
     }
 }
 \ExplSyntaxOff
