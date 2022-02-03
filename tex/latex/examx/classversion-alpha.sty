@@ -50,7 +50,6 @@ release information for
     \setcounter{classversion@filesinrelease
         \alphalph{\theclassversion@release}}{0}
 }
-\ExplSyntaxOff
 %This converts a release number to a release version number
 \NewDocumentCommand{\classversion@thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
@@ -59,7 +58,6 @@ release information for
     \csname theclassversion@filesinrelease\alphalph{#1} \endcsname}
 %This preamble command follows \NewRelease and signifies a file that is 
 %part of that release
-\ExplSyntaxOn
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
     
