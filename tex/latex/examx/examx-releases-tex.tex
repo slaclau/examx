@@ -1,6 +1,6 @@
 \documentclass{ltxdoc}
 \usepackage{classversion-alpha}
-
+\usepackage{xstring}
 \classname{examx}
 
 \NewRelease{v1.01}
@@ -15,7 +15,7 @@
 \begin{document}
 \maketitle
 
-\ifx{\UseVersionOf{examx-default.clo}}{{v1.01}} TEST \else no \fi
+\IfEq{\UseVersionOf{examx-default.clo}}{{v1.01}}{TEST}{no}
 
 \installation
 \release
