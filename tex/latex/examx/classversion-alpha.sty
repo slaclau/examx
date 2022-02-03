@@ -17,14 +17,14 @@ release information for
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
 \newcounter{classversion@release}
+\setcounter{classversion@release}{0}
 
 \newcounter{classversion@int}
 
 \NewDocumentCommand{\NewRelease}{m}{
     \gdef\classversion@currentRelease{#1}
-%    \newcounter{int}
-%    \setcounter{int}{0}
-%    \loop
+    \stepcounter{classversion@release}
+    \setcounter{classversion@file}{0}
 }
 
 
@@ -74,7 +74,7 @@ release information for
     \end{enumerate}
     \endgroup
 }
-\NewDocumentCommand{\release}{O{Release manifest}}{
+\NewDocumentCommand{\thisrelease}{O{Release manifest}}{
     \section*{#1}
     This release (\classversion@currentRelease) of \Lpack{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
@@ -92,6 +92,8 @@ release information for
     \end{enumerate}
     \endgroup
 }
+
+
 
 
 %
