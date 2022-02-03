@@ -16,18 +16,14 @@ release information for
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
 \newcounter{classversion@release}
+\setcounter{classversion@release}{1}
 
 \newcounter{classversion@int}
 
 \NewDocumentCommand{\newrelease}{m}{
     \gdef\classversion@currentRelease{#1}
-%    \newcounter{int}
-%    \setcounter{int}{0}
-%    \loop
-}
-
-\NewDocumentCommand{\classversionfiledata}{O{0} m m}{
-      \csname{#2}\alphalph{#3}\endcsname
+    \stepcounter{classversion@release}
+    \setcounter{classversion@file}{0}
 }
 
 \ExplSyntaxOn
