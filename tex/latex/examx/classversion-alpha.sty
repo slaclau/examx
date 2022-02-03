@@ -13,14 +13,13 @@ versioning classes]
 \setcounter{classversion@file}{0}
 \newcounter{classversion@release}
 
+\newcounter{classversion@int}
+
 \NewDocumentCommand{\newrelease}{m}{
     \gdef\classversion@currentRelease{#1}
 %    \newcounter{int}
 %    \setcounter{int}{0}
 %    \loop
-    
-    
-    
 }
 
 \ExplSyntaxOn
@@ -44,12 +43,11 @@ versioning classes]
     This installation of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
     \begingroup
-    \newcounter{int}
-    \setcounter{int}{0}
+    \setcounter{classversion@int}{0}
     \begin{enumerate}
     \loop
         \item
-        \stepcounter{int}
+        \stepcounter{classversion@int}
         \edef\tempa{\csname version\alphalph{\theint}\endcsname}
         \edef\tempb{\csname eversion\alphalph{\theint}\endcsname}
         \csname file\alphalph{\theint}\endcsname~\csname 
@@ -57,7 +55,7 @@ versioning classes]
         {\ifx\tempa\tempb\else{\space \bfseries\color{red} (expecting 
         \tempb)}\fi}, 
         dated \csname date\alphalph{\theint}\endcsname
-    \ifnum\theint<\NumberOfFilesInRelease    
+    \ifnum\theclassversion@int<\NumberOfFilesInRelease    
     \repeat
     \end{enumerate}
     \endgroup
@@ -67,16 +65,15 @@ versioning classes]
     This release (\classversion@currentRelease) of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
     \begingroup
-    \newcounter{int}
-    \setcounter{int}{0}
+    \setcounter{classversion@int}{0}
     \begin{enumerate}
         \loop
             \item
-            \stepcounter{int}
-            \csname file\alphalph{\theint}\endcsname~\csname 
-            version\alphalph{\theint}\endcsname, dated \csname 
-            date\alphalph{\theint}\endcsname
-        \ifnum\theint<\NumberOfFilesInRelease 
+            \stepcounter{classversion@int}
+            \csname file\alphalph{\theiint}\endcsname~\csname 
+            version\alphalph{\theiint}\endcsname, dated \csname 
+            date\alphalph{\theiint}\endcsname
+        \ifnum\theclassversion@int<\NumberOfFilesInRelease 
         \repeat
     \end{enumerate}
     \endgroup
