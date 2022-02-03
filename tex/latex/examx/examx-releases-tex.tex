@@ -14,8 +14,8 @@
 %\IncludeInRelease{examx.cls}[v3.0]
 \begin{document}
 \maketitle
-
-\IfEq{\UseVersionOf{examx-default.clo}}{{v1.01}}{TEST}{no}
+\edef\temp\UseVersionOf{examx-default.clo}
+\IfEq{\temp}{{v1.01}}{TEST}{no}
 
 \installation
 \release
