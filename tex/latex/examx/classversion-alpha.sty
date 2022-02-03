@@ -37,6 +37,10 @@ release information for
 
 \NewDocumentCommand{\thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
+    
+\NewDocumentCommand{\examx@numberoffilesinthisrelease}{m}
+    {}
+
 
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
@@ -69,10 +73,14 @@ release information for
     \cs_new:cpx 
     {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {\UseDateOf{#1}}
+     
+    \cs_new:cpx 
+    {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
+    {\UseDateOf{#1}}
 }
 \ExplSyntaxOff
 
-\NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
+\NewDocumentCommand{\NumberOfFilesInLatestRelease}{}{\theclassversion@file}
 
 \NewDocumentCommand{\installation}{O{Installation check}}{
     \section*{#1}
