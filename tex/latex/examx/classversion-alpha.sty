@@ -36,7 +36,7 @@ versioning classes]
     \def\mylines{}%
         \loop\ifnum\theint<\NumberOfFilesInRelease 
             \addtocounter{int}{1}
-            \expandafter\def\expandafter\mylines\expandafter{%
+            \expandafter\def\expandafter\mylines{%
                 \mylines            
                 \arabic{int}  
                 \\
@@ -50,3 +50,9 @@ versioning classes]
     \end{tabular}
     \end{center}
 }
+
+
+%
+%& \csname file\alphalph{\theint}\endcsname & 
+%\UseVersionOf{\csname file\alphalph{\theint}\endcsname} 
+%& \UseDateOf{\csname file\alphalph{\theint}\endcsname}
