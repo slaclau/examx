@@ -46,9 +46,9 @@ versioning classes]
     \loop
         \item
         \stepcounter{int}
-        \csname file\alphalph{\theint}\endcsname~\UseVersionOf{\csname 
-        file\alphalph{\theint}\endcsname}, dated \UseDateOf{\csname 
-        file\alphalph{\theint}\endcsname}
+        \csname file\alphalph{\theint}\endcsname~\csname 
+        version\alphalph{\theint}\endcsname, dated \csname 
+        date\alphalph{\theint}\endcsname
     \ifnum\theint<\NumberOfFilesInRelease    
     \repeat
     \end{enumerate}
