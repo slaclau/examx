@@ -63,7 +63,6 @@ release information for
     \stepcounter{classversion@file}
     
     \ReadFileInfos{#1}
-    
     \ExplSyntaxOn
     \cs_new:cpx 
     {file\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
@@ -84,6 +83,7 @@ release information for
       
     \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
+
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
