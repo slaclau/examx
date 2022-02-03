@@ -87,8 +87,9 @@ release information for
         \loop
             \item
             \stepcounter{classversion@int}
-            \file{\csname \alphalph{\theclassversion@file}
-            file\alphalph{\theclassversion@int}\endcsname}~\csname 
+            \file{\csname 
+            \alphalph{\theclassversion@file}file\alphalph{\theclassversion@int}\endcsname}~\csname
+             
             eversion\alphalph{\theclassversion@int}\endcsname
         \ifnum\theclassversion@int<\NumberOfFilesInRelease 
         \repeat
