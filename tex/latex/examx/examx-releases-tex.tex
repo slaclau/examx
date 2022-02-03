@@ -23,9 +23,7 @@
 \edef\tempb{\csname 
     eversion\alphalph{\theint}\endcsname}
 
-\tempa
-
-\tempb
+\ifx\tempa\tempb TEST \else no \fi
 
 \installation
 \release
