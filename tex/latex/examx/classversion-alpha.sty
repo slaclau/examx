@@ -20,7 +20,7 @@ versioning classes]
 
 \NewDocumentCommand{\IncludeFileInRelease}{m}{
     \stepcounter{classversion@file}
-    \cs_new:cpx {file\alphalph{\theclassversion@file}} {Test}
+    \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
 }
 
 \ExplSyntaxOff
