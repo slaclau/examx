@@ -11,7 +11,7 @@ versioning classes]
 
 \def\classname#1{\gdef\@classname{#1} \title{Installation check and 
 release information for 
-\textsf{\@classname} class \classversion@currentRelease}}
+\Lpack{\@classname} class \classversion@currentRelease}}
 
 \newcounter{classversion@file}
 \setcounter{classversion@file}{0}
@@ -56,7 +56,8 @@ release information for
         version\alphalph{\theclassversion@int}\endcsname}
         \edef\tempb{\csname 
         eversion\alphalph{\theclassversion@int}\endcsname}
-        \csname file\alphalph{\theclassversion@int}\endcsname~\csname 
+        \file{\csname 
+        file\alphalph{\theclassversion@int}\endcsname}~\csname 
         version\alphalph{\theclassversion@int}\endcsname
         {\ifx\tempa\tempb\else{\space \bfseries\color{red} (expecting 
         \tempb)}\fi}, 
