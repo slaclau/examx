@@ -39,8 +39,8 @@ versioning classes]
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
-\NewDocumentCommand{\thisinstallation}{}{
-    \section*{Installation}
+\NewDocumentCommand{\thisinstallation}{O{Installation}}{
+    \section*{#1}
     This installation of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
     \begingroup
@@ -62,23 +62,23 @@ versioning classes]
     \end{enumerate}
     \endgroup
 }
-\NewDocumentCommand{\releasemanifest}{}{
-    \section*{Release manifest}
+\NewDocumentCommand{\releasemanifest}{O{Release manifest}}{
+    \section*{#1}
     This release (\classversion@currentRelease) of \textsf{\@classname} 
     consists of the following \NumberOfFilesInRelease\space files:
     \begingroup
     \newcounter{int}
     \setcounter{int}{0}
-%    \begin{enumerate}
-%        \loop
-%            \item
-%            \stepcounter{int}
-%            \csname file\alphalph{\theint}\endcsname~\csname 
-%            version\alphalph{\theint}\endcsname, dated \csname 
-%            date\alphalph{\theint}\endcsname
-%        \ifnum\theint<\NumberOfFilesInRelease 
-%        \repeat
-%    \end{enumerate}
+    \begin{enumerate}
+        \loop
+            \item
+            \stepcounter{int}
+            \csname file\alphalph{\theint}\endcsname~\csname 
+            version\alphalph{\theint}\endcsname, dated \csname 
+            date\alphalph{\theint}\endcsname
+        \ifnum\theint<\NumberOfFilesInRelease 
+        \repeat
+    \end{enumerate}
     \endgroup
 }
 
