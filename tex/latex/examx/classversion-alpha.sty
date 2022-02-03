@@ -36,8 +36,9 @@ versioning classes]
     \def\mylines{}%
         \loop\ifnum\theint<\NumberOfFilesInRelease 
             \addtocounter{int}{1}
-            \expandafter\def\mylines{%
-                \mylines            
+            \let\oldmylines\mylines
+            \def\mylines{%
+                \oldmylines            
                 \arabic{int}  
                 \\
             }%
