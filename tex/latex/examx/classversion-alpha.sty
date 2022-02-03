@@ -32,9 +32,13 @@ versioning classes]
 \NewDocumentCommand{\PrintReleaseFileInfo}{}{
     \newcounter{int}
     \setcounter{int}{0}
-    
-    \loop
-        \stepcounter{int}
-        \UseVersionOf{\csname file\alphalph{\theint}\endcsname}
-    \ifnum\theint<\NumberOfFilesInRelease \repeat
+    \begin{tabular}{l l l}
+        Filename & version & date \\
+        \loop
+            \stepcounter{int}
+            \csname file\alphalph{\theint}\endcsname & 
+            \UseVersionOf{\csname file\alphalph{\theint}\endcsname} & 
+            \UseDateOf{\csname file\alphalph{\theint}\endcsname} \\
+        \ifnum\theint<\NumberOfFilesInRelease \repeat
+    \end{tabular}
 }
