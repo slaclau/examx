@@ -44,12 +44,6 @@ release information for
     {\ignorespaces#2\ignorespaces}
     
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
-    
-    \cs_new:cpx {versiondiffers\alphalph{\theclassversion@file}} {
-        \xdef\tempa{\ignorespaces\UseVersionOf{#1}\ignorespaces}
-        \xdef\tempb{\ignorespaces#2\ignorespaces}
-        
-        \tempa or \tempb
     }
 }
 \ExplSyntaxOff
