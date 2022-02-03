@@ -52,6 +52,10 @@ release information for
     \ReadFileInfos{#1}
     
     \cs_new:cpx 
+    {file\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
+     {#1}
+    
+    \cs_new:cpx 
     {version\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
     {\ignorespaces\UseVersionOf{#1}\ignorespaces}
     
