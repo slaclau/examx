@@ -27,6 +27,8 @@ release information for
 \newcounter{classversion@int}
 \newcounter{classversion@iint}
 
+\ExplSyntaxOn
+
 %This preamble command signifies the beginning of a new release
 \NewDocumentCommand{\NewRelease}{m}{
     \gdef\classversion@currentRelease{#1} %This provides the current 
@@ -36,10 +38,8 @@ release information for
     
     %We define a command to return the release version number given a 
     %lower case letter representing the release number
-    \ExplSyntaxOn
     \cs_new:cpx 
     {release\alphalph{\theclassversion@release}} {#1}
-    \ExplSyntaxOff
     
     %We reset this counter to zero
     \setcounter{classversion@file}{0}
@@ -63,7 +63,7 @@ release information for
     \stepcounter{classversion@file}
     
     \ReadFileInfos{#1}
-    \ExplSyntaxOn
+    
     \cs_new:cpx 
     {file\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {#1}
@@ -79,11 +79,10 @@ release information for
     \cs_new:cpx 
     {date\AlphAlph{\theclassversion@release}\alphalph{\theclassversion@file}}
      {\UseDateOf{#1}}
-    \ExplSyntaxOff
       
     \stepcounter{classversion@filesinrelease\alphalph{\theclassversion@release}}
 }
-
+\ExplSyntaxOff
 
 \NewDocumentCommand{\NumberOfFilesInRelease}{}{\theclassversion@file}
 
