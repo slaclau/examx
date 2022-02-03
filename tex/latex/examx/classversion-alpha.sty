@@ -33,8 +33,9 @@ release information for
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
     
-    \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
     \ReadFileInfos{#1}
+    
+    \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
     
     \cs_new:cpx {version\alphalph{\theclassversion@file}}  
     {\ignorespaces\UseVersionOf{#1}\ignorespaces}
@@ -45,10 +46,10 @@ release information for
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
     
     \cs_new:cpx {versiondiffers\alphalph{\theclassversion@file}} {
-        \def\tempa{\ignorespaces\UseVersionOf{#1}\ignorespaces}
-        \def\tempb{\ignorespaces#2\ignorespaces}
+        \def\tempqqa{\ignorespaces\UseVersionOf{#1}\ignorespaces}
+        \def\tempqqb{\ignorespaces#2\ignorespaces}
         
-        \tempa or \tempb
+        \temqqpa or \tempqqb
     }
 }
 \ExplSyntaxOff
