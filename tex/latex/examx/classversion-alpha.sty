@@ -32,13 +32,26 @@ release information for
 \ExplSyntaxOn
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
+    
     \cs_new:cpx {file\alphalph{\theclassversion@file}} {#1}
     \ReadFileInfos{#1}
+    
     \cs_new:cpx {version\alphalph{\theclassversion@file}}  
     {\ignorespaces\UseVersionOf{#1}\ignorespaces}
+    
     \cs_new:cpx {eversion\alphalph{\theclassversion@file}} 
     {\ignorespaces#2\ignorespaces}
+    
     \cs_new:cpx {date\alphalph{\theclassversion@file}} {\UseDateOf{#1}}
+    
+    \cs_new:cpx {versiondiffers\alphalph{\theclassversion@file}} {
+        \edef\tempa{\csname version\alphalph{\theclassversion@file} 
+        \endcsname}
+        \edef\tempa{\csname version\alphalph{\theclassversion@file} 
+        \endcsname}
+        
+        \tempa or \tempb
+    }
 }
 \ExplSyntaxOff
 
