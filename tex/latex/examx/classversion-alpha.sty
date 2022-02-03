@@ -40,9 +40,9 @@ release information for
 \NewDocumentCommand{\thisreleasenumber}{m}
     {\csname release\alphalph{#1}\endcsname}
 
-\NewDocumentCommand{\classversion@filesinthisrelease}{m}{
+\NewDocumentCommand{\classversionfilesinthisrelease}{m}{
     \value{classversion@filesinrelease\alphalph{#1}}}
-%\def\test{\classversion@filesinthisrelease{1}}
+\def\test{\classversion@filesinthisrelease{1}}
 
 \NewDocumentCommand{\IncludeFileInRelease}{m m}{
     \stepcounter{classversion@file}
