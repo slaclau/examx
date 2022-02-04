@@ -1,9 +1,0 @@
-% SVN keywords: $Revision$
-
-\providecommand*{\Lopt}[1]{\textsf {#1}}         % typeset an option
-\providecommand*{\file}[1]{\texttt {#1}}         % typeset a file
-\providecommand*{\Lcount}[1]{\textsl {\small#1}} % typeset a counter
-\providecommand*{\pstyle}[1]{\textsl {#1}}       % typeset a pagestyle
-\providecommand*{\Lenv}[1]{\texttt {#1}}         % typeset an 
-%environment
-\providecommand*{\Lpack}[1]{\textsf {#1}}        % typeset a package
