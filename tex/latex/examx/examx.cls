@@ -24,7 +24,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2021/06/01]
 \ProvidesClass{examx}
-[2022/02/02 v1.2.1]
+[2022/02/02 v1.1.0
  Adds features to the exam class]
 
 
