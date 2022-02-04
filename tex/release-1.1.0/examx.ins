@@ -1,0 +1,86 @@
+%% SVN keywords: $Revision$
+%%
+%% Copyright (C) 2022 by Sebastien Laclau
+%%
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%%
+%% http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2008 or later.
+%%
+\input docstrip.tex
+
+\keepsilent
+
+\usedir{tex/latex/examx}
+
+\preamble
+
+This is a generated file.
+
+SVN keywords: $Revision$
+
+Copyright (C) 2022 by Sebastien Laclau
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3c of this license or (at your option) any later
+version. The latest version of this license is in:
+
+http://www.latex-project.org/lppl.txt
+
+and version 1.3c or later is part of all distributions of LaTeX
+version 2008 or later.
+
+\endpreamble
+
+\askforoverwritefalse
+\generate{
+    \file{examx.cls}{
+        \from{examx.dtx}{class}
+    }
+	\file{examx-default.clo}{
+		\from{examx-styles.dtx}{default,all}
+	}
+    \file{examx-OCRALevel.clo}{
+        \from{examx-styles.dtx}{OCRALevel,all}
+    }
+    \file{examx-OCRALevelanswerbook.clo}{
+        \from{examx-styles.dtx}{OCRALevel,answerbook}
+    }
+    \file{examx-advancedanswerbook.clo}{
+        \from{examx-styles.dtx}{advanced,answerbook}
+        \from{examx-styles.dtx}{default,answerbookbackcover}
+    }
+    \file{examx-veryadvancedanswerbook.clo}{
+        \from{examx-styles.dtx}{veryadvanced,answerbook}
+        \from{examx-styles.dtx}{default,answerbookbackcover}
+    }
+    \file{examx-WellyOCRcovers.clo}{
+        \from{examx-styles.dtx}{WellyOCR,covers}
+    }
+}
+
+\Msg{*********************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the}
+\Msg{* following files into a directory searched by TeX:}
+\Msg{*}
+\Msg{* \space\space examx.cls}
+\Msg{* \space\space examx-default.clo}
+\Msg{* \space\space examx-OCRALevel.clo}
+\Msg{* \space\space examx-OCRALevelanswerbook.clo}
+\Msg{* \space\space examx-advancedanswerbook.clo}
+\Msg{* \space\space examx-veryadvancedanswerbook.clo}
+\Msg{*}
+\Msg{* To produce the documentation run the file examx.dtx}
+\Msg{* through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{*********************************************************}
+
+\endbatchfile

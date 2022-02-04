@@ -1,0 +1,149 @@
+% \iffalse meta-comment
+%
+% SVN keywords: $Revision: 104 $
+%
+% Copyright (C) 2022 by Sebastien Laclau
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008 or later.
+%
+% \fi
+%
+% \iffalse
+%
+%\section{Identification}
+%
+%    \begin{macrocode}
+%<*driver>
+\ProvidesFile{examx.dtx}[2022/02/01 v1.0.1 This is the master 
+documentation for the examx class
+%</driver>
+%    \end{macrocode}
+%
+%\section{Driver}
+%
+% The next bit of code contains the documentation driver file for
+% \TeX{}, i.e., the file that will produce the documentation you are
+% currently reading. It will be extracted from this file by the
+% {\sc docstrip} program.
+%
+%    \begin{macrocode}
+%<*driver>
+]
+\documentclass[a4paper]{ltxdoc}
+\usepackage{readprov}
+\ReadFileInfos{examx-userguide.dtx}
+\ReadFileInfos{examx.dtx}
+\ReadFileInfos{examx-styles.dtx}
+%    \end{macrocode}
+
+%    We do want an index, using line numbers, and a change log.
+%    \begin{macrocode}
+% Set up the Index and Change History to use \part
+\IndexPrologue{\part*{Index}%
+    \markboth{Index}{Index}%
+    \addcontentsline{toc}{part}{Index}%
+    The italic numbers denote the pages where the
+    corresponding entry is described,
+    numbers underlined point to the definition,
+    all others indicate the places where it is used.}
+
+\GlossaryPrologue{\part*{Change History}%
+    %                Allow control names to be hyphenated here...
+    {\GlossaryParms\ttfamily\hyphenchar\font=`\-}%
+    \markboth{Change History}{Change History}%
+    \addcontentsline{toc}{part}{Change History}}
+
+% The standard \changes command modified slightly to better cope with
+% this multiple file document.
+\makeatletter
+\def\@changes@iso@date#1/#2/#3/#4\space{#1\if\relax#2\relax\else-#2-#3\fi\space}
+\def\changes@#1#2#3{%
+    \let\protect\@unexpandable@protect
+    \edef\@tempa{\noexpand\glossary{\@changes@iso@date#2///\space
+            \currentfile\space#1\levelchar
+            \ifx\saved@macroname\@empty
+            \space
+            \actualchar
+            \generalname
+            \else
+            \expandafter\@gobble
+            \saved@macroname
+            \actualchar
+            \string\verb\quotechar*%
+            \verbatimchar\saved@macroname
+            \verbatimchar
+            \fi
+            :\levelchar #3}}%
+    \@tempa\endgroup\@esphack}
+
+
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{IndexColumns}{2}
+\RecordChanges
+%    \end{macrocode}
+%    The following code retrieves the date and version information from 
+%the file.
+%    \begin{macrocode}
+\GetFileInfo{examx-master.dtx}
+%    \end{macrocode}
+%    Here are some commonly used abbreviations:
+%    \begin{macrocode}
+\input{examx-ltxdoc-commands.def}
+%    \end{macrocode}
+%    We also want the full details.
+%    \begin{macrocode}
+\begin{document}
+    \DocInput{examx.dtx}
+    \PrintIndex
+    \PrintChanges
+\end{document}
+%</driver>
+%    \end{macrocode}
+%
+% \fi
+%
+% \CheckSum{0}
+%	\title{Using the \textsf{examx} class\thanks{This is 
+%	\file{examx-master.tex}~\UseVersionOf{examx-master.tex}, dated 
+%	\UseDateOf{examx-master.tex}.}}
+%	\author{Sebastien Laclau \\ 
+%	\texttt{slaclau@wellingtoncollege.org.uk} \\ 
+%	\texttt{seb.laclau@gmail.com}}
+%	\maketitle
+%	\tableofcontents
+%	\renewcommand{\maketitle}{}
+%	\renewcommand{\tableofcontents}{}
+%   \DocInclude{examx-userguide}
+%	\DocInclude{examx}
+%   \DocInclude{examx-styles}
+    
+%    \begingroup
+%        \def\endash{--}
+%        \catcode`\-\active
+%        \def-{\futurelet\temp\indexdash}
+%        \def\indexdash{\ifx\temp-\endash\fi}
+    
+%    \PrintIndex
+%    \endgroup
+    
+%    \PrintChanges
+%   \StopEventually{}
+%   \Finale
+\endinput
+
+% \changes{2022/02/01}{v1.0}{Initial version}
+% \changes{2022/02/01}{v1.0a}{Changed index to two column and 
+%reformatted change log to account for multiple files}
+% \changes{v1.0.1}{2022/02/03}{Start of semver}
+% \changes{v1.0.1}{2022/02/03}{Removed hyphen from index page numbers}
+% \changes{v1.1.0}{2022/02/03}{Reconfigured as dtx}
