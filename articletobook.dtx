@@ -163,16 +163,7 @@
 %
 % \section{Document markup}
 %
-% \subsection{bookchapters and sections}
-%
-% \subsubsection{Mark commands}
-%
-% \begin{macro}{\bookchaptermark}
-%    Default initializations of \...mark commands. These commands are used in the definition of the page styles.
-%    \begin{macrocode}
-\newcommand*\bookchaptermark[1]{}
-%    \end{macrocode}
-% \end{macro}
+% \subsection{Chapters and sections}
 %
 % \subsubsection{Defining counters}
 %
@@ -182,12 +173,12 @@
 \setcounter{secnumdepth}{2}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\c@bookchapter}
+% \begin{macro}{\c@chapter}
 % \begin{macro}{\c@section}
 %    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
 %    \begin{macrocode}
-\newcounter{bookchapter}
-\@addtoreset{section}{bookchapter}
+\newcounter{chapter}
+\@addtoreset{section}{chapter}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -195,7 +186,7 @@
 % \begin{macro}{\thesection}
 %    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
 %    \begin{macrocode}
-\renewcommand \thebookchapter {\@arabic\c@bookchapter}
+\renewcommand \thechapter {\@arabic\c@chapter}
 \renewcommand \thesection {\thebookchapter.\@arabic\c@section}
 %    \end{macrocode}
 % \end{macro}
@@ -244,323 +235,18 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{Parts}
-%
-% \begin{macro}{\part}
-%    The command to start a new part of our document. We start a new (righthand) page and use the plain pagestyle.
-%    \begin{macrocode}
-\renewcommand\part{%
-    \if@openright
-        \cleardoublepage
-    \else
-        \clearpage
-    \fi
-    \thispagestyle{plain}%
-%    \end{macrocode}
-%    When we are making a two-column document, this will be a one column page. We use |\@tempswa| to remember to switch back to two columns.
-%    \begin{macrocode}
-    \if@twocolumn
-        \onecolumn
-        \@tempswatrue
-    \else
-        \@tempswafalse
-    \fi
-%    \end{macrocode}
-%    We need an empty box to prevent the fil glue from disappearing.
-%    \begin{macrocode}
-\null\vfil
-%    \end{macrocode}
-%    Here we use |\secdef| to indicate which commands to use to make the actual heading.
-%    \begin{macrocode}
-    \secdef\@part\@spart}
-%    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\@part}
-%    This macro does the actual formatting of the title of the part.
-%
-%    When \Lcount{secnumdepth} is larger than -2, we have a numbered part, otherwise it is unnumbered.
-%    \begin{macrocode}
-\def\@part[#1]#2{%
-    \ifnum \c@secnumdepth >-2\relax
-        \refstepcounter{part}%
-        \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-    \else
-        \addcontentsline{toc}{part}{#1}%
-    \fi
-%    \end{macrocode}
-%    We empty the mark registers and center the title on the page. Also we prevent breaking between lines and reset the font.
-%    \begin{macrocode}
-    \markboth{}{}%
-    {\centering
-     \interlinepenalty \@M
-     \normalfont
-%    \end{macrocode}
-%    When this is a numbered part we have to print the number.
-%    \begin{macrocode}
-     \ifnum \c@secnumdepth >-2\relax
-        \huge\bfseries \partname\nobreakspace\thepart
-        \par
-%    \end{macrocode}
-%    We leave some space before we print the title and leave the finishing up to |\@endpart|.
-%    \begin{macrocode}
-        \vskip 20\p@
-     \fi
-     \Huge \bfseries #2\par}%
-    \@endpart}
-%    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\@spart}
-%    This macro does the actual formatting of the title of the part when the star form of the user command was used. In this case we never print a number. Otherwise the formatting is the same.
-%    \begin{macrocode}
-\def\@spart#1{%
-    {\centering
-     \interlinepenalty \@M
-     \normalfont
-     \Huge \bfseries #1\par}%
-    \@endpart}
-%    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\@endpart}
-%    \begin{macrocode}
-\def\@endpart{\vfil\newpage
-%    \end{macrocode}
-%    Then, when we are in twosided mode and chapters are supposed to be on right hand sides, we produce a completely blank page.
-%    \begin{macrocode}
-              \if@twoside
-                \if@openright
-                    \null
-                    \thispagestyle{empty}%
-                    \newpage
-                \fi
-              \fi
-%    \end{macrocode}
-%    When this was a two-column document we have to switch back to two-column mode.
-%    \begin{macrocode}
-              \if@tempswa
-                \twocolumn
-              \fi}
-%    \end{macrocode}
-% \end{macro}
-%
 % \subsubsection{Chapters}
 %
 % \begin{macro}{\bookchapter}
 %    \begin{macrocode}
-\titleformat{\bookchapter}{display}[\part]
-{\normalfont\huge\bfseries}{\bookchaptertitle\ \thebookchapter}{20pt}{\Huge}
-\titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
+\titleformat{\chapter}{display}[\part]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
 
-\titlecontents*{bookchapter}[2em]{}{\bfseries\contentslabel{2em}}{}
+\titlecontents*{chapter}[2em]{}{\bfseries\contentslabel{2em}}{}
 {\titlerule*[.5pc]{.}\contentspage}[]
 %    \end{macrocode}
-% \end{macro}
-%
-% \subsubsection{Appendix}
-%
-% \begin{macro}{\appendix}
-%    The |\appendix| command is not really an environment, it is a macro that makes some changes in the way things are done. The |\appendix| command must do the following:
-%    \begin{itemize}
-%    \item reset the chapter and section counters to zero,
-%    \item set |\@chapapp| to |\appendixname| (for messages),
-%    \item redefine the chapter counter to produce appendix numbers,
-%    \item possibly redefine the |\chapter| command if appendix titles
-%        and headings are to look different from chapter titles and
-%        headings. This redefinition is done globally to ensure that it
-%        survives even if |\appendix| is issued within an environment such
-%        as \texttt{multicols}.
-%    \end{itemize}
-%
 %    \begin{macrocode}
-\renewcommand\appendix{\par
-    \setcounter{bookchapter}{0}%
-    \setcounter{section}{0}%
-    \gdef\thebookchapter{\@Alph\c@bookchapter}}
-%    \end{macrocode}
-% \end{macro}
-%
-% \subsection{Setting parameters for existing environments}
-%
-% \subsubsection{Equation and eqnarray}
-%
-% \begin{macro}{\theequation}
-%    When within chapters, the equation counter will be reset at the beginning of a new chapter and the equation number will be prefixed by the chapter number.
-%
-%    This code must follow the |\chapter| definition or, more exactly, the definition of the \Lcount{chapter} counter.
-%    \begin{macrocode}
-\@addtoreset {equation}{chapter}
-\renewcommand\theequation
-    {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
-%    \end{macrocode}
-% \end{macro}
-%
-% \subsection{Floating objects}
-%
-% \begin{environment}{figure}
-% \begin{environment}{table}
-%    Here is the reimplementation of the figure and table environments.
-%    \begin{macrocode}
-\@addtoreset{figure}{bookchapter}
-\renewcommand \thefigure
-    {\ifnum \c@bookchapter>\z@ \thebookchapter.\fi \@arabic\c@figure}
-\@addtoreset{table}{bookchapter}
-\renewcommand \thetable
-    {\ifnum \c@bookchapter>\z@ \thebookchapter.\fi \@arabic\c@table}
-%    \end{macrocode}
-% \end{environment}
-% \end{environment}
-%
-% \section{Cross referencing}
-%
-% \begin{macro}{\tableofcontents}
-%    This macro is used to request that LATEX produces a table of contents. The tables of contents, figures etc. are always set in single-column mode.
-%    \begin{macrocode}
-\setcounter{tocdepth}{2}
-\renewcommand\tableofcontents{%
-    \if@twocolumn
-        \@restonecoltrue\onecolumn
-    \else
-        \@restonecolfalse
-    \fi
-    \bookchapter*{\contentsname
-        \@mkboth{%
-            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
-    \@starttoc{toc}%
-    \if@restonecol\twocolumn\fi
-    }
-\renewcommand*\l@part[2]{%
-    \ifnum \c@tocdepth >-2\relax
-        \addpenalty{-\@highpenalty}%
-        \addvspace{2.25em \@plus\p@}%
-        \setlength\@tempdima{3em}%
-        \begingroup
-        \parindent \z@ \rightskip \@pnumwidth
-        \parfillskip -\@pnumwidth
-        {\leavevmode
-         \large \bfseries #1\hfil
-         \hb@xt@\@pnumwidth{\hss #2%
-                            \kern-\p@\kern\p@}}\par
-        \nobreak
-        \global\@nobreaktrue
-        \everypar{\global\@nobreakfalse\everypar{}}%
-        \endgroup
-    \fi}
-\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
-\renewcommand*\l@paragraph{\@dottedtocline{4}{10em}{5em}}
-\renewcommand*\l@subparagraph{\@dottedtocline{5}{12em}{6em}}
-%    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\listoffigures}
-%    \begin{macrocode}
-\renewcommand\listoffigures{%
-    \if@twocolumn
-        \@restonecoltrue\onecolumn
-    \else
-        \@restonecolfalse
-    \fi
-    \bookchapter*{\listfigurename}%
-    \if@restonecol\twocolumn\fi
-    }
-%    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\listoftables}
-%    This macro is used to request that \LaTeX{} produces a list of tables. It is very similar to |\tableofcontents|.
-%    \begin{macrocode}
-\renewcommand\listoftables{%
-    \if@twocolumn
-    \@restonecoltrue\onecolumn
-    \else
-    \@restonecolfalse
-    \fi
-    \bookchapter*{\listtablename}%
-    \@mkboth{%
-        \MakeUppercase\listtablename}%
-    {\MakeUppercase\listtablename}%
-    \@starttoc{lot}%
-    \if@restonecol\twocolumn\fi
-}
-%    \end{macrocode}
-% \end{macro}
-% \begin{environment}{thebibliography}
-%    The `thebibliography' environment executes the following commands:
-%
-%    |\renewcommand{\newblock}{\hskip.11em \@plus.33em \@minus.07em}|\\
-%    --- Defines the ``closed'' format, where the blocks (major units of information) of an entry run together.
-%
-%    |\sloppy|  --- Used because it's rather hard to do line breaks in bibliographies,
-%
-%    |\sfcode`\.=1000\relax| --- Causes a `.' (period) not to produce an end-of-sentence space.
-%
-%    The implementation of this environment is based on the generic list environment. It uses the \Lcount{enumiv} counter internally to generate the labels of the list.
-%
-%    When an empty `thebibliography' environment is found, a warning is issued.
-%    \begin{macrocode}
-\renewenvironment{thebibliography}[1]
-    {\bookchapter*{\bibname}%
-        \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-        \list{\@biblabel{\@arabic\c@enumiv}}%
-        {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-        \sloppy
-%    \end{macrocode}
-%    This is setting the normal (non-infinite) value of |\clubpenalty| for the whole of this environment, so we must reset its stored value also.  (Why is there a |%| after the second 4000 below?)
-%    \begin{macrocode}
-        \clubpenalty4000
-        \@clubpenalty \clubpenalty
-        \widowpenalty4000%
-        \sfcode`\.\@m}
-    {\def\@noitemerr
-        {\@latex@warning{Empty `thebibliography' environment}}%
-        \endlist}
-%    \end{macrocode}
-% \end{environment}
-% \begin{environment}{theindex}
-%    The environment `theindex' can be used for indices. It makes an  index with two columns, with each entry a separate paragraph. At the user level the commands |\item|, |\subitem| and |\subsubitem| are used to produce index entries of various levels. When a new letter of the alphabet is encountered an amount of |\indexspace| white space can be added.
-%    \begin{macrocode}
-\renewenvironment{theindex}
-{\if@twocolumn
-    \@restonecolfalse
-    \else
-    \@restonecoltrue
-    \fi
-    \twocolumn[\@makesbookchapterhead{\indexname}]%
-    \@mkboth{\MakeUppercase\indexname}%
-    {\MakeUppercase\indexname}%
-    \thispagestyle{plain}\parindent\z@
-%    \end{macrocode}
-%    Parameter changes to |\columnseprule| and |\columnsep| have to be done after |\twocolumn| has acted. Otherwise they can affect the last page before the index.
-%    \begin{macrocode}
-    \parskip\z@ \@plus .3\p@\relax
-    \columnseprule \z@
-    \columnsep 35\p@
-    \let\item\@idxitem}
-%    \end{macrocode}
-%    When the document continues after the index and it was a one-column document we have to switch back to one column after the index.
-%    \begin{macrocode}
-{\if@restonecol\onecolumn\else\clearpage\fi}
-%    \end{macrocode}
-% \end{environment}
-%
-% \section{Initialization}
-%
-% \subsection{Words}
-%
-%    \begin{macrocode}
-\newcommand\bibname{Bibliography}
-\newcommand\bookchaptername{Chapter}
-%    \end{macrocode}
-%
-% \subsection{The page style}
-%
-%    \begin{macrocode}
-\pagestyle{headings}
-\pagenumbering{arabic}
 %</package>
 %    \end{macrocode}
 % \Finale
