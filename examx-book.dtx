@@ -256,6 +256,56 @@ intended for examx class]
 \newcommand\@chapapp{\chaptername}
 %    \end{macrocode}
 % \end{macro}
+%
+% \subsection{Front Matter, Main Matter, and Back Matter}
+%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\chapter| command does not print chapter numbers.
+
+%    Here we define the commands that start these sections.
+% \begin{macro}{\frontmatter}
+%    This command starts Roman page numbering and turns off chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    \begin{macrocode}
+\newcommand\frontmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \@mainmatterfalse
+    \pagenumbering{roman}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\mainmatter}
+%    This command clears the page, starts arabic page numbering and turns on chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    \begin{macrocode}
+\newcommand\mainmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \@mainmattertrue
+    \pagenumbering{arabic}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\backmatter}
+%    This clears the page, turns off chapter numbering and leaves page numbering unchanged.
+%    \begin{macrocode}
+\newcommand\backmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \@mainmatterfalse}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Parts}
+%
+%
+
+
+
 
 
 
