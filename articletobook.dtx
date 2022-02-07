@@ -173,20 +173,20 @@
 \setcounter{secnumdepth}{2}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\c@chapter}
+% \begin{macro}{\c@chapters}
 % \begin{macro}{\c@section}
 %    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
 %    \begin{macrocode}
-\newcounter{chapter}
-\@addtoreset{section}{chapter}
+\newcounter{chapters}
+\@addtoreset{section}{chapters}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-% \begin{macro}{\thechapter}
+% \begin{macro}{\thechapters}
 % \begin{macro}{\thesection}
 %    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
 %    \begin{macrocode}
-\renewcommand \thechapter {\@arabic\c@chapter}
+\renewcommand \thechapters {\@arabic\c@chapters}
 \renewcommand \thesection {\thechapter.\@arabic\c@section}
 %    \end{macrocode}
 % \end{macro}
@@ -239,11 +239,11 @@
 %
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
-\titleformat{\chapter}{display}[\part]
-{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titleformat{\chapters}{display}[\part]
+{\normalfont\huge\bfseries}{\chaptersname\ \thechapters}{20pt}{\Huge}
+\titlespacing*{\chapters}{0pt}{50pt}{40pt}
 
-\titlecontents*{chapter}[2em]{}{\bfseries\contentslabel{2em}}{}
+\titlecontents*{chapters}[2em]{}{\bfseries\contentslabel{2em}}{}
 {\titlerule*[.5pc]{.}\contentspage}[]
 %    \end{macrocode}
 %    \begin{macrocode}
