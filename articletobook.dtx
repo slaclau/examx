@@ -123,7 +123,7 @@
 % \end{macro}
 %
 % \begin{macro}{\if@openright}
-%    A swithc to indicate if chapters must start on a right-hand page. 
+%    A switch to indicate if chapters must start on a right-hand page. 
 %The default is yes.
 %    \begin{macrocode}
 \newif\if@openright \@openrighttrue
@@ -401,7 +401,7 @@
 % \begin{macro}{\chapter}
 %    A chapter should always start on a new page therefore we start by calling |\clearpage| and setting the pagestyle for this page to \pstyle{plain}.
 %    \begin{macrocode}
-\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+\providecommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
     \thispagestyle{plain}%
 %    \end{macrocode}
 %    Then we prevent floats from appearing at the top of this page because it looks weird to see a floating object above a chapter title.
