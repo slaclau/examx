@@ -220,7 +220,8 @@
 % \begin{macro}{\part}
 %    \begin{macrocode}
 \titleclass{\part}{page}
-\titleformat{\part}[block]{\centering\interlinepenalty\@M\normalfontformat}{\partname\nobreakspace\thepart\vskip 20\p@\Huge\bfseries}{0\p@}{}[\par\vfil\newpage]
+\titleformat{\part}[block]{\centering\interlinepenalty\@M\normalfont}{\partname\nobreakspace\thepart\vskip 20\p@\Huge\bfseries}{0\p@}{\if@openright\cleardoublepage\else\clearpage\fi\thispagestyle{plain}}[\par\vfil\newpage]
+\titlespacing*{\part}{0}{0}{0}
 %    \end{macrocode}
 % \end{macro}
 %
