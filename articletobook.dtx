@@ -221,13 +221,13 @@
 %
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
-\titleclass{\bookchapter}{display}[\part]
+\titleclass{\bookchapter}{top}[\part]
 \newcounter{bookchapter}
 \@addtoreset{section}{bookchapter}
 \renewcommand \thebookchapter {\@arabic\c@bookchapter}
 \renewcommand \thesection {\thebookchapter.\@arabic\c@section}
 
-\titleformat{\bookchapter}{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
+\titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
 %\let\chapter\bookchapter
