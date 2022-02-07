@@ -401,7 +401,7 @@
 % \begin{macro}{\chapter}
 %    A chapter should always start on a new page therefore we start by calling |\clearpage| and setting the pagestyle for this page to \pstyle{plain}.
 %    \begin{macrocode}
-\providecommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
     \thispagestyle{plain}%
 %    \end{macrocode}
 %    Then we prevent floats from appearing at the top of this page because it looks weird to see a floating object above a chapter title.
@@ -417,7 +417,7 @@
 % \begin{macro}{\@chapter}
 %    This macro is called when we have a numbered chapter. When \Lcount{secnumdepth} is larger than $-1$ and, in the book class, |\@mainmatter| is true, we display the chapter number. We also inform the user that a new chapter is about to be typeset by writing a message to the terminal.
 %    \begin{macrocode}
-\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >-1
         \if@mainmatter
             \refstepcounter{chapter}%
             \typeout{\@chapapp\space\thechapter.}%
