@@ -40,31 +40,8 @@ version 2008 or later.
 
 \askforoverwritefalse
 \generate{
-    \file{examx.cls}{
-        \from{examx.dtx}{class}
-    }
-	\file{examx-default.clo}{
-		\from{examx-styles.dtx}{default,all}
-	}
-    \file{examx-OCRALevel.clo}{
-        \from{examx-styles.dtx}{OCRALevel,all}
-    }
-    \file{examx-OCRALevelanswerbook.clo}{
-        \from{examx-styles.dtx}{OCRALevel,answerbook}
-    }
-    \file{examx-advancedanswerbook.clo}{
-        \from{examx-styles.dtx}{advanced,answerbook}
-        \from{examx-styles.dtx}{default,answerbookbackcover}
-    }
-    \file{examx-veryadvancedanswerbook.clo}{
-        \from{examx-styles.dtx}{veryadvanced,answerbook}
-        \from{examx-styles.dtx}{default,answerbookbackcover}
-    }
-    \file{examx-WellyOCRcovers.clo}{
-        \from{examx-styles.dtx}{WellyOCR,covers}
-    }
-    \file{examx-book.sty}{
-        \from{examx-book.dtx}{package}
+    \file{articletobook.sty}{
+        \from{articletobook.dtx}{package}
     }
 }
 
@@ -73,15 +50,9 @@ version 2008 or later.
 \Msg{* To finish the installation you have to move the}
 \Msg{* following files into a directory searched by TeX:}
 \Msg{*}
-\Msg{* \space\space examx.cls}
-\Msg{* \space\space examx-default.clo}
-\Msg{* \space\space examx-OCRALevel.clo}
-\Msg{* \space\space examx-OCRALevelanswerbook.clo}
-\Msg{* \space\space examx-advancedanswerbook.clo}
-\Msg{* \space\space examx-veryadvancedanswerbook.clo}
-\Msg{* \space\space examx-book.sty}
+\Msg{* \space\space articletobook.sty}
 \Msg{*}
-\Msg{* To produce the documentation run the file master.tex}
+\Msg{* To produce the documentation run the file articletobook.dtx}
 \Msg{* through LaTeX.}
 \Msg{*}
 \Msg{* Happy TeXing!}
