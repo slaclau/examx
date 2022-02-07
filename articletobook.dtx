@@ -128,7 +128,7 @@
 % \end{macro}
 %
 % \begin{macro}{\if@openright}
-%    A switch to indicate if bookchapters must start on a right-hand page. 
+%    A switch to indicate if chapters must start on a right-hand page. 
 %The default is yes.
 %    \begin{macrocode}
 \newif\if@openright \@openrighttrue
@@ -148,7 +148,7 @@
 %    \end{macrocode}
 %
 % \subsection{Options copied from the standard class \Lpack{book}}
-%    These options determine whether or not a bookchapter must start on a 
+%    These options determine whether or not a chapter must start on a 
 %right-hand page.
 %    \begin{macrocode}
 \DeclareVoidOption{openright}{\@openrighttrue}
@@ -182,22 +182,22 @@
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-% \begin{macro}{\thebookchapter}
+% \begin{macro}{\thechapter}
 % \begin{macro}{\thesection}
 %    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
 %    \begin{macrocode}
 \renewcommand \thechapter {\@arabic\c@chapter}
-\renewcommand \thesection {\thebookchapter.\@arabic\c@section}
+\renewcommand \thesection {\thechapter.\@arabic\c@section}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 %
 % \subsubsection{Front Matter, Main Matter, and Back Matter}
-%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
+%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\chapter| command does not print chapter numbers.
 
 %    Here we define the commands that start these sections.
 % \begin{macro}{\frontmatter}
-%    This command starts Roman page numbering and turns off bookchapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    This command starts Roman page numbering and turns off chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
 %    \begin{macrocode}
 \newcommand\frontmatter{%
     \if@openright
@@ -237,7 +237,7 @@
 %
 % \subsubsection{Chapters}
 %
-% \begin{macro}{\bookchapter}
+% \begin{macro}{\chapter}
 %    \begin{macrocode}
 \titleformat{\chapter}{display}[\part]
 {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
