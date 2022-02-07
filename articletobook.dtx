@@ -32,8 +32,13 @@
 %    Announce the package name and its version:
 %
 %    \begin{macrocode}
+%<package>\ProvidesPackage{articletobook}
+%<*driver>
+\ProvidesFile{articletobook.dtx}
+%</driver>
+[2022/02/07 v1.0.0-alpha
+%<class> Converts article based classes to book based classes]
 %<*package>
-\ProvidesPackage{articletobook}[2022/02/07 v1.0.0-alpha Converts article based classes to book based classes]
 %</package>
 %    \end{macrocode}
 %
@@ -46,6 +51,7 @@
 %
 %    \begin{macrocode}
 %<*driver>
+]
 \documentclass{ltxdoc}
 %    \end{macrocode}
 %    Some things do not need indexing.
