@@ -173,7 +173,7 @@
 \setcounter{secnumdepth}{2}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\c@chapter}
+% \begin{macro}{\c@bookchapter}
 % \begin{macro}{\c@section}
 %    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
 %    \begin{macrocode}
@@ -182,7 +182,7 @@
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-% \begin{macro}{\thechapter}
+% \begin{macro}{\thebookchapter}
 % \begin{macro}{\thesection}
 %    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
 %    \begin{macrocode}
@@ -193,7 +193,7 @@
 % \end{macro}
 %
 % \subsubsection{Front Matter, Main Matter, and Back Matter}
-%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\chapter| command does not print chapter numbers.
+%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
 
 %    Here we define the commands that start these sections.
 % \begin{macro}{\frontmatter}
@@ -239,16 +239,17 @@
 %
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
-\titleclass{\bookchapter}[display]{\part}
-\titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thebookchapter}{20pt}{\Huge}
+\titleclass{\bookchapter}{display}[\part]
+\titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
-\let\chapter\bookchapter
+%\let\chapter\bookchapter
 
 \titlecontents*{bookchapter}[2em]{}{\bfseries\contentslabel{2em}}{}
 {\titlerule*[.5pc]{.}\contentspage}[]
 %    \end{macrocode}
 %    \begin{macrocode}
+\newcommand{\chaptername}{Chapter}
 %</package>
 %    \end{macrocode}
 % \Finale
