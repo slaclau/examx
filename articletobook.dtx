@@ -168,7 +168,7 @@
         \let\@mkboth\markboth
     \def\chaptermark##1{%
         \markboth {\MakeUppercase{%
-            \ifnum \c@secnumdepth >\m@ne
+            \ifnum \c@secnumdepth >-1
                 \if@mainmatter
                     \@chapapp\ \thechapter. \ %
                 \fi
@@ -187,7 +187,7 @@
         \let\@mkboth\markboth
         \def\chaptermark##1{%
             \markright {\MakeUppercase{%
-                \ifnum \c@secnumdepth >\m@ne
+                \ifnum \c@secnumdepth >-1
                     \if@mainmatter
                         \@chapapp\ \thechapter. \ %
                     \fi
@@ -457,7 +457,7 @@
 %    \end{macrocode}
 %    Then we check whether the number of the chapter has to be printed If so we leave some whitespace between the chapternumber and its title.
 %    \begin{macrocode}
-     \ifnum \c@secnumdepth >\m@ne
+     \ifnum \c@secnumdepth >-1
         \if@mainmatter
             \huge\bfseries \@chapapp\space \thechapter
             \par\nobreak
@@ -593,7 +593,7 @@
         \endgroup
     \fi}
 \newcommand*\l@chapter[2]{%
-    \ifnum \c@tocdepth >\m@ne
+    \ifnum \c@tocdepth >-1
         \addpenalty{-\@highpenalty}%
         \vskip 1.0em \@plus\p@
         \setlength\@tempdima{1.5em}%
