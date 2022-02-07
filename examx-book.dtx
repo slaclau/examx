@@ -233,10 +233,20 @@ intended for examx class]
 % \end{macro}
 % \begin{macro}{\c@chapter}
 % \begin{macro}{\c@section}
-%    These counters are used for the section numbers.
+%    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
 %    \begin{macrocode}
 \newcounter{chapter}
+\undef{\c@section}
 \newcounter{section}[chapter]
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\thechapter}
+% \begin{macro}{\thesection}
+%    For any counter CTR, \theCTR is a macro that defines the printed version of counter CTR.
+%    \begin{macrocode}
+\renewcommand \thechapter {\@arabic\c@chapter}
+\renewcommand \thesection {\thechapter.\@arabic\c@section}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
