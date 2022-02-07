@@ -163,9 +163,7 @@
 %
 % \section{Document markup}
 %
-% \subsection{Chapters and sections}
-%
-% \subsubsection{Defining counters}
+% \subsection{Defining counters}
 %
 % \begin{macro}{\c@secnumdepth}
 %    The value of the counter secnumdepth gives the depth of the highest-level sectioning command that is to produce section numbers.
@@ -174,9 +172,9 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{Front Matter, Main Matter, and Back Matter}
+% \subsection{Front Matter, Main Matter, and Back Matter}
 %    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
-
+%
 %    Here we define the commands that start these sections.
 % \begin{macro}{\frontmatter}
 %    This command starts Roman page numbering and turns off chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
@@ -217,7 +215,15 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{Chapters}
+% \subsection{Parts}
+%
+% \begin{macro}{\part}
+%    \begin{macrocode}
+\titleclass{\part}{page}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Chapters}
 %
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
