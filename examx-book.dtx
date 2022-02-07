@@ -209,7 +209,37 @@ intended for examx class]
 }
 %    \end{macrocode}
 % \end{macro}
-
+%
+% \section{Document markup}
+%
+% \subsection{Chapters and sections}
+%
+% \subsubsection{Mark commands}
+%
+% \begin{macro}{\chaptermark}
+%    Default initializations of \...mark commands. These commands are used in the definition of the page styles.
+%    \begin{macrocode}
+\newcommand*\chaptermark[1]{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Defining counters}
+%
+% \begin{macro}{\c@secnumdepth}
+%    The value of the counter secnumdepth gives the depth of the highest-level sectioning command that is to produce section numbers.
+%    \begin{macrocode}
+\setcounter{secnumdepth}{2}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\c@chapter}
+% \begin{macro}{\c@section}
+%    These counters are used for the section numbers.
+%    \begin{macrocode}
+\newcounter{chapter}
+\newcounter{section}[chapter]
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
