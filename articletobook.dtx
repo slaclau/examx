@@ -405,7 +405,8 @@
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
 \titleclass{\chapter}{top}{\part}
-
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
 %    \end{macrocode}
 % \end{macro}
 %
