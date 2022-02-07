@@ -1,0 +1,732 @@
+% \iffalse meta-comment
+%
+% SVN keywords: $Revision: 570 $
+%
+% Copyright (C) 2022 by Sebastien Laclau
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008 or later.
+%
+% \fi
+%
+% \iffalse
+%
+%\section{Identification}
+%
+%    This document class can only be used with \LaTeXe, so we make
+%    sure that an appropriate message is displayed when another \TeX{}
+%    format is used.
+%
+%    \begin{macrocode}
+%<package>\NeedsTeXFormat{LaTeX2e}[2021/06/01]
+%    \end{macrocode}
+%
+%    Announce the package name and its version:
+%
+%    \begin{macrocode}
+%<package>\ProvidesPackage{articletobook2}
+%<*driver>
+\ProvidesFile{articletobook.dtx}
+%</driver>
+[2022/02/07 v1.0.0-alpha
+%<package> Converts article based classes to book based classes]
+%<*package>
+%</package>
+%    \end{macrocode}
+%
+%\section{Driver}
+%
+% The next bit of code contains the documentation driver file for
+% \TeX{}, i.e., the file that will produce the documentation you are
+% currently reading. It will be extracted from this file by the
+% {\sc docstrip} program.
+%
+%    \begin{macrocode}
+%<*driver>
+]
+\documentclass{ltxdoc}
+%    \end{macrocode}
+%    Some things do not need indexing.
+%    \begin{macrocode}
+\DoNotIndex{\def}
+%    \end{macrocode}
+%    We do want an index, using line numbers, and a change log.
+%    \begin{macrocode}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%    \end{macrocode}
+%    The following code retrieves the date and version information from 
+%the file.
+%    \begin{macrocode}
+\GetFileInfo{articletobook.dtx}
+%    \end{macrocode}
+%    Here are some commonly used abbreviations:
+%    \begin{macrocode}
+\input{ltxdoc-commands.def}
+%    \end{macrocode}
+%    We also want the full details.
+%    \begin{macrocode}
+\begin{document}
+	\DocInput{articletobook.dtx}
+	\PrintIndex
+	\PrintChanges
+\end{document}
+%</driver>
+%    \end{macrocode}
+%
+% \fi
+%
+% \CheckSum{0}
+%
+% \changes{v1.0.0}{2022/01/28}{Initial version}
+%
+%
+%
+% \title{The \Lpack{articletobook} package\thanks{This document
+	% corresponds to \Lpack{articletobook}~\fileversion,
+	% dated \filedate.}}
+% \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk} \\ \texttt{seb.laclau@gmail.com}}
+%
+% \maketitle
+% \tableofcontents
+%
+% \StopEventually{}
+%
+% \section{The {\sc docstrip} modules}
+%
+% The following modules are used in the implementation to direct
+% {\sc docstrip} in generating the external files:
+% \begin{center}
+	% \begin{tabular}{ll}
+		%   package & produce the package \Lpack{articletobook}\\
+		%   driver  & produce a documentation driver file \\
+		% \end{tabular}
+	% \end{center}
+%
+% \section{Initial code}
+%
+% \begin{macro}{\@ifmainmatter}
+%    The switch |\@ifmainmatter| indicates whether we are processing 
+%the main material in the book.
+%    \begin{macrocode}
+\newif\if@mainmatter \@mainmattertrue
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\if@openright}
+%    A swithc to indicate if chapters must start on a right-hand page. 
+%The default is yes.
+%    \begin{macrocode}
+\newif\if@openright \@openrighttrue
+%    \end{macrocode}
+% \end{macro}
+% \section{Options}
+%
+% \subsection{Options setup}
+%
+%    \begin{macrocode}
+%<*package>
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions {
+    family = articletobook
+    prefix = articletobook@
+}
+%    \end{macrocode}
+%
+% \subsection{Options copied from the standard class \Lpack{book}}
+%    These options determine whether or not a chapter must start on a 
+%right-hand page.
+%    \begin{macrocode}
+\DeclareVoidOption{openright}{\@openrighttrue}
+\DeclareVoidOption{openany}{\@openrightfalse}
+%    \end{macrocode}
+%
+% \subsection{Options processing}
+
+%    \begin{macrocode}
+\ProcessKeyvalOptions*
+%    \end{macrocode}
+%
+% \section{Document layout}
+%
+% \begin{macro}{\ps@headings}
+%    \begin{macrocode}
+\if@twoside
+    \def\ps@headings{%
+        \let\@oddfoot\@empty\let\@evenfoot\@empty
+        \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+        \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+        \let\@mkboth\markboth
+    \def\chaptermark##1{%
+        \markboth {\MakeUppercase{%
+            \ifnum \c@secnumdepth >\m@ne
+                \if@mainmatter
+                    \@chapapp\ \thechapter. \ %
+                \fi
+            \fi
+            ##1}}{}}%
+    \def\sectionmark##1{%
+        \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\z@
+            \thesection. \ %
+        \fi
+        ##1}}}}
+\else
+    \def\ps@headings{%
+        \let\@oddfoot\@empty
+        \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+        \let\@mkboth\markboth
+        \def\chaptermark##1{%
+            \markright {\MakeUppercase{%
+                \ifnum \c@secnumdepth >\m@ne
+                    \if@mainmatter
+                        \@chapapp\ \thechapter. \ %
+                    \fi
+                \fi
+                ##1}}}}
+\fi
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ps@myheadings}
+%    \begin{macrocode}
+\def\ps@myheadings{%
+    \let\@oddfoot\@empty\let\@evenfoot\@empty
+    \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+    \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+    \let\@mkboth\@gobbletwo
+    \let\chaptermark\@gobble
+    \let\sectionmark\@gobble
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \section{Document markup}
+%
+% \subsection{Chapters and sections}
+%
+% \subsubsection{Mark commands}
+%
+% \begin{macro}{\chaptermark}
+%    Default initializations of \...mark commands. These commands are used in the definition of the page styles.
+%    \begin{macrocode}
+\newcommand*\chaptermark[1]{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Defining counters}
+%
+% \begin{macro}{\c@secnumdepth}
+%    The value of the counter secnumdepth gives the depth of the highest-level sectioning command that is to produce section numbers.
+%    \begin{macrocode}
+\setcounter{secnumdepth}{2}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\c@chapter}
+% \begin{macro}{\c@section}
+%    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
+%    \begin{macrocode}
+\newcounter{chapter}
+\@addtoreset{section}{chapter}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\thechapter}
+% \begin{macro}{\thesection}
+%    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
+%    \begin{macrocode}
+\renewcommand \thechapter {\@arabic\c@chapter}
+\renewcommand \thesection {\thechapter.\@arabic\c@section}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\@chapapp}
+%    |\@chapapp| is initially defined to be ‘|\chaptername|’. The |\appendix| command redefines it to be ‘|\appendixname|’.
+%    \begin{macrocode}
+\newcommand\@chapapp{\chaptername}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Front Matter, Main Matter, and Back Matter}
+%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\chapter| command does not print chapter numbers.
+
+%    Here we define the commands that start these sections.
+% \begin{macro}{\frontmatter}
+%    This command starts Roman page numbering and turns off chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    \begin{macrocode}
+\newcommand\frontmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \@mainmatterfalse
+    \pagenumbering{roman}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\mainmatter}
+%    This command clears the page, starts arabic page numbering and turns on chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    \begin{macrocode}
+\newcommand\mainmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \@mainmattertrue
+    \pagenumbering{arabic}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\backmatter}
+%    This clears the page, turns off chapter numbering and leaves page numbering unchanged.
+%    \begin{macrocode}
+\newcommand\backmatter{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \@mainmatterfalse}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Parts}
+%
+% \begin{macro}{\part}
+%    The command to start a new part of our document. We start a new (righthand) page and use the plain pagestyle.
+%    \begin{macrocode}
+\renewcommand\part{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \thispagestyle{plain}%
+%    \end{macrocode}
+%    When we are making a two-column document, this will be a one column page. We use |\@tempswa| to remember to switch back to two columns.
+%    \begin{macrocode}
+    \if@twocolumn
+        \onecolumn
+        \@tempswatrue
+    \else
+        \@tempswafalse
+    \fi
+%    \end{macrocode}
+%    We need an empty box to prevent the fil glue from disappearing.
+%    \begin{macrocode}
+\null\vfil
+%    \end{macrocode}
+%    Here we use |\secdef| to indicate which commands to use to make the actual heading.
+%    \begin{macrocode}
+    \secdef\@part\@spart}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@part}
+%    This macro does the actual formatting of the title of the part.
+%
+%    When \Lcount{secnumdepth} is larger than -2, we have a numbered part, otherwise it is unnumbered.
+%    \begin{macrocode}
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+        \refstepcounter{part}%
+        \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+        \addcontentsline{toc}{part}{#1}%
+    \fi
+%    \end{macrocode}
+%    We empty the mark registers and center the title on the page. Also we prevent breaking between lines and reset the font.
+%    \begin{macrocode}
+    \markboth{}{}%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+%    \end{macrocode}
+%    When this is a numbered part we have to print the number.
+%    \begin{macrocode}
+     \ifnum \c@secnumdepth >-2\relax
+        \huge\bfseries \partname\nobreakspace\thepart
+        \par
+%    \end{macrocode}
+%    We leave some space before we print the title and leave the finishing up to |\@endpart|.
+%    \begin{macrocode}
+        \vskip 20\p@
+     \fi
+     \Huge \bfseries #2\par}%
+    \@endpart}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@spart}
+%    This macro does the actual formatting of the title of the part when the star form of the user command was used. In this case we never print a number. Otherwise the formatting is the same.
+%    \begin{macrocode}
+\def\@spart#1{%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \Huge \bfseries #1\par}%
+    \@endpart}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@endpart}
+%    \begin{macrocode}
+\def\@endpart{\vfil\newpage
+%    \end{macrocode}
+%    Then, when we are in twosided mode and chapters are supposed to be on right hand sides, we produce a completely blank page.
+%    \begin{macrocode}
+              \if@twoside
+                \if@openright
+                    \null
+                    \thispagestyle{empty}%
+                    \newpage
+                \fi
+              \fi
+%    \end{macrocode}
+%    When this was a two-column document we have to switch back to two-column mode.
+%    \begin{macrocode}
+              \if@tempswa
+                \twocolumn
+              \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Chapters}
+%
+% \begin{macro}{\chapter}
+%    A chapter should always start on a new page therefore we start by calling |\clearpage| and setting the pagestyle for this page to \pstyle{plain}.
+%    \begin{macrocode}
+\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+    \thispagestyle{plain}%
+%    \end{macrocode}
+%    Then we prevent floats from appearing at the top of this page because it looks weird to see a floating object above a chapter title.
+%    \begin{macrocode}
+    \global\@topnum\z@
+%    \end{macrocode}
+%    Then we suppress the indentation of the first paragraph by setting the switch |\@afterindent| to |false|. We use |\secdef| to specify the macros to use for actually setting the chapter title.
+%    \begin{macrocode}
+    \@afterindentfalse
+    \secdef\@chapter\@schapter}
+%    \end{macrocode}
+%
+% \begin{macro}{\@chapter}
+%    This macro is called when we have a numbered chapter. When \Lcount{secnumdepth} is larger than $-1$ and, in the book class, |\@mainmatter| is true, we display the chapter number. We also inform the user that a new chapter is about to be typeset by writing a message to the terminal.
+%    \begin{macrocode}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+            \refstepcounter{chapter}%
+            \typeout{\@chapapp\space\thechapter.}%
+            \addcontentsline{toc}{chapter}%
+            {\protect\numberline{\thechapter}#1}%
+        \else
+            \addcontentsline{toc}{chapter}{#1}%
+        \fi
+    \else
+        \addcontentsline{toc}{chapter}{#1}%
+    \fi
+%    \end{macrocode}
+%    After having written an entry to the table of contents we store the (alternative) title of this chapter with |\chaptermark| and add some white space to the lists of figures and tables.
+%    \begin{macrocode}
+    \chaptermark{#1}%
+    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+%    \end{macrocode}
+%    Then we call upon |\@makechapterhead| to format the actual chapter title. We have to do this in a special way when we are in two-column mode in order to have the chapter title use the entire |\textwidth|. In one-column mode we call |\@afterheading| which takes care of suppressing the indentation.
+%    \begin{macrocode}
+    \if@twocolumn
+    \@topnewpage[\@makechapterhead{#2}]%
+    \else
+    \@makechapterhead{#2}%
+    \@afterheading
+    \fi}
+%    \end{macrocode}
+%
+% \begin{macro}{\@makechapterhead}
+%    The macro above uses |\@makechapterhead|\meta{text} to format the heading of the chapter.
+%
+%    We begin by leaving some white space. The we open a group in which we have a paragraph indent of 0pt, and in which we have the text set ragged right. We also reset the font.
+%    \begin{macrocode}
+\def\@makechapterhead#1{%
+    \vspace*{50\p@}%
+    {\parindent \z@ \raggedright \normalfont
+%    \end{macrocode}
+%    Then we check whether the number of the chapter has to be printed If so we leave some whitespace between the chapternumber and its title.
+%    \begin{macrocode}
+     \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+            \huge\bfseries \@chapapp\space \thechapter
+            \par\nobreak
+            \vskip 20\p@
+        \fi
+     \fi
+%    \end{macrocode}
+%    Now we set the title in a large bold font. We prevent a pagebreak from occurring in the middle of or after the title. Finally we leave some whitespace before the text begins.
+%    \begin{macrocode}
+     \interlinepenalty\@M
+        \Huge \bfseries #1\par\nobreak
+        \vskip 40\p@
+    }}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@schapter}
+%    This macro is called when we have an unnumbered chapter. It is much simpler than |\@chapter| because it only needs to typeset the chapter title.
+%    \begin{macrocode}
+\def\@schapter#1{\if@twocolumn
+    \@topnewpage[\@makeschapterhead{#1}]%
+    \else
+    \@makeschapterhead{#1}%
+    \@afterheading
+    \fi}
+%    \end{macrocode}
+%
+% \begin{macro}{\@makeschapterhead}
+%    The macro above uses |\@makeschapterhead|\meta{text}to format the heading of the chapter. It is similar to |\@makechapterhead| except that it never has to print a chapter number.
+%    \begin{macrocode}
+\def\@makeschapterhead#1{%
+    \vspace*{50\p@}%
+    {\parindent \z@ \raggedright
+        \normalfont
+        \interlinepenalty\@M
+        \Huge \bfseries  #1\par\nobreak
+        \vskip 40\p@
+}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \subsubsection{Appendix}
+%
+% \begin{macro}{\appendix}
+%    The |\appendix| command is not really an environment, it is a macro that makes some changes in the way things are done. The |\appendix| command must do the following:
+%    \begin{itemize}
+%    \item reset the chapter and section counters to zero,
+%    \item set |\@chapapp| to |\appendixname| (for messages),
+%    \item redefine the chapter counter to produce appendix numbers,
+%    \item possibly redefine the |\chapter| command if appendix titles
+%        and headings are to look different from chapter titles and
+%        headings. This redefinition is done globally to ensure that it
+%        survives even if |\appendix| is issued within an environment such
+%        as \texttt{multicols}.
+%    \end{itemize}
+%
+%    \begin{macrocode}
+\renewcommand\appendix{\par
+    \setcounter{chapter}{0}%
+    \setcounter{section}{0}%
+    \gdef\@chapapp{\appendixname}%
+    \gdef\thechapter{\@Alph\c@chapter}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Setting parameters for existing environments}
+%
+% \subsubsection{Equation and eqnarray}
+%
+% \begin{macro}{\theequation}
+%    When within chapters, the equation counter will be reset at the beginning of a new chapter and the equation number will be prefixed by the chapter number.
+%
+%    This code must follow the |\chapter| definition or, more exactly, the definition of the \Lcount{chapter} counter.
+%    \begin{macrocode}
+\@addtoreset {equation}{chapter}
+\renewcommand\theequation
+    {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Floating objects}
+%
+% \begin{environment}{figure}
+% \begin{environment}{table}
+%    Here is the reimplementation of the figure and table environments.
+%    \begin{macrocode}
+\@addtoreset{figure}{chapter}
+\renewcommand \thefigure
+    {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
+\@addtoreset{table}{chapter}
+\renewcommand \thetable
+    {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
+%    \end{macrocode}
+% \end{environment}
+% \end{environment}
+%
+% \section{Cross referencing}
+%
+% \begin{macro}{\tableofcontents}
+%    This macro is used to request that LATEX produces a table of contents. The tables of contents, figures etc. are always set in single-column mode.
+%    \begin{macrocode}
+\setcounter{tocdepth}{2}
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+        \@restonecoltrue\onecolumn
+    \else
+        \@restonecolfalse
+    \fi
+    \chapter*{\contentsname
+        \@mkboth{%
+            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    }
+\renewcommand*\l@part[2]{%
+    \ifnum \c@tocdepth >-2\relax
+        \addpenalty{-\@highpenalty}%
+        \addvspace{2.25em \@plus\p@}%
+        \setlength\@tempdima{3em}%
+        \begingroup
+        \parindent \z@ \rightskip \@pnumwidth
+        \parfillskip -\@pnumwidth
+        {\leavevmode
+         \large \bfseries #1\hfil
+         \hb@xt@\@pnumwidth{\hss #2%
+                            \kern-\p@\kern\p@}}\par
+        \nobreak
+        \global\@nobreaktrue
+        \everypar{\global\@nobreakfalse\everypar{}}%
+        \endgroup
+    \fi}
+\newcommand*\l@chapter[2]{%
+    \ifnum \c@tocdepth >\m@ne
+        \addpenalty{-\@highpenalty}%
+        \vskip 1.0em \@plus\p@
+        \setlength\@tempdima{1.5em}%
+        \begingroup
+        \parindent \z@ \rightskip \@pnumwidth
+        \parfillskip -\@pnumwidth
+        \leavevmode \bfseries
+        \advance\leftskip\@tempdima
+        \hskip -\leftskip
+        #1\nobreak\hfil
+        \nobreak\hb@xt@\@pnumwidth{\hss #2%
+                                    \kern-\p@\kern\p@}\par
+        \penalty\@highpenalty
+        \endgroup
+    \fi}
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{10em}{5em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{5}{12em}{6em}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\listoffigures}
+%    \begin{macrocode}
+\renewcommand\listoffigures{%
+    \if@twocolumn
+        \@restonecoltrue\onecolumn
+    \else
+        \@restonecolfalse
+    \fi
+    \chapter*{\listfigurename}%
+    \if@restonecol\twocolumn\fi
+    }
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\listoftables}
+%    This macro is used to request that \LaTeX{} produces a list of tables. It is very similar to |\tableofcontents|.
+%    \begin{macrocode}
+\renewcommand\listoftables{%
+    \if@twocolumn
+    \@restonecoltrue\onecolumn
+    \else
+    \@restonecolfalse
+    \fi
+    \chapter*{\listtablename}%
+    \@mkboth{%
+        \MakeUppercase\listtablename}%
+    {\MakeUppercase\listtablename}%
+    \@starttoc{lot}%
+    \if@restonecol\twocolumn\fi
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{environment}{thebibliography}
+%    The `thebibliography' environment executes the following commands:
+%
+%    |\renewcommand{\newblock}{\hskip.11em \@plus.33em \@minus.07em}|\\
+%    --- Defines the ``closed'' format, where the blocks (major units of information) of an entry run together.
+%
+%    |\sloppy|  --- Used because it's rather hard to do line breaks in bibliographies,
+%
+%    |\sfcode`\.=1000\relax| --- Causes a `.' (period) not to produce an end-of-sentence space.
+%
+%    The implementation of this environment is based on the generic list environment. It uses the \Lcount{enumiv} counter internally to generate the labels of the list.
+%
+%    When an empty `thebibliography' environment is found, a warning is issued.
+%    \begin{macrocode}
+\renewenvironment{thebibliography}[1]
+    {\chapter*{\bibname}%
+        \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+        \list{\@biblabel{\@arabic\c@enumiv}}%
+        {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+        \sloppy
+%    \end{macrocode}
+%    This is setting the normal (non-infinite) value of |\clubpenalty| for the whole of this environment, so we must reset its stored value also.  (Why is there a |%| after the second 4000 below?)
+%    \begin{macrocode}
+        \clubpenalty4000
+        \@clubpenalty \clubpenalty
+        \widowpenalty4000%
+        \sfcode`\.\@m}
+    {\def\@noitemerr
+        {\@latex@warning{Empty `thebibliography' environment}}%
+        \endlist}
+%    \end{macrocode}
+% \end{environment}
+% \begin{environment}{theindex}
+%    The environment `theindex' can be used for indices. It makes an  index with two columns, with each entry a separate paragraph. At the user level the commands |\item|, |\subitem| and |\subsubitem| are used to produce index entries of various levels. When a new letter of the alphabet is encountered an amount of |\indexspace| white space can be added.
+%    \begin{macrocode}
+\renewenvironment{theindex}
+{\if@twocolumn
+    \@restonecolfalse
+    \else
+    \@restonecoltrue
+    \fi
+    \twocolumn[\@makeschapterhead{\indexname}]%
+    \@mkboth{\MakeUppercase\indexname}%
+    {\MakeUppercase\indexname}%
+    \thispagestyle{plain}\parindent\z@
+%    \end{macrocode}
+%    Parameter changes to |\columnseprule| and |\columnsep| have to be done after |\twocolumn| has acted. Otherwise they can affect the last page before the index.
+%    \begin{macrocode}
+    \parskip\z@ \@plus .3\p@\relax
+    \columnseprule \z@
+    \columnsep 35\p@
+    \let\item\@idxitem}
+%    \end{macrocode}
+%    When the document continues after the index and it was a one-column document we have to switch back to one column after the index.
+%    \begin{macrocode}
+{\if@restonecol\onecolumn\else\clearpage\fi}
+%    \end{macrocode}
+% \end{environment}
+%
+% \section{Initialization}
+%
+% \subsection{Words}
+%
+%    \begin{macrocode}
+\newcommand\bibname{Bibliography}
+\newcommand\chaptername{Chapter}
+%    \end{macrocode}
+%
+% \subsection{The page style}
+%
+%    \begin{macrocode}
+\pagestyle{headings}
+\pagenumbering{arabic}
+%</package>
+%    \end{macrocode}
+% \Finale
+\endinput
