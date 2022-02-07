@@ -114,6 +114,10 @@
 %
 % \section{Initial code}
 %
+%    \begin{macrocode}
+\RequirePackage{titlesec}
+%    \end{macrocode}
+%
 % \begin{macro}{\@ifmainmatter}
 %    The switch |\@ifmainmatter| indicates whether we are processing 
 %the main material in the book.
@@ -399,107 +403,10 @@
 % \subsubsection{Chapters}
 %
 % \begin{macro}{\chapter}
-%    A chapter should always start on a new page therefore we start by calling |\clearpage| and setting the pagestyle for this page to \pstyle{plain}.
 %    \begin{macrocode}
-\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
-    \thispagestyle{plain}%
+\titleclass{\chapter}{top}{\part}
+
 %    \end{macrocode}
-%    Then we prevent floats from appearing at the top of this page because it looks weird to see a floating object above a chapter title.
-%    \begin{macrocode}
-    \global\@topnum\z@
-%    \end{macrocode}
-%    Then we suppress the indentation of the first paragraph by setting the switch |\@afterindent| to |false|. We use |\secdef| to specify the macros to use for actually setting the chapter title.
-%    \begin{macrocode}
-    \@afterindentfalse
-    \secdef\@chapter\@schapter}
-%    \end{macrocode}
-%
-% \begin{macro}{\@chapter}
-%    This macro is called when we have a numbered chapter. When \Lcount{secnumdepth} is larger than $-1$ and, in the book class, |\@mainmatter| is true, we display the chapter number. We also inform the user that a new chapter is about to be typeset by writing a message to the terminal.
-%    \begin{macrocode}
-\def\@chapter[#1]#2{\ifnum \c@secnumdepth >-1
-        \if@mainmatter
-            \refstepcounter{chapter}%
-            \typeout{\@chapapp\space\thechapter.}%
-            \addcontentsline{toc}{chapter}%
-            {\protect\numberline{\thechapter}#1}%
-        \else
-            \addcontentsline{toc}{chapter}{#1}%
-        \fi
-    \else
-        \addcontentsline{toc}{chapter}{#1}%
-    \fi
-%    \end{macrocode}
-%    After having written an entry to the table of contents we store the (alternative) title of this chapter with |\chaptermark| and add some white space to the lists of figures and tables.
-%    \begin{macrocode}
-    \chaptermark{#1}%
-    \addtocontents{lof}{\protect\addvspace{10\p@}}%
-    \addtocontents{lot}{\protect\addvspace{10\p@}}%
-%    \end{macrocode}
-%    Then we call upon |\@makechapterhead| to format the actual chapter title. We have to do this in a special way when we are in two-column mode in order to have the chapter title use the entire |\textwidth|. In one-column mode we call |\@afterheading| which takes care of suppressing the indentation.
-%    \begin{macrocode}
-    \if@twocolumn
-    \@topnewpage[\@makechapterhead{#2}]%
-    \else
-    \@makechapterhead{#2}%
-    \@afterheading
-    \fi}
-%    \end{macrocode}
-%
-% \begin{macro}{\@makechapterhead}
-%    The macro above uses |\@makechapterhead|\meta{text} to format the heading of the chapter.
-%
-%    We begin by leaving some white space. The we open a group in which we have a paragraph indent of 0pt, and in which we have the text set ragged right. We also reset the font.
-%    \begin{macrocode}
-\def\@makechapterhead#1{%
-    \vspace*{50\p@}%
-    {\parindent \z@ \raggedright \normalfont
-%    \end{macrocode}
-%    Then we check whether the number of the chapter has to be printed If so we leave some whitespace between the chapternumber and its title.
-%    \begin{macrocode}
-     \ifnum \c@secnumdepth >\m@ne
-        \if@mainmatter
-            \huge\bfseries \@chapapp\space \thechapter
-            \par\nobreak
-            \vskip 20\p@
-        \fi
-     \fi
-%    \end{macrocode}
-%    Now we set the title in a large bold font. We prevent a pagebreak from occurring in the middle of or after the title. Finally we leave some whitespace before the text begins.
-%    \begin{macrocode}
-     \interlinepenalty\@M
-        \Huge \bfseries #1\par\nobreak
-        \vskip 40\p@
-    }}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-%
-% \begin{macro}{\@schapter}
-%    This macro is called when we have an unnumbered chapter. It is much simpler than |\@chapter| because it only needs to typeset the chapter title.
-%    \begin{macrocode}
-\def\@schapter#1{\if@twocolumn
-    \@topnewpage[\@makeschapterhead{#1}]%
-    \else
-    \@makeschapterhead{#1}%
-    \@afterheading
-    \fi}
-%    \end{macrocode}
-%
-% \begin{macro}{\@makeschapterhead}
-%    The macro above uses |\@makeschapterhead|\meta{text}to format the heading of the chapter. It is similar to |\@makechapterhead| except that it never has to print a chapter number.
-%    \begin{macrocode}
-\def\@makeschapterhead#1{%
-    \vspace*{50\p@}%
-    {\parindent \z@ \raggedright
-        \normalfont
-        \interlinepenalty\@M
-        \Huge \bfseries  #1\par\nobreak
-        \vskip 40\p@
-}}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
 % \end{macro}
 %
 % \subsubsection{Appendix}
