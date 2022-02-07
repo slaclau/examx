@@ -243,13 +243,23 @@ intended for examx class]
 % \end{macro}
 % \begin{macro}{\thechapter}
 % \begin{macro}{\thesection}
-%    For any counter CTR, \theCTR is a macro that defines the printed version of counter CTR.
+%    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
 %    \begin{macrocode}
 \renewcommand \thechapter {\@arabic\c@chapter}
 \renewcommand \thesection {\thechapter.\@arabic\c@section}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
+% \begin{macro}{\@chapapp}
+%    |\@chapapp| is initially defined to be ‘|\chaptername|’. The |\appendix| command redefines it to be ‘|\appendixname|’.
+%    \begin{macrocode}
+\newcommand\@chapapp{\chaptername}
+%    \end{macrocode}
+% \end{macro}
+
+
+
+
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
