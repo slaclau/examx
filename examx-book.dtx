@@ -519,7 +519,7 @@ intended for examx class]
 %    \end{itemize}
 %
 %    \begin{macrocode}
-\newcommand\appendix{\par
+\renewcommand\appendix{\par
     \setcounter{chapter}{0}%
     \setcounter{section}{0}%
     \gdef\@chapapp{\appendixname}%
@@ -619,7 +619,7 @@ intended for examx class]
 % \end{macro}
 % \begin{macro}{\listoffigures}
 %    \begin{macrocode}
-\newcommand\listoffigures{%
+\renewcommand\listoffigures{%
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
@@ -718,8 +718,8 @@ intended for examx class]
 % \subsection{Words}
 %
 %    \begin{macrocode}
-\renewcommand\bibname{Bibliography}
-\renewcommand\chaptername{Chapter}
+\newcommand\bibname{Bibliography}
+\newcommand\chaptername{Chapter}
 %    \end{macrocode}
 %
 % \subsection{The page style}
