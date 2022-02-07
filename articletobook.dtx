@@ -128,7 +128,7 @@
 % \end{macro}
 %
 % \begin{macro}{\if@openright}
-%    A switch to indicate if chapters must start on a right-hand page. 
+%    A switch to indicate if bookchapters must start on a right-hand page. 
 %The default is yes.
 %    \begin{macrocode}
 \newif\if@openright \@openrighttrue
@@ -148,7 +148,7 @@
 %    \end{macrocode}
 %
 % \subsection{Options copied from the standard class \Lpack{book}}
-%    These options determine whether or not a chapter must start on a 
+%    These options determine whether or not a bookchapter must start on a 
 %right-hand page.
 %    \begin{macrocode}
 \DeclareVoidOption{openright}{\@openrighttrue}
@@ -163,14 +163,14 @@
 %
 % \section{Document markup}
 %
-% \subsection{Chapters and sections}
+% \subsection{bookchapters and sections}
 %
 % \subsubsection{Mark commands}
 %
-% \begin{macro}{\chaptermark}
+% \begin{macro}{\bookchaptermark}
 %    Default initializations of \...mark commands. These commands are used in the definition of the page styles.
 %    \begin{macrocode}
-\newcommand*\chaptermark[1]{}
+\newcommand*\bookchaptermark[1]{}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -182,31 +182,31 @@
 \setcounter{secnumdepth}{2}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\c@chapter}
+% \begin{macro}{\c@bookchapter}
 % \begin{macro}{\c@section}
 %    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
 %    \begin{macrocode}
-\newcounter{chapter}
-\@addtoreset{section}{chapter}
+\newcounter{bookchapter}
+\@addtoreset{section}{bookchapter}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-% \begin{macro}{\thechapter}
+% \begin{macro}{\thebookchapter}
 % \begin{macro}{\thesection}
 %    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
 %    \begin{macrocode}
-\renewcommand \thechapter {\@arabic\c@chapter}
-\renewcommand \thesection {\thechapter.\@arabic\c@section}
+\renewcommand \thebookchapter {\@arabic\c@bookchapter}
+\renewcommand \thesection {\thebookchapter.\@arabic\c@section}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 %
 % \subsubsection{Front Matter, Main Matter, and Back Matter}
-%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\chapter| command does not print chapter numbers.
+%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
 
 %    Here we define the commands that start these sections.
 % \begin{macro}{\frontmatter}
-%    This command starts Roman page numbering and turns off chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    This command starts Roman page numbering and turns off bookchapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
 %    \begin{macrocode}
 \newcommand\frontmatter{%
     \if@openright
@@ -344,13 +344,13 @@
 %
 % \subsubsection{Chapters}
 %
-% \begin{macro}{\chapter}
+% \begin{macro}{\bookchapter}
 %    \begin{macrocode}
-\titleformat{\chapter}{display}[\part]
-{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titleformat{\bookchapter}{display}[\part]
+{\normalfont\huge\bfseries}{\bookchaptertitlename\ \thebookchapter}{20pt}{\Huge}
+\titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
-\titlecontents*{chapter}[2em]{}{\bfseries\contentslabel{2em}}{}
+\titlecontents*{bookchapter}[2em]{}{\bfseries\contentslabel{2em}}{}
 {\titlerule*[.5pc]{.}\contentspage}[]
 %    \end{macrocode}
 % \end{macro}
@@ -372,10 +372,9 @@
 %
 %    \begin{macrocode}
 \renewcommand\appendix{\par
-    \setcounter{chapter}{0}%
+    \setcounter{bookchapter}{0}%
     \setcounter{section}{0}%
-%    \gdef\@chapapp{\appendixname}%
-    \gdef\thechapter{\@Alph\c@chapter}}
+    \gdef\thebookchapter{\@Alph\c@bookchapter}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -400,12 +399,12 @@
 % \begin{environment}{table}
 %    Here is the reimplementation of the figure and table environments.
 %    \begin{macrocode}
-\@addtoreset{figure}{chapter}
+\@addtoreset{figure}{bookchapter}
 \renewcommand \thefigure
-    {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
-\@addtoreset{table}{chapter}
+    {\ifnum \c@bookchapter>\z@ \thebookchapter.\fi \@arabic\c@figure}
+\@addtoreset{table}{bookchapter}
 \renewcommand \thetable
-    {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
+    {\ifnum \c@bookchapter>\z@ \thebookchapter.\fi \@arabic\c@table}
 %    \end{macrocode}
 % \end{environment}
 % \end{environment}
@@ -422,7 +421,7 @@
     \else
         \@restonecolfalse
     \fi
-    \chapter*{\contentsname
+    \bookchapter*{\contentsname
         \@mkboth{%
             \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
     \@starttoc{toc}%
@@ -460,7 +459,7 @@
     \else
         \@restonecolfalse
     \fi
-    \chapter*{\listfigurename}%
+    \bookchapter*{\listfigurename}%
     \if@restonecol\twocolumn\fi
     }
 %    \end{macrocode}
@@ -474,7 +473,7 @@
     \else
     \@restonecolfalse
     \fi
-    \chapter*{\listtablename}%
+    \bookchapter*{\listtablename}%
     \@mkboth{%
         \MakeUppercase\listtablename}%
     {\MakeUppercase\listtablename}%
@@ -498,7 +497,7 @@
 %    When an empty `thebibliography' environment is found, a warning is issued.
 %    \begin{macrocode}
 \renewenvironment{thebibliography}[1]
-    {\chapter*{\bibname}%
+    {\bookchapter*{\bibname}%
         \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
         \list{\@biblabel{\@arabic\c@enumiv}}%
         {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -530,7 +529,7 @@
     \else
     \@restonecoltrue
     \fi
-    \twocolumn[\@makeschapterhead{\indexname}]%
+    \twocolumn[\@makesbookchapterhead{\indexname}]%
     \@mkboth{\MakeUppercase\indexname}%
     {\MakeUppercase\indexname}%
     \thispagestyle{plain}\parindent\z@
@@ -554,7 +553,7 @@
 %
 %    \begin{macrocode}
 \newcommand\bibname{Bibliography}
-\newcommand\chaptername{Chapter}
+\newcommand\bookchaptername{Chapter}
 %    \end{macrocode}
 %
 % \subsection{The page style}
