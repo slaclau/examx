@@ -33,8 +33,7 @@
 %
 %    \begin{macrocode}
 %<*package>
-\ProvidesPackage{examx-book}[2022/02/02 v1.0.0-alpha Workbook features 
-intended for examx class]
+\ProvidesPackage{articletobook}[2022/02/07 v1.0.0-alpha Converts article based classes to book based classes]
 %</package>
 %    \end{macrocode}
 %
@@ -62,16 +61,16 @@ intended for examx class]
 %    The following code retrieves the date and version information from 
 %the file.
 %    \begin{macrocode}
-\GetFileInfo{examx-book.dtx}
+\GetFileInfo{articletobook.dtx}
 %    \end{macrocode}
 %    Here are some commonly used abbreviations:
 %    \begin{macrocode}
-\input{examx-ltxdoc-commands.def}
+\input{ltxdoc-commands.def}
 %    \end{macrocode}
 %    We also want the full details.
 %    \begin{macrocode}
 \begin{document}
-	\DocInput{examx-book.dtx}
+	\DocInput{articletobook.dtx}
 	\PrintIndex
 	\PrintChanges
 \end{document}
@@ -86,8 +85,8 @@ intended for examx class]
 %
 %
 %
-% \title{The \Lpack{examx-book} package\thanks{This document
-	% corresponds to \Lpack{examx-package}~\fileversion,
+% \title{The \Lpack{articletobook} package\thanks{This document
+	% corresponds to \Lpack{articletobook}~\fileversion,
 	% dated \filedate.}}
 % \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk} \\ \texttt{seb.laclau@gmail.com}}
 %
@@ -102,7 +101,7 @@ intended for examx class]
 % {\sc docstrip} in generating the external files:
 % \begin{center}
 	% \begin{tabular}{ll}
-		%   package & produce the package \Lpack{examx-book}\\
+		%   package & produce the package \Lpack{articletobook}\\
 		%   driver  & produce a documentation driver file \\
 		% \end{tabular}
 	% \end{center}
