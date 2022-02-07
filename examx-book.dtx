@@ -153,6 +153,62 @@
 
 %    \begin{macrocode}
 \ProcessKeyvalOptions*
+%    \end{macrocode}
+%
+% \section{Document layout}
+%
+% \begin{macro}{\ps@headings}
+%    \begin{macrocode}
+\if@twoside
+    \def\ps@headings{%
+        \let\@oddfoot\@empty\let\@evenfoot\@empty
+        \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+        \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+        \let\@mkboth\markboth
+    \def\chaptermark##1{%
+        \markboth {\MakeUppercase{%
+            \ifnum \c@secnumdepth >\m@ne
+                \if@mainmatter
+                    \@chapapp\ \thechapter. \ %
+                \fi
+            \fi
+            ##1}}{}}%
+    \def\sectionmark##1{%
+        \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\z@
+            \thesection. \ %
+        \fi
+        ##1}}}}
+\else
+    \def\ps@headings{%
+        \let\@oddfoot\@empty
+        \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+        \let\@mkboth\markboth
+        \def\chaptermark##1{%
+            \markright {\MakeUppercase{%
+                \ifnum \c@secnumdepth >\m@ne
+                    \if@mainmatter
+                        \@chapapp\ \thechapter. \ %
+                    \fi
+                \fi
+                ##1}}}}
+\fi
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ps@myheadings}
+%    \begin{macrocode}
+\def\ps@myheadings{%
+    \let\@oddfoot\@empty\let\@evenfoot\@empty
+    \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+    \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+    \let\@mkboth\@gobbletwo
+    \let\chaptermark\@gobble
+    \let\sectionmark\@gobble
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 %</package>
 %    \end{macrocode}
 
