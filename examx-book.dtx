@@ -1,0 +1,885 @@
+% \iffalse meta-comment
+%
+% SVN keywords: $Revision: 570 $
+%
+% Copyright (C) 2022 by Sebastien Laclau
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008 or later.
+%
+% \fi
+%
+% \iffalse
+%
+%\section{Identification}
+%
+%    This document class can only be used with \LaTeXe, so we make
+%    sure that an appropriate message is displayed when another \TeX{}
+%    format is used.
+%
+%    \begin{macrocode}
+%<class>\NeedsTeXFormat{LaTeX2e}[2021/06/01]
+%    \end{macrocode}
+%
+%    Announce the Class name and its version:
+%
+%    \begin{macrocode}
+%<class>\ProvidesClass{examx}
+%<*driver>
+\ProvidesFile{examx.dtx}
+%</driver>
+	[2022/02/02 v1.1.0
+%<class> Adds features to the exam class]
+%    \end{macrocode}
+%
+%\section{Driver}
+%
+% The next bit of code contains the documentation driver file for
+% \TeX{}, i.e., the file that will produce the documentation you are
+% currently reading. It will be extracted from this file by the
+% {\sc docstrip} program.
+%
+%    \begin{macrocode}
+%<*driver>
+]
+\documentclass{ltxdoc}
+%    \end{macrocode}
+%    Some things do not need indexing.
+%    \begin{macrocode}
+\DoNotIndex{\AtEndOfClass, \AtEndEnvironment}
+\DoNotIndex{\cdot}
+\DoNotIndex{\def, \gdef, \xdef, \let, \relax, \newcommand, 
+\renewcommand, \NewDocumentCommand, \RenewDocumentCommand}
+\DoNotIndex{\\, \vspace, \stretch, \par, \baselineskip}
+\DoNotIndex{\hline}
+\DoNotIndex{\normalshape, \large, \Large, \LARGE, \huge}
+\DoNotIndex{\bfseries, \text, \textsc, \textbf, \textcolor}
+\DoNotIndex{\csname{else}, \cs{fi}}
+\DoNotIndex{\begin, \end}
+\DoNotIndex{\arabic, \alph, \Alph}
+\DoNotIndex{\oldquestion, \oldpart, \oldsubpart}
+\DoNotIndex{\label, \ref, \pageref}
+%    \end{macrocode}
+%    We do want an index, using line numbers, and a change log.
+%    \begin{macrocode}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%    \end{macrocode}
+%    The following code retrieves the date and version information from 
+%the file.
+%    \begin{macrocode}
+\GetFileInfo{examx.dtx}
+%    \end{macrocode}
+%    Here are some commonly used abbreviations:
+%    \begin{macrocode}
+\input{examx-ltxdoc-commands.def}
+%    \end{macrocode}
+%    We also want the full details.
+%    \begin{macrocode}
+\begin{document}
+	\DocInput{examx.dtx}
+	\PrintIndex
+	\PrintChanges
+\end{document}
+%</driver>
+%    \end{macrocode}
+%
+% \fi
+%
+% \CheckSum{0}
+%
+% \changes{v1.0}{2022/01/28}{Initial version}
+% \changes{v1.1.0}{2022/02/03}{Start of semver}
+%
+%
+%
+% \title{The \textsf{examx} class\thanks{This document
+	% corresponds to \textsf{examx}~\fileversion,
+	% dated \filedate.}}
+% \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk} \\ \texttt{seb.laclau@gmail.com}}
+%
+% \maketitle
+% \tableofcontents
+%
+% \StopEventually{}
+
+% \section{The {\sc docstrip} modules}
+%
+% The following modules are used in the implementation to direct
+% {\sc docstrip} in generating the external files:
+% \begin{center}
+	% \begin{tabular}{ll}
+		%   class  & produce the documentclass \textsf{examx}\\
+		%   driver & produce a documentation driver file \\
+		% \end{tabular}
+	% \end{center}
+%
+% \section{Initial code}
+
+%\subsection{workbook options}
+
+%    \begin{macrocode}
+%<*class>
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions {
+    family = examx
+    prefix = examx@
+}
+
+
+\DeclareVoidOption{book}{\AtEndOfClass{\input{book.clo}}}
+%    \end{macrocode}
+
+% \subsubsection{Options for customizing exams}
+
+%\begin{macro}{\formulaesheet}
+%\begin{macro}{\ifformulaesheet}
+%    The command |\formulaesheet| inserts a formulaesheet at the current point in the document. It must be redefined before being used. |\ifformulaesheet| determines whether or not a formulaesheet is inserted after the cover. The options \Lopt{formulae} and \Lopt{noformulae} set |\ifformulaesheet|.
+%    \begin{macrocode}
+\DeclareBoolOption[true]{formulae}
+\DeclareComplementaryOption{noformulae}{formulae}
+
+\newcommand{\formulaesheet}{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+
+%\begin{macro}{\ifexamx@shortpaper}
+%    |\ifexamx@shortpaper| is used to determine where page breaks are 
+%inserted. The options \Lopt{shortpaper} and \Lopt{longpaper} set 
+%|\ifexamx@shortpaper|.
+%    \begin{macrocode}
+\DeclareBoolOption[false]{shortpaper}
+\DeclareComplementaryOption{longpaper}{shortpaper}
+
+\ifexamx@shortpaper
+    \AtBeginDocument{\soln}
+\fi
+%    \end{macrocode}
+%\end{macro}
+
+%    The following options provide complete styles.
+%    \begin{macrocode}
+\DeclareStringOption{style}[\relax]
+\AtEndOfClass{\input{default.clo}}
+\AtEndOfClass{
+    \if\examx@style\relax\else
+        \InputIfFileExists{\examx@style.clo}{}{
+            \ClassWarning{examx}{Style {\examx@style} not found}}
+    \fi
+}
+%    \end{macrocode}
+%    The following options provide specific aspects of exam 
+%customization. Custom .clo files for \Lopt{coverstyle} are of the form 
+%\file{\meta{coverstyle}covers.clo} and custom .clo files for 
+%\Lopt{answerbookstyle} are of the form 
+%\file{\meta{answerbookstyle}answerbook.clo}
+%    \begin{macrocode}
+\DeclareStringOption{coverstyle}[\relax]
+\AtEndOfClass{
+    \if\examx@coverstyle\relax\else
+    \InputIfFileExists{{\examx@coverstyle}covers.clo}{}{
+        \ClassWarning{examx}{Cover style {\examx@coverstyle} not 
+        found}}
+    \fi
+}
+\DeclareStringOption{answerbookstyle}[\relax]
+\AtEndOfClass{
+    \if\examx@answerbookstyle\relax\else
+    \InputIfFileExists{{\examx@answerbookstyle}answerbook.clo}{}{
+        \ClassWarning{examx}{Answer book style 
+        {\examx@answerbookstyle}  not found}}
+    \fi
+}
+\DeclareStringOption{solutionstyle}[\relax]
+\def\nosolspace{blank}
+\AtEndOfClass{
+    \ifx\examx@solutionstyle\nosolspace
+        \soln
+    \fi
+    \if\examx@solutionstyle\relax\else
+        \csname soln\examx@solutionstyle \endcsname
+    \fi
+}
+%    \end{macrocode}
+%\changes{v1.02}{2022/02/02}{Restructured solutionstyle option}
+% \subsubsection{Other options}
+
+%    \begin{macrocode}
+\DeclareVoidOption{markscheme}{\PassOptionsToClass{answers}{exam}}
+\DeclareVoidOption{answers}{\PassOptionsToClass{answers}{exam}}
+%    \end{macrocode}
+
+% \subsubsection{Options processing}
+
+%    \begin{macrocode}
+\ProcessKeyvalOptions*
+%    \end{macrocode}
+
+% \subsubsection{Loading class exam}
+
+%    \begin{macrocode}
+\LoadClass[12pt,a4paper]{exam}
+%    \end{macrocode}
+
+% \subsubsection{Required packages}
+%    First we load \Lopt{graphicx} to allow for the use of images. We then set the default graphicspath to images.
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+\graphicspath{{images/}}
+%    \end{macrocode}
+%    Next we load \Lopt{standalone} and \Lopt{import} to allow for the importing of files into this document.
+%    \begin{macrocode}
+\RequirePackage[subpreambles=true]{standalone}
+\RequirePackage{import}
+%    \end{macrocode}
+%    Then tikz is configured.
+%    \begin{macrocode}
+\RequirePackage{pgfplots}
+\RequirePackage{pgf,tikz,tkz-euclide}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.markings}
+\input{tikzconfigforworkbook}
+%    \end{macrocode}
+%    Various packages are loaded for using mathematical symbos.
+%    \begin{macrocode}
+\RequirePackage{mathrsfs}
+\RequirePackage{amsmath}
+\RequirePackage{gensymb}
+\RequirePackage{siunitx}
+    \sisetup{inter-unit-product = \ensuremath { { } \cdot { } } }
+    \sisetup{per-mode = power}
+\RequirePackage{mathtools}
+\RequirePackage{bigints}
+\RequirePackage{mathdots}
+\RequirePackage{maths-macros}
+%    \end{macrocode}
+%    Some packages help formatting tables.
+%    \begin{macrocode}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+    \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\RequirePackage{multicol}
+\RequirePackage{hhline}
+%    \end{macrocode}
+%    Other packages are used for defining commands.
+%    \begin{macrocode}
+\RequirePackage{ifthen}
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+%    These packages are used for formatting and page layout.
+%    \begin{macrocode}
+\RequirePackage{color}
+\RequirePackage{geometry}
+    \savegeometry{default}
+    \savegeometry{main}
+\RequirePackage{titlesec}
+\RequirePackage{lastpage}
+\RequirePackage{fontspec}
+    \def\coverfont{Arial}
+\setromanfont[Ligatures=TeX]{TeX Gyre Termes}
+\RequirePackage{unicode-math}
+\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Termes Math}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+%    \end{macrocode}
+%    These packages add various other functionality.
+%    \begin{macrocode}
+\RequirePackage{hieroglf}
+\RequirePackage{tabstackengine}
+\stackMath
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{refcount}
+%    \end{macrocode}
+
+% \subsection{Document markup}
+
+% \subsubsection{The cover}
+
+%\begin{macro}{\examtitle}
+%\begin{macro}{\examtopic}
+%\begin{macro}{\examdate}
+%\begin{macro}{\examtime}
+%    These four macros provide information about title, topic, date, and time allowed for an exam. Title defaults to |\@title| if no title is provided.
+%    \begin{macrocode}
+\def\examtitle#1{\gdef\@examtitle{#1}} \examtitle{\@title}
+\def\examtopic#1{\gdef\@examtopic{#1}} \examtopic{}
+\def\examdate#1{\gdef\@examdate{#1}} \examdate{}
+\def\examtime#1{\gdef\@examtime{#1}} \examtime{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+
+%\begin{macro}{\ifcalculator}
+%\begin{macro}{\calculator}
+%\begin{macro}{\nocalculator}
+%    The switch |\ifcalculator| determines whether the exam is a calculator exam or not
+%    \begin{macrocode}
+\newif\ifcalculator
+\calculatortrue
+\newcommand{\nocalculator}{\calculatorfalse}
+\newcommand{\calculator}{\calculatortrue}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+
+%    This code sets up the use of the word "marks" instead of "points" and ensures that point totals are added.
+%    \begin{macrocode}
+\pointpoints{mark}{marks}
+\vpword{Marks}
+\vsword{Question total}
+\bvpword{Marks}
+\bvsword{Question total}
+
+\addpoints
+%    \end{macrocode}
+
+%\begin{macro}{\examcover}
+%    |\examcover| inserts a coverpage for the exam.
+%    \begin{macrocode}
+\newcommand{\examcover}{
+	\savegeometry{previous}
+	\loadgeometry{default}
+	\thispagestyle{empty}
+	\begin{center}
+		\includegraphics[scale=0.5]{Welly} \par
+		\vspace{0.25in}
+		\huge\textsc{{Wellington College}} \par
+		\huge\textsc{{Mathematics Department}} \par
+		\vspace{0.25in}
+		\LARGE \@examtitle \par
+		\large \@examtopic \par
+		\LARGE \@examdate \par
+		\normalsize
+		\vspace{0.25in}
+		\ifprintanswers
+		\huge{\textcolor{red}{MARKSCHEME}}\end{center}
+	\else
+	\begin{tabular}{|C{1.5cm}|C{10cm}|}
+		\hline
+		Name: &\\[0.3cm]
+		\hline
+		Teacher: & \\[0.3cm]
+		\hline
+	\end{tabular}
+\end{center}
+\fi
+You have {\@examtime} to complete the test.\\
+There are \pointsinrange{Core} marks available.\\
+\ifcalculator You may use a calculator.
+\else You may not use a calculator. \fi \\
+\vspace{0.25in}
+\begin{flushright}
+	\ifprintanswers \else
+	\partialgradetable{Core}
+	\fi
+\end{flushright}
+\loadgeometry{previous}
+}
+%    \end{macrocode}
+%\end{macro}
+
+% \subsection{Questions}
+
+% \subsubsection{Storing points and lines information}
+
+%\begin{macro}{\questionorpartnumber}
+%\begin{macro}{\lines}
+%\begin{macro}{\partlevel}
+%    These three arrays hold the question or (sub)part number, the number of lines needed, and the part level of the current question or (sub)part.
+%    \begin{macrocode}
+\def\@questionorpartnumber{{}}
+\def\@lines{{}}
+\def\@partlevel{{}}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+
+%\begin{macro}{\@storequestiondata}
+%    |\@storequestiondata| stores the aforementioned information about a question or (sub)part.
+%    \begin{macrocode}
+\newcommand{\@storequestiondata}[3]{
+    \xdef\@questionorpartnumber{\@questionorpartnumber,#1}
+    \xdef\@lines{\@lines,#2}
+    \xdef\@partlevel{\@partlevel,#3}
+}
+%    \end{macrocode}
+%\end{macro}
+
+% \subsubsection{Dropping points}
+
+%\begin{macro}{\if@drop}
+%	 |\if@drop| is set to true after every question or (sub)part with points to flag that there are points which need to be dropped.
+%    \begin{macrocode}
+\newif\if@drop
+\@dropfalse
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\@droppoints}
+%    |\@droppoints| is an internal macro whose definition changes depending on the point formatting required.
+%    \begin{macrocode}
+\newcommand{\@droppoints}{}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\@alwaysdroppointsatright}
+%    The command |\@alwaysdroppointsatright| positions the points for each question or (sub)part in the right margin inline with the end of the question.
+%    \begin{macrocode}
+\newcommand{\@alwaysdroppointsatright}{
+    \pointsdroppedatright
+    \renewcommand{\@droppoints}{
+        \if@drop
+        \vspace{-\parskip-\baselineskip}
+        
+        \droppoints
+        
+        \@dropfalse
+        \fi
+    }
+}
+%    \end{macrocode}
+%\end{macro}
+%    The following code ensures points are dropped before opening or 
+%closing a subparts, parts, or questions environment.
+%    \begin{macrocode}
+\BeforeBeginEnvironment{subparts}{\@droppoints}
+\BeforeBeginEnvironment{parts}{\@droppoints}
+\BeforeBeginEnvironment{questions}{\@droppoints}
+
+\AtEndEnvironment{subparts}{\@droppoints}
+\AtEndEnvironment{parts}{\@droppoints}
+\AtEndEnvironment{questions}{\@droppoints}
+%    \end{macrocode}
+
+% \subsubsection{Putting it all together}
+
+%    This code stores the required data for sections whilst keeping section formatting as set by default. One line is required for the section heading and the part level is set as -1. A label is also placed so that the secton heading can later be retrieved.
+%    \begin{macrocode}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}[
+    \@storequestiondata{\arabic{section}}{1}{-1}
+    \label{sec:\Alph{section}}
+]
+%    \end{macrocode}
+%\begin{macro}{\question}
+%    Next we redefine |\question| within the questions environment. It now has two optional arguments \meta{points} and \meta{lines}. \meta{lines} is used as an argument to |\@storequestiondata|.
+%    \begin{macrocode}
+\appto{\questions}{
+    \let\oldquestion\question
+    \RenewDocumentCommand{\question}{o O{\@linesperpart} O{}}{
+        \@droppoints
+        
+        \IfNoValueTF{#1}
+        {\oldquestion \@storequestiondata{\thequestion}{0}{0}}
+        {\ifnum #1<0
+            \oldquestion
+        \else
+            \oldquestion[#1] \@droptrue
+        \fi
+        \@storequestiondata{\thequestion}{#2}{0}}
+    }
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\examx@partshook}
+%\begin{macro}{\examx@subpartshook}
+%\begin{macro}{\part}
+%\begin{macro}{\subpart}
+%    Similarly, we redefine |\part| and |\subpart| within the parts and subparts environments. We do this within the commands |\examx@partshook| and |\examx@subpartshook| so that this redefinition may be reversed within solution environments. By default, subparts have no lines allocated.
+%    \begin{macrocode}
+\newcommand{\examx@partshook}{
+    \let\oldpart\part
+    \RenewDocumentCommand{\part}{o O{\@linesperpart}}{
+        \@droppoints
+        
+        \IfNoValueTF{##1}
+        {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}}
+        {\ifnum ##1<0 \oldpart \else \oldpart[##1] \@droptrue \fi 
+        \@storequestiondata{\arabic{partno}}{##2}{1}}
+    }
+}
+
+\newcommand{\examx@subpartshook}{
+    \let\oldsubpart\subpart
+    \RenewDocumentCommand{\subpart}{o O{\@linesperpart}}{
+        \@droppoints
+        
+        \IfNoValueTF{##1}
+        {\oldsubpart}
+        {\ifnum ##1<0 \oldsubpart \else \oldsubpart[##1] \@droptrue \fi
+        }
+    }
+}
+\appto{\parts}{
+    \examx@partshook
+}
+\appto{\subparts}{
+    \examx@subpartshook
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+
+% \subsubsection{Formatting}
+%    This code reformats subparts to print as (i).
+%    \begin{macrocode}
+\renewcommand{\subpartlabel}{(\thesubpart)}
+%    \end{macrocode}
+%    This code prints points in the right hand margin and puts brackets [ ] around them.
+%    \begin{macrocode}
+\pointsinrightmargin
+\bracketedpoints
+%    \end{macrocode}
+%    This code changes the formatting of the |\totalpoints| command.
+%   \begin{macrocode}
+\totalformat{\textbf{Total \totalpoints\ marks}}
+%    \end{macrocode}
+%\begin{macro}{\questionpaperstart}
+%\begin{macro}{\questionpaperstart}
+%    |\questionpaperstart| and |\questionpaperend| may be redefined to 
+%text that should appear at the start or end of the questions 
+%environment. At the end of the questions environment a label is added 
+%so that the number of pages mat later be found using 
+%|\pageref{lastpageofquestionpaper}|.
+%    \begin{macrocode}
+\newcommand{\questionpaperstart}{}
+\newcommand{\questionpaperend}{}
+
+\AtBeginEnvironment{questions}{\begingradingrange{Core}
+    \questionpaperstart}
+\AtEndEnvironment{questions}{\endgradingrange{Core}\questionpaperend
+    \label{lastpageofquestionpaper}}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+
+
+% \subsection{Page breaks}
+
+%\begin{macro}{\msexamnewpage}
+%    This command inserts a new page in both question paper and markscheme unless the option \Lopt{shortpaper} is used when it does nothing.
+%    \begin{macrocode}
+\newcommand{\msexamnewpage}{
+    \@droppoints
+    \ifexamx@shortpaper \else \clearpage \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\examnewpage}
+%    This command inserts a new page in the question paper but not in the markscheme unless the option \Lopt{shortpaper} is used when it does nothing.
+%    \begin{macrocode}
+\newcommand{\examnewpage}{
+    \@droppoints
+    \ifexamx@shortpaper \else \ifprintanswers \else \newpage \fi \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+% \subsection{Solution environments}
+
+%\begin{macro}{\ifsoln}
+%\begin{macro}{\ifsolnspace}
+%\begin{macro}{\ifsolndots}
+%\begin{macro}{\ifsolnlines}
+%\begin{macro}{\ifsolngrid}
+%    These switches determine the type of answer space used by the 
+%generic answer macro solnor.
+%    \begin{macrocode}
+\newif\ifsoln
+\newif\ifsolnspace
+\newif\ifsolndots
+\newif\ifsolnlines
+\newif\ifsolngrid
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+
+%\begin{macro}{\soln}
+%\begin{macro}{\solnspace}
+%\begin{macro}{\solndots}
+%\begin{macro}{\solnlines}
+%\begin{macro}{\solngrid}
+%    These macros set the aforementioned switches. |\solndots| is used 
+%by default.
+%    \begin{macrocode}
+\newcommand{\soln}{
+    \solntrue\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse}
+\newcommand{\solnspace}{
+    \solnfalse\solnspacetrue\solndotsfalse\solnlinesfalse\solngridfalse}
+\newcommand{\solndots}{
+    \solnfalse\solnspacefalse\solndotstrue\solnlinesfalse\solngridfalse}
+\newcommand{\solnlines}{
+    \solnfalse\solnspacefalse\solndotsfalse\solnlinestrue\solngridfalse}
+\newcommand{\solngrid}{
+    \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridtrue}
+
+\solndots
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+%\end{macro}
+
+%\begin{macro}{\solnorhook}
+%\begin{macro}{\@solnorhook}
+%    |\solnorhook| may be redefined to change features of the solution 
+%macros. |\@solnorhook| is used to call |\solnorhook| and 
+%|\@droppoints| 
+%from within a solution macro as well as redefine |\examx@partshook| 
+%and |\examx@subpartshook| to empty.
+%    \begin{macrocode}
+\newcommand{\solnorhook}{}
+\newcommand{\@solnorhook}{
+    \renewcommand{\examx@partshook}{}
+    \renewcommand{\examx@subpartshook}{}
+    \solnorhook
+}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%    This code stops automatic printing of the word "Solution".
+%    \begin{macrocode}
+\renewcommand{\solutiontitle}{}
+%    \end{macrocode}
+%\begin{macro}{\solnor}
+%    This is the generic answer macro. What it does depends on the 
+%switches described previously.
+%    \begin{macrocode}
+\newcommand{\solnor}[2][1]{%
+    \@droppoints
+    \begingroup
+    \@solnorhook
+    \ifsoln
+    \begin{solution}
+        #2
+    \end{solution}
+    \else \ifsolnspace
+    \begin{solution}[\stretch{#1}]
+        #2
+    \end{solution}
+    \else \ifsolndots
+    \begin{solutionordottedlines}[\stretch{#1}]
+        #2
+    \end{solutionordottedlines}
+    \else \ifsolnlines
+    \begin{solutionorlines}[\stretch{#1}]
+        #2
+    \end{solutionorlines}
+    \else \ifsolngrid
+    \begin{solutionorgrid}[\stretch{#1}]
+        #2
+    \end{solutionorgrid}
+    \fi\fi\fi\fi\fi
+    \endgroup
+}
+%    \end{macrocode}
+%\changes{v1.02a}{2022/02/02}{Fixed issue with extra points being 
+%dropped}
+%\end{macro}
+
+%\begin{macro}{\solnordots}
+%    This is an answer macro which always uses dotted lines. |\solnor| 
+%should be used along with |\solndots| unless there is a need for 
+%different types of answer macro within the same document.
+%    \begin{macrocode}
+\newcommand{\solnordots}[2][1]{%
+    \@solnorhook
+    \ifsoln
+    \begin{solution}
+        #2
+    \end{solution}
+    \else
+    \begin{solutionordottedlines}[\stretch{#1}]
+        #2
+    \end{solutionordottedlines}
+    \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\solnpage}
+%    This command inserts a whole page of answer space in the question 
+%paper but not in the markscheme unless the option \Lopt{shortpaper} is 
+%used when it does nothing. \changes{v1.01}{2022/02/01}{Added 
+%\cs{solnpage}}
+%    \begin{macrocode}
+\newcommand{\solnpage}{
+    \@droppoints
+    \ifexamx@shortpaper \else \ifprintanswers \else \ifsoln\else
+        \newpage
+    \ifsolnspace
+        \mbox{}
+    \else \ifsolndots
+        \fillwithdottedlines{\stretch{1}}
+    \else \ifsolnlines
+        \fillwithlines{\stretch{1}}
+    \else \ifsolngrid
+        \fillwithgrid{\stretch{1}}
+    \fi\fi\fi\fi
+        \newpage
+    \fi\fi\fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\exmark}
+%\begin{macro}{\bmark}
+%    These commands are used within solution environments for 
+%markscheme abbreviations.
+%    \begin{macrocode}
+\newcommand{\exmark}[1][A1]{\text{\textcolor{red}{[#1]}}}
+\newcommand{\bmark}[1][A1]{\text{\textcolor{blue}{[#1]}}}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+
+%\subsection{Answer books}
+
+%\begin{macro}{\linesperpart}
+%\begin{macro}{\pagesperquestion}
+%    These macros set the number of lines per part and the number of 
+%pages per question used in some answer book styles.
+%    \begin{macrocode}
+\def\linesperpart#1{\gdef\@linesperpart{#1}} \linesperpart{5}
+\def\spaceperpart#1{\gdef\@spaceperpart{#1}} \spaceperpart{2.5in}
+\def\pagesperquestion#1{\gdef\@pagesperquestion{#1}} \pagesperquestion{1}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%\begin{macro}{\ifanswerbook}
+%    This swtich is set to true if an answer book has been inserted.
+%    \begin{macrocode}
+\newif\ifanswerbook
+\answerbookfalse
+%    \end{macrocode}
+%\end{macro}
+
+
+%\begin{macro}{\answerbook}
+%    |\answerbook| inserts an answer book comprising a cover 
+%|\answerbookcover|, pages |\answerbookpages|, and a back cover of 
+%either one page |\answerbookbackcover| or two pages 
+%|\doubleanswerbookbackcover|. The choice of back cover depends on the 
+%parity of the page number. These last commands are often redefined.
+%    \begin{macrocode}
+\newcommand{\answerbook}{
+    \ifprintanswers \else
+        \answerbooktrue
+        \cleardoublepage
+        \setcounter{page}{1}
+        \answerbookcover
+        \answerbookpages
+        \clearpage
+        \oddeven{\doubleanswerbookbackcover}{\answerbookbackcover}
+        \label{lastpageofanswerbook}
+    \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\answerbookcover}
+%    This is the answer book cover.
+%    \begin{macrocode}
+\newcommand{\answerbookcover}{
+    \savegeometry{previous}
+    \loadgeometry{default}
+    \thispagestyle{empty}
+    \begin{center}
+        \includegraphics[scale=0.5]{Welly} \par
+        \vspace{0.25in}
+        \huge\textsc{{Wellington College}} \par
+        \huge\textsc{{Mathematics Department}} \par
+        \vspace{0.25in}
+        \LARGE \@examtitle \par
+        \large \@examtopic \par
+        \LARGE \@examdate \par
+        \normalsize
+        \vspace{0.25in}
+        \huge ANSWER BOOKLET \par
+        \vspace{0.25in}
+        \normalsize
+        \begin{tabular}{|m{1.5cm}|m{10cm}|}
+            \hline
+            Name: &\\[0.3cm]
+            \hline
+            Teacher: & \\[0.3cm]
+            \hline
+        \end{tabular}
+    \end{center}
+    You have {\@examtime} to complete the test.\\
+    There are \pointsinrange{Core} marks available.\\
+    \ifcalculator You may use a calculator.
+    \else You may not use a calculator. \fi \\
+    \vspace{0.25in}
+    \begin{flushright}
+        \partialgradetable{Core}
+    \end{flushright}
+    \newpage
+    \loadgeometry{previous}
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\answerbookpages}
+%    This is the command for answer book pages. By default it inserts 
+%|\@pagesperquestion| pages of dotted lines for each question.
+%    \begin{macrocode}
+\newcommand{\answerbookpages}{
+    \newcounter{int}
+    \newcounter{iint}
+    \setcounter{int}{0}
+    \loop
+    \addtocounter{int}{1}
+    \theint.
+    
+    \setcounter{iint}{\@pagesperquestion}
+    {\loop
+        \addtocounter{iint}{-1}
+        \fillwithdottedlines{\stretch{1}}
+        \newpage
+        \ifnum \theiint>0
+        \repeat}
+    \ifnum \theint<\numquestions
+    \repeat
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\answerbookbackcover}
+%\begin{macro}{\doubleanswerbookbackcover}
+%    These are the back covers for the answer book. By default they 
+%provide additional answer space, also on dotted lines.
+%    \begin{macrocode}
+\newcommand{\answerbookbackcover}{}
+\newcommand{\doubleanswerbookbackcover}{}
+%    \end{macrocode}
+%\end{macro}
+%\end{macro}
+%    \begin{macrocode}
+%</class>
+%    \end{macrocode}
+% \Finale
+\endinput
