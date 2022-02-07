@@ -302,11 +302,209 @@ intended for examx class]
 %
 % \subsubsection{Parts}
 %
+% \begin{macro}{\part}
+%    The command to start a new part of our document. We start a new (righthand) page and use the plain pagestyle.
+%    \begin{macrocode}
+\renewcommand\part{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \thispagestyle{plain}%
+%    \end{macrocode}
+%    When we are making a two-column document, this will be a one column page. We use |\@tempswa| to remember to switch back to two columns.
+%    \begin{macrocode}
+    \if@twocolumn
+        \onecolumn
+        \@tempswatrue
+    \else
+        \@tempswafalse
+    \fi
+%    \end{macrocode}
+%    We need an empty box to prevent the fil glue from disappearing.
+%    \begin{macrocode}
+\null\vfil
+%    \end{macrocode}
+%    Here we use |\secdef| to indicate which commands to use to make the actual heading.
+%    \begin{macrocode}
+    \secdef\@part\@spart}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@part}
+%    This macro does the actual formatting of the title of the part.
 %
-
-
-
-
+%    When secnumdepth is larger than −2, we have a numbered part, otherwise it is unnumbered.
+%    \begin{macrocode}
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+        \refstepcounter{part}%
+        \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+        \addcontentsline{toc}{part}{#1}%
+    \fi
+%    \end{macrocode}
+%    We empty the mark registers and center the title on the page. Also we prevent breaking between lines and reset the font.
+%    \begin{macrocode}
+    \markboth{}{}%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+%    \end{macrocode}
+%    When this is a numbered part we have to print the number.
+%    \begin{macrocode}
+     \ifnum \c@secnumdepth >-2\relax
+        \huge\bfseries \partname\nobreakspace\thepart
+        \par
+%    \end{macrocode}
+%    We leave some space before we print the title and leave the finishing up to |\@endpart|.
+%    \begin{macrocode}
+        \vskip 20\p@
+     \fi
+     \Huge \bfseries #2\par}%
+    \@endpart}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@spart}
+%    This macro does the actual formatting of the title of the part when the star form of the user command was used. In this case we never print a number. Otherwise the formatting is the same.
+%    \begin{macrocode}
+\def\@spart#1{%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \Huge \bfseries #1\par}%
+    \@endpart}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@endpart}
+%    \begin{macrocode}
+\def\@endpart{\vfil\newpage
+%    \end{macrocode}
+%    Then, when we are in twosided mode and chapters are supposed to be on right hand sides, we produce a completely blank page.
+%    \begin{macrocode}
+              \if@twoside
+                \if@openright
+                    \null
+                    \thispagestyle{empty}%
+                    \newpage
+                \fi
+              \fi
+%    \end{macrocode}
+%    When this was a two-column document we have to switch back to two-column mode.
+%    \begin{macrocode}
+              \if@tempswa
+                \twocolumn
+              \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Chapter}
+%
+% \begin{macro}{\chapter}
+%    A chapter should always start on a new page therefore we start by calling |\clearpage| and setting the pagestyle for this page to \pstyle{plain}.
+%    \begin{macrocode}
+\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+    \thispagestyle{plain}%
+%    \end{macrocode}
+%    Then we prevent floats from appearing at the top of this page because it looks weird to see a floating object above a chapter title.
+%    \begin{macrocode}
+    \global\@topnum\z@
+%    \end{macrocode}
+%    Then we suppress the indentation of the first paragraph by setting the switch |\@afterindent| to |false|. We use |\secdef| to specify the macros to use for actually setting the chapter title.
+%    \begin{macrocode}
+    \@afterindentfalse
+    \secdef\@chapter\@schapter}
+%    \end{macrocode}
+%
+% \begin{macro}{\@chapter}
+%    This macro is called when we have a numbered chapter. When \Lcount{secnumdepth} is larger than $-1$ and, in the book class, |\@mainmatter| is true, we display the chapter number. We also inform the user that a new chapter is about to be typeset by writing a message to the terminal.
+%    \begin{macrocode}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+            \refstepcounter{chapter}%
+            \typeout{\@chapapp\space\thechapter.}%
+            \addcontentsline{toc}{chapter}%
+            {\protect\numberline{\thechapter}#1}%
+        \else
+            \addcontentsline{toc}{chapter}{#1}%
+        \fi
+    \else
+        \addcontentsline{toc}{chapter}{#1}%
+    \fi
+%    \end{macrocode}
+%    After having written an entry to the table of contents we store the (alternative) title of this chapter with |\chaptermark| and add some white space to the lists of figures and tables.
+%    \begin{macrocode}
+    \chaptermark{#1}%
+    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+%    \end{macrocode}
+%    Then we call upon |\@makechapterhead| to format the actual chapter title. We have to do this in a special way when we are in two-column mode in order to have the chapter title use the entire |\textwidth|. In one-column mode we call |\@afterheading| which takes care of suppressing the indentation.
+%    \begin{macrocode}
+    \if@twocolumn
+    \@topnewpage[\@makechapterhead{#2}]%
+    \else
+    \@makechapterhead{#2}%
+    \@afterheading
+    \fi}
+%    \end{macrocode}
+%
+% \begin{macro}{\@makechapterhead}
+%    The macro above uses |\@makechapterhead|\meta{text} to format the heading of the chapter.
+%
+%    We begin by leaving some white space. The we open a group in which we have a paragraph indent of 0pt, and in which we have the text set ragged right. We also reset the font.
+%    \begin{macrocode}
+\def\@makechapterhead#1{%
+    \vspace*{50\p@}%
+    {\parindent \z@ \raggedright \normalfont
+%    \end{macrocode}
+%    Then we check whether the number of the chapter has to be printed If so we leave some whitespace between the chapternumber and its title.
+%    \begin{macrocode}
+     \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+            \huge\bfseries \@chapapp\space \thechapter
+            \par\nobreak
+            \vskip 20\p@
+        \fi
+     \fi
+%    \end{macrocode}
+%    Now we set the title in a large bold font. We prevent a pagebreak from occurring in the middle of or after the title. Finally we leave some whitespace before the text begins.
+%    \begin{macrocode}
+     \interlinepenalty\@M
+        \Huge \bfseries #1\par\nobreak
+        \vskip 40\p@
+    }}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@schapter}
+%    This macro is called when we have an unnumbered chapter. It is much simpler than |\@chapter| because it only needs to typeset the chapter title.
+%    \begin{macrocode}
+\def\@schapter#1{\if@twocolumn
+    \@topnewpage[\@makeschapterhead{#1}]%
+    \else
+    \@makeschapterhead{#1}%
+    \@afterheading
+    \fi}
+%    \end{macrocode}
+%
+% \begin{macro}{\@makeschapterhead}
+%    The macro above uses |\@makeschapterhead|\meta{text}to format the heading of the chapter. It is similar to |\@makechapterhead| except that it never has to print a chapter number.
+%    \begin{macrocode}
+\def\@makeschapterhead#1{%
+    \vspace*{50\p@}%
+    {\parindent \z@ \raggedright
+        \normalfont
+        \interlinepenalty\@M
+        \Huge \bfseries  #1\par\nobreak
+        \vskip 40\p@
+}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
 
 
 
