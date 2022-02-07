@@ -576,7 +576,7 @@ intended for examx class]
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
     }
-\newcommand*\l@part[2]{%
+\renewcommand*\l@part[2]{%
     \ifnum \c@tocdepth >-2\relax
         \addpenalty{-\@highpenalty}%
         \addvspace{2.25em \@plus\p@}%
@@ -593,7 +593,7 @@ intended for examx class]
         \everypar{\global\@nobreakfalse\everypar{}}%
         \endgroup
     \fi}
-\renewcommand*\l@chapter[2]{%
+\newcommand*\l@chapter[2]{%
     \ifnum \c@tocdepth >\m@ne
         \addpenalty{-\@highpenalty}%
         \vskip 1.0em \@plus\p@
@@ -662,7 +662,7 @@ intended for examx class]
 %
 %    When an empty `thebibliography' environment is found, a warning is issued.
 %    \begin{macrocode}
-\newenvironment{thebibliography}[1]
+\renewenvironment{thebibliography}[1]
     {\chapter*{\bibname}%
         \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
         \list{\@biblabel{\@arabic\c@enumiv}}%
@@ -689,7 +689,7 @@ intended for examx class]
 % \begin{environment}{theindex}
 %    The environment `theindex' can be used for indices. It makes an  index with two columns, with each entry a separate paragraph. At the user level the commands |\item|, |\subitem| and |\subsubitem| are used to produce index entries of various levels. When a new letter of the alphabet is encountered an amount of |\indexspace| white space can be added.
 %    \begin{macrocode}
-\newenvironment{theindex}
+\renewenvironment{theindex}
 {\if@twocolumn
     \@restonecolfalse
     \else
@@ -718,8 +718,8 @@ intended for examx class]
 % \subsection{Words}
 %
 %    \begin{macrocode}
-\newcommand\bibname{Bibliography}
-\newcommand\chaptername{Chapter}
+\renewcommand\bibname{Bibliography}
+\renewcommand\chaptername{Chapter}
 %    \end{macrocode}
 %
 % \subsection{The page style}
