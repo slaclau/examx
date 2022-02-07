@@ -173,24 +173,6 @@
 \setcounter{secnumdepth}{2}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\c@bookchapter}
-% \begin{macro}{\c@section}
-%    These counters are used for the section numbers. |\c@section| is already defined by \Lpack{article} so must be undefined first.
-%    \begin{macrocode}
-\newcounter{bookchapter}
-\@addtoreset{section}{bookchapter}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \begin{macro}{\thebookchapter}
-% \begin{macro}{\thesection}
-%    For any counter CTR, |\theCTR| is a macro that defines the printed version of counter CTR.
-%    \begin{macrocode}
-\renewcommand \thebookchapter {\@arabic\c@bookchapter}
-\renewcommand \thesection {\thebookchapter.\@arabic\c@section}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
 %
 % \subsubsection{Front Matter, Main Matter, and Back Matter}
 %    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
@@ -240,7 +222,12 @@
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
 \titleclass{\bookchapter}{display}[\part]
-\titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
+\newcounter{bookchapter}
+\@addtoreset{section}{bookchapter}
+\renewcommand \thebookchapter {\@arabic\c@bookchapter}
+\renewcommand \thesection {\thebookchapter.\@arabic\c@section}
+
+\titleformat{\bookchapter}{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
 %\let\chapter\bookchapter
