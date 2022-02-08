@@ -195,7 +195,7 @@
 % \begin{macro}{\thesubparagraph}
 %    We redefine |\theCTR| for each section counter |\c@CTR|.
 %    \begin{macrocode}
-\renewcommand \thebookpart         {\@Roman\c@bookpart}
+\renewcommand \thebookpart     {\@Roman\c@bookpart}
 \renewcommand \thebookchapter  {\@arabic\c@bookchapter}
 \renewcommand \thesection      {\thebookchapter.\@arabic\c@section}
 \renewcommand \thesubsection   {\thesection.\@arabic\c@subsection}
@@ -277,7 +277,7 @@
 \titleformat{\bookpart}
     [display]
     {\centering\normalfont\huge\bfseries}
-    {\partname\ \thebookpart}
+    {\partname\nobreakspace\thebookpart}
     {20pt}
     {\Huge}
 \titlespacing*{\bookpart}{0pt}{50pt}{40pt}
