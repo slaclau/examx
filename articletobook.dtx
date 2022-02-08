@@ -273,7 +273,12 @@
 %    \end{macrocode}
 %    We now format each of these sectioning commands in the same way as the standard class \Lpack{book}.
 %    \begin{macrocode}
-
+\titleformat{\bookpart}
+    [display]
+    {\normalfont\huge\bfseries}
+    {\chaptername\ \thebookchapter}
+    {20pt}
+    {\Huge}
 
 \titleformat{\bookchapter}
     [display]
