@@ -171,6 +171,43 @@
 \setcounter{secnumdepth}{2}
 %    \end{macrocode}
 % \end{macro}
+% \begin{macro}{\c@stocdepth}
+%    The value of the counter secnumdepth gives the depth of the highest-level sectioning command that is to produce section numbers.
+%    \begin{macrocode}
+\setcounter{tocnumdepth}{2}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\c@bookpart}
+% \begin{macro}{\c@bookchapter}
+%    The value of these counters gives the current part or chapter. The section counter must be reset by the chapter counter using |\@addtoreset|.
+%    \begin{macrocode}
+\newcounter {bookpart}
+\newcounter {bookchapter}
+\@addtoreset{section}{bookchapter}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\thebookchapter}
+% \begin{macro}{\thesection}
+% \begin{macro}{\thesubsection}
+% \begin{macro}{\thesubsubsection}
+% \begin{macro}{\theparagraph}
+% \begin{macro}{\thesubparagraph}
+%    We redefine |\theCTR| for each section counter |\c@CTR|.
+%    \begin{macrocode}
+\renewcommand \thebookchapter  {\@arabic\c@bookchapter}
+\renewcommand \thesection      {\thebookchapter.\@arabic\c@section}
+\renewcommand \thesubsection   {\thesection.\@arabic\c@subsection}
+\renewcommand \thesubsubsection{\thesubsection.\@arabic\c@subsubsection}
+\renewcommand \theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
+\renewcommand \thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 %
 % \subsection{Front Matter, Main Matter, and Back Matter}
 %    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
@@ -215,17 +252,16 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{Parts}
+% \subsection{Parts, chapters, sections, and paragraphs}}
 %
-% \begin{macro}{\part}
-%    \begin{macrocode}
-
-%    \end{macrocode}
-% \end{macro}
-%
-% \subsection{Chapters}
-%
-% \begin{macro}{\chapter}
+% \begin{macro}{\bookpart}
+% \begin{macro}{\bookchapter}
+% \begin{macro}{\section}
+% \begin{macro}{\subsection}
+% \begin{macro}{\subsubsection}
+% \begin{macro}{\paragraph}
+% \begin{macro}{\subparagraph}
+%    First, we redefine the sectioning structure of the class using |\titleclass| from \Lpack{titlesec}. We begin the sectioning at the part level using |\bookpart| internally. This will later be let to |\part|. Similarly, |\bookchapter| will be let to |\chapter|.
 %    \begin{macrocode}
 \titleclass{\bookpart}[-1]{page}
 \titleclass{\bookchapter}{top}[\bookpart]
@@ -234,17 +270,9 @@
 \titleclass{\subsubsection}{straight}[\subsection]
 \titleclass{\paragraph}{straight}[\subsubsection]
 \titleclass{\subparagraph}{straight}[\paragraph]
-\newcounter {bookpart}
-\newcounter {bookchapter}
-\@addtoreset{section}{bookchapter}
-
-\renewcommand \thebookchapter  {\@arabic\c@bookchapter}
-\renewcommand \thesection      {\thebookchapter.\@arabic\c@section}
-\renewcommand \thesubsection   {\thesection.\@arabic\c@subsection}
-\renewcommand \thesubsubsection{\thesubsection.\@arabic\c@subsubsection}
-\renewcommand \theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
-\renewcommand \thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
-
+%    \end{macrocode}
+%    We now format each of these sectioning commands in the same way as the standard class \Lpack{book}.
+%    \begin{macrocode}
 \titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
@@ -265,19 +293,19 @@
 \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
 \titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
-
+%    \end{macrocode}
+%    Finally, we let |\bookpart| and |\bookchapter| to |\part| and |\chapter| respectively.
+%    \begin{macrocode}
 \let\part\bookpart
 \let\chapter\bookchapter
-
 %    \end{macrocode}
 % \end{macro}
-%
-% \subsection{Lower level headings}
-%
-%    \begin{macrocode}
-
-%    \end{macrocode}
-%
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 %    \begin{macrocode}
 \newcommand{\chaptername}{Chapter}
 %</package>
