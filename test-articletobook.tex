@@ -2,8 +2,7 @@
 \usepackage{articletobook}
 \title{Test of article to book}
 
-\renewcommand{\partbreak}{    \part*{Appendices}
-    \addcontentsline{toc}{part}{Appendices}
+\renewcommand{\partbreak}{\if@openright\cleardoublepage\else\clearpage}
 \begin{document}
 %    \maketitle
     \tableofcontents
