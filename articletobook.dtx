@@ -306,6 +306,40 @@
 % \end{macro}
 % \end{macro}
 % \end{macro}
+%
+% \subsection{Table of contents}
+%    We need to redefine the table of contents formatting using |\titlecontents|
+%    \begin{macrocode}
+\contentsmargin{2.55em}
+
+\titlecontents{bookchapter}
+[1.5em]
+{\addvspace{1em}\bfseries}
+{\contentslabel{1.5em}}
+{\hspace*{-1.5em}}
+{\titlerule*[.5pc]{}\contentspage}
+
+\titlecontents{section}
+[3.8em] % ie, 1.5em (chapter) + 2.3em
+{}
+{\contentslabel{2.3em}}
+{\hspace*{-2.3em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents{subsection}
+[7.0em]
+{}
+{\contentslabel{3.2em}}
+{\hspace*{3.2em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents{subsubsection}
+[7.0em]
+{}
+{\contentslabel{0em}}
+{\hspace*{0em}}
+{\titlerule*[1pc]{.}\contentspage}
+%    \end{macrocode}
 %    \begin{macrocode}
 \newcommand{\chaptername}{Chapter}
 %</package>
