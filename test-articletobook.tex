@@ -4,18 +4,8 @@
 
 \title{Test of article to book}
 %\titlecontents{subsubsection}{}{}{}{}
-\titlecontents{subsection}
-    [6.1em]
-    {}
-    {\contentslabel{3.2em}}
-    {\hspace*{-3.2em}}
-    {\titlerule*[.5pc]{.}\contentspage}
-\titlecontents{section}
-    [3.8em]
-    {}
-    {\contentslabel{2.3em}}
-    {\hspace*{-2.3em}}
-    {\titlerule*[.5pc]{.}\contentspage}
+\dottedcontents{section}[3.8em]{}{2.3em}{1pc}
+\dottedcontents{subsection}[6.1em]{}{3.2em}{1pc}
 \titlecontents{bookchapter}
     [1.5em]
     {\addvspace{1em}\bfseries}
