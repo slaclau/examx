@@ -229,11 +229,11 @@
 %    \begin{macrocode}
 \titleclass{\bookpart}[-1]{page}
 \titleclass{\bookchapter}{top}[\bookpart]
-\titleclass{\section}{straight}{\bookchapter}
-\titleclass{\subsection}{straight}{\section}
-\titleclass{\subsubsection}{straight}{\subsection}
-\titleclass{\paragraph}{straight}{\subsubsection}
-\titleclass{\subparagraph}{straight}{\paragraph}
+\titleclass{\section}{straight}[\bookchapter]
+\titleclass{\subsection}{straight}[\section]
+\titleclass{\subsubsection}{straight}[\subsection]
+\titleclass{\paragraph}{straight}[\subsubsection]
+\titleclass{\subparagraph}{straight}[\paragraph]
 \newcounter {bookpart}
 \newcounter {bookchapter}
 \newcounter {section}[bookchapter]
