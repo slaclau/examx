@@ -220,13 +220,9 @@
 % \begin{macro}{\part}
 %    \begin{macrocode}
 \titleclass{\part}{page}
-\titleformat{\part}
-    [block]
-    {\centering\normalfont\huge\bfseries}
-    {\partname\nobreakspace\thepart}
-    {1pt}
-    {}
-\titlespacing*{\part}{0}{0}{0}
+\titleformat{\part}[block]{\normalfont\huge\bfseries}{\chaptername\ 
+\thebookchapter}{20pt}{\Huge}
+\titlespacing*{\part}{0pt}{0pt}{0pt}
 %    \end{macrocode}
 % \end{macro}
 %
