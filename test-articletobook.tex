@@ -4,14 +4,15 @@
 
 \title{Test of article to book}
 %\titlecontents{subsubsection}{}{}{}{}
+\titlecontents{bookchapter}
+[1.5em]
+{\addvspace{1em}\bfseries}
+{\contentslabel{1.3em}}
+{\hspace*{-1.3em}}
+{\titlerule*[.5pc]{}\contentspage}
 \dottedcontents{section}[3.8em]{}{2.3em}{1pc}
 \dottedcontents{subsection}[6.1em]{}{3.2em}{1pc}
-\titlecontents{bookchapter}
-    [1.5em]
-    {\addvspace{1em}\bfseries}
-    {\contentslabel{1.3em}}
-    {\hspace*{-1.3em}}
-    {\titlerule*[.5pc]{}\contentspage}
+
 \begin{document}
 %    \maketitle
     \tableofcontents
