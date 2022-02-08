@@ -340,6 +340,19 @@
 % \subsection{Table of contents}
 %    We need to redefine the table of contents formatting using |\titlecontents|
 %    \begin{macrocode}
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+    \@restonecoltrue\onecolumn
+    \else
+    \@restonecolfalse
+    \fi
+    \chapter*{\contentsname
+        \@mkboth{%
+            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+}
+
 \contentsmargin{2.55em}
 
 \titlecontents{bookpart}
