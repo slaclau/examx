@@ -332,49 +332,54 @@
 %    \begin{macrocode}
 \contentsmargin{2.55em}
 
-\titlecontents{\bookpart}[left]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[below-code]
+\titlecontents{\bookpart}
+    [1.5em]
+    {\addvspace{3.25em}\bfseries}
+    {\contentslabel{3.0em}}
+    {\hspace*{0em}}
+    {\titlerule*[.5pc]{}\contentspage}
 
 \titlecontents{bookchapter}
-[1.5em]
-{\addvspace{1em}\bfseries}
-{\contentslabel{1.5em}}
-{\hspace*{0em}}
-{\titlerule*[.5pc]{}\contentspage}
+    [1.5em]
+    {\addvspace{1em}\bfseries}
+    {\contentslabel{1.5em}}
+    {\hspace*{0em}}
+    {\titlerule*[.5pc]{}\contentspage}
 
 \titlecontents{section}
-[3.8em] % ie, 1.5em (chapter) + 2.3em
-{}
-{\contentslabel{2.3em}}
-{\hspace*{-1.5em}}
-{\titlerule*[1pc]{.}\contentspage}
+    [3.8em]
+    {}
+    {\contentslabel{2.3em}}
+    {\hspace*{-1.5em}}
+    {\titlerule*[1pc]{.}\contentspage}
 
 \titlecontents{subsection}
-[6.1em]
-{}
-{\contentslabel{3.2em}}
-{\hspace*{-2.3em}}
-{\titlerule*[1pc]{.}\contentspage}
+    [6.1em]
+    {}
+    {\contentslabel{3.2em}}
+    {\hspace*{-2.3em}}
+    {\titlerule*[1pc]{.}\contentspage}
 
 \titlecontents{subsubsection}
-[9.3em]
-{}
-{\contentslabel{4.1em}}
-{\hspace*{-3.2em}}
-{\titlerule*[1pc]{.}\contentspage}
+    [9.3em]
+    {}
+    {\contentslabel{4.1em}}
+    {\hspace*{-3.2em}}
+    {\titlerule*[1pc]{.}\contentspage}
 
 \titlecontents{paragraph}
-[12.3em]
-{}
-{\contentslabel{5em}}
-{\hspace*{-4.1em}}
-{\titlerule*[1pc]{.}\contentspage}
+    [12.3em]
+    {}
+    {\contentslabel{5em}}
+    {\hspace*{-4.1em}}
+    {\titlerule*[1pc]{.}\contentspage}
 
 \titlecontents{subparagraph}
-[14.3em]
-{}
-{\contentslabel{6em}}
-{\hspace*{-5em}}
-{\titlerule*[1pc]{.}\contentspage}
+    [14.3em]
+    {}
+    {\contentslabel{6em}}
+    {\hspace*{-5em}}
+    {\titlerule*[1pc]{.}\contentspage}
 %    \end{macrocode}
 %    \begin{macrocode}
 \newcommand{\chaptername}{Chapter}
