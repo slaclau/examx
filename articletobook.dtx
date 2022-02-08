@@ -273,26 +273,39 @@
 %    \end{macrocode}
 %    We now format each of these sectioning commands in the same way as the standard class \Lpack{book}.
 %    \begin{macrocode}
-\titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
+
+
+\titleformat{\bookchapter}
+    [display]
+    {\normalfont\huge\bfseries}
+    {\chaptername\ \thebookchapter}
+    {20pt}
+    {\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
 \titleformat{\section}
-{\normalfont\Large\bfseries}{\thesection}{1em}{}
+    {\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}
-{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+    {\normalfont\large\bfseries}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}
-{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+    {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]
-{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+    {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titleformat{\subparagraph}[runin]
-{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+    {\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
 
-\titlespacing*{\chapter} {0pt}{50pt}{40pt}
-\titlespacing*{\section} {0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
-\titlespacing*{\subsection} {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
-\titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\chapter}
+    {0pt}{50pt}{40pt}
+\titlespacing*{\section}
+    {0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}
+    {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}
+    {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\paragraph}
+    {0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\subparagraph}
+    {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
 %    \end{macrocode}
 %    Finally, we let |\bookpart| and |\bookchapter| to |\part| and |\chapter| respectively.
 %    \begin{macrocode}
@@ -338,6 +351,20 @@
 {}
 {\contentslabel{4.1em}}
 {\hspace*{-3.2em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents{paragraph}
+[12.3em]
+{}
+{\contentslabel{5em}}
+{\hspace*{-4.1em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents{subparagraph}
+[14.3em]
+{}
+{\contentslabel{6em}}
+{\hspace*{-5em}}
 {\titlerule*[1pc]{.}\contentspage}
 %    \end{macrocode}
 %    \begin{macrocode}
