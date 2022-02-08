@@ -219,8 +219,13 @@
 %
 % \begin{macro}{\part}
 %    \begin{macrocode}
-\titleformat{\part}{\normalfont\huge\bfseries}{\partname\ 
-\thepart}{20pt}{\Huge}
+\titleclass{\part}{page}
+\titleformat{\part}
+    {\centering\interlinepenalty\@M\normalfont\huge\bfseries}
+    {\partname\nobreakspace\thepart}
+    {0pt}
+    {}
+\titlespacing*{\part}{0}{0}{0}
 %    \end{macrocode}
 % \end{macro}
 %
