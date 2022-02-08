@@ -236,11 +236,7 @@
 \titleclass{\subparagraph}{straight}[\paragraph]
 \newcounter {bookpart}
 \newcounter {bookchapter}
-\newcounter {section}[bookchapter]
-\newcounter {subsection}[section]
-\newcounter {subsubsection}[subsection]
-\newcounter {paragraph}[subsubsection]
-\newcounter {subparagraph}[paragraph]
+\addtoreset{section}{bookchapter}
 
 \renewcommand \thebookchapter  {\@arabic\c@bookchapter}
 \renewcommand \thesection      {\thebookchapter.\@arabic\c@section}
