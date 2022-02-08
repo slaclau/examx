@@ -276,7 +276,7 @@
 %    \begin{macrocode}
 \titleformat{\bookpart}
     [display]
-    {\if@openright\cleardoublepage\else\clearpage\fi\centering\normalfont\huge\bfseries}
+    {\centering\normalfont\huge\bfseries}
     {\partname\nobreakspace\thebookpart}
     {20pt}
     {\Huge}
@@ -320,7 +320,7 @@
 \let\part\bookpart
 \let\chapter\bookchapter
 
-\newcommand{\bookchapterbreak}{\if@openright\cleardoublepage\else\clearpage\fi}
+%\newcommand{\bookchapterbreak}{\if@openright\cleardoublepage\else\clearpage\fi}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
