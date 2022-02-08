@@ -230,8 +230,12 @@
 \titleclass{\bookchapter}{top}[\part]
 \newcounter{bookchapter}
 \@addtoreset{section}{bookchapter}
-\renewcommand \thebookchapter {\@arabic\c@bookchapter}
-\renewcommand \thesection {\thebookchapter.\@arabic\c@section}
+\renewcommand \thebookchapter  {\@arabic\c@bookchapter}
+\renewcommand \thesection      {\thebookchapter.\@arabic\c@section}
+\renewcommand \thesubsubsection{\thesubsection.\@arabic\c@subsubsection}
+\renewcommand \theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
+\renewcommand \thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
+
 
 \titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
