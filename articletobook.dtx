@@ -276,7 +276,7 @@
 %    \begin{macrocode}
 \titleformat{\bookpart}
     [display]
-    {\if@openright \color{red} \else\fi\centering\normalfont\huge\bfseries}
+    {\if@openright\cleardoublepage\else\clearpage\fi\centering\normalfont\huge\bfseries}
     {\partname\nobreakspace\thebookpart}
     {20pt}
     {\Huge}
