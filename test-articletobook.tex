@@ -3,10 +3,8 @@
 \usepackage{articletobook}
 
 \title{Test of article to book}
-
 \titlecontents{section}[3.8em]{}{\contentslabel{2.3em}}{\hspace*{-2.3em}}{\titlerule*[.5pc]{.}\contentspage}
-
-
+\titlecontents{bookchapter}[1.5em]{}{\thecontentslabel}{}{\hfill\contentspage}
 \begin{document}
 %    \examcover
     \maketitle
@@ -16,7 +14,6 @@
 %    \part{Test part}
     
     \chapter{TEST chap}
-    
     \section{TEST}
     Test
 \end{document}
