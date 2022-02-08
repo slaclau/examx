@@ -115,7 +115,7 @@
 % \section{Initial code}
 %
 %    \begin{macrocode}
-\RequirePackage{titlesec}
+\RequirePackage[loadonly]{titlesec}
 \RequirePackage{titletoc}
 %    \end{macrocode}
 %
@@ -227,9 +227,21 @@
 %
 % \begin{macro}{\chapter}
 %    \begin{macrocode}
-\titleclass{\bookchapter}{top}[\part]
-\newcounter{bookchapter}
-\@addtoreset{section}{bookchapter}
+\titleclass{\bookpart}[-1]{page}
+\titleclass{\bookchapter}{top}[\bookpart]
+\titleclass{\section}{straight}{\bookchapter}
+\titleclass{\subsection}{straight}{\section}
+\titleclass{\subsubsection}{straight}{\subsection}
+\titleclass{\paragraph}{straight}{\subsubsection}
+\titleclass{\subparagraph}{straight}{\paragraph}
+\newcounter {bookpart}
+\newcounter {bookchapter}
+\newcounter {section}[bookchapter]
+\newcounter {subsection}[section]
+\newcounter {subsubsection}[subsection]
+\newcounter {paragraph}[subsubsection]
+\newcounter {subparagraph}[paragraph]
+
 \renewcommand \thebookchapter  {\@arabic\c@bookchapter}
 \renewcommand \thesection      {\thebookchapter.\@arabic\c@section}
 \renewcommand \thesubsection   {\thesection.\@arabic\c@subsection}
@@ -237,18 +249,9 @@
 \renewcommand \theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
 \renewcommand \thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
 
-
 \titleformat{\bookchapter}[display]{\normalfont\huge\bfseries}{\chaptername\ \thebookchapter}{20pt}{\Huge}
 \titlespacing*{\bookchapter}{0pt}{50pt}{40pt}
 
-\let\chapter\bookchapter
-
-%    \end{macrocode}
-% \end{macro}
-%
-% \subsection{Lower level headings}
-%
-%    \begin{macrocode}
 \titleformat{\section}
 {\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}
@@ -266,6 +269,17 @@
 \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \titlespacing*{\paragraph} {0pt}{3.25ex plus 1ex minus .2ex}{1em}
 \titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+
+\let\part\bookpart
+\let\chapter\bookchapter
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Lower level headings}
+%
+%    \begin{macrocode}
+
 %    \end{macrocode}
 %
 %    \begin{macrocode}
