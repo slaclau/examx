@@ -138,9 +138,15 @@
 
 % \subsubsection{Options for customizing exams}
 
-%\begin{macro}{\formulaesheet}
+% \begin{macro}{\ifexamx@book}
+%    \begin{macrocode}
+\DeclareBoolOption[false]{book}
+%    \end{macrocode}
+% \end{macro}
+
+%\begin{macro}{\ifexamx@formulae}
 %\begin{macro}{\ifformulaesheet}
-%    The command |\formulaesheet| inserts a formulaesheet at the current point in the document. It must be redefined before being used. |\ifformulaesheet| determines whether or not a formulaesheet is inserted after the cover. The options \Lopt{formulae} and \Lopt{noformulae} set |\ifformulaesheet|.
+%    The command |\formulaesheet| inserts a formulaesheet at the current point in the document. It must be redefined before being used. |\ifexamx@formulae| determines whether or not a formulaesheet is inserted after the cover. The options \Lopt{formulae} and \Lopt{noformulae} set |\ifexamx@formulae|.
 %    \begin{macrocode}
 \DeclareBoolOption[true]{formulae}
 \DeclareComplementaryOption{noformulae}{formulae}
@@ -283,7 +289,10 @@
 \RequirePackage{geometry}
     \savegeometry{default}
     \savegeometry{main}
-\RequirePackage{titlesec}
+\ifexamx@book
+\else
+    \RequirePackage{titlesec}
+\fi
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
     \def\coverfont{Arial}
