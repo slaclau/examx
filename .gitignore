@@ -301,5 +301,7 @@ TSWLatexianTemp*
 
 ## Build files
 *.sty
+*.cls
+*.clo
 build/
 *.zip
