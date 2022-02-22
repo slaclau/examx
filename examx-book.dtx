@@ -123,13 +123,16 @@ intended for examx class]
 %\begin{macro}{\booksubtitle}
 %\begin{macro}{\bookversion}
 %\begin{macro}{\bookyear}
+%\begin{macro}{\bookauthor}
 %    These four macros provide information about title, subtitle, version, and year of a book. |\booktitle| defaults to |\@title| if no title is provided.
 %    \begin{macrocode}
 \def\booktitle#1{\gdef\@booktitle{#1}} \booktitle{\@title}
 \def\booksubtitle#1{\gdef\@booksubtitle{#1}} \booksubtitle{}
 \def\bookversion#1{\gdef\@bookversion{#1}} \bookversion{}
 \def\bookyear#1{\gdef\@bookyear{#1}} \bookyear{}
+\def\bookauthor#1{\gdef\@bookauthor{#1}} \bookauthor{}
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
