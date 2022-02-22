@@ -122,16 +122,19 @@ intended for examx class]
 %\begin{macro}{\booktitle}
 %\begin{macro}{\booksubtitle}
 %\begin{macro}{\bookversion}
-%    These three macros provide information about title, subtitle, and version of a book. |\booktitle| defaults to |\@title| if no title is provided.
+%\begin{macro}{\bookyear}
+%    These four macros provide information about title, subtitle, version, and year of a book. |\booktitle| defaults to |\@title| if no title is provided.
 %    \begin{macrocode}
 \def\booktitle#1{\gdef\@booktitle{#1}} \booktitle{\@title}
 \def\booksubtitle#1{\gdef\@booksubtitle{#1}} \booksubtitle{}
 \def\bookversion#1{\gdef\@bookversion{#1}} \bookversion{}
+\def\bookyear#1{\gdef\@bookyear{#1}} \bookyear{}
 %    \end{macrocode}
-%\changes{v1.0.0-alpha}{2022/02/22}{Added these macros}
 %\end{macro}
 %\end{macro}
 %\end{macro}
+%\end{macro}
+%\changes{v1.0.0-alpha}{2022/02/22}{Added title, subtitle, version, and year macros}
 %
 %\begin{macro}{\frontcover}
 %    |\frontcover| inserts coverpages for the book.
