@@ -136,7 +136,7 @@ intended for examx class]
 %\begin{macro}{\frontcover}
 %    |\frontcover| inserts coverpages for the book.
 %    \begin{macrocode}
-\newcommand{\frontcover}[3]{
+\newcommand{\frontcover}{
     \thispagestyle{empty}
     \begin{center}
         \includegraphics{Welly}\\
@@ -144,8 +144,8 @@ intended for examx class]
         \huge\textsc{{Wellington College}}\\
         \huge\textsc{{Mathematics Department}}\\
         \vspace{1in}
-        \textbf{\Huge{#1\\
-                #2}}\\
+        \textbf{\Huge{\@booktitle\\
+                \@booksubtitle}}\\
         \vspace{0.3in}
         \textbf{\LARGE{
                 \ifcompanion
@@ -159,7 +159,7 @@ intended for examx class]
         }}\\
         
         \vspace{1.5in}
-        \normalsize{Wellington College, #3}
+        \normalsize{Wellington College, year}
     \end{center}
 }
 %    \end{macrocode}
