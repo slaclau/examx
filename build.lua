@@ -1,12 +1,13 @@
-module = "articletobook"
+module = "examx"
 maindir = "."
-sourcefiles = {"*.dtx", "*.ins", "ltxdoc-commands.def"}
+sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def"}
+typesetfiles = {"*.dtx", "examx-master.tex"}
 packtdszip = true
 uploadconfig = {
-  pkg         = "articletobook",
+  pkg         = "examx",
   author      = "Sebastien Laclau",
   license     = "lppl1.3c",
-  ctanPath    = "/macros/latex/contrib/articletobook",
-  repository  = "https://github.com/slaclau/articletbook/",
-  summary     = "Converts article based classes to book based classes.",
+  ctanPath    = "/macros/latex/contrib/examx",
+  repository  = "https://github.com/slaclau/examx/",
+  summary     = "Extension to exam class.",
 }
