@@ -33,7 +33,7 @@
 %
 %    \begin{macrocode}
 %<*package>
-\ProvidesPackage{examx-book}[2022/02/02 v1.0.0-alpha Workbook features 
+\ProvidesPackage{examx-book}[2022/02/22 v1.0.0-alpha Workbook features 
 intended for examx class]
 %</package>
 %    \end{macrocode}
@@ -126,9 +126,9 @@ intended for examx class]
 %    \begin{macrocode}
 \def\booktitle#1{\gdef\@booktitle{#1}} \booktitle{\@title}
 \def\booksubtitle#1{\gdef\@booksubtitle{#1}} \booksubtitle{}
-\def\bookversion#1{\gdef\@bookversion{#1}} \examdate{}
+\def\bookversion#1{\gdef\@bookversion{#1}} \bookversion{}
 %    \end{macrocode}
-%\end{macro}
+%\changes{v1.0.0-alpha}{2022/02/22}{Added |\booktitle|, |\booksubtitle|, and |\bookversion|}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -163,4 +163,5 @@ intended for examx class]
     \end{center}
 }
 %    \end{macrocode}
+%\changes{v1.0.0-alpha}{2022/02/22}{Added |\frontcover|}
 %\end{macro}
