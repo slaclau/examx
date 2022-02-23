@@ -82,7 +82,7 @@ intended for examx class]
 %
 % \CheckSum{0}
 %
-% \changes{v1.0.0}{2022/01/28}{Initial version}
+% \changes{v1.0.0-alpha}{2022/01/28}{Initial version}
 %
 %
 %
@@ -138,36 +138,91 @@ intended for examx class]
 %\end{macro}
 %\end{macro}
 %\changes{v1.0.0-alpha}{2022/02/22}{Added title, subtitle, version, and year macros}
+% \begin{macro}{\booktype}
+%    This macros stores the type of book being produced.
+%    \begin{macrocode}
+\def\booktype#1{\gdef\@booktype{#1}} \booktype{Type}
+%    \end{macrocode}
+% \changes{v1.1.0-alpha}{2022/03/22}{Added macro}
+% \end{macro}
 %
 %\begin{macro}{\frontcover}
-%    |\frontcover| inserts coverpages for the book.
+%    |\frontcover| inserts the front cover for the book.
 %    \begin{macrocode}
 \newcommand{\frontcover}{
-    \thispagestyle{empty}
+    \begin{titlepage}
     \begin{center}
         \includegraphics{Welly}\\
         \vspace{0.3in}
-        \huge\textsc{{\@institution}}}\\
+        \huge\textsc{{\@institution}}\\
         \huge\textsc{{\@department}}\\
         \vspace{1in}
         \textbf{\Huge{\@booktitle\\
                 \@booksubtitle}}\\
         \vspace{0.3in}
-        \textbf{\LARGE{
-                \ifcompanion
-                Course Companion
-                \else
-                \ifonenote
-                Coursebook (OneNote Version)
-                \else
-                Coursebook
-                \fi \fi
-        }}\\
-        
+        \textbf{\LARGE{\@booktype}}\\
         \vspace{1.5in}
         \normalsize{\@institution, \@bookyear}
     \end{center}
+    \end{titlepage}
 }
 %    \end{macrocode}
 %\changes{v1.0.0-alpha}{2022/02/22}{Added macro}
 %\end{macro}
+%
+%\begin{macro}{\license}
+%    |\license| inserts license information for the book.
+%    \begin{macrocode}
+\newcommand{\license}{
+    \noindent Please note that copyright in this work is owned by Wellington College and this copy of
+    \begin{center}
+        \@booktitle
+    \end{center} is provided subject to the terms and conditions set out below. Your use of this book shall be deemed to constitute your acceptance of these terms. In consideration of your agreement to comply with the terms of this licence, Wellington College hereby grants a royalty-free, non-exclusive, non-transferable licence on the terms set out below:\\
+    You may:
+    \begin{itemize}
+        \item Make reasonable number of copies of the whole or part of this book (the ``Work'') solely for the purpose of teaching in your school provided that either;
+        \item less than 10\% of the Work is reproduced; or
+        \item the Work is reproduced in its entirety, including the cover page, copyright notice, glossary and appendices.
+    \end{itemize}
+    You shall:
+    \begin{itemize}
+        \item Always ensure that the copyright footer is displayed on the Work.
+        \item Ensure that the Work is attributed to Wellington College.
+        \item Notify Wellington College if you intend to teach using the Work.
+    \end{itemize}
+    You shall not:
+    \begin{itemize}
+        \item Adapt the Work in any way. 
+        \item Distribute the whole or any part of the Work other than the distribution of the Work by teachers to students for the purpose of teaching in your school.
+        \item Sub-license the Work.
+        \item Make any other use of the Work other than as permitted above.
+    \end{itemize}
+    Given that this licence is provided on a royalty-free basis, please note that Wellington College accepts no liability in respect of any claims in relation to the contents of the Work.\\
+}
+%    \end{macrocode}
+%\changes{v1.0.0-alpha}{2022/02/23}{Added macro}
+%\end{macro}
+%
+% \begin{macro}{\beginbook}
+%    |\beginbook| inserts the front matter for the book.
+%    \begin{macrocode}
+\newcommand{\beginbook}{
+    \pagestyle{book}
+    \frontcover
+    \license
+    \noindent \textcopyright\ \@institution, \@bookyear
+    \\Version \@bookversion.
+    \\Class version \textcolor{red}{tbd}.
+    \\ \mbox{}
+    \\ \@bookauthor
+    \frontmatter
+    \tableofcontents
+}
+%    \end{macrocode}
+%\changes{v1.0.0-alpha}{2022/02/23}{Added macro}
+%\end{macro}
+%    \begin{macrocode}
+\newpagestyle{book}{
+
+}
+%    \end{macrocode}
