@@ -315,9 +315,17 @@
 % \subsection{Document markup}
 
 % \subsubsection{The cover}
-%    These two macros provide information about the institution and department setting the exam
-
-
+%
+%\begin{macro}{\institution}
+%\begin{macro}{\department}
+%    These two macros provide information about the institution and department setting the exam.
+%    \begin{macrocode}
+\def\institution#1{\gdef\@institution{#1}} \institution{Institution}
+\def\department#1{\gdef\@department{#1}} \department{Department}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
 %\begin{macro}{\examtitle}
 %\begin{macro}{\examtopic}
 %\begin{macro}{\examdate}
