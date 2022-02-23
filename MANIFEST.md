@@ -37,7 +37,7 @@ These files are typeset using LaTeX to produce the PDF documentation for the pac
 
 Plain text files included as documentation or metadata.
 
-* MANIFEST.md 
+* MANIFEST.md ‡
 * README.md ‡
 
 ### Derived files
@@ -47,12 +47,12 @@ The files created by ‘unpacking’ the package sources. This typically include
 
 * examx-book.sty †
 * examx.cls †
-* examx-OCRALevel.clo 
-* examx-OCRALevelanswerbook.clo 
-* examx-WellyOCRcovers.clo 
-* examx-advancedanswerbook.clo 
-* examx-default.clo 
-* examx-veryadvancedanswerbook.clo 
+* examx-OCRALevel.clo †
+* examx-OCRALevelanswerbook.clo †
+* examx-WellyOCRcovers.clo †
+* examx-advancedanswerbook.clo †
+* examx-default.clo †
+* examx-veryadvancedanswerbook.clo †
 
 ### Typeset documents
 
@@ -86,13 +86,20 @@ All files included in the `examx/source` directory.
 
 All files included in the `examx/tex` directory.
 
+* examx-OCRALevel.clo 
+* examx-OCRALevelanswerbook.clo 
+* examx-WellyOCRcovers.clo 
+* examx-advancedanswerbook.clo 
 * examx-book.sty 
+* examx-default.clo 
+* examx-veryadvancedanswerbook.clo 
 * examx.cls 
 
 ### Doc files (TDS)
 
 All files included in the `examx/doc` directory.
 
+* MANIFEST.md 
 * README.md 
 * examx-book.pdf 
 * examx-master.pdf 
@@ -108,6 +115,7 @@ The following group lists the files included in the CTAN package.
 
 ### CTAN files
 
+* MANIFEST.md 
 * README.md 
 * examx-book.dtx 
 * examx-book.pdf 
