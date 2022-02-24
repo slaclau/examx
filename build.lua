@@ -1,8 +1,12 @@
 module = "examx"
 maindir = "."
 installfiles = {"*.sty", "*.cls", "*.clo"}
-sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def"}
+sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def", "examx.cfg"}
 typesetfiles = {"*.dtx", "examx-master.tex"}
+
+checkengines = "xetex"
+stdengine = "xetex"
+
 packtdszip = true
 uploadconfig = {
   pkg         = "examx",
