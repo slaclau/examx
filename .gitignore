@@ -305,3 +305,4 @@ TSWLatexianTemp*
 *.clo
 build/
 *.zip
+*.tpf
