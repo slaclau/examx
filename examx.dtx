@@ -36,7 +36,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/02/02 v1.1.1
+	[2022/02/02 v1.1.2
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -99,6 +99,7 @@
 %
 % \changes{v1.0}{2022/01/28}{Initial version}
 % \changes{v1.1.0}{2022/02/03}{Start of semver}
+% \changes{v1.1.2}{2022/02/25}{Modified sectioning}
 %
 %
 %
@@ -234,7 +235,7 @@
 \LoadClass[12pt,a4paper]{exam}
 %    \end{macrocode}
 
-% \subsubsection{Required packages}
+% \section{Loading packages}
 %    First we load \Lopt{graphicx} to allow for the use of images. We then set the default graphicspath to images.
 %    \begin{macrocode}
 \RequirePackage{graphicx}
@@ -313,9 +314,9 @@
 
 %    \end{macrocode}
 % \changes{v1.1.1}{2022/02/10}{Added \Lopt{book} option and carried out preparatory work by allowing the use of \Lpack{articletobook}}
-% \subsection{Document markup}
+% \section{Document markup}
 
-% \subsubsection{The cover}
+% \subsection{The cover}
 %
 %\begin{macro}{\institution}
 %\begin{macro}{\department}
