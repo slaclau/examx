@@ -289,13 +289,11 @@
 \RequirePackage{geometry}
     \savegeometry{default}
     \savegeometry{main}
+\RequirePackage{titlesec}
 \ifexamx@book
-    \RequirePackage[undefrules,fixstarredmarks,originallayout]{articletobook}
     \RequirePackage{examx-book}
-\else
-    \RequirePackage[hidelinks]{hyperref}
-    \RequirePackage{titlesec}
 \fi
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
     \def\coverfont{Arial}
@@ -310,6 +308,9 @@
 \RequirePackage{tabstackengine}
 \stackMath
 \RequirePackage{refcount}
+
+\InputIfFileExists{examx.cfg}{}{}
+
 %    \end{macrocode}
 % \changes{v1.1.1}{2022/02/10}{Added \Lopt{book} option and carried out preparatory work by allowing the use of \Lpack{articletobook}}
 % \subsection{Document markup}
