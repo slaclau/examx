@@ -1,7 +1,7 @@
 module = "examx"
 maindir = "."
 installfiles = {"*.sty", "*.cls", "*.clo"}
-sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def", "examx.cfg"}
+sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def"}
 typesetfiles = {"*.dtx", "examx-master.tex"}
 
 checkengines = "xetex"
