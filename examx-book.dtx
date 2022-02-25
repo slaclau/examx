@@ -113,7 +113,65 @@ intended for examx class]
 \newif\ifonenote
 \newif\ifcoursebook
 \newif\ifcompanion
+\newif\ifhidefooternumbers
+\newcommand{\showfooternumbers}{\hidefooternumbersfalse}
+\newcommand{\hidefooternumbers}{\hidefooternumberstrue}
+\newif\if@mainmatter \@mainmattertrue
+\newif\if@openright \@openrighttrue
+\DeclareVoidOption{openright}{\@openrighttrue}
+\DeclareVoidOption{openany}{\@openrightfalse}
+\let\headrule\undefined
+\let\footrule\undefined
+\RequirePackage[extramarks]{titleps}
 %    \end{macrocode}
+%
+% \section{Document layout}
+%
+% \subsection{Front Matter, Main Matter, and Back Matter}
+%    A book contains these three (logical) sections. The switch |\@mainmatter| is true iff we are processing Main Matter. When this switch is false, the |\bookchapter| command does not print bookchapter numbers.
+%
+%    Here we define the commands that start these sections.
+% \begin{macro}{\frontmatter}
+%    This command starts Roman page numbering and turns off chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    \begin{macrocode}
+\newcommand\frontmatter{%
+    \if@openright
+    \cleardoublepage
+    \else
+    \clearpage
+    \fi
+    \@mainmatterfalse
+    \pagenumbering{roman}
+    \hidefooternumbers}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\mainmatter}
+%    This command clears the page, starts arabic page numbering and turns on chapter numbering. Since this restarts the page numbering from 1, it should also ensure that a recto page is used.
+%    \begin{macrocode}
+\newcommand\mainmatter{%
+    \if@openright
+    \cleardoublepage
+    \else
+    \clearpage
+    \fi
+    \@mainmattertrue
+    \pagenumbering{arabic}
+    \showfooternumbers}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\backmatter}
+%    This clears the page, turns off chapter numbering and leaves page numbering unchanged.
+%    \begin{macrocode}
+\newcommand\backmatter{%
+    \if@openright
+    \cleardoublepage
+    \else
+    \clearpage
+    \fi
+    \@mainmatterfalse
+    \hidefooternumbers}
+%    \end{macrocode}
+% \end{macro}
 %
 % \section{Document markup}
 %
@@ -124,10 +182,11 @@ intended for examx class]
 %\begin{macro}{\bookversion}
 %\begin{macro}{\bookyear}
 %\begin{macro}{\bookauthor}
-%    These four macros provide information about title, subtitle, version, and year of a book. |\booktitle| defaults to |\@title| if no title is provided.
+%    These four macros provide information about title, subtitle, combined title, version, and year of a book. |\booktitle| defaults to |\@title| if no title is provided.
 %    \begin{macrocode}
 \def\booktitle#1{\gdef\@booktitle{#1}} \booktitle{\@title}
 \def\booksubtitle#1{\gdef\@booksubtitle{#1}} \booksubtitle{}
+\def\bookcombinedtitle#1{\gdef\@bookcombinedtitle{#1}} \bookcombinedtitle{\@booktitle\ifblank{\@booksubtitle}{}{: \@booksubtitle}}
 \def\bookversion#1{\gdef\@bookversion{#1}} \bookversion{}
 \def\bookyear#1{\gdef\@bookyear{#1}} \bookyear{}
 \def\bookauthor#1{\gdef\@bookauthor{#1}} \bookauthor{}
@@ -207,22 +266,86 @@ intended for examx class]
 %    |\beginbook| inserts the front matter for the book.
 %    \begin{macrocode}
 \newcommand{\beginbook}{
-    \pagestyle{book}
+    \pagestyle{onenote}
     \frontcover
+    \thispagestyle{empty}
     \license
     \noindent \textcopyright\ \@institution, \@bookyear
     \\Version \@bookversion.
     \\Class version \textcolor{red}{tbd}.
     \\ \mbox{}
     \\ \@bookauthor
+    \clearpage
     \frontmatter
+    \def\@thissheet{Contents}
     \tableofcontents
+    \mainmatter
 }
 %    \end{macrocode}
 %\changes{v1.0.0-alpha}{2022/02/23}{Added macro}
 %\end{macro}
 %    \begin{macrocode}
-\newpagestyle{book}{
+\newshortmark{\@thissheet}
 
+\newpagestyle{onenote}{
+    \headrule
+    \footrule
+    \sethead{\textcolor{gray!40}{\@bookversion}}{}{\@bookcombinedtitle}
+    \setfoot{\textcopyright\ \@institution, \@bookyear}{}{\firstshortmark\@thissheet\ifhidefooternumbers\else---\thequestion\fi}
 }
 %    \end{macrocode}
+%
+% \section{New sectioning commands}
+%
+% \begin{macro}{\sectioncover}
+%    \begin{macrocode}
+\NewDocumentCommand{\sectioncover}{O{#2}m}{
+    \hidefooternumbers
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \vspace*{\fill}
+    \begingroup
+        \titleformat{\section}{\centering\normalfont\Large\bfseries}{\thesection}{1em}{}
+        \section*{#2}
+    \endgroup
+    \addcontentsline{toc}{section}{#1}
+    \def\@thissheet{#2}
+    \shortmark\@thissheet
+    \vspace*{\fill}
+    \clearpage
+    \showfooternumbers
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\probset}
+%    \begin{macrocode}
+\newcounter{probset}
+\setcounter{probset}{0}
+\renewcommand{\theprobset}{\Roman{probset}}
+\NewDocumentCommand{\probset}{o}{
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+
+    \begingroup
+    \titleformat{\subsection}{\centering\normalfont\Large\bfseries}{\theprobset}{1em}{}
+    \IfNoValueTF{#1}
+        {\stepcounter{probset}
+         \subsection*{\theprobset}
+         \addcontentsline{toc}{subsection}{\theprobset}
+         \def\@thissheet{\theprobset}
+         \shortmark\@thissheet}
+        {\subsection*{#1}
+         \addcontentsline{toc}{subsection}{#1}
+         \def\@thissheet{#1}
+         \shortmark\@thissheet}
+    \endgroup
+}
+%    \end{macrocode}
+% \end{macro}
