@@ -5,6 +5,7 @@ sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def", "examx.cfg"}
 typesetfiles = {"*.dtx", "examx-master.tex"}
 
 checkengines = "xetex"
+checkruns = "2"
 stdengine = "xetex"
 
 packtdszip = true
