@@ -307,7 +307,9 @@
 \RequirePackage{tabstackengine}
 \stackMath
 \RequirePackage{refcount}
-
+\ifexamx@book
+    \RequirePackage{examx-book}
+\fi
 \InputIfFileExists{examx.cfg}{}{}
 
 %    \end{macrocode}
@@ -905,9 +907,6 @@ There are \pointsinrange{Core} marks available.\\
 %\end{macro}
 %\end{macro}
 %    \begin{macrocode}
-\ifexamx@book
-    \RequirePackage{examx-book}
-\fi
 %</class>
 %    \end{macrocode}
 % \Finale
