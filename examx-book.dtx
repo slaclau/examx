@@ -118,10 +118,9 @@ intended for examx class]
 }
 
 
-\DeclareStringOption{solutionstyle}[\relax]
+\DeclareStringOption{solutionstyle}[default]
 \def\nosolspace{blank}
 \AtEndOfPackage{
-    \solndefault
     \ifx\examxb@solutionstyle\nosolspace
     \soln
     \fi
