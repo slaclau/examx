@@ -307,6 +307,13 @@
 \RequirePackage{tabstackengine}
 \stackMath
 \RequirePackage{refcount}
+%\begin{macro}{\solndefault}
+%    This sets the default solution environment. It may be redefined in \file{examx.cfg}.
+%    \begin{macrocode}
+\def\solndefault\solndots
+%    \end{macrocode}
+% \changes{v1.1.3}{2022/02/28}{Added macro}
+%\end{macro}
 \ifexamx@book
     \RequirePackage{examx-book}
 \fi
@@ -645,9 +652,7 @@ There are \pointsinrange{Core} marks available.\\
 %\begin{macro}{\solndots}
 %\begin{macro}{\solnlines}
 %\begin{macro}{\solngrid}
-%\begin{macro}{\solndefault}
-%    These macros set the aforementioned switches. |\solndots| is used 
-%by default. |\solndefault| is used by default and can be redefined.
+%    These macros set the aforementioned switches. |\solndefault| is used by default.
 %    \begin{macrocode}
 \newcommand{\soln}{
     \solntrue\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse}
@@ -659,12 +664,9 @@ There are \pointsinrange{Core} marks available.\\
     \solnfalse\solnspacefalse\solndotsfalse\solnlinestrue\solngridfalse}
 \newcommand{\solngrid}{
     \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridtrue}
-
-\def\solndefault\solndots
 \solndefault
 %    \end{macrocode}
 % \changes{v1.1.3}{2022/02/28}{Added macro}
-%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
