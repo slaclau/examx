@@ -110,6 +110,7 @@ intended for examx class]
 % \section{Initial code}
 %
 %    \begin{macrocode}
+\InputIfFileExists{examx-book.cfg}{}{}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions {
     family = examxb
@@ -120,6 +121,7 @@ intended for examx class]
 \DeclareStringOption{solutionstyle}[\relax]
 \def\nosolspace{blank}
 \AtEndOfPackage{
+    \solndefault
     \ifx\examxb@solutionstyle\nosolspace
     \soln
     \fi
@@ -127,8 +129,6 @@ intended for examx class]
     \csname soln\examxb@solutionstyle \endcsname
     \fi
 }
-\solndefault
-
 \ProcessKeyvalOptions*
 
 \newif\ifonenote
@@ -146,7 +146,7 @@ intended for examx class]
 \RequirePackage[extramarks]{titleps}
 \RequirePackage{readprov}
 \ReadFileInfos{examx.cls}
-\InputIfFileExists{examx-book.cfg}{}{}
+
 %    \end{macrocode}
 %
 % \section{Document layout}
