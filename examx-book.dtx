@@ -110,8 +110,6 @@ intended for examx class]
 % \section{Initial code}
 %
 %    \begin{macrocode}
-\solnlines
-
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions {
     family = examx-b
@@ -148,6 +146,7 @@ intended for examx class]
 \RequirePackage{readprov}
 \ReadFileInfos{examx.cls}
 \InputIfFileExists{examx-book.cfg}{}{}
+\solndefault
 %    \end{macrocode}
 %
 % \section{Document layout}
