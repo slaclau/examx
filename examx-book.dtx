@@ -112,19 +112,19 @@ intended for examx class]
 %    \begin{macrocode}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions {
-    family = examx-b
-    prefix = examx-b@
+    family = examxb
+    prefix = examxb@
 }
 
 
 \DeclareStringOption{solutionstyle}[\relax]
 \def\nosolspace{blank}
-\AtEndOfClass{
-    \ifx\examx@solutionstyle\nosolspace
+\AtEndOfPackage{
+    \ifx\examxb@solutionstyle\nosolspace
     \soln
     \fi
-    \if\examx@solutionstyle\relax\else
-    \csname soln\examx@solutionstyle \endcsname
+    \if\examxb@solutionstyle\relax\else
+    \csname soln\examxb@solutionstyle \endcsname
     \fi
 }
 
