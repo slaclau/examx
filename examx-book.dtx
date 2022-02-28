@@ -110,6 +110,28 @@ intended for examx class]
 % \section{Initial code}
 %
 %    \begin{macrocode}
+\solnlines
+
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions {
+    family = examx-b
+    prefix = examx-b@
+}
+
+
+\DeclareStringOption{solutionstyle}[\relax]
+\def\nosolspace{blank}
+\AtEndOfClass{
+    \ifx\examx@solutionstyle\nosolspace
+    \soln
+    \fi
+    \if\examx@solutionstyle\relax\else
+    \csname soln\examx@solutionstyle \endcsname
+    \fi
+}
+
+\ProcessKeyvalOptions*
+
 \newif\ifonenote
 \newif\ifcoursebook
 \newif\ifcompanion
