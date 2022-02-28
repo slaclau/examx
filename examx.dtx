@@ -291,9 +291,6 @@
     \savegeometry{default}
     \savegeometry{main}
 \RequirePackage{titlesec}
-\ifexamx@book
-    \AtEndOfClass{\RequirePackage{examx-book}}
-\fi
 % \changes{v1.1.3}{2022/02/28}{Moved loading of \Lpack{examx-book} to end of class}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{lastpage}
@@ -908,6 +905,9 @@ There are \pointsinrange{Core} marks available.\\
 %\end{macro}
 %\end{macro}
 %    \begin{macrocode}
+\ifexamx@book
+    \RequirePackage{examx-book}
+\fi
 %</class>
 %    \end{macrocode}
 % \Finale
