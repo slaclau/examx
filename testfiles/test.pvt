@@ -1,15 +1,14 @@
-\documentclass[book,answers]{examx}
+\documentclass[book]{examx}
 \input{regression-test.tex}
-\booktitle{Pure Test of examx-book}
+
+\institution{Wellington College}
+\department{Mathematics Department}
+
+\booktitle{Test of examx-book}
 \booksubtitle{Subtitle}
 \bookversion{v1.0}
 \bookyear{2022}
 \bookauthor{Author}
-
-\setmainfont{LinLibertineO}
-
-\institution{Wellington College}
-\department{Mathematics Department}
 
 \begin{document}
 \beginbook
@@ -19,6 +18,7 @@
 \question First question
 \solnor{Solution here}
 \end{questions}
+
 \probset
 
 
