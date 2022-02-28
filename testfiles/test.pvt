@@ -1,4 +1,4 @@
-\documentclass[book]{examx}
+\documentclass[book,solutionstyle=lines]{examx}
 \input{regression-test.tex}
 
 \institution{Wellington College}
