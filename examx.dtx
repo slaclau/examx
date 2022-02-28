@@ -36,7 +36,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/02/02 v1.1.2
+	[2022/02/02 v1.1.3
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -645,8 +645,9 @@ There are \pointsinrange{Core} marks available.\\
 %\begin{macro}{\solndots}
 %\begin{macro}{\solnlines}
 %\begin{macro}{\solngrid}
+%\begin{macro}{\solndefault}
 %    These macros set the aforementioned switches. |\solndots| is used 
-%by default.
+%by default. |\solndefault| is used by default and can be redefined.
 %    \begin{macrocode}
 \newcommand{\soln}{
     \solntrue\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse}
@@ -659,8 +660,11 @@ There are \pointsinrange{Core} marks available.\\
 \newcommand{\solngrid}{
     \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridtrue}
 
-\solndots
+\def\solndefault\solndots
+\solndefault
 %    \end{macrocode}
+% \changes{v1.1.3}{2022/02/28}{Added macro}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
