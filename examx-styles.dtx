@@ -443,6 +443,7 @@
             (\lpos,-\thecurrentline)--(\rpos,-\thecurrentline); 
             \fi \fi
             \pgfmathsetcounter{numlinesinquestion}{\lines[\n]}
+            \pgfmathsetcounter{numblanklinesinquestion}{\blanklines[\n]}
             \fi
             
             \ifnum \thecurrentline=\themaxlinesinpage \else
@@ -472,6 +473,9 @@
             \fi
             \fi
             \addtocounter{tempa}{1}
+            \foreach \l in {1,...,\thenumblanklinesinquestion}{
+                \draw[draw=none] (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\l};
+            }
             \addtocounter{currentline}{\thenumlinesinquestion}
             \setcounter{linesleft}{0}
             
