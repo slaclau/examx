@@ -189,14 +189,12 @@
 %\file{\meta{answerbookstyle}answerbook.clo}
 %    \begin{macrocode}
 \DeclareStringOption{coverstyle}[\relax]
-\AtEndOfClass{\input{examx-WellyOCRcovers.clo}}
-%\AtEndOfClass{
-%    \if\examx@coverstyle\relax\else
-%    \InputIfFileExists{examx-{\examx@coverstyle}covers.clo}{}{
-%        \ClassWarning{examx}{Cover style {\examx@coverstyle} not 
-%        found}}
-%    \fi
-%}
+\AtEndOfClass{
+    \if\examx@coverstyle\relax\else
+    \InputIfFileExists{examx-{\examx@coverstyle}covers.clo}{}{
+        \ClassWarning{examx}{Cover style {\examx@coverstyle} not found}}
+    \fi
+}
 \DeclareStringOption{answerbookstyle}[\relax]
 \AtEndOfClass{
     \if\examx@answerbookstyle\relax\else
