@@ -1,6 +1,6 @@
 module = "examx"
 maindir = "."
-installfiles = {"*.sty", "*.cls", "*.clo", "*.tex"}
+installfiles = {"*.sty", "*.cls", "*.clo", "*tikzconfigforworkbook.tex"}
 sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def", "tikzconfigforworkbook.tex"}
 typesetfiles = {"*.dtx", "examxdoc.tex"}
 
