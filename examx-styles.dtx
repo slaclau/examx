@@ -416,7 +416,7 @@
     \setcounter{int}{1}
     \setcounter{tempa}{1}
     \setcounter{linesleft}{0}
-    \setcounter{currentlineinquestion}{1}	
+    \setcounter{currentlineinquestion}{1}
     
     \loop
     \begin{center}
@@ -475,10 +475,12 @@
             \fi
             \fi
             \addtocounter{tempa}{1}
-            %\foreach \l in {1,...,\thenumblanklinesinquestion}{
-                \draw[draw=none] 
-                (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{};
-            %}
+            \ifnum\thenumblanklinesinquestion>0
+            \foreach \l in {1,...,\thenumblanklinesinquestion}{
+                \draw[white,thick] 
+                (\mpos,-\l-\thecurrentline)--(\rpos,-\l-\thecurrentline);
+            }
+            \fi
             \addtocounter{currentline}{\thenumlinesinquestion}
             \setcounter{linesleft}{0}
             
@@ -507,6 +509,7 @@
         \oddeven{\draw[draw=none] 
         (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{\bf
          Turn over};}{}
+        \draw[thick](\mpos,0)--(\mpos,-\themaxlinesinpage);
         \end{tikzpicture}
     \end{center}
     \newpage
