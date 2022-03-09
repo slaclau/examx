@@ -177,7 +177,7 @@
 \AtEndOfClass{\input{examx-default.clo}}
 \AtEndOfClass{
     \if\examx@style\relax\else
-        \InputIfFileExists{\examx@style.clo}{}{
+        \InputIfFileExists{examx-{\examx@style}.clo}{}{
             \ClassWarning{examx}{Style {\examx@style} not found}}
     \fi
 }
@@ -191,7 +191,7 @@
 \DeclareStringOption{coverstyle}[\relax]
 \AtEndOfClass{
     \if\examx@coverstyle\relax\else
-    \InputIfFileExists{{\examx@coverstyle}covers.clo}{}{
+    \InputIfFileExists{examx-{\examx@coverstyle}covers.clo}{}{
         \ClassWarning{examx}{Cover style {\examx@coverstyle} not 
         found}}
     \fi
@@ -199,7 +199,7 @@
 \DeclareStringOption{answerbookstyle}[\relax]
 \AtEndOfClass{
     \if\examx@answerbookstyle\relax\else
-    \InputIfFileExists{{\examx@answerbookstyle}answerbook.clo}{}{
+    \InputIfFileExists{examx-{\examx@answerbookstyle}answerbook.clo}{}{
         \ClassWarning{examx}{Answer book style 
         {\examx@answerbookstyle}  not found}}
     \fi
