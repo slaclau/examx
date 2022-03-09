@@ -357,6 +357,7 @@
 \newcounter{currentlineinquestion}
 \newcounter{questionnumber}
 \newcounter{numlinesinquestion}
+\newcounter{numblanklinesinquestion}
 \newcounter{partlevel}
 
 \newcounter{tempa}
@@ -411,6 +412,7 @@
     \xdef\blanklines{{\@blanklines}}
     
     \setcounter{numlinesinquestion}{0}
+    \setcounter{numblanklinesinquestion}{0}
     \setcounter{int}{1}
     \setcounter{tempa}{1}
     \setcounter{linesleft}{0}
@@ -473,9 +475,10 @@
             \fi
             \fi
             \addtocounter{tempa}{1}
-            \foreach \l in {1,...,\thenumblanklinesinquestion}{
-                \draw[draw=none] (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\l};
-            }
+            %\foreach \l in {1,...,\thenumblanklinesinquestion}{
+                \draw[draw=none] 
+                (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{};
+            %}
             \addtocounter{currentline}{\thenumlinesinquestion}
             \setcounter{linesleft}{0}
             
