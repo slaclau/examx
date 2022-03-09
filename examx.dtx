@@ -174,7 +174,7 @@
 %    The following options provide complete styles.
 %    \begin{macrocode}
 \DeclareStringOption{style}[\relax]
-%\AtEndOfClass{\input{examx-default.clo}}
+\AtEndOfClass{\input{examx-default.clo}}
 \AtEndOfClass{
     \if\examx@style\relax\else
         \InputIfFileExists{\examx@style.clo}{}{
