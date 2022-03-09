@@ -1,6 +1,6 @@
 module = "examx"
 maindir = "."
-installfiles = {"*.sty", "*.cls", "*.clo"}
+installfiles = {"*.sty", "*.cls", "*.clo", "*.tex"}
 sourcefiles = {"*.dtx", "*.ins", "examx-ltxdoc-commands.def"}
 typesetfiles = {"*.dtx", "examxdoc.tex"}
 
