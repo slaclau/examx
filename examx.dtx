@@ -36,7 +36,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/02/02 v1.1.3
+	[2022/02/28 v1.1.4
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -174,7 +174,7 @@
 %    The following options provide complete styles.
 %    \begin{macrocode}
 \DeclareStringOption{style}[\relax]
-\AtEndOfClass{\input{default.clo}}
+\AtEndOfClass{\input{examx-default.clo}}
 \AtEndOfClass{
     \if\examx@style\relax\else
         \InputIfFileExists{\examx@style.clo}{}{
@@ -204,7 +204,8 @@
         {\examx@answerbookstyle}  not found}}
     \fi
 }
-\DeclareStringOption{solutionstyle}[\relax]
+\def\solndefault{\solndots}
+\DeclareStringOption[default]{solutionstyle}
 \def\nosolspace{blank}
 \AtEndOfClass{
     \ifx\examx@solutionstyle\nosolspace
@@ -291,7 +292,6 @@
     \savegeometry{default}
     \savegeometry{main}
 \RequirePackage{titlesec}
-% \changes{v1.1.3}{2022/02/28}{Moved loading of \Lpack{examx-book} to end of class}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
@@ -310,14 +310,15 @@
 %\begin{macro}{\solndefault}
 %    This sets the default solution environment. It may be redefined in \file{examx.cfg}.
 %    \begin{macrocode}
-\def\solndefault\solndots
+\def\solndefault{\solngrid}
 %    \end{macrocode}
 % \changes{v1.1.3}{2022/02/28}{Added macro}
 %\end{macro}
+\InputIfFileExists{examx.cfg}{}{}
 \ifexamx@book
     \RequirePackage{examx-book}
 \fi
-\InputIfFileExists{examx.cfg}{}{}
+
 
 %    \end{macrocode}
 % \changes{v1.1.1}{2022/02/10}{Added \Lopt{book} option and carried out preparatory work by allowing the use of \Lpack{articletobook}}
@@ -426,26 +427,31 @@ There are \pointsinrange{Core} marks available.\\
 
 % \subsubsection{Storing points and lines information}
 
-%\begin{macro}{\questionorpartnumber}
-%\begin{macro}{\lines}
-%\begin{macro}{\partlevel}
+%\begin{macro}{\@questionorpartnumber}
+%\begin{macro}{\@lines}
+%\begin{macro}{\@blanklines}
+%\begin{macro}{\@partlevel}
 %    These three arrays hold the question or (sub)part number, the number of lines needed, and the part level of the current question or (sub)part.
 %    \begin{macrocode}
 \def\@questionorpartnumber{{}}
 \def\@lines{{}}
+\def\@blanklines{{}}
 \def\@partlevel{{}}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
 %\end{macro}
+%\end{macro}
+% \changes{v1.1.4}{2022/03/08}{Added \@blanklines and associated functionality}
 
 %\begin{macro}{\@storequestiondata}
 %    |\@storequestiondata| stores the aforementioned information about a question or (sub)part.
 %    \begin{macrocode}
-\newcommand{\@storequestiondata}[3]{
+\newcommand{\@storequestiondata}[4]{
     \xdef\@questionorpartnumber{\@questionorpartnumber,#1}
     \xdef\@lines{\@lines,#2}
     \xdef\@partlevel{\@partlevel,#3}
+    \xdef\@blanklines{\@blanklines,#4}
 }
 %    \end{macrocode}
 %\end{macro}
@@ -502,7 +508,7 @@ There are \pointsinrange{Core} marks available.\\
 %    \begin{macrocode}
 \ifexamx@book\else
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}[
-    \@storequestiondata{\arabic{section}}{1}{-1}
+    \@storequestiondata{\arabic{section}}{1}{-1}{0}
     \label{sec:\Alph{section}}
 ]
 \fi
@@ -517,13 +523,13 @@ There are \pointsinrange{Core} marks available.\\
         \@droppoints
         
         \IfNoValueTF{#1}
-        {\oldquestion \@storequestiondata{\thequestion}{0}{0}}
+        {\oldquestion \@storequestiondata{\thequestion}{0}{0}{0}}
         {\ifnum #1<0
             \oldquestion
         \else
             \oldquestion[#1] \@droptrue
         \fi
-        \@storequestiondata{\thequestion}{#2}{0}}
+        \@storequestiondata{\thequestion}{#2}{0}{#3}}
     }
 }
 %    \end{macrocode}
@@ -536,13 +542,13 @@ There are \pointsinrange{Core} marks available.\\
 %    \begin{macrocode}
 \newcommand{\examx@partshook}{
     \let\oldpart\part
-    \RenewDocumentCommand{\part}{o O{\@linesperpart}}{
+    \RenewDocumentCommand{\part}{o O{\@linesperpart} O{}}{
         \@droppoints
         
         \IfNoValueTF{##1}
-        {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}}
+        {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}{0}}
         {\ifnum ##1<0 \oldpart \else \oldpart[##1] \@droptrue \fi 
-        \@storequestiondata{\arabic{partno}}{##2}{1}}
+        \@storequestiondata{\arabic{partno}}{##2}{1}{#3}}
     }
 }
 
@@ -652,7 +658,7 @@ There are \pointsinrange{Core} marks available.\\
 %\begin{macro}{\solndots}
 %\begin{macro}{\solnlines}
 %\begin{macro}{\solngrid}
-%    These macros set the aforementioned switches. |\solndefault| is used by default.
+%    These macros set the aforementioned switches.
 %    \begin{macrocode}
 \newcommand{\soln}{
     \solntrue\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse}
@@ -664,7 +670,6 @@ There are \pointsinrange{Core} marks available.\\
     \solnfalse\solnspacefalse\solndotsfalse\solnlinestrue\solngridfalse}
 \newcommand{\solngrid}{
     \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridtrue}
-\solndefault
 %    \end{macrocode}
 % \changes{v1.1.3}{2022/02/28}{Added macro}
 %\end{macro}
