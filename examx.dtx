@@ -175,12 +175,13 @@
 %    \begin{macrocode}
 \DeclareStringOption{style}[\relax]
 \AtEndOfClass{\input{examx-default.clo}}
-\AtEndOfClass{
-    \if\examx@style\relax\else
-        \InputIfFileExists{examx-{\examx@style}.clo}{}{
-            \ClassWarning{examx}{Style {\examx@style} not found}}
-    \fi
-}
+\AtEndOfClass{\input{examx-OCRALevel.clo}}
+%\AtEndOfClass{
+%    \if\examx@style\relax\else
+%        \InputIfFileExists{examx-{\examx@style}.clo}{}{
+%            \ClassWarning{examx}{Style {\examx@style} not found}}
+%    \fi
+%}
 %    \end{macrocode}
 %    The following options provide specific aspects of exam 
 %customization. Custom .clo files for \Lopt{coverstyle} are of the form 
@@ -189,12 +190,13 @@
 %\file{\meta{answerbookstyle}answerbook.clo}
 %    \begin{macrocode}
 \DeclareStringOption{coverstyle}[\relax]
-\AtEndOfClass{
-    \if\examx@coverstyle\relax\else
-    \InputIfFileExists{examx-{\examx@coverstyle}covers.clo}{}{
-        \ClassWarning{examx}{Cover style {\examx@coverstyle} not 
-        found}}
-    \fi
+\AtEndOfClass{\input{examx-WellyOCRcovers.clo}}
+%\AtEndOfClass{
+%    \if\examx@coverstyle\relax\else
+%    \InputIfFileExists{examx-{\examx@coverstyle}covers.clo}{}{
+%        \ClassWarning{examx}{Cover style {\examx@coverstyle} not 
+%        found}}
+%    \fi
 }
 \DeclareStringOption{answerbookstyle}[\relax]
 \AtEndOfClass{
