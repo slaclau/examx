@@ -175,11 +175,10 @@
 %    \begin{macrocode}
 \DeclareStringOption{style}[\relax]
 \AtEndOfClass{\input{examx-default.clo}}
-\AtEndOfClass{\input{examx-OCRALevel.clo}}
 \AtEndOfClass{
     \if\examx@style\relax\else
-        %\InputIfFileExists{examx-\examx@style.clo}{}{
-         %   \ClassWarning{examx}{Style {\examx@style} not found  examx-\examx@style.clo}}
+        \InputIfFileExists{examx-\examx@style.clo}{}{
+            \ClassWarning{examx}{Style {\examx@style} not found}}
     \fi
 }
 %    \end{macrocode}
