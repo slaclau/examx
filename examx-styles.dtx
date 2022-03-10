@@ -209,7 +209,8 @@
 \sisetup{inter-unit-product = \,} %Configures siunitx to use a 
 %dot between units
 
-\setmainfont{Times New Roman} 
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
 
 \titleformat{\section}{\centering\bf}{Section \Alph{section}: 
 }{0pt}{}
@@ -687,7 +688,7 @@
 %paper.
 %    \begin{macrocode}
 \renewcommand{\examcover}{
-    {\setmainfont{\coverfont}
+    {\sffamily
         \loadgeometry{cover}
         \thispagestyle{empty}
         \begin{center}
@@ -771,7 +772,7 @@
 %an OCR paper.
 %    \begin{macrocode}
 \renewcommand{\answerbookcover}{
-    {\setmainfont{\coverfont}
+    {\sffamily
         \loadgeometry{cover}
         \thispagestyle{empty}
         \begin{center}
