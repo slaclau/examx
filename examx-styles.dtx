@@ -33,7 +33,7 @@
 %<*driver>
 \ProvidesFile{examx-styles.dtx}
 %</driver>
-	[2022/01/31 v1.1.1
+	[2022/01/31 v1.1.2
 %<!driver> standard latex class option file]
 %<*driver>
 ]
@@ -89,6 +89,7 @@
 %
 % \changes{v1.0}{2022/01/31}{Initial version}
 % \changes{v1.1.1}{2022/02/03}{Start of semver}
+% \changes{v1.1.2}{2022/03/10}{Implemented \Lopt{fourside}}
 %
 %
 %
@@ -200,6 +201,10 @@
         QUESTION PAPER} \fi
         \oddeven{\newpage {\bf This page is intentionally 
         blank}}{}
+        \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
+            \newpage {\bf This page is intentionally blank}
+            \newpage {\bf This page is intentionally blank}
+        \fi
     \end{center}
 }
 \renewcommand{\questionpaperstart}{
@@ -538,6 +543,34 @@
         \pageendrule[21]
         \end{tikzpicture}
     \end{center}
+    \ifexamx@fourside
+        \ifnum\the\numexpr4*(\thepage/4)-\thepage\relax=2
+            \newpage
+            \begin{center}
+                \begin{tikzpicture}[yscale=\lineheight]
+                \pagestartrule
+                \setcounter{currentline}{0}	
+                \foreach \n in {1,...,\themaxlinesinpage}{
+                    \blankrow
+                    \addtocounter{currentline}{1}
+                }
+                \pageendrule[\themaxlinesinpage]
+                \end{tikzpicture}
+            \end{center}
+            \newpage
+            \begin{center}
+                \begin{tikzpicture}[yscale=\lineheight]
+                \pagestartrule
+                \setcounter{currentline}{0}	
+                \foreach \n in {1,...,28}{
+                    \blankrow
+                    \addtocounter{currentline}{1}
+                }
+                \pageendrule[28]
+                \end{tikzpicture}
+            \end{center}
+        \fi
+    \fi
     \loadgeometry{main}
 }
 
@@ -561,6 +594,34 @@
         \pageendrule[25]
         \end{tikzpicture}
     \end{center}
+    \ifexamx@fourside
+        \ifnum\the\numexpr\thepage-4*(\thepage/4)\relax=1
+            \newpage
+            \begin{center}
+                \begin{tikzpicture}[yscale=\lineheight]
+                \pagestartrule
+                \setcounter{currentline}{0}	
+                \foreach \n in {1,...,\themaxlinesinpage}{
+                    \blankrow
+                    \addtocounter{currentline}{1}
+                }
+                \pageendrule[\themaxlinesinpage]
+                \end{tikzpicture}
+            \end{center}
+            \newpage
+            \begin{center}
+                \begin{tikzpicture}[yscale=\lineheight]
+                \pagestartrule
+                \setcounter{currentline}{0}	
+                \foreach \n in {1,...,\themaxlinesinpage}{
+                    \blankrow
+                    \addtocounter{currentline}{1}
+                }
+                \pageendrule[\themaxlinesinpage]
+                \end{tikzpicture}
+            \end{center}
+        \fi
+    \fi
     \newpage
     \begin{center}
         \begin{tikzpicture}[yscale=\lineheight]
