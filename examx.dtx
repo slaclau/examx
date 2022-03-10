@@ -140,12 +140,14 @@
 % \subsubsection{Options for customizing exams}
 
 % \begin{macro}{\ifexamx@fourside}
+% \begin{macro}{\ifexamx@foursidetwo}
 %    \begin{macrocode}
 \DeclareBoolOption[false]{fourside}
+\DeclareBoolOption[false]{foursideshort}
 %    \end{macrocode}
-% \changes{v1.1.5}{2022/03/10}{Added \Lopt{fourside}}
 % \end{macro}
-
+% \end{macro}
+% \changes{v1.1.5}{2022/03/10}{Added \Lopt{foursideshort} and \Lopt{foursideshort}}
 % \begin{macro}{\ifexamx@book}
 %    \begin{macrocode}
 \DeclareBoolOption[false]{book}
@@ -301,10 +303,7 @@
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{lastpage}
 \RequirePackage{fontspec}
-    \def\coverfont{Arial}
-\setromanfont[Ligatures=TeX]{TeX Gyre Termes}
 \RequirePackage{unicode-math}
-\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Termes Math}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 %    \end{macrocode}
 %    These packages add various other functionality.
