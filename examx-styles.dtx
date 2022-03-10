@@ -152,6 +152,14 @@
     page(s). The question number(s) must be clearly shown in the 
     margin(s).
     \fillwithdottedlines{\stretch{1}}
+    \ifexamx@fourside
+        \ifnum\the\numexpr(\thepage/4)*4-\thepage=2
+            \newpage
+            \fillwithdottedlines{\stretch{1}}
+            \newpage
+            \fillwithdottedlines{\stretch{1}}
+        \fi
+    \fi
 }
 \renewcommand{\doubleanswerbookbackcover}{
     \begin{center}
@@ -163,6 +171,14 @@
     \fillwithdottedlines{\stretch{1}}
     \newpage
     \fillwithdottedlines{\stretch{1}}
+    \ifexamx@fourside
+        \ifnum\the\numexpr(\thepage/4)*4-\thepage=2
+            \newpage
+            \fillwithdottedlines{\stretch{1}}
+            \newpage
+            \fillwithdottedlines{\stretch{1}}
+        \fi
+    \fi
 }
 %</answerbookbackcover|answerbook|all>
 %</default>
