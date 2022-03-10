@@ -144,13 +144,13 @@
 \renewcommand{\questionpaperend}{
     \footer{}{}{}
     \begin{center}
-        \ifprintanswers {\bf END OF MARKSCHEME} \else {\bf END OF 
+        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries END OF 
             QUESTION PAPER} \fi
-        \oddeven{\newpage {\bf This page is intentionally 
+        \oddeven{\newpage {\bfseries This page is intentionally 
                 blank}}{}
         \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
-        \newpage {\bf This page is intentionally blank}
-        \newpage {\bf This page is intentionally blank}
+        \newpage {\bfseries This page is intentionally blank}
+        \newpage {\bfseries This page is intentionally blank}
         \fi
     \end{center}
 }
@@ -160,7 +160,7 @@
 %<*answerbookbackcover|answerbook|all>
 \renewcommand{\answerbookbackcover}{
     \begin{center}
-        \large\bf ADDITIONAL ANSWER SPACE
+        \large\bfseries ADDITIONAL ANSWER SPACE
     \end{center}
     If additional space is required, you should use the following lined 
     page(s). The question number(s) must be clearly shown in the 
@@ -177,7 +177,7 @@
 }
 \renewcommand{\doubleanswerbookbackcover}{
     \begin{center}
-        \large\bf ADDITIONAL ANSWER SPACE
+        \large\bfseries ADDITIONAL ANSWER SPACE
     \end{center}
     If additional space is required, you should use the following lined 
     page(s). The question number(s) must be clearly shown in the 
@@ -206,13 +206,13 @@
 \@alwaysdroppointsatright
 \soln
 
-\sisetup{inter-unit-product = \,} %Configures siunitx to use a 
-%dot between units
+\sisetup{inter-unit-product = \,} %Configures siunitx to use a space between units
 
-\setmainfont{Times New Roman}
+\setmainfont[Ligatures=TeX]{TeX Gyre Termes}
+\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Termes Math}
 \setsansfont{Arial}
 
-\titleformat{\section}{\centering\bf}{Section \Alph{section}: 
+\titleformat{\section}{\centering\bfseries}{Section \Alph{section}: 
 }{0pt}{}
 
 \geometry{left=0.86 in,right=1.14 in,top=1 in,bottom=1 in}
@@ -222,26 +222,26 @@
 \loadgeometry{main}
 
 
-\footer{}{}{\bf\oddeven{Turn over}{}}
-\header{}{\bf \thepage}{}
+\footer{}{}{\bfseries\oddeven{Turn over}{}}
+\header{}{\bfseries \thepage}{}
 
 \renewcommand{\questionpaperend}{
     \footer{}{}{}
     \begin{center}
-        \ifprintanswers {\bf END OF MARKSCHEME} \else {\bf END OF 
+        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries END OF 
         QUESTION PAPER} \fi
-        \oddeven{\newpage {\bf This page is intentionally 
+        \oddeven{\newpage {\bfseries This page is intentionally 
         blank}}{}
         \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
-            \newpage {\bf This page is intentionally blank}
-            \newpage {\bf This page is intentionally blank}
+            \newpage {\bfseries This page is intentionally blank}
+            \newpage {\bfseries This page is intentionally blank}
         \fi
     \end{center}
 }
 \renewcommand{\questionpaperstart}{
     \ifprintanswers \else
     \begin{center}
-        Answer {\bf all} the questions.
+        Answer {\bfseries all} the questions.
     \end{center}
     \fi
 }
@@ -273,9 +273,9 @@
     \loadgeometry{formulaesheet}
     \def\preheading{\vspace{0.25 in}}
     \def\postheading{\vspace{0.08 in}}
-    \newcommand{\heading}[1]{\preheading {\bf ##1} \par \postheading}
+    \newcommand{\heading}[1]{\preheading {\bfseries ##1} \par \postheading}
     \begin{center}
-        {\bf Formulae \par A Level Mathematics A (H240)}
+        {\bfseries Formulae \par A Level Mathematics A (H240)}
     \end{center}
     \begin{flushleft}
         \heading{Arithmetic series}
@@ -330,11 +330,11 @@
         $x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}$ \par
         \heading{Probability}
         $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ \par
-        $P(A\cap B)=P(A)P(B|A)=P(B)P(A|B)$ {\bf or} 
+        $P(A\cap B)=P(A)P(B|A)=P(B)P(A|B)$ {\bfseries or} 
         $P(A|B)=\dfrac{P(A\cap B)}{P(B)}$ \par
         \heading{Standard deviation}
         $\sqrt{\dfrac{\sum(x-\bar{x})^2}{n}}=\sqrt{\dfrac{\sum 
-        x^2}{n}-\bar{x}^2}$ {\bf or} $\sqrt{\dfrac{\sum 
+        x^2}{n}-\bar{x}^2}$ {\bfseries or} $\sqrt{\dfrac{\sum 
         f(x-\bar{x})^2}{\sum f}}=\sqrt{\dfrac{\sum fx^2}{\sum 
         f}-\bar{x}^2}$ \par
         \heading{The binomial distribution}
@@ -472,7 +472,7 @@
             \pgfmathsetcounter{partlevel}{\ip[\n]}
             \ifnum \thelinesleft>0
             \draw[draw=none] 
-            (\mpos,-1)--(\rpos,-1)node[pos=0.08,above]{\bf 
+            (\mpos,-1)--(\rpos,-1)node[pos=0.08,above]{\bfseries 
             (continued)};
             \setcounter{numlinesinquestion}{\thelinesleft}
             \else
@@ -487,7 +487,7 @@
             \ifnum \thecurrentline=\themaxlinesinpage \else
             \ifnum \thepartlevel=-1
             \draw 
-            (\lpos,-1-\thecurrentline)--(\rpos,-1-\thecurrentline)node[pos=0.5,above]{\bf
+            (\lpos,-1-\thecurrentline)--(\rpos,-1-\thecurrentline)node[pos=0.5,above]{\bfseries
              Section \Alph{questionnumber}: 
             \nameref{sec:\Alph{questionnumber}}};
             \ifnum \thecurrentline=0 \draw[white,thick] 
@@ -502,11 +502,11 @@
             \setcounter{lastques}{\thequestionnumber}
             \ifnum \thenumlinesinquestion=0 \else 
             \draw[draw=none] 
-            (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\bf
+            (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\bfseries
              \thelastques}; \fi
             \fi \ifnum \thepartlevel=1
             \draw[draw=none] 
-            (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\bf
+            (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)node[pos=0.65,above]{\bfseries
              \thelastques(\alph{questionnumber})};
             \fi
             \fi
@@ -533,7 +533,7 @@
             \setcounter{linesleft}{\thecurrentline}
             \addtocounter{linesleft}{-\themaxlinesinpage}
             \draw[draw=none] 
-            (\mpos,-\themaxlinesinpage)--(\rpos,-\themaxlinesinpage)node[pos=0.77,above]{\bf
+            (\mpos,-\themaxlinesinpage)--(\rpos,-\themaxlinesinpage)node[pos=0.77,above]{\bfseries
              (answer space continued on next page)};
             \breakforeach
             \fi
@@ -543,7 +543,7 @@
         (\lpos,-\themaxlinesinpage)--(\rpos,-\themaxlinesinpage);
         \fi
         \oddeven{\draw[draw=none] 
-        (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{\bf
+        (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{\bfseries
          Turn over};}{}
         \draw[thick](\mpos,0)--(\mpos,-\themaxlinesinpage);
         \end{tikzpicture}
@@ -557,7 +557,7 @@
 \renewcommand{\answerbookbackcover}{
     \loadgeometry{answerbook}
     \begin{center}
-        \large\bf ADDITIONAL ANSWER SPACE
+        \large\bfseries ADDITIONAL ANSWER SPACE
     \end{center}
     If additional space is required, you should use the following 
     lined page(s). The question number(s) must be clearly shown 
@@ -608,7 +608,7 @@
 \renewcommand{\doubleanswerbookbackcover}{
     \loadgeometry{answerbook}
     \begin{center}
-        \large\bf ADDITIONAL ANSWER SPACE
+        \large\bfseries ADDITIONAL ANSWER SPACE
     \end{center}
     If additional space is required, you should use the following 
     lined page(s). The question number(s) must be clearly shown 
@@ -666,6 +666,8 @@
         \end{tikzpicture}
     \end{center}
     \loadgeometry{main}
+    \fi
+    \fi
 }
 %</answerbook|all>
 %</OCRALevel>
@@ -694,12 +696,12 @@
         \begin{center}
             \includegraphics[scale=0.25]{Welly} \par
             \vspace{0.25in}
-            {\bf
+            {\bfseries
                 \huge\textsc{{Wellington College}} \par
                 \huge\textsc{{Mathematics Department}} \par}
         \end{center}
         \begin{flushleft}
-            \bf
+            \bfseries
             \vspace{0.25in}
             \LARGE \@examtitle \par
             \Large \@examtopic \par
@@ -715,7 +717,7 @@
             \vspace{0.01in}
             \rm
             \normalsize
-            {\bf INSTRUCTIONS}
+            {\bfseries INSTRUCTIONS}
             \begin{itemize}
                 \itemsep-1pt
                 \item Use black ink. HB pencil may be used for 
@@ -723,8 +725,8 @@
                 \item Complete the boxes provided on the Printed 
                 Answer Booklet with your name, and your teacher's 
                 name.
-                \item Answer {\bf all} the questions.
-                \item {\bf Write your answer to each question in 
+                \item Answer {\bfseries all} the questions.
+                \item {\bfseries Write your answer to each question in 
                 the space provided in the Printed Answer 
                 Booklet.} If additional space is required, you 
                 should use the lined page(s) at the end of the 
@@ -743,18 +745,18 @@
                 needed, use $\grav=9.8$.
             \end{itemize}
             
-            {\bf INFORMATION}
+            {\bfseries INFORMATION}
             \begin{itemize}
                 \itemsep-1pt
                 \item The total number of marks for this paper is 
-                {\bf \pointsinrange{Core}}.
+                {\bfseries \pointsinrange{Core}}.
                 \item The marks for each question are shown in 
-                brackets {\bf [ ]}.
-                \item {\bf You are reminded of the need for clear 
+                brackets {\bfseries [ ]}.
+                \item {\bfseries You are reminded of the need for clear 
                 presentation in your answers.}
                 \item \ifanswerbook The Printed Answer Booklet 
-                consists of {\bf \pageref{LastPage}} pages.\fi 
-                The Question Paper consists of {\bf 
+                consists of {\bfseries \pageref{LastPage}} pages.\fi 
+                The Question Paper consists of {\bfseries 
                 \pageref{lastpageofquestionpaper}} pages.
             \end{itemize}
             \fi
@@ -778,12 +780,12 @@
         \begin{center}
             \includegraphics[scale=0.25]{Welly} \par
             \vspace{0.25in}
-            {\bf
+            {\bfseries
                 \huge\textsc{{Wellington College}} \par
                 \huge\textsc{{Mathematics Department}} \par}
         \end{center}
         \begin{flushleft}
-            \bf
+            \bfseries
             \vspace{0.25in}
             \LARGE \@examdate \par
             \Large \@examtitle \par
@@ -804,15 +806,15 @@
             \vspace{0.25in}
             \rm
             \normalsize
-            {\bf INSTRUCTIONS}
+            {\bfseries INSTRUCTIONS}
             \begin{itemize}
                 \itemsep-1pt
                 \item The Question Paper will be found inside the 
                 Printed Answer Booklet.
                 \item Use black ink. HB pencil may be used for 
                 graphs and diagrams only.
-                \item Answer {\bf all} the questions.
-                \item {\bf Write your answer to each question in 
+                \item Answer {\bfseries all} the questions.
+                \item {\bfseries Write your answer to each question in 
                 the space provided in the Printed Answer 
                 Booklet.} If additional space is required, you 
                 should use the lined page(s) at the end of 
@@ -831,15 +833,15 @@
                 needed, use $\grav=9.8$.
             \end{itemize}
             
-            {\bf INFORMATION}
+            {\bfseries INFORMATION}
             \begin{itemize}
                 \itemsep-1pt
-                \item {\bf You are reminded of the need for clear 
+                \item {\bfseries You are reminded of the need for clear 
                 presentation in your answers.}
-                \item The Printed Answer Booklet consists of {\bf 
+                \item The Printed Answer Booklet consists of {\bfseries 
                 \pageref{LastPage}} pages. The Question Paper 
                 consists of 
-                {\bf \pageref{lastpageofquestionpaper}} pages.
+                {\bfseries \pageref{lastpageofquestionpaper}} pages.
             \end{itemize}
         \end{flushleft}
         \vspace{0.25in}
