@@ -139,6 +139,12 @@
 
 % \subsubsection{Options for customizing exams}
 
+% \begin{macro}{\ifexamx@fourside}
+%    \begin{macrocode}
+\DeclareBoolOption[false]{fourside}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\ifexamx@book}
 %    \begin{macrocode}
 \DeclareBoolOption[false]{book}
@@ -191,7 +197,7 @@
 \DeclareStringOption{coverstyle}[\relax]
 \AtEndOfClass{
     \if\examx@coverstyle\relax\else
-    \InputIfFileExists{examx-{\examx@coverstyle}covers.clo}{}{
+    \InputIfFileExists{examx-\examx@coverstyle covers.clo}{}{
         \ClassWarning{examx}{Cover style {\examx@coverstyle} not found}}
     \fi
 }
@@ -203,7 +209,7 @@
         {\examx@answerbookstyle}  not found}}
     \fi
 }
-\def\solndefault{\solndots}
+\def\solndefault{}
 \DeclareStringOption[default]{solutionstyle}
 \def\nosolspace{blank}
 \AtEndOfClass{
@@ -306,13 +312,6 @@
 \RequirePackage{tabstackengine}
 \stackMath
 \RequirePackage{refcount}
-%\begin{macro}{\solndefault}
-%    This sets the default solution environment. It may be redefined in \file{examx.cfg}.
-%    \begin{macrocode}
-\def\solndefault{\solngrid}
-%    \end{macrocode}
-% \changes{v1.1.3}{2022/02/28}{Added macro}
-%\end{macro}
 \InputIfFileExists{examx.cfg}{}{}
 \ifexamx@book
     \RequirePackage{examx-book}
