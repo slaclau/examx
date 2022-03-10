@@ -140,6 +140,20 @@
 %    \begin{macrocode}
 %<*default>
 \solndots
+
+\renewcommand{\questionpaperend}{
+    \footer{}{}{}
+    \begin{center}
+        \ifprintanswers {\bf END OF MARKSCHEME} \else {\bf END OF 
+            QUESTION PAPER} \fi
+        \oddeven{\newpage {\bf This page is intentionally 
+                blank}}{}
+        \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
+        \newpage {\bf This page is intentionally blank}
+        \newpage {\bf This page is intentionally blank}
+        \fi
+    \end{center}
+}
 %    \end{macrocode}
 %\subsubsection{Answer book}
 %    \begin{macrocode}
