@@ -1,8 +1,5 @@
-\documentclass[book,solutionstyle=lines]{examx}
+\documentclass[book]{examx}
 \input{regression-test.tex}
-
-\institution{Wellington College}
-\department{Mathematics Department}
 
 \booktitle{Test of examx-book}
 \booksubtitle{Subtitle}

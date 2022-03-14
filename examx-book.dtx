@@ -125,7 +125,8 @@ intended for examx class]
 \RequirePackage[extramarks]{titleps}
 \RequirePackage{readprov}
 \ReadFileInfos{examx.cls}
-\def\solndefault{\solnlines}
+
+\InputIfFileExists{examx-book.cfg}{}{}
 %    \end{macrocode}
 %
 % \section{Document layout}
