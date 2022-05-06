@@ -379,14 +379,15 @@
     \newpage
     \loadgeometry{main}
 }
+\def\preheading{\vspace{0.15 in}}
+\def\postheading{\vspace{0.08 in}}
+\newcommand{\heading}[1]{\preheading {\bfseries ##1} \par \postheading}
+\newcommand{\topheading}[1]{{\large\bfseries #1} \par}
 \newcommand{\mechformulaesheet}{
     \loadgeometry{formulaesheet}
-    \def\preheading{\vspace{0.25 in}}
-    \def\postheading{\vspace{0.08 in}}
-    \newcommand{\heading}[1]{\preheading {\bfseries ##1} \par \postheading}
-    {\large\bfseries Mechanics Formulae}
-    \setlength{\parskip}{0.25 in}
     \begin{flushleft}
+        \setlength{\parskip}{0.15 in}
+        \topheading{Mechanics Formulae}
         \heading{Kinematics}
         {\setlength\tabcolsep{0 pt}
             \begin{tabular}{p{3 in} p{3 in}}                
@@ -413,17 +414,40 @@
         
         \heading{Motion in a circle}
         Tangential velocity is $v=r\dot{\theta}$ \par
-        Radial acceleration is $\dfrac{v^2}{r}$ or $r\dot{\theta}^2$ towards the centre \par
+        Radial acceleration is $\frac{v^2}{r}$ or $r\dot{\theta}^2$ towards the centre \par
         Tangential acceleration is $\dot{v}=r\ddot{\theta}$ \par
         
         \heading{Centres of mass}
         Triangular lamina: $\frac{3}{2}$ along median from vertex \par
         Solid hemisphere, radius $r$: $\frac{3}{8} r$ from centre \par
         Hemispherical shell, radius $r$: $\frac{1}{2} r$ from centre \par
-        Circular arc, radius $r$, angle at centre $2\alpha$: $\dfrac{r\sin\alpha}{\alpha}$ from centre \par
-        Sector of circle, radius $r$, angle at centre $2\alpha$: $\dfrac{2r\sin\alpha}{3\alpha}$ from centre \par
+        Circular arc, radius $r$, angle at centre $2\alpha$: $\frac{r\sin\alpha}{\alpha}$ from centre \par
+        Sector of circle, radius $r$, angle at centre $2\alpha$: $\frac{2r\sin\alpha}{3\alpha}$ from centre \par
         Solid cone or pyramid of height $h$: $\frac{1}{4} h$ above the base on the line from centre of base to vertex \par
         Conical shell of height $h$: $\frac{1}{3} h$ above the base on the line from centre of base to vertex \par
+    \end{flushleft}
+    \newpage
+    \loadgeometry{main}
+}
+
+\newcommand{\pureformulaesheet}{
+    \loadgeometry{formulaesheet}
+    \begin{flushleft}
+        \setlength{\parskip}{0.15 in}
+        \topheading{Pure Formulae}
+        
+        \heading{Arithmetic series}
+        $S_n=\frac{1}{2}n(a+l)=\frac{1}{2}n\{2a+(n-1)d\}$ \par
+        \heading{Geometric series}
+        $S_n=\dfrac{a(1-r^n)}{1-r}$ \par
+        $S_\infty=\dfrac{a}{1-r}$ for $\abs{r}<1$ \par
+        \heading{Binomial series}
+        $(a+b)^n=a^n+\prescript{n}{}{C_1}a^{n-1}b+\prescript{n}{}{C_2}a^{n-2}b^2+\ldots+\prescript{n}{}{C_r}a^{n-r}b^r+\ldots+b^n$
+        \quad ($n\in\nats$), where 
+        $\prescript{n}{}{C_r}=\colvec{n\\r}=\dfrac{n!}{r!(n-r)!}$ \par
+        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2}x^2+\ldots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\ldots$
+        \quad ($\abs{x}<1$) \par
+        
     \end{flushleft}
     \newpage
     \loadgeometry{main}
