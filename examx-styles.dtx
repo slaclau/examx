@@ -261,6 +261,8 @@
 \pointformat{\bfseries[\thepoints]}
 
 \renewcommand{\vec}[1]{{\bf#1}}
+
+\renewenvironment{matrix}{\begin{pmatrix}}{\end{pmatrix}}
 %    \end{macrocode}
 %
 %\subsubsection{Formulae sheet}
@@ -457,10 +459,10 @@
         $(1+x)^n=1+nx+\dfrac{n(n-1)}{2!}x^2+\dots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\dots$ \quad ($\abs{x}<1$, $n\in\reals$) \par
         
         \heading{Matrix transformations}
-        Reflection in te line $y=\pm x$: $\begin{matrix}
+        Reflection in the line $y=\pm x$: $\begin{matrix}
             0 & \pm 1 \\
             \pm 1 & 0 \\
-       \end{matrix}$ \par
+       \end{matrix} \par$
     \end{flushleft}
     \loadgeometry{main}
 }
