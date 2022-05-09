@@ -287,11 +287,12 @@
         $S_n=\dfrac{a(1-r^n)}{1-r}$ \par
         $S_\infty=\dfrac{a}{1-r}$ for $\abs{r}<1$ \par
         \heading{Binomial series}
-        $(a+b)^n=a^n+\prescript{n}{}{C_1}a^{n-1}b+\prescript{n}{}{C_2}a^{n-2}b^2+\ldots+\prescript{n}{}{C_r}a^{n-r}b^r+\ldots+b^n$
-         \quad ($n\in\nats$), where 
+        $(a+b)^n=a^n+\prescript{n}{}{C_1}a^{n-1}b+\prescript{n}{}{C_2}
+        a^{n-2}b^2+\ldots+\prescript{n}{}{C_r}a^{n-r}b^r+\ldots+b^n$
+        \quad ($n\in\nats$), where 
         $\prescript{n}{}{C_r}=\colvec{n\\r}=\dfrac{n!}{r!(n-r)!}$ \par
-        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2}x^2+\ldots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\ldots$
-         \quad ($\abs{x}<1$) \par
+        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2}x^2+\ldots+\dfrac{n(n-1)
+        \dots(n-r+1)}{r!}x^r+\ldots$ \quad ($\abs{x}<1$) \par
         \heading{Differentiation}
         \begin{tabular}{|p{2.56 in}|p{2.56 in}|}
             \multicolumn{1}{l}{$f(x)$} & \multicolumn{1}{l}{$f'(x)$} \\ 
@@ -384,7 +385,7 @@
 \def\postheading{\vspace{0.08 in}}
 \newcommand{\heading}[1]{\preheading {\bfseries #1} \par \postheading}
 \newcommand{\topheading}[1]{{\large\bfseries #1} \par}
-\newcommand{\mechformulaesheet}{
+\newcommand{\mechformulae}{
     \loadgeometry{formulaesheet}
     \begin{flushleft}
         \setlength{\parskip}{0.15 in}
@@ -430,7 +431,7 @@
     \loadgeometry{main}
 }
 
-\newcommand{\pureformulaesheet}{
+\newcommand{\pureformulae}{
     \loadgeometry{formulaesheet}
     \begin{flushleft}
         \setlength{\parskip}{0.10 in}
@@ -458,15 +459,15 @@
         $(1+x)^n=1+nx+\dfrac{n(n-1)}{2!}x^2+\dots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\dots$ \quad ($\abs{x}<1$, $n\in\reals$) \par
         
         \heading{Matrix transformations}
-        Reflection in the line $y=\pm x$: $\begin{pmatrix}
-            0 & \pm 1 \\
-            \pm 1 & 0
-       \end{pmatrix}$ \par
+        Reflection in the line $y=\pm x$: $\begin{pmatrix} 0 & \pm 1 \\ \pm 1 & 0 \end{pmatrix}$ \par
        Anticlockwise rotation through $\theta$ about $O$:
-       $\begin{pmatrix}
-       \cos\theta & -\sin\theta \\
-       \sin\theta & \cos\theta
-       \end{pmatrix}$ \par
+       $\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$ \par
+       Rotations through $\theta$ about the coordinate axes. The direction of positive rotation is taken to be anticlockwise when looking towards the origin from the positive side of the axis of rotation.
+       \begin{align*}
+           R_x&=\begin{bmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta \end{bmatrix} \\
+           R_y&=\begin{bmatrix} \cos\theta & 0 & \sin\theta \\ 0 & 1 & 0 \\ -\sin\theta & 0 & \cos\theta \end{bmatrix} \\
+           R_x&=\begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 £\end{bmatrix}
+       \end{align*}
     \end{flushleft}
     \loadgeometry{main}
 }
