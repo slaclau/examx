@@ -460,14 +460,40 @@
         
         \heading{Matrix transformations}
         Reflection in the line $y=\pm x$: $\begin{pmatrix} 0 & \pm 1 \\ \pm 1 & 0 \end{pmatrix}$ \par
-       Anticlockwise rotation through $\theta$ about $O$:
-       $\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$ \par
-       Rotations through $\theta$ about the coordinate axes. The direction of positive rotation is taken to be anticlockwise when looking towards the origin from the positive side of the axis of rotation.
-       \begin{flalign*}
-           R_x&=\begin{bmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta \end{bmatrix} &\\
-           R_y&=\begin{bmatrix} \cos\theta & 0 & \sin\theta \\ 0 & 1 & 0 \\ -\sin\theta & 0 & \cos\theta \end{bmatrix} &\\
-           R_x&=\begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix} &
-       \end{flalign*}
+        Anticlockwise rotation through $\theta$ about $O$:
+        $\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$ \par
+        Rotations through $\theta$ about the coordinate axes. The direction of positive rotation is taken to be anticlockwise when looking towards the origin from the positive side of the axis of rotation.
+        \begin{flalign*}
+            R_x&=\begin{bmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta \end{bmatrix} &\\
+            R_y&=\begin{bmatrix} \cos\theta & 0 & \sin\theta \\ 0 & 1 & 0 \\ -\sin\theta & 0 & \cos\theta \end{bmatrix} &\\
+            R_x&=\begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix} &
+        \end{flalign*}
+    
+        \heading{Differentiation}
+        \begin{tabular}{|p{2.56 in}|p{2.56 in}|}
+            \multicolumn{1}{l}{$f(x)$} & \multicolumn{1}{l}{$f'(x)$} \\ 
+            \hline
+            $\tan kx$ & $k\sec^2 kx$ \\ \hline
+            $\sec x$ & $\sec x \tan x$ \\ \hline
+            $\cot x$ & $-\csc^2 x$ \\ \hline
+            $\csc x$ & $-\csc x \cot x$ \\ \hline & \\
+            $\arcsin x$ or $\sin^{-1}x$ & $\dfrac{1}{\sqrt{1-x^2}}$ \\ & \\ \hline & \\
+            $\arccos x$ or $\cos^{-1}x$ & $-\dfrac{1}{\sqrt{1-x^2}}$ \\ & \\ \hline & \\
+            $\arctan x$ or $\tan^{-1}x$ & $\dfrac{1}{1+x^2}$ \\ & \\ \hline
+        \end{tabular}
+    
+        Quotient rule $y=\dfrac{u}{v}$, $\dydx=\dfrac{v\dudx-u\dvdx}{v^2}$ \par
+        
+        \heading{Differentiation from first principles}
+        $f'(x)=\lim_{h\to0}\dfrac{f(x+h)-f(x)}{h}$ \par
+        
+        \heading{Integration}
+        $\displaystyle\int\frac{f'(x)}{f(x)}\,\dx=\ln\abs{f(x)}+c$ \par
+        $\displaystyle\int 
+        f'(x)\left(f(x)\right)^n\,\dx=\dfrac{1}{n+1}\left(f(x)\right)^{n+1}+c$
+        \par
+        Integration by parts $\displaystyle\int u\dvdx\dx=uv-\int v\dudx\dx$ \par
+        The mean value of $f(x)$ on the interval $[a,b]$ is  $\displaystyle\frac{1}{b-a}\int_a^b f(x)\dx$ \par
     \end{flushleft}
     \loadgeometry{main}
 }
