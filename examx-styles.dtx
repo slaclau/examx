@@ -261,6 +261,8 @@
 \pointformat{\bfseries[\thepoints]}
 
 \renewcommand{\vec}[1]{{\bf#1}}
+\DeclareMathOperator{\varexpec}{E}
+\DeclareMathOperator{\varprob}{P}
 
 %    \end{macrocode}
 %
@@ -331,25 +333,25 @@
         The Newton-Raphson iteration for solving $f(x)=0$: 
         $x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}$ \par
         \heading{Probability}
-        $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ \par
-        $P(A\cap B)=P(A)P(B|A)=P(B)P(A|B)$ {\bfseries or} 
-        $P(A|B)=\dfrac{P(A\cap B)}{P(B)}$ \par
+        $\varprob(A\cup B)=\varprob(A)+\varprob(B)-\varprob(A\cap B)$ \par
+        $\varprob(A\cap B)=\varprob(A)\varprob(B|A)=\varprob(B)\varprob(A|B)$ {\bfseries or} 
+        $\varprob(A|B)=\dfrac{\varprob(A\cap B)}{\varprob(B)}$ \par
         \heading{Standard deviation}
         $\sqrt{\dfrac{\sum(x-\bar{x})^2}{n}}=\sqrt{\dfrac{\sum 
         x^2}{n}-\bar{x}^2}$ {\bfseries or} $\sqrt{\dfrac{\sum 
         f(x-\bar{x})^2}{\sum f}}=\sqrt{\dfrac{\sum fx^2}{\sum 
         f}-\bar{x}^2}$ \par
         \heading{The binomial distribution}
-        If $X{\sim}B(n,p)$ then $P(X=x)=\colvec{n \\ x}p^x(1-p)^{n-x}$, 
+        If $X{\sim}B(n,p)$ then $\varprob(X=x)=\colvec{n \\ x}p^x(1-p)^{n-x}$, 
         Mean of $X$ is $np$, Variance of $X$ is $np(1-p)$ \par
         \heading{Hypothesis test for the mean of a normal distribution}
-        If $X{\sim}N(\mu,\sigma^2)$ then 
-        $\bar{X}{\sim}N\left(\mu,\dfrac{\sigma^2}{n}\right)$ and 
-        $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)$ \par
+        If $X{\sim}\mathrm{N}(\mu,\sigma^2)$ then 
+        $\bar{X}{\sim}\mathrm{N}\left(\mu,\dfrac{\sigma^2}{n}\right)$ and 
+        $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim \mathrm{N}(0,1)$ \par
         \heading{Percentage points of the normal distribution}
         If $Z$ has a normal distribution with mean $0$ and variance $1$ 
         then, for each value of $p$, the table gives the value of $z$
-        such that $P(Z\leq z)=p$. \par
+        such that $\varprob(Z\leq z)=p$. \par
         \begin{center}
             \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
                 \hline
@@ -384,7 +386,6 @@
 \newcommand{\heading}[1]{\preheading {\bfseries #1} \par \postheading}
 \newcommand{\topheading}[1]{{\large\bfseries #1} \par}
 \newcommand{\mechformulae}{
-    \loadgeometry{formulaesheet}
     \begin{flushleft}
         \setlength{\parskip}{0.15 in}
         \topheading{Mechanics}
@@ -426,11 +427,9 @@
         Solid cone or pyramid of height $h$: $\frac{1}{4} h$ above the base on the line from centre of base to vertex \par
         Conical shell of height $h$: $\frac{1}{3} h$ above the base on the line from centre of base to vertex \par
     \end{flushleft}
-    \loadgeometry{main}
 }
 
 \newcommand{\pureformulae}{
-    \loadgeometry{formulaesheet}
     \begin{flushleft}
         \setlength{\parskip}{0.07 in}
         \topheading{Pure Mathematics}
@@ -450,7 +449,7 @@
         $\displaystyle\sum_{r=1}^n r^2=\frac{1}{6}n(n+1)(2n+1)$, $\displaystyle\sum_{r=1}^n r^3=\frac{1}{4}n^2(n+1)^2$ \par
         \heading{Maclaurin series}
         $f(x)=f(0)+f'(0)x+\dfrac{f''(0)}{2!}x^2+\dots+\dfrac{f^{(r)}(0)}{r!}x^r+\dots$ \par
-        $e^x=\exp(x)=1+x+\dfrac{x^2}{2!}+\dots+\dfrac{x^r}{r!}+\dots$ for all $x$ \par
+        $\e^x=\exp(x)=1+x+\dfrac{x^2}{2!}+\dots+\dfrac{x^r}{r!}+\dots$ for all $x$ \par
         $\ln(1+x)=x=\dfrac{x^2}{2}+\dfrac{x^3}{3}-\dots+(-1)^{r+1} \dfrac{x^r}{r}+\dots$ ($-1<x<1$) \par
         $\sin x =x-\dfrac{x^2}{3!}+\dfrac{x^5}{5!}-\dots+(-1)^r \dfrac{x^{2r+1}}{(2r+1)!}+\dots$ for all $x$ \par
         $\cos x =1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}-\dots+(-1)^r\dfrac{x^{2r}}{2r!}+\dots$ for all $x$ \par
@@ -548,14 +547,86 @@
         $x=A\cos\omega t+B\sin\omega t$ \par
         $x=R\sin(\omega t+\phi)$ \par
     \end{flushleft}
-    \loadgeometry{main}
 }
 \newcommand{\statsformulae}{
     \begin{flushleft}
-        \setlength{\parskip}{0.15 in}
+        \setlength{\parskip}{0.07 in}
         \topheading{Statistics}
         \heading{Probability}
-        $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ \par
+        $\varprob(A\cup B)=\varprob(A)+\varprob(B)-\varprob(A\cap B)$ \par
+        $\varprob(A\cap B)=\varprob(A)\varprob(B|A)=\varprob(B)\varprob(A|B)$ \textbf{or} $\varprob(A|B)=\dfrac{\varprob(A\cap B)}{\varprob(B)}$ \par
+        
+        \heading{Standard deviation}
+        $\sqrt{\dfrac{\sum(x-\bar{x})^2}{n}}=\sqrt{\dfrac{\sum %
+                x^2}{n}-\bar{x}^2}$ \textbf{or} $\sqrt{\dfrac{\sum %
+                f(x-\bar{x})^2}{\sum f}}=\sqrt{\dfrac{\sum fx^2}{\sum %
+                f}-\bar{x}^2}$ \par
+            
+        \heading{Sampling distributions}
+        For any variable $X$, $\varexpec(\bar{X})=\mu$, $\var(\bar{X})=\dfrac{\sigma^2}{n}$ and $X$ is approximately normally distributed when $n$ is large enough (approximately $n>25$) \par
+        If $X{\sim}\mathrm{N}(\mu,\sigma^2)$ then $\bar{X}{\sim}\mathrm{N}(\mu,\dfrac{\sigma^2}{n})$ and $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}{\sim}\mathrm{N}(0,1)$ \par
+        Unbiased estimates of the population mean and variance are given by $\frac{\Sigma x}{n}$ and $\frac{n}{n-1}\left(\frac{\Sigma x^2}{n}-\left(\frac{\Sigma x}{n}\right)^2\right)$ \par
+        
+        \heading{Expectation algebra}
+        Use the following results, including the cases where $a=b=\pm1$ and/or $c=0$:
+        \begin{enumerate}
+            \item $\varexpec(aX+bY+c)=a\varexpec(X)+b\varexpec(Y)+c$
+            \item if $X$ and $Y$ are independent then $\var(aX+bY+c)=a^2\var(X)+b^2\var(Y)$
+        \end{enumerate} \par
+    
+        \heading{Discrete distribution}
+        $X$ is a random variable taking values $x_i$ in a discrete distribution with $\varprob(X=x_i)=p_i$ \par
+        Expectation: $\varexpec(X)=\sum x_i pi_i$ \par
+        Variance: $\sigma^2=\var(X)=\sum(x_i-\mu)^2p_i=\sum x_i^2p_i-\mu^2$ \par
+        {\renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            & $\varprob(X=x)$ & $\varexpec(X)$ & $\var(X)$ \\ \hline
+            Binomial $\mathrm{B}(N,p)$ & ${\renewcommand{\arraystretch}{1}\begin{pmatrix} n \\ x \end{pmatrix}} p^x(1-p)^{n-x}$ & $np$ & $np(1-p)$ \\ \hline
+            Uniform distribution over $1,2,\dots,n$ $\mathrm{U}(n)$ & $\dfrac{1}{n}$ & $\dfrac{n+1}{2}$ & $\dfrac{1}{12}(n^2-1)$ \\ \hline
+            Geometric distribution $\mathrm{Geo}(p)$ & $(1-p)^{x-1}p$ & $\dfrac{1}{p}$ & $\dfrac{1-p}{p^2}$ \\ \hline
+            Poisson distribution $\mathrm{Po}(\lambda)$ & $\e^{-\lambda x}\dfrac{\lambda^x}{x!}$ & $\lambda$ & $\lambda$ \\ \hline
+        \end{tabular}}
+        
+        \heading{Continuous distribution}
+        $X$ is a random variable with probability density function (p.d.f) $f(x)$ \par
+        Expectation: $\varexpec(X)=\int xf(x) \dx$ \par
+        Variance: $\sigma^2=\var(X)=\int (x-\mu)^2 f(x) \dx=\int x^2 f(x) \dx-\mu^2$ \par
+        Cumulative distribution function $F(x)=\varprob(X\leq x)=\int_{-\infty}^x f(t)\dt$ \par
+        
+        {\renewcommand{\arraystretch}{2}
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                & $\varprob(X=x)$ & $\varexpec(X)$ & $\var(X)$ \\ \hline
+                Continuous uniform distribution over $[a,b]$ & $\dfrac{1}{b-a}$ & $\dfrac{1}{2}(a+b)$ & $\dfrac{1}{12}(b-a)^2$ \\ \hline
+                Exponential & $\lambda \e^{-\lambda x}$ & $\dfrac{1}{\lambda}$ & $\dfrac{1}{\lambda^2}$ \\ \hline
+                Normal $\mathrm{N}(\mu,\sigma^2)$ & $\dfrac{1}{\sigma\sqrt{2\pi}}\e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$ & $\mu$ & $\sigma^2$ \\ \hline
+        \end{tabular}}
+        
+        \heading{Percentage points of the normal distribution}
+        If $Z$ has a normal distribution with mean $0$ and variance $1$ 
+        then, for each value of $p$, the table gives the value of $z$
+        such that $\varprob(Z\leq z)=p$. \par
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                $p$ & 0.75  & 0.90  & 0.95  & 0.975 & 0.99  & 0.995 & 
+                0.9975 & 0.999 & 0.9995 \\ \hline
+                $z$ & 0.674 & 1.282 & 1.645 & 1.960 & 2.326 & 2.576 & 
+                2.807 & 3.090 & 3.291 \\ \hline
+            \end{tabular}
+        \end{center}
+    
+        \heading{Non--parametric tests}
+        Goodness-of-fit test and contingency tables: $\sum \dfrac{(O_i-E_i)^2}{E_i}\sim\chi_\nu^2$
+        Approximate distributions for large samples \par
+        \quad Wilcoxon Signed Rank test: $T\sim\mathrm{N}\left(\frac{1}{4}n(n+1), \frac{1}{24}n(n+1)(2n+1)\right)$ \par
+        \quad Wilcoxon Rank Sum test (samples of sizes $m$ and $n$, with $m\leq n$): $W\sim\mathrm{N}\left(\frac{1}{2}m(m+n+1), \frac{1}{12}mn(m+n+1)\right)$ \par
+        
+        \heading{Correlation and regression}
+        For a sample of $n$ pairs of observations $(x_i,y_i)$ \par
+              
+        
     \end{flushleft}
 }
 \newcommand{\mechformulaesheet}{
@@ -577,6 +648,7 @@
     \loadgeometry{formulaesheet}
     \pureformulae
     \statsformulae
+    \clearpage
     \mechformulae
     \loadgeometry{main}
 }
