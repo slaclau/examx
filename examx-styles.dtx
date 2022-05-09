@@ -276,7 +276,6 @@
     \loadgeometry{formulaesheet}
     \def\preheading{\vspace{0.25 in}}
     \def\postheading{\vspace{0.08 in}}
-    \newcommand{\heading}[1]{\preheading {\bfseries ##1} \par \postheading}
     \begin{center}
         {\bfseries Formulae \par A Level Mathematics A (H240)}
     \end{center}
@@ -389,7 +388,7 @@
     \loadgeometry{formulaesheet}
     \begin{flushleft}
         \setlength{\parskip}{0.15 in}
-        \topheading{Mechanics Formulae}
+        \topheading{Mechanics}
         \heading{Kinematics}
         {\setlength\tabcolsep{0 pt}
             \begin{tabular}{p{3 in} p{3 in}}                
@@ -434,8 +433,8 @@
 \newcommand{\pureformulae}{
     \loadgeometry{formulaesheet}
     \begin{flushleft}
-        \setlength{\parskip}{0.10 in}
-        \topheading{Pure Formulae}
+        \setlength{\parskip}{0.1 in}
+        \topheading{Pure Mathematics}
         
         \heading{Arithmetic series}
         $S_n=\frac{1}{2}n(a+l)=\frac{1}{2}n\{2a+(n-1)d\}$ \par
@@ -470,17 +469,18 @@
         \end{flalign*}
     
         \heading{Differentiation}
-        \begin{tabular}{|p{2.56 in}|p{2.56 in}|}
-            \multicolumn{1}{l}{$f(x)$} & \multicolumn{1}{l}{$f'(x)$} \\ 
+        \newcolumntype{Y}{>{\centering\arraybackslash}X}
+        \begin{tabularx}{\textwidth}{|Y|Y|}
+            \multicolumn{1}{c}{$f(x)$} & \multicolumn{1}{c}{$f'(x)$} \\ 
             \hline
             $\tan kx$ & $k\sec^2 kx$ \\ \hline
             $\sec x$ & $\sec x \tan x$ \\ \hline
             $\cot x$ & $-\csc^2 x$ \\ \hline
-            $\csc x$ & $-\csc x \cot x$ \\ \hline
-            $\arcsin x$ or $\sin^{-1}x$ & $\frac{1}{\sqrt{1-x^2}}$ \\ \hline
-            $\arccos x$ or $\cos^{-1}x$ & $-\frac{1}{\sqrt{1-x^2}}$ \\ \hline
-            $\arctan x$ or $\tan^{-1}x$ & $\frac{1}{1+x^2}$ \\ \hline
-        \end{tabular}
+            $\csc x$ & $-\csc x \cot x$ \\ \hline & \\[-0.2cm]
+            $\arcsin x$ or $\sin^{-1}x$ & $\dfrac{1}{\sqrt{1-x^2}}$ \\[0.5cm] \hline & \\[-0.2cm]
+            $\arccos x$ or $\cos^{-1}x$ & $-\dfrac{1}{\sqrt{1-x^2}}$ \\[0.5cm] \hline & \\[-0.2cm]
+            $\arctan x$ or $\tan^{-1}x$ & $\dfrac{1}{1+x^2}$ \\[0.5cm] \hline
+        \end{tabularx} \par
     
         Quotient rule $y=\dfrac{u}{v}$, $\dydx=\dfrac{v\dudx-u\dvdx}{v^2}$ \par
         
@@ -493,7 +493,25 @@
         f'(x)\left(f(x)\right)^n\,\dx=\dfrac{1}{n+1}\left(f(x)\right)^{n+1}+c$
         \par
         Integration by parts $\displaystyle\int u\dvdx\dx=uv-\int v\dudx\dx$ \par
+        \vspace{0.1 in}
         The mean value of $f(x)$ on the interval $[a,b]$ is  $\displaystyle\frac{1}{b-a}\int_a^b f(x)\dx$ \par
+        Area of sector enclosed by polar curve is $\displaystyle\frac{1}{2}\int r^2 \dd\theta$ \par
+        
+            \begin{tabular}{|c|c|}
+                \multicolumn{1}{c}{$f(x)$} & \multicolumn{1}{c}{$\int f(x)\dx$} \\ \hline & \\[-0.2cm]
+                $\dfrac{1}{\sqrt{a^2-x^2}}$ & $\sin^{-1}\left(\dfrac{x}{a}\right)$\quad$(\abs{x}<a)$ \\[0.5cm] \hline & \\[-0.2cm]
+                $\dfrac{1}{a^2+x^2}$ & $\frac{1}{a}\tan^{-1}\left(\dfrac{x}{a}\right)$ \\[0.5cm] \hline & \\[-0.2cm]
+                $\dfrac{1}{\sqrt{a^2+x^2}}$ & $\sinh^{-1}\left(\dfrac{x}{a}\right)$ or $\ln(x+\sqrt{x^2+a^2})$ \\[0.5cm] \hline & \\[-0.2cm]
+                $\dfrac{1}{\sqrt{x^2-a^2}}$ & $\cosh^{-1}\left(\dfrac{x}{a}\right)$ or $\ln(x+\sqrt{x^2-a^2})$ \\[0.5cm] \hline
+        \end{tabular} \par
+    
+        \heading{Numerical methods}
+        Trapezium rule: $\int_a^b y\,\dx\approx 
+        h\{(y_0+y_n)+2(y_1+y_2+\ldots+y_{n-1})\}$, where 
+        $h=\dfrac{b-a}{n}$ \par
+        The Newton-Raphson iteration for solving $f(x)=0$: 
+        $x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}$ \par
+        
     \end{flushleft}
     \loadgeometry{main}
 }
