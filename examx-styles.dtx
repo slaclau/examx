@@ -592,8 +592,13 @@
             Geometric distribution $\mathrm{Geo}(p)$ & $(1-p)^{x-1}p$ & $\dfrac{1}{p}$ & $\dfrac{1-p}{p^2}$ \\ \hline
             Poisson distribution $\mathrm{Po}(\lambda)$ & $\e^{-\lambda x}\dfrac{\lambda^x}{x!}$ & $\lambda$ & $\lambda$ \\ \hline
         \end{tabular}}
+    
+        \pagebreak[2]
         
         \heading{Continuous distribution}
+        
+        \nopagebreak
+        
         $X$ is a random variable with probability density function (p.d.f) $f(x)$ \par
         Expectation: $\varexpec(X)=\int xf(x) \dx$ \par
         Variance: $\sigma^2=\var(X)=\int (x-\mu)^2 f(x) \dx=\int x^2 f(x) \dx-\mu^2$ \par
@@ -1124,9 +1129,9 @@
     \ifincludepure\pureformulae\fi
     \ifincludestats\statsformulae\fi
     \ifincludetables
-    \criticalvalues
-    \chisquared
-    \wilcoxon
+        \criticalvalues
+        \chisquared
+        \wilcoxon
     \fi
     \ifincludemech\mechformulae\fi
     \ifincludediscrete\discreteformulae\fi
