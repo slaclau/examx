@@ -625,10 +625,71 @@
         
         \heading{Correlation and regression}
         For a sample of $n$ pairs of observations $(x_i,y_i)$ \par
-              
+        \begin{flalign*}
+            S_{xx}&=\sum(x_i-\bar{x})^2=\sum x_i^2-\frac{\left(\sum x_i\right)^2}{n}\text{, }
+            S_{yy}=\sum(y_i-\bar{y})^2=\sum y_i^2-\frac{\left(\sum y_i\right)^2}{n} & \\
+            S_xy&=\sum(x_i-\bar{x})(y_i-\bar{y})=\sum x_iy_i-\frac{\sum x_i\sum y_i}{n} &
+        \end{flalign*}
+        Product moment correlation coefficient: $\displaystyle r=\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}=\frac{\sum x_iy_i-\frac{\sum x_i\sum y_i}{n}}{\sqrt{\left[\left(\sum x_i^2-\displaystyle\frac{\left(\sum x_i\right)^2}{n}\right)\left(\sum y_i^2-\frac{\left(\sum y_i\right)^2}{n}\right)\right]}}$ \par
+        The regression coefficient of $y$ on $x$ is $\displaystyle b=\frac{S_{xy}}{S_{xx}}=\frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2}$ \par
+        Least squares regression of $y$ on $x$ is $y=a+bx$ where $a=\bar{y}-b\bar{x}$ \par
+        Spearman's rank correlation coefficient: $\displaystyle r_s=1-\frac{6\sum d_i^2}{n(n^2-1)}$ \par
         
+               
     \end{flushleft}
 }
+\newcommand{\criticalvalues}{
+    \clearpage
+    Test
+    \clearpage
+}
+
+\newcommand{\chisquared}{
+    Test
+    \clearpage
+}
+
+\newcommand{\wilcoxon}{
+    \clearpage
+    \begin{flushleft}
+        \setlength{\parskip}{0.07 in}
+        {\centering \heading{Wilcoxon signed rank test}}
+        $W_+$ is the sum of the ranks corresponding to the positive differences,\par
+        $W_-$ is the sum of the ranks corresponding to the negative differences, \par
+        $T$ is the smaller of $W_+$ and $W_-$. \par
+        For each value of $n$ the table gives the largest value of $T$ which will lead to rejection of the null hypothesis at the 
+        level of significance indicated. \par
+        {\centering \heading{Critical values of $T$}}
+        \begin{table}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            & \multicolumn{4}{c}{Level of significance} \\ \hline
+            One Tail & 0.05  & 0.025 & 0.01  & 0.005 \\
+            Two Tail & 0.1   & 0.05  & 0.02  & 0.01 \\ \hline
+            $n=6$ & 2     & 0     &       &  \\
+            7     & 3     & 2     & 0     &  \\
+            8     & 5     & 3     & 1     & 0 \\
+            9     & 8     & 5     & 3     & 1 \\
+            10    & 10    & 8     & 5     & 3 \\
+            11    & 13    & 10    & 7     & 5 \\
+            12    & 17    & 13    & 9     & 7 \\
+            13    & 21    & 17    & 12    & 9 \\
+            14    & 25    & 21    & 15    & 12 \\
+            15    & 30    & 25    & 19    & 15 \\
+            16    & 35    & 29    & 23    & 19 \\
+            17    & 41    & 34    & 27    & 23 \\
+            18    & 47    & 40    & 32    & 27 \\
+            19    & 53    & 46    & 37    & 32 \\
+            20    & 60    & 52    & 43    & 37 \\
+        \end{tabular}
+        \end{table}
+        \clearpage
+        {\centering \heading{Wilcoxon rank sum test}}
+        {\centering \heading{Critical values of $W$}}
+    \end{flushleft}
+    \clearpage
+}
+
 \newcommand{\mechformulaesheet}{
     \loadgeometry{formulaesheet}
     \mechformulae
@@ -644,11 +705,22 @@
     \statsformulae
     \loadgeometry{main}
 }
+\newcommand{\formulaebookcover}{
+    \thispagestyle{empty}
+    \begin{center}
+        \Huge \bfseries Formulae book
+    \end{center}
+    \clearpage
+}
 \newcommand{\formulaebook}{
+    \setcounter{page}{1}
+    \formulaebookcover
     \loadgeometry{formulaesheet}
     \pureformulae
     \statsformulae
-    \clearpage
+    \criticalvalues
+    \chisquared
+    \wilcoxon
     \mechformulae
     \loadgeometry{main}
 }
@@ -961,7 +1033,7 @@
 \savegeometry{cover}
 \loadgeometry{main}
 %    \end{macrocode}
-%\begin{macro}{\examcover}
+%\begin{macro}{\exam}
 %   We renew the |\examcover| macro in a style similar to an OCR 
 %paper.
 %    \begin{macrocode}
