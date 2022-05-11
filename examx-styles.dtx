@@ -392,8 +392,11 @@
 \newcommand{\mechformulae}{
     \begin{flushleft}
         \setlength{\parskip}{0.15 in}
+        \penalty-20000
         \topheading{Mechanics}
+        \nopagebreak
         \heading{Kinematics}
+        \nopagebreak
         {\setlength\tabcolsep{0 pt}
             \begin{tabular}{p{3 in} p{3 in}}                
                 Motion in a straight line & Motion in two dimensions \\
@@ -593,10 +596,8 @@
             Poisson distribution $\mathrm{Po}(\lambda)$ & $\e^{-\lambda x}\dfrac{\lambda^x}{x!}$ & $\lambda$ & $\lambda$ \\ \hline
         \end{tabular}}
     
-        \pagebreak[2]
-        
+        \penalty-1000     
         \heading{Continuous distribution}
-        
         \nopagebreak
         
         $X$ is a random variable with probability density function (p.d.f) $f(x)$ \par
