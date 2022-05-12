@@ -37,7 +37,7 @@
 %<!driver> standard latex class option file]
 %<*driver>
 ]
-\documentclass{ltxdoc}
+\documentclass[draft]{ltxdoc}
 %    \end{macrocode}
 %    Some things do not need indexing.
 %    \begin{macrocode}
@@ -112,7 +112,7 @@
 %Finally, 
 %there is the driver guard:
 % \begin{center}
-    % \begin{tabular}{ll}
+    % \begin{tabular}{p{0.3\textwidth}p{0.6\textwidth}}
         %   default             & produce the style used by default \\
         %   OCRALevel           & imitates the style of an OCR A Level 
         %paper \\
@@ -144,8 +144,8 @@
 \renewcommand{\questionpaperend}{
     \footer{}{}{}
     \begin{center}
-        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries END OF 
-            QUESTION PAPER} \fi
+        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries
+            END OF QUESTION PAPER} \fi
         \oddeven{\newpage {\bfseries This page is intentionally 
                 blank}}{}
         \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
@@ -206,7 +206,7 @@
 \@alwaysdroppointsatright
 \soln
 
-\sisetup{inter-unit-product = \,} %Configures siunitx to use a space between units
+\sisetup{inter-unit-product = \,}
 
 \setmainfont[Ligatures=TeX]{TeX Gyre Termes}
 \setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Termes Math}
@@ -228,8 +228,8 @@
 \renewcommand{\questionpaperend}{
     \footer{}{}{}
     \begin{center}
-        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries END OF 
-        QUESTION PAPER} \fi
+        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries
+            END OF QUESTION PAPER} \fi
         \oddeven{\newpage {\bfseries This page is intentionally 
         blank}}{}
         \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
@@ -311,47 +311,63 @@
         \vspace{.1 in}
         Quotient rule $y=\dfrac{u}{v}$, 
         $\dydx=\dfrac{v\dudx-u\dvdx}{v^2}$ \par
+        
         \heading{Differentiation from first principles}
         $f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$ \par
+        
         \heading{Integration}
         $\displaystyle\int\frac{f'(x)}{f(x)}\,\dx=\ln\abs{f(x)}+c$ \par
-        $\displaystyle\int 
-        f'(x)(f(x))^n\,\dx=\dfrac{1}{n+1}(f(x))^{n+1}+c$ \par
-        Integration by parts $\displaystyle\int u\dvdx\,\dx=uv-\int 
-        v\dudx\,\dx$ \par
+        $\displaystyle\int f'(x)(f(x))^n\,\dx=
+            \dfrac{1}{n+1}(f(x))^{n+1}+c$ \par
+        Integration by parts $\displaystyle\int u\dvdx\,\dx=
+            uv-\int v\dudx\,\dx$ \par
+        
         \heading{Small angle approximations}
         $\sin\theta\approx\theta$, $\cos\theta=1-\frac{1}{2}\theta^2$, 
         $\tan\theta=\theta$ where $\theta$ is measured in radians
         \newpage
         \heading{Trigonometric identities}
+        
         $\sin(A\pm B)=\sin A\cos B\pm \cos A\sin B$ 
         $\phantom{\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}}$ \par
         $\cos(A\pm B)=\cos A\cos B\mp \sin A\sin B$ 
         $\phantom{\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}}$ \par
         $\tan(A\pm B)=\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}$ \quad 
         $\left(A\pm B\neq (k+\frac{1}{2}\pi)\right)$ \par
+        
         \heading{Numerical methods}
         Trapezium rule: $\int_a^b y\,\dx\approx 
         h\{(y_0+y_n)+2(y_1+y_2+\ldots+y_{n-1})\}$, where 
         $h=\dfrac{b-a}{n}$ \par
         The Newton-Raphson iteration for solving $f(x)=0$: 
         $x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}$ \par
+        
         \heading{Probability}
-        $\varprob(A\cup B)=\varprob(A)+\varprob(B)-\varprob(A\cap B)$ \par
-        $\varprob(A\cap B)=\varprob(A)\varprob(B|A)=\varprob(B)\varprob(A|B)$ {\bfseries or} 
+        $\varprob(A\cup B)=\varprob(A)+\varprob(B)-\varprob(A\cap B)$
+            \par
+        $\varprob(A\cap B)
+            =\varprob(A)\varprob(B|A)=\varprob(B)\varprob(A|B)$
+            {\bfseries or} 
         $\varprob(A|B)=\dfrac{\varprob(A\cap B)}{\varprob(B)}$ \par
+        
         \heading{Standard deviation}
         $\sqrt{\dfrac{\sum(x-\bar{x})^2}{n}}=\sqrt{\dfrac{\sum 
         x^2}{n}-\bar{x}^2}$ {\bfseries or} $\sqrt{\dfrac{\sum 
         f(x-\bar{x})^2}{\sum f}}=\sqrt{\dfrac{\sum fx^2}{\sum 
         f}-\bar{x}^2}$ \par
+    
         \heading{The binomial distribution}
-        If $X{\sim}B(n,p)$ then $\varprob(X=x)=\colvec{n \\ x}p^x(1-p)^{n-x}$, 
+        If $X{\sim}B(n,p)$ then $\varprob(X=x)=
+            \colvec{n \\ x}p^x(1-p)^{n-x}$,
+        
         Mean of $X$ is $np$, Variance of $X$ is $np(1-p)$ \par
+        
         \heading{Hypothesis test for the mean of a normal distribution}
-        If $X{\sim}\mathrm{N}(\mu,\sigma^2)$ then 
-        $\bar{X}{\sim}\mathrm{N}\left(\mu,\dfrac{\sigma^2}{n}\right)$ and 
-        $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim \mathrm{N}(0,1)$ \par
+        If $X{\sim}\mathrm{N}(\mu,\sigma^2)$ then
+        $\bar{X}{\sim}\mathrm{N}\left(\mu,\dfrac{\sigma^2}{n}\right)$
+        and $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim \mathrm{N}(0,1)$
+            \par
+            
         \heading{Percentage points of the normal distribution}
         If $Z$ has a normal distribution with mean $0$ and variance $1$ 
         then, for each value of $p$, the table gives the value of $z$
@@ -371,15 +387,14 @@
             \begin{tabular}{p{3 in} p{3 in}}
                 
                 Motion in a straight line & Motion in two dimensions \\
-                $v=u+at$                  & $\vec{v}=\vec{u}+\vec{a}t$ 
-                \\
+                $v=u+at$                  & $\vec{v}=\vec{u}+\vec{a}t$\\
                 $s=ut+\frac{1}{2}at^2$    & 
-                $\vec{s}=\vec{u}+\frac{1}{2}\vec{a}t^2$ \\
+                    $\vec{s}=\vec{u}+\frac{1}{2}\vec{a}t^2$ \\
                 $s=\frac{1}{2}(u+v)t$     & 
-                $\vec{s}=\frac{1}{2}(\vec{u}+\vec{v})$ \\
+                    $\vec{s}=\frac{1}{2}(\vec{u}+\vec{v})$ \\
                 $v^2=u^2+2as$             & \\
                 $s=vt-\frac{1}{2}at^2$    & 
-                $\vec{s}=\vec{v}-\frac{1}{2}\vec{a}t^2$
+                    $\vec{s}=\vec{v}-\frac{1}{2}\vec{a}t^2$
         \end{tabular}}
     \end{flushleft}
     \newpage
@@ -405,15 +420,17 @@
                 \\
                 & \\
                 $s=ut+\frac{1}{2}at^2$    & 
-                $\vec{s}=\vec{u}+\frac{1}{2}\vec{a}t^2$ \\
+                    $\vec{s}=\vec{u}+\frac{1}{2}\vec{a}t^2$ \\
                 & \\
                 $s=\frac{1}{2}(u+v)t$     & 
-                $\vec{s}=\frac{1}{2}(\vec{u}+\vec{v})$ \\
+                    $\vec{s}=\frac{1}{2}(\vec{u}+\vec{v})$ \\
                 & \\
-                $v^2=u^2+2as$             & $\vec{v}\cdot\vec{v}=\vec{u}\cdot\vec{u}+2\vec{a}\cdot\vec{s}$ \\
+                $v^2=u^2+2as$             &
+                    $\vec{v}\cdot\vec{v}=
+                        \vec{u}\cdot\vec{u}+2\vec{a}\cdot\vec{s}$ \\
                 & \\
                 $s=vt-\frac{1}{2}at^2$    & 
-                $\vec{s}=\vec{v}-\frac{1}{2}\vec{a}t^2$
+                    $\vec{s}=\vec{v}-\frac{1}{2}\vec{a}t^2$
         \end{tabular}}
     
         \heading{Newton's experimental law}
@@ -422,17 +439,25 @@
         
         \heading{Motion in a circle}
         Tangential velocity is $v=r\dot{\theta}$ \par
-        Radial acceleration is $\frac{v^2}{r}$ or $r\dot{\theta}^2$ towards the centre \par
+        Radial acceleration is $\frac{v^2}{r}$ or $r\dot{\theta}^2$
+            towards the centre \par
         Tangential acceleration is $\dot{v}=r\ddot{\theta}$ \par
         
         \heading{Centres of mass}
         Triangular lamina: $\frac{3}{2}$ along median from vertex \par
         Solid hemisphere, radius $r$: $\frac{3}{8} r$ from centre \par
-        Hemispherical shell, radius $r$: $\frac{1}{2} r$ from centre \par
-        Circular arc, radius $r$, angle at centre $2\alpha$: $\frac{r\sin\alpha}{\alpha}$ from centre \par
-        Sector of circle, radius $r$, angle at centre $2\alpha$: $\frac{2r\sin\alpha}{3\alpha}$ from centre \par
-        Solid cone or pyramid of height $h$: $\frac{1}{4} h$ above the base on the line from centre of base to vertex \par
-        Conical shell of height $h$: $\frac{1}{3} h$ above the base on the line from centre of base to vertex \par
+        Hemispherical shell, radius $r$:
+            $\frac{1}{2} r$ from centre \par
+        Circular arc, radius $r$, angle at centre $2\alpha$:
+            $\frac{r\sin\alpha}{\alpha}$ from centre \par
+        Sector of circle, radius $r$, angle at centre $2\alpha$:
+            $\frac{2r\sin\alpha}{3\alpha}$ from centre \par
+        Solid cone or pyramid of height $h$:
+            $\frac{1}{4} h$ above the base on the line from centre of
+            base to vertex \par
+        Conical shell of height $h$:
+            $\frac{1}{3} h$ above the base on the line from centre of
+            base to vertex \par
     \end{flushleft}
 	\clearpage
 }
@@ -444,34 +469,61 @@
         
         \heading{Arithmetic series}
         $S_n=\frac{1}{2}n(a+l)=\frac{1}{2}n\{2a+(n-1)d\}$ \par
+        
         \heading{Geometric series}
         $S_n=\dfrac{a(1-r^n)}{1-r}$ \par
         $S_\infty=\dfrac{a}{1-r}$ for $\abs{r}<1$ \par
+        
         \heading{Binomial series}
-        $(a+b)^n=a^n+\prescript{n}{}{C_1}a^{n-1}b+\prescript{n}{}{C_2}a^{n-2}b^2+\ldots+\prescript{n}{}{C_r}a^{n-r}b^r+\ldots+b^n$
-        \quad ($n\in\nats$), where 
-        $\prescript{n}{}{C_r}=\colvec{n\\r}=\dfrac{n!}{r!(n-r)!}$ \par
-        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2}x^2+\ldots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\ldots$
-        \quad ($\abs{x}<1$, $n\in\reals$) \par
+        $(a+b)^n=a^n+\prescript{n}{}{C_1}a^{n-1}b+
+            \prescript{n}{}{C_2}a^{n-2}b^2+\ldots+
+            \prescript{n}{}{C_r}a^{n-r}b^r+\ldots+b^n$
+            \quad ($n\in\nats$), where
+            $\prescript{n}{}{C_r}=
+                \colvec{n\\r}=\dfrac{n!}{r!(n-r)!}$ \par
+        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2}x^2+\ldots+
+            \dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\ldots$
+            \quad ($\abs{x}<1$, $n\in\reals$) \par
+            
         \heading{Series}
-        $\displaystyle\sum_{r=1}^n r^2=\frac{1}{6}n(n+1)(2n+1)$, $\displaystyle\sum_{r=1}^n r^3=\frac{1}{4}n^2(n+1)^2$ \par
+        $\displaystyle\sum_{r=1}^n r^2=\frac{1}{6}n(n+1)(2n+1)$,
+        $\displaystyle\sum_{r=1}^n r^3=\frac{1}{4}n^2(n+1)^2$ \par
+        
         \heading{Maclaurin series}
-        $f(x)=f(0)+f'(0)x+\dfrac{f''(0)}{2!}x^2+\dots+\dfrac{f^{(r)}(0)}{r!}x^r+\dots$ \par
-        $\e^x=\exp(x)=1+x+\dfrac{x^2}{2!}+\dots+\dfrac{x^r}{r!}+\dots$ for all $x$ \par
-        $\ln(1+x)=x=\dfrac{x^2}{2}+\dfrac{x^3}{3}-\dots+(-1)^{r+1} \dfrac{x^r}{r}+\dots$ ($-1<x<1$) \par
-        $\sin x =x-\dfrac{x^2}{3!}+\dfrac{x^5}{5!}-\dots+(-1)^r \dfrac{x^{2r+1}}{(2r+1)!}+\dots$ for all $x$ \par
-        $\cos x =1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}-\dots+(-1)^r\dfrac{x^{2r}}{2r!}+\dots$ for all $x$ \par
-        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2!}x^2+\dots+\dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\dots$ \quad ($\abs{x}<1$, $n\in\reals$) \par
+        $f(x)=f(0)+f'(0)x+\dfrac{f''(0)}{2!}x^2+\dots+
+            \dfrac{f^{(r)}(0)}{r!}x^r+\dots$ \par
+        $\e^x=\exp(x)=1+x+\dfrac{x^2}{2!}+\dots+\dfrac{x^r}{r!}+\dots$
+            for all $x$ \par
+        $\ln(1+x)=x=\dfrac{x^2}{2}+\dfrac{x^3}{3}-\dots+
+            (-1)^{r+1} \dfrac{x^r}{r}+\dots$ ($-1<x<1$) \par
+        $\sin x =x-\dfrac{x^2}{3!}+\dfrac{x^5}{5!}-\dots+
+            (-1)^r \dfrac{x^{2r+1}}{(2r+1)!}+\dots$ for all $x$ \par
+        $\cos x =1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}-\dots+
+            (-1)^r\dfrac{x^{2r}}{2r!}+\dots$ for all $x$ \par
+        $(1+x)^n=1+nx+\dfrac{n(n-1)}{2!}x^2+\dots+
+            \dfrac{n(n-1)\dots(n-r+1)}{r!}x^r+\dots$ \quad
+            ($\abs{x}<1$, $n\in\reals$) \par
         
         \heading{Matrix transformations}
-        Reflection in the line $y=\pm x$: $\begin{pmatrix} 0 & \pm 1 \\ \pm 1 & 0 \end{pmatrix}$ \par
+        Reflection in the line $y=\pm x$:
+            $\begin{pmatrix} 0 & \pm 1 \\ \pm 1 & 0 \end{pmatrix}$ \par
         Anticlockwise rotation through $\theta$ about $O$:
-        $\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$ \par
-        Rotations through $\theta$ about the coordinate axes. The direction of positive rotation is taken to be anticlockwise when looking towards the origin from the positive side of the axis of rotation.
+            $\begin{pmatrix} \cos\theta & -\sin\theta \\
+            \sin\theta & \cos\theta \end{pmatrix}$ \par
+        Rotations through $\theta$ about the coordinate axes. The
+        direction of positive rotation is taken to be anticlockwise
+        when looking towards the origin from the positive side of the
+        axis of rotation.
         \begin{flalign*}
-            R_x&=\begin{bmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta \end{bmatrix} &\\
-            R_y&=\begin{bmatrix} \cos\theta & 0 & \sin\theta \\ 0 & 1 & 0 \\ -\sin\theta & 0 & \cos\theta \end{bmatrix} &\\
-            R_x&=\begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix} &
+            R_x&=\begin{bmatrix} 1 & 0 & 0 \\
+                0 & \cos\theta & -\sin\theta \\
+                0 & \sin\theta & \cos\theta \end{bmatrix} &\\
+            R_y&=\begin{bmatrix} \cos\theta & 0 & \sin\theta \\
+                0 & 1 & 0 \\
+                -\sin\theta & 0 & \cos\theta \end{bmatrix} &\\
+            R_x&=\begin{bmatrix} \cos\theta & -\sin\theta & 0 \\
+                \sin\theta & \cos\theta & 0 \\
+                0 & 0 & 1 \end{bmatrix} &
         \end{flalign*}
         
         \heading{Differentiation}
@@ -483,14 +535,18 @@
             $\sec x$ & $\sec x \tan x$ \\ \hline
             $\cot x$ & $-\csc^2 x$ \\ \hline
             $\csc x$ & $-\csc x \cot x$ \\ \hline & \\[-0.2cm]
-            $\arcsin x$ or $\sin^{-1}x$ & $\dfrac{1}{\sqrt{1-x^2}}$ \\[0.5cm] \hline & \\[-0.2cm]
-            $\arccos x$ or $\cos^{-1}x$ & $-\dfrac{1}{\sqrt{1-x^2}}$ \\[0.5cm] \hline & \\[-0.2cm]
-            $\arctan x$ or $\tan^{-1}x$ & $\dfrac{1}{1+x^2}$ \\[0.5cm] \hline
+            $\arcsin x$ or $\sin^{-1}x$ & $\dfrac{1}{\sqrt{1-x^2}}$
+                \\[0.5cm] \hline & \\[-0.2cm]
+            $\arccos x$ or $\cos^{-1}x$ & $-\dfrac{1}{\sqrt{1-x^2}}$
+                \\[0.5cm] \hline & \\[-0.2cm]
+            $\arctan x$ or $\tan^{-1}x$ & $\dfrac{1}{1+x^2}$ \\[0.5cm]
+                \hline
         \end{tabularx} \par
     
         
         \setlength{\parskip}{0.11 in}
-        Quotient rule $y=\dfrac{u}{v}$, $\dydx=\dfrac{v\dudx-u\dvdx}{v^2}$ \par
+        Quotient rule $y=\dfrac{u}{v}$,
+            $\dydx=\dfrac{v\dudx-u\dvdx}{v^2}$\par
         
         \heading{Differentiation from first principles}
         $f'(x)=\lim_{h\to0}\dfrac{f(x+h)-f(x)}{h}$ \par
@@ -498,18 +554,32 @@
         \heading{Integration}
         $\displaystyle\int\frac{f'(x)}{f(x)}\,\dx=\ln\abs{f(x)}+c$ \par
         $\displaystyle\int 
-        f'(x)\left(f(x)\right)^n\,\dx=\dfrac{1}{n+1}\left(f(x)\right)^{n+1}+c$
-        \par
-        Integration by parts $\displaystyle\int u\dvdx\dx=uv-\int v\dudx\dx$ \par
-        The mean value of $f(x)$ on the interval $[a,b]$ is  $\displaystyle\frac{1}{b-a}\int_a^b f(x)\dx$ \par
-        Area of sector enclosed by polar curve is $\displaystyle\frac{1}{2}\int r^2 \dtheta$ \par
+        f'(x)\left(f(x)\right)^n\,\dx=
+            \dfrac{1}{n+1}\left(f(x)\right)^{n+1}+c$ \par
+        Integration by parts $\displaystyle\int u\dvdx\dx=
+            uv-\int v\dudx\dx$ \par
+        The mean value of $f(x)$ on the interval $[a,b]$ is
+            $\displaystyle\frac{1}{b-a}\int_a^b f(x)\dx$ \par
+        Area of sector enclosed by polar curve is
+            $\displaystyle\frac{1}{2}\int r^2 \dtheta$ \par
         
             \begin{tabular}{|c|c|}
-                \multicolumn{1}{c}{$f(x)$} & \multicolumn{1}{c}{$\int f(x)\dx$} \\ \hline & \\[-0.2cm]
-                $\dfrac{1}{\sqrt{a^2-x^2}}$ & $\sin^{-1}\left(\dfrac{x}{a}\right)$\quad$(\abs{x}<a)$ \\[0.5cm] \hline & \\[-0.2cm]
-                $\dfrac{1}{a^2+x^2}$ & $\frac{1}{a}\tan^{-1}\left(\dfrac{x}{a}\right)$ \\[0.5cm] \hline & \\[-0.2cm]
-                $\dfrac{1}{\sqrt{a^2+x^2}}$ & $\sinh^{-1}\left(\dfrac{x}{a}\right)$ or $\ln(x+\sqrt{x^2+a^2})$ \\[0.5cm] \hline & \\[-0.2cm]
-                $\dfrac{1}{\sqrt{x^2-a^2}}$ & $\cosh^{-1}\left(\dfrac{x}{a}\right)$ or $\ln(x+\sqrt{x^2-a^2})$ \\[0.5cm] \hline
+                \multicolumn{1}{c}{$f(x)$} & 
+                    \multicolumn{1}{c}{$\int f(x)\dx$} \\ \hline &
+                    \\[-0.2cm]
+                $\dfrac{1}{\sqrt{a^2-x^2}}$ &
+                    $\sin^{-1}\left(\dfrac{x}{a}\right)$
+                    \quad$(\abs{x}<a)$ \\[0.5cm] \hline & \\[-0.2cm]
+                $\dfrac{1}{a^2+x^2}$ &
+                    $\frac{1}{a}\tan^{-1}\left(\dfrac{x}{a}\right)$
+                    \\[0.5cm] \hline & \\[-0.2cm]
+                $\dfrac{1}{\sqrt{a^2+x^2}}$ &
+                    $\sinh^{-1}\left(\dfrac{x}{a}\right)$ or
+                    $\ln(x+\sqrt{x^2+a^2})$ \\[0.5cm] \hline &
+                    \\[-0.2cm]
+                $\dfrac{1}{\sqrt{x^2-a^2}}$ &
+                    $\cosh^{-1}\left(\dfrac{x}{a}\right)$ or
+                    $\ln(x+\sqrt{x^2-a^2})$ \\[0.5cm] \hline
         \end{tabular} \par
     
         \heading{Numerical methods}
@@ -549,7 +619,8 @@
         $\cosh^2 x-\sinh^2 x=1$ \par
         $\sinh^{-1}x=\ln[x+\sqrt{(x^2+1)}]$ \par
         $\cosh^{-1}x=\ln[x+\sqrt{(x^2-1)}]$, $x\geq 1$ \par
-        $\tanh^{-1}x=\dfrac{1}{2}\ln\left(\dfrac{1+x}{1-x}\right)$, $-1<x<1$ \par
+        $\tanh^{-1}x=\dfrac{1}{2}\ln\left(\dfrac{1+x}{1-x}\right)$,
+            $-1<x<1$ \par
         
         \heading{Simple harmonic motion}
         $x=A\cos\omega t+B\sin\omega t$ \par
@@ -561,8 +632,11 @@
         \setlength{\parskip}{0.07 in}
         \topheading{Statistics}
         \heading{Probability}
-        $\varprob(A\cup B)=\varprob(A)+\varprob(B)-\varprob(A\cap B)$ \par
-        $\varprob(A\cap B)=\varprob(A)\varprob(B|A)=\varprob(B)\varprob(A|B)$ \textbf{or} $\varprob(A|B)=\dfrac{\varprob(A\cap B)}{\varprob(B)}$ \par
+        $\varprob(A\cup B)=\varprob(A)+\varprob(B)-\varprob(A\cap B)$
+            \par
+        $\varprob(A\cap B)=\varprob(A)\varprob(B|A)=
+            \varprob(B)\varprob(A|B)$ \textbf{or}
+            $\varprob(A|B)=\dfrac{\varprob(A\cap B)}{\varprob(B)}$ \par
         
         \heading{Standard deviation}
         $\sqrt{\dfrac{\sum(x-\bar{x})^2}{n}}=\sqrt{\dfrac{\sum %
@@ -571,39 +645,60 @@
                 f}-\bar{x}^2}$ \par
             
         \heading{Sampling distributions}
-        For any variable $X$, $\varexpec(\bar{X})=\mu$, $\var(\bar{X})=\dfrac{\sigma^2}{n}$ and $X$ is approximately normally distributed when $n$ is large enough (approximately $n>25$) \par
-        If $X{\sim}\mathrm{N}(\mu,\sigma^2)$ then $\bar{X}{\sim}\mathrm{N}(\mu,\dfrac{\sigma^2}{n})$ and $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}{\sim}\mathrm{N}(0,1)$ \par
-        Unbiased estimates of the population mean and variance are given by $\frac{\Sigma x}{n}$ and $\frac{n}{n-1}\left(\frac{\Sigma x^2}{n}-\left(\frac{\Sigma x}{n}\right)^2\right)$ \par
+        For any variable $X$, $\varexpec(\bar{X})=\mu$,
+        $\var(\bar{X})=\dfrac{\sigma^2}{n}$ and $X$ is approximately
+        normally distributed when $n$ is large enough (approximately
+        $n>25$) \par
+        If $X{\sim}\mathrm{N}(\mu,\sigma^2)$ then
+        $\bar{X}{\sim}\mathrm{N}(\mu,\dfrac{\sigma^2}{n})$ and
+        $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}{\sim}\mathrm{N}(0,1)$ \par
+        Unbiased estimates of the population mean and variance are
+        given by $\frac{\Sigma x}{n}$ and $\frac{n}{n-1}\left(\frac{\Sigma x^2}{n}-
+        \left(\frac{\Sigma x}{n}\right)^2\right)$ \par
         
         \heading{Expectation algebra}
-        Use the following results, including the cases where $a=b=\pm1$ and/or $c=0$:
+        Use the following results, including the cases where $a=b=\pm1$
+        and/or $c=0$:
         \begin{enumerate}
             \item $\varexpec(aX+bY+c)=a\varexpec(X)+b\varexpec(Y)+c$
-            \item if $X$ and $Y$ are independent then $\var(aX+bY+c)=a^2\var(X)+b^2\var(Y)$
+            \item if $X$ and $Y$ are independent then
+            $\var(aX+bY+c)=a^2\var(X)+b^2\var(Y)$
         \end{enumerate} \par
     
         \heading{Discrete distribution}
         $X$ is a random variable taking values $x_i$ in a discrete distribution with $\varprob(X=x_i)=p_i$ \par
         Expectation: $\varexpec(X)=\sum x_i pi_i$ \par
-        Variance: $\sigma^2=\var(X)=\sum(x_i-\mu)^2p_i=\sum x_i^2p_i-\mu^2$ \par
+        Variance: $\sigma^2=\var(X)=\sum(x_i-\mu)^2p_i=
+            \sum x_i^2p_i-\mu^2$ \par
         {\renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|}
             \hline
             & $\varprob(X=x)$ & $\varexpec(X)$ & $\var(X)$ \\ \hline
-            Binomial $\mathrm{B}(N,p)$ & ${\renewcommand{\arraystretch}{1}\begin{pmatrix} n \\ x \end{pmatrix}} p^x(1-p)^{n-x}$ & $np$ & $np(1-p)$ \\ \hline
-            Uniform distribution over $1,2,\dots,n$ $\mathrm{U}(n)$ & $\dfrac{1}{n}$ & $\dfrac{n+1}{2}$ & $\dfrac{1}{12}(n^2-1)$ \\ \hline
-            Geometric distribution $\mathrm{Geo}(p)$ & $(1-p)^{x-1}p$ & $\dfrac{1}{p}$ & $\dfrac{1-p}{p^2}$ \\ \hline
-            Poisson distribution $\mathrm{Po}(\lambda)$ & $\e^{-\lambda x}\dfrac{\lambda^x}{x!}$ & $\lambda$ & $\lambda$ \\ \hline
+            Binomial $\mathrm{B}(N,p)$ &
+            ${\renewcommand{\arraystretch}{1}
+                    \begin{pmatrix} n \\ x \end{pmatrix}}
+                    p^x(1-p)^{n-x}$ & $np$ & $np(1-p)$ \\ \hline
+            Uniform distribution over $1,2,\dots,n$ $\mathrm{U}(n)$ &
+                $\dfrac{1}{n}$ & $\dfrac{n+1}{2}$ &
+                $\dfrac{1}{12}(n^2-1)$ \\ \hline
+            Geometric distribution $\mathrm{Geo}(p)$ & $(1-p)^{x-1}p$ &
+                $\dfrac{1}{p}$ & $\dfrac{1-p}{p^2}$ \\ \hline
+            Poisson distribution $\mathrm{Po}(\lambda)$ &
+                $\e^{-\lambda x}\dfrac{\lambda^x}{x!}$ &
+                $\lambda$ & $\lambda$ \\ \hline
         \end{tabular}}
     
         \penalty-1000     
         \heading{Continuous distribution}
         \nopagebreak
         
-        $X$ is a random variable with probability density function (p.d.f) $f(x)$ \par
+        $X$ is a random variable with probability density function
+        (p.d.f) $f(x)$ \par
         Expectation: $\varexpec(X)=\int xf(x) \dx$ \par
-        Variance: $\sigma^2=\var(X)=\int (x-\mu)^2 f(x) \dx=\int x^2 f(x) \dx-\mu^2$ \par
-        Cumulative distribution function $F(x)=\varprob(X\leq x)=\int_{-\infty}^x f(t)\dt$ \par
+        Variance: $\sigma^2=\var(X)=\int (x-\mu)^2 f(x) \dx=
+            \int x^2 f(x) \dx-\mu^2$ \par
+        Cumulative distribution function $F(x)=
+            \varprob(X\leq x)=\int_{-\infty}^x f(t)\dt$ \par
         
         {\renewcommand{\arraystretch}{2}
             \begin{tabular}{|c|c|c|c|}
