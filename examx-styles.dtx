@@ -1101,17 +1101,25 @@
 %\begin{macro}{\configureformulae}
 %    This macro replaces the standard formulae sheet with the |\bespokeformulaesheets| and configures the aforementioned macro.
 %    \begin{macrocode}
+\newif\ifadd \addfalse
 \newif\ifincludemech \includemechfalse
 \newif\ifincludepure \includepurefalse
 \newif\ifincludestats \includestatsfalse
-\newif\ifincludetables \includetablesfalse
+\newif\ifincludechisquared \includechisquaredfalse
+\newif\ifincludecriticalvalues \includecriticalvaluesfalse
+\newif\ifincludewilcoxon \includewilcoxonfalse
 \newif\ifincludediscrete \includediscretefalse
 \newif\ifincludeadditional \includeadditionalfalse
 
+\pgfkeys{/add/.code=\addtrue}
 \pgfkeys{/pure/.code=\includepuretrue}
 \pgfkeys{/statistics/.code=\includestatstrue}
+\pgfkeys{/tables/.code=\includecriticalvaluestrue\includechisquaredtrue\includewilcoxontrue}
+\pgfkeys{/critical values/.code=\includecriticalvaluestrue}
+\pgfkeys{/chisquared/.code=\includechisquaredtrue}
+\pgfkeys{/wilcoxon/.code=\includewilcoxontrue}
 \pgfkeys{/mechanics/.code=\includemechtrue}
-\pgfkeys{/tables/.code=\includetablestrue}
+
 \pgfkeys{/discrete/.code=\includediscretetrue}
 \pgfkeys{/additional/.code=\includeadditionaltrue}
 
@@ -1125,15 +1133,15 @@
 %\begin{macro}{\bespokeformulaesheets}
 %    This macro produces a collection of formulae sheets depending on the values of the switches above.
 %    \begin{macrocode}
+\let\oldformulaesheet\formulaesheet
 \newcommand{\bespokeformulaesheets}{
     \loadgeometry{formulaesheet}
+    \ifadd\oldformulaesheet\fi
     \ifincludepure\pureformulae\fi
     \ifincludestats\statsformulae\fi
-    \ifincludetables
-        \criticalvalues
-        \chisquared
-        \wilcoxon
-    \fi
+    \ifincludecriticalvalues\criticalvalues\fi
+    \ifincludechisquared\chisquared\fi
+    \ifincludewilcoxon\wilcoxon\fi
     \ifincludemech\mechformulae\fi
     \ifincludediscrete\discreteformulae\fi
     \ifincludeadditional\additionalpureformulae\fi
