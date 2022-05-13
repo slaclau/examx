@@ -36,7 +36,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/02/28 v1.1.5
+	[2022/02/28 v1.1.6
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -508,6 +508,7 @@ There are \pointsinrange{Core} marks available.\\
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}[
     \@storequestiondata{\arabic{section}}{1}{-1}{0}
     \label{sec:\Alph{section}}
+    \lastquestionsfalse
 ]
 \fi
 %    \end{macrocode}
@@ -587,30 +588,35 @@ There are \pointsinrange{Core} marks available.\\
 %   \begin{macrocode}
 \totalformat{\textbf{Total \totalpoints\ marks}}
 %    \end{macrocode}
-%\begin{macro}{\questionpaperstart}
-%\begin{macro}{\questionpaperstart}
-%    |\questionpaperstart| and |\questionpaperend| may be redefined to 
+%\begin{macro}{\questionstart}
+%\begin{macro}{\questionpaperend}
+%    |\questionstart| and |\questionpaperend| may be redefined to 
 %text that should appear at the start or end of the questions 
-%environment. At the end of the questions environment a label is added 
-%so that the number of pages mat later be found using 
+%environment and the questionpaper environments respectively. At the %end of the questions environment a label is added so that the number %of pages may later be found using 
 %|\pageref{lastpageofquestionpaper}|.
 %    \begin{macrocode}
-\newcommand{\questionpaperstart}{}
+\newcommand{\questionstart}{}
 \newcommand{\questionpaperend}{}
 
-\AtBeginEnvironment{questions}{\begingradingrange{Core}
-    \questionpaperstart}
-\AtEndEnvironment{questions}{\endgradingrange{Core}\questionpaperend
-    \label{lastpageofquestionpaper}}
+\AtBeginEnvironment{questions}{\questionstart}
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
-
-
+%\begin{environment}{questionpaper}
+%    \begin{macrocode}
+\newenvironment{questionpaper}{
+    \begingradingrange{Core}
+}{
+    \endgradingrange{Core}
+    \questionpaperend
+    \label{lastpageofquestionpaper}
+}
+%    \end{macrocode}
+%\end{environment}
 % \subsection{Page breaks}
 
 %\begin{macro}{\msexamnewpage}
-%    This command inserts a new page in both question paper and markscheme unless the option \Lopt{shortpaper} is used when it does nothing.
+%    This command inserts a new page in both question paper and %markscheme unless the option \Lopt{shortpaper} is used when it does %nothing.
 %    \begin{macrocode}
 \newcommand{\msexamnewpage}{
     \@droppoints
@@ -624,7 +630,7 @@ There are \pointsinrange{Core} marks available.\\
 %    \begin{macrocode}
 \newcommand{\examnewpage}{
     \@droppoints
-    \ifexamx@shortpaper \else \ifprintanswers \else \newpage \fi \fi
+    \ifexamx@shortpaper \else \ifprintanswers \else \clearpage \fi \fi
 }
 %    \end{macrocode}
 %\end{macro}

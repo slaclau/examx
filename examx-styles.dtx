@@ -212,8 +212,10 @@
 \setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Termes Math}
 \setsansfont{Arial}
 
-\titleformat{\section}{\centering\bfseries}{Section \Alph{section}: 
-}{0pt}{}
+\titleformat{\section}{\bfseries\centering}{Section \Alph{section}: 
+}{0pt}{}[\@storequestiondata{\arabic{section}}{1}{-1}{0}
+\label{sec:\Alph{section}}
+]
 
 \geometry{left=0.86 in,right=1.14 in,top=1 in,bottom=1 in}
 \savegeometry{main}
@@ -238,7 +240,7 @@
         \fi
     \end{center}
 }
-\renewcommand{\questionpaperstart}{
+\renewcommand{\questionstart}{
     \ifprintanswers \else
     \begin{center}
         Answer {\bfseries all} the questions.
@@ -1356,7 +1358,8 @@
              Section \Alph{questionnumber}: 
             \nameref{sec:\Alph{questionnumber}}};
             \ifnum \thecurrentline=0 \draw[white,thick] 
-            (\lpos,0)--(\rpos,0); \fi
+            (\lpos,0)--(\rpos,0); 
+            \else \draw[thick] (\lpos,-\thecurrentline)--(\rpos,-\thecurrentline);\fi
             \draw[white,thick] 
             (\lpos,-\thecurrentline)--(\lpos,-1-\thecurrentline);
             \draw[white,thick] 
@@ -1410,7 +1413,7 @@
         \oddeven{\draw[draw=none] 
         (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)node[pos=0.9,above]{\bfseries
          Turn over};}{}
-        \draw[thick](\mpos,0)--(\mpos,-\themaxlinesinpage);
+        %\draw[thick](\mpos,0)--(\mpos,-\themaxlinesinpage);
         \end{tikzpicture}
     \end{center}
     \newpage
