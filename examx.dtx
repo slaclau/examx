@@ -56,7 +56,7 @@
 %    \begin{macrocode}
 \DoNotIndex{\AtEndOfClass, \AtEndEnvironment}
 \DoNotIndex{\cdot}
-\DoNotIndex{\def, \gdef, \xdef, \let, \relax, \newcommand, 
+\DoNotIndex{\def, \gdef, \xdef, \let, \relax, \newcommand,
 \renewcommand, \NewDocumentCommand, \RenewDocumentCommand}
 \DoNotIndex{\\, \vspace, \stretch, \par, \baselineskip}
 \DoNotIndex{\hline}
@@ -74,7 +74,7 @@
 \CodelineIndex
 \RecordChanges
 %    \end{macrocode}
-%    The following code retrieves the date and version information from 
+%    The following code retrieves the date and version information from
 %the file.
 %    \begin{macrocode}
 \GetFileInfo{examx.dtx}
@@ -167,8 +167,8 @@
 %\end{macro}
 
 %\begin{macro}{\ifexamx@shortpaper}
-%    |\ifexamx@shortpaper| is used to determine where page breaks are 
-%inserted. The options \Lopt{shortpaper} and \Lopt{longpaper} set 
+%    |\ifexamx@shortpaper| is used to determine where page breaks are
+%inserted. The options \Lopt{shortpaper} and \Lopt{longpaper} set
 %|\ifexamx@shortpaper|.
 %    \begin{macrocode}
 \DeclareBoolOption[false]{shortpaper}
@@ -191,10 +191,10 @@
     \fi
 }
 %    \end{macrocode}
-%    The following options provide specific aspects of exam 
-%customization. Custom .clo files for \Lopt{coverstyle} are of the form 
-%\file{\meta{coverstyle}covers.clo} and custom .clo files for 
-%\Lopt{answerbookstyle} are of the form 
+%    The following options provide specific aspects of exam
+%customization. Custom .clo files for \Lopt{coverstyle} are of the form
+%\file{\meta{coverstyle}covers.clo} and custom .clo files for
+%\Lopt{answerbookstyle} are of the form
 %\file{\meta{answerbookstyle}answerbook.clo}
 %    \begin{macrocode}
 \DeclareStringOption{coverstyle}[\relax]
@@ -208,7 +208,7 @@
 \AtEndOfClass{
     \if\examx@answerbookstyle\relax\else
     \InputIfFileExists{examx-{\examx@answerbookstyle}answerbook.clo}{}{
-        \ClassWarning{examx}{Answer book style 
+        \ClassWarning{examx}{Answer book style
         {\examx@answerbookstyle}  not found}}
     \fi
 }
@@ -479,16 +479,16 @@ There are \pointsinrange{Core} marks available.\\
     \renewcommand{\@droppoints}{
         \if@drop
         \vspace{-\parskip-\baselineskip}
-        
+
         \droppoints
-        
+
         \@dropfalse
         \fi
     }
 }
 %    \end{macrocode}
 %\end{macro}
-%    The following code ensures points are dropped before opening or 
+%    The following code ensures points are dropped before opening or
 %closing a subparts, parts, or questions environment.
 %    \begin{macrocode}
 \BeforeBeginEnvironment{subparts}{\@droppoints}
@@ -520,7 +520,7 @@ There are \pointsinrange{Core} marks available.\\
     \let\oldquestion\question
     \RenewDocumentCommand{\question}{o O{\@linesperpart} O{0}}{
         \@droppoints
-        
+
         \IfNoValueTF{#1}
         {\oldquestion \@storequestiondata{\thequestion}{0}{0}{0}}
         {\ifnum #1<0
@@ -543,10 +543,10 @@ There are \pointsinrange{Core} marks available.\\
     \let\oldpart\part
     \RenewDocumentCommand{\part}{o O{\@linesperpart} O{0}}{
         \@droppoints
-        
+
         \IfNoValueTF{##1}
         {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}{0}}
-        {\ifnum ##1<0 \oldpart \else \oldpart[##1] \@droptrue \fi 
+        {\ifnum ##1<0 \oldpart \else \oldpart[##1] \@droptrue \fi
         \@storequestiondata{\arabic{partno}}{##2}{1}{##3}}
     }
 }
@@ -555,7 +555,7 @@ There are \pointsinrange{Core} marks available.\\
     \let\oldsubpart\subpart
     \RenewDocumentCommand{\subpart}{o O{\@linesperpart}}{
         \@droppoints
-        
+
         \IfNoValueTF{##1}
         {\oldsubpart}
         {\ifnum ##1<0 \oldsubpart \else \oldsubpart[##1] \@droptrue \fi
@@ -590,9 +590,9 @@ There are \pointsinrange{Core} marks available.\\
 %    \end{macrocode}
 %\begin{macro}{\questionstart}
 %\begin{macro}{\questionpaperend}
-%    |\questionstart| and |\questionpaperend| may be redefined to 
-%text that should appear at the start or end of the questions 
-%environment and the questionpaper environments respectively. At the %end of the questions environment a label is added so that the number %of pages may later be found using 
+%    |\questionstart| and |\questionpaperend| may be redefined to
+%text that should appear at the start or end of the questions
+%environment and the questionpaper environments respectively. At the %end of the questions environment a label is added so that the number %of pages may later be found using
 %|\pageref{lastpageofquestionpaper}|.
 %    \begin{macrocode}
 \newcommand{\questionstart}{}
@@ -642,7 +642,7 @@ There are \pointsinrange{Core} marks available.\\
 %\begin{macro}{\ifsolndots}
 %\begin{macro}{\ifsolnlines}
 %\begin{macro}{\ifsolngrid}
-%    These switches determine the type of answer space used by the 
+%    These switches determine the type of answer space used by the
 %generic answer macro solnor.
 %    \begin{macrocode}
 \newif\ifsoln
@@ -684,10 +684,10 @@ There are \pointsinrange{Core} marks available.\\
 
 %\begin{macro}{\solnorhook}
 %\begin{macro}{\@solnorhook}
-%    |\solnorhook| may be redefined to change features of the solution 
-%macros. |\@solnorhook| is used to call |\solnorhook| and 
-%|\@droppoints| 
-%from within a solution macro as well as redefine |\examx@partshook| 
+%    |\solnorhook| may be redefined to change features of the solution
+%macros. |\@solnorhook| is used to call |\solnorhook| and
+%|\@droppoints|
+%from within a solution macro as well as redefine |\examx@partshook|
 %and |\examx@subpartshook| to empty.
 %    \begin{macrocode}
 \newcommand{\solnorhook}{}
@@ -704,7 +704,7 @@ There are \pointsinrange{Core} marks available.\\
 \renewcommand{\solutiontitle}{}
 %    \end{macrocode}
 %\begin{macro}{\solnor}
-%    This is the generic answer macro. What it does depends on the 
+%    This is the generic answer macro. What it does depends on the
 %switches described previously.
 %    \begin{macrocode}
 \newcommand{\solnor}[2][1]{%
@@ -735,13 +735,13 @@ There are \pointsinrange{Core} marks available.\\
     \endgroup
 }
 %    \end{macrocode}
-%\changes{v1.02a}{2022/02/02}{Fixed issue with extra points being 
+%\changes{v1.02a}{2022/02/02}{Fixed issue with extra points being
 %dropped}
 %\end{macro}
 
 %\begin{macro}{\solnordots}
-%    This is an answer macro which always uses dotted lines. |\solnor| 
-%should be used along with |\solndots| unless there is a need for 
+%    This is an answer macro which always uses dotted lines. |\solnor|
+%should be used along with |\solndots| unless there is a need for
 %different types of answer macro within the same document.
 %    \begin{macrocode}
 \newcommand{\solnordots}[2][1]{%
@@ -760,9 +760,9 @@ There are \pointsinrange{Core} marks available.\\
 %\end{macro}
 
 %\begin{macro}{\solnpage}
-%    This command inserts a whole page of answer space in the question 
-%paper but not in the markscheme unless the option \Lopt{shortpaper} is 
-%used when it does nothing. \changes{v1.01}{2022/02/01}{Added 
+%    This command inserts a whole page of answer space in the question
+%paper but not in the markscheme unless the option \Lopt{shortpaper} is
+%used when it does nothing. \changes{v1.01}{2022/02/01}{Added
 %\cs{solnpage}}
 %    \begin{macrocode}
 \newcommand{\solnpage}{
@@ -786,7 +786,7 @@ There are \pointsinrange{Core} marks available.\\
 
 %\begin{macro}{\exmark}
 %\begin{macro}{\bmark}
-%    These commands are used within solution environments for 
+%    These commands are used within solution environments for
 %markscheme abbreviations.
 %    \begin{macrocode}
 \newcommand{\exmark}[1][A1]{\text{\textcolor{red}{[#1]}}}
@@ -799,12 +799,19 @@ There are \pointsinrange{Core} marks available.\\
 
 %\begin{macro}{\linesperpart}
 %\begin{macro}{\pagesperquestion}
-%    These macros set the number of lines per part and the number of 
-%pages per question used in some answer book styles.
+%\begin{macro}{\spaceperpart}
+%\begin{macro}{\if@startquestiononnewpageinanswerbook}
+%    These macros set the number of lines or the amount of space per
+%part and the number of pages per question used in some answer book
+%styles. The switch decided if questions shluld start on a new oage in
+%some answer book styles.
 %    \begin{macrocode}
 \def\linesperpart#1{\gdef\@linesperpart{#1}} \linesperpart{5}
 \def\spaceperpart#1{\gdef\@spaceperpart{#1}} \spaceperpart{2.5in}
-\def\pagesperquestion#1{\gdef\@pagesperquestion{#1}} \pagesperquestion{1}
+\def\pagesperquestion#1{\gdef\@pagesperquestion{#1}}
+\pagesperquestion{1}
+\newif\if@startquestiononnewpageinanswerbook
+\@startquestiononnewpageinanswerbookfalse
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -818,10 +825,10 @@ There are \pointsinrange{Core} marks available.\\
 
 
 %\begin{macro}{\answerbook}
-%    |\answerbook| inserts an answer book comprising a cover 
-%|\answerbookcover|, pages |\answerbookpages|, and a back cover of 
-%either one page |\answerbookbackcover| or two pages 
-%|\doubleanswerbookbackcover|. The choice of back cover depends on the 
+%    |\answerbook| inserts an answer book comprising a cover
+%|\answerbookcover|, pages |\answerbookpages|, and a back cover of
+%either one page |\answerbookbackcover| or two pages
+%|\doubleanswerbookbackcover|. The choice of back cover depends on the
 %parity of the page number. These last commands are often redefined.
 %    \begin{macrocode}
 \newcommand{\answerbook}{
@@ -883,7 +890,7 @@ There are \pointsinrange{Core} marks available.\\
 %\end{macro}
 
 %\begin{macro}{\answerbookpages}
-%    This is the command for answer book pages. By default it inserts 
+%    This is the command for answer book pages. By default it inserts
 %|\@pagesperquestion| pages of dotted lines for each question.
 %    \begin{macrocode}
 \newcommand{\answerbookpages}{
@@ -893,7 +900,7 @@ There are \pointsinrange{Core} marks available.\\
     \loop
     \addtocounter{int}{1}
     \theint.
-    
+
     \setcounter{iint}{\@pagesperquestion}
     {\loop
         \addtocounter{iint}{-1}
@@ -909,7 +916,7 @@ There are \pointsinrange{Core} marks available.\\
 
 %\begin{macro}{\answerbookbackcover}
 %\begin{macro}{\doubleanswerbookbackcover}
-%    These are the back covers for the answer book. By default they 
+%    These are the back covers for the answer book. By default they
 %provide additional answer space, also on dotted lines.
 %    \begin{macrocode}
 \newcommand{\answerbookbackcover}{}
