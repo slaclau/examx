@@ -1,12 +1,10 @@
-% SVN keywords: $Revision$
-
 \documentclass[a4paper]{ltxdoc}
 \usepackage{readprov}
 \ReadFileInfos{examx-userguide.dtx}
 \ReadFileInfos{examx.dtx}
 \ReadFileInfos{examx-styles.dtx}
 
-\ProvidesFile{examxdoc.tex}[2022/02/01 v1.0.2 This is the master 
+\ProvidesFile{examxdoc.tex}[2022/02/01 v1.0.2 This is the master
 documentation for the examx class]
 
 % Set up the Index and Change History to use \part
@@ -53,11 +51,11 @@ documentation for the examx class]
 \RecordChanges
 \begin{document}
 	\input{examx-ltxdoc-commands.def}
-	\title{Using the \textsf{examx} class\thanks{This is 
-	\file{examxdoc.tex}~\UseVersionOf{examxdoc.tex}, dated 
+	\title{Using the \textsf{examx} class\thanks{This is
+	\file{examxdoc.tex}~\UseVersionOf{examxdoc.tex}, dated
 	\UseDateOf{examxdoc.tex}.}}
-	\author{Sebastien Laclau \\ 
-	\texttt{slaclau@wellingtoncollege.org.uk} \\ 
+	\author{Sebastien Laclau \\
+	\texttt{slaclau@wellingtoncollege.org.uk} \\
 	\texttt{seb.laclau@gmail.com}}
 	\maketitle
 	\tableofcontents
@@ -67,21 +65,21 @@ documentation for the examx class]
 	\DocInclude{examx}
     \DocInclude{examx-styles}
     \DocInclude{examx-book}
-    
+
     \begingroup
         \def\endash{--}
         \catcode`\-\active
         \def-{\futurelet\temp\indexdash}
         \def\indexdash{\ifx\temp-\endash\fi}
-    
+
     \PrintIndex
     \endgroup
-    
+
     \PrintChanges
 \end{document}
 
 % \changes{2022/02/01}{v1.0}{Initial version}
-% \changes{2022/02/01}{v1.0a}{Changed index to two column and 
+% \changes{2022/02/01}{v1.0a}{Changed index to two column and
 %reformatted change log to account for multiple files}
 % \changes{v1.0.1}{2022/02/03}{Start of semver}
 % \changes{v1.0.1}{2022/02/03}{Removed hyphen from index page numbers}
