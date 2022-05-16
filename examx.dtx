@@ -777,6 +777,66 @@ There are \pointsinrange{Core} marks available.\\
 %    \end{macrocode}
 %\end{macro}
 
+%\begin{macro}{\solnorlines}
+%    This is an answer macro which always uses lines. |\solnor|
+%should be used along with |\solndots| unless there is a need for
+%different types of answer macro within the same document.
+%    \begin{macrocode}
+\newcommand{\solnorlines}[2][1]{%
+    \@solnorhook
+    \ifsoln
+    \begin{solution}
+        #2
+    \end{solution}
+    \else
+    \begin{solutionorlines}[\stretch{#1}]
+        #2
+    \end{solutionorlines}
+    \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\solnorgrid}
+%    This is an answer macro which always uses a grid. |\solnor|
+%should be used along with |\solndots| unless there is a need for
+%different types of answer macro within the same document.
+%    \begin{macrocode}
+\newcommand{\solnorgrid}[2][1]{%
+    \@solnorhook
+    \ifsoln
+    \begin{solution}
+        #2
+    \end{solution}
+    \else
+    \begin{solutionorgrid}[\stretch{#1}]
+        #2
+    \end{solutionorgrid}
+    \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\solnorspace}
+%    This is an answer macro which always uses a blank space. |\solnor|
+%should be used along with |\solndots| unless there is a need for
+%different types of answer macro within the same document.
+%    \begin{macrocode}
+\newcommand{\solnorspace}[2][1]{%
+    \@solnorhook
+    \ifsoln
+    \begin{solution}
+        #2
+    \end{solution}
+    \else
+    \begin{solution}[\stretch{#1}]
+        #2
+    \end{solution}
+    \fi
+}
+%    \end{macrocode}
+%\end{macro}
+
 %\begin{macro}{\solnpage}
 %    This command inserts a whole page of answer space in the question
 %paper but not in the markscheme unless the option \Lopt{shortpaper} is
