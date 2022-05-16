@@ -1,7 +1,5 @@
 % \iffalse meta-comment
 %
-% SVN keywords: $Revision$
-%
 % Copyright (C) 2022 by Sebastien Laclau
 % -----------------------------------
 %
@@ -49,7 +47,7 @@
 \CodelineIndex
 \RecordChanges
 %    \end{macrocode}
-%    The following code retrieves the date and version information from 
+%    The following code retrieves the date and version information from
 %the file.
 %    \begin{macrocode}
 \GetFileInfo{examx-userguide.dtx}
@@ -80,9 +78,83 @@
 % \title{User guide for the \textsf{examx} class\thanks{This document
     % corresponds to \file{examx-userguide.dtx}~\fileversion,
     % dated \filedate.}}
-% \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk} 
+% \author{Sebastien Laclau \\ \texttt{slaclau@wellingtoncollege.org.uk}
 %\\ \texttt{seb.laclau@gmail.com}}
 %
 % \maketitle
+% \tableofcontents
+%
+% \section{Basic usage}
+% \subsection{Document structure}
+% A basic document using the \Lpack{examx} class looks like the following:
+%    \begin{macrocode}
+\documentclass{examx}
+
+\begin{document}
+    \examcover
+    \begin{questionpaper}
+
+    \end{questionpaper}
+    \answerbook
+\end{document}
+%    \end{macrocode}
+% All \Lenv{questions} environments (which are from the \Lpack{exam}
+%class) must be enclosed in the \Lenv{questionpaper} environment. This
+%environment ensures the points are added together for each question and
+%formats the beginning and end of the paper.
+%
+% The |\examcover| commands inserts a cover and similarly the
+%|\answerbook| command inserts an answerbook.
+%
+% \subsection{Questions}
+%
+% Within this environment, the \Lenv{questions} environment may be used
+%multiple times. It contains |\question| commands which may be used with
+%between zero and three.
+%
+% The first argument is the number of points for the question, the second
+%is the number of lines, and the third the amount of blank space. These
+%values apply only to answer space produced by |\answerbook|.
+%
+% The \Lenv{parts} and \Lenv{subparts} environments work as in the
+%\Lpack{exam} class except that the additional arguments taken by
+%|\question| may also be used for |\part| and |\subpart|.
+%
+% \subsection{Solution commands}
+% The following commands may be used to insert various types of solution
+%space:
+% \begin{itemize}
+%    \item |\solnor| -- this produces an answer space depending on class
+%options.
+%    \item |\solnordots| -- this produces dotted lines.
+%    \item |\solnorlines| -- this produces lines.
+%    \item |\solnorgrid| -- this produces a grid.
+%    \item |\solnorspace| -- this produces a blank space.
+% \end{itemize}
+%
+% In general, only the first of these should be used.
+%
+% If a whole page of answer space is needed, then the |\solnpage| command
+%should be used. It works in the same way as |\solnor|.
+%
+% \section{Exam metadata}
+%
+% The following commands may be used to configure metadata -- this
+%metadata is usually included on covers for both the question paper and
+%the answer booklet but may be used as needed by the styles.
+% \begin{itemize}
+%    \item |\institution{arg}| -- the institution setting the exam.
+%    \item |\department{arg}| -- the department within the institution.
+%    \item |\logo{arg}| -- the logo of the institution or department --
+%this will usually be the name of a grahics file located somewhere
+%searchable by \TeX.
+% \end{itemize}
+%
+% \section{Configuration}
+% \subsection{Class options}
+%
+% \section{Styles}
 %
 % \StopEventually{}
+%
+% \Finale
