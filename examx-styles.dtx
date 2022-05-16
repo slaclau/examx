@@ -148,9 +148,11 @@
             END OF QUESTION PAPER} \fi
         \oddeven{\newpage {\bfseries This page is intentionally
                 blank}}{}
+        \ifexamx@fourside
         \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
         \newpage {\bfseries This page is intentionally blank}
         \newpage {\bfseries This page is intentionally blank}
+        \fi
         \fi
     \end{center}
 }
@@ -227,19 +229,7 @@
 \footer{}{}{\bfseries\oddeven{Turn over}{}}
 \header{}{\bfseries \thepage}{}
 
-\renewcommand{\questionpaperend}{
-    \footer{}{}{}
-    \begin{center}
-        \ifprintanswers {\bfseries END OF MARKSCHEME} \else {\bfseries
-            END OF QUESTION PAPER} \fi
-        \oddeven{\newpage {\bfseries This page is intentionally
-        blank}}{}
-        \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
-            \newpage {\bfseries This page is intentionally blank}
-            \newpage {\bfseries This page is intentionally blank}
-        \fi
-    \end{center}
-}
+
 \renewcommand{\questionstart}{
     \ifprintanswers \else
     \begin{center}
@@ -334,6 +324,7 @@
 %    This macro replaces the standard formulae sheet with
 %|\bespokeformulaesheets| and configures the aforementioned macro.
 %    \begin{macrocode}
+\newif\ifno \nofalse
 \newif\ifadd \addfalse
 \newif\ifincludemech \includemechfalse
 \newif\ifincludepure \includepurefalse
@@ -344,6 +335,7 @@
 \newif\ifincludediscrete \includediscretefalse
 \newif\ifincludeadditional \includeadditionalfalse
 
+\pgfkeys{/no/.code=\notrue}
 \pgfkeys{/add/.code=\addtrue}
 \pgfkeys{/pure/.code=\includepuretrue}
 \pgfkeys{/statistics/.code=\includestatstrue}
@@ -359,7 +351,11 @@
 
 \newcommand{\configureformulae}[1][]{
     \pgfkeys{#1}
-    \renewcommand{\formulaesheet}{\bespokeformulaesheets}
+    \ifno
+        \renewcommand{\formulaesheet}{}
+    \else
+        \renewcommand{\formulaesheet}{\bespokeformulaesheets}
+    \fi
 }
 %    \end{macrocode}
 %\changes{v1.1.3}{2022/05/11}{Created macro}
