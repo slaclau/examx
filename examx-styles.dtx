@@ -277,6 +277,7 @@
 \RequirePackage{afterpage}
 \RequirePackage{multirow}
 \RequirePackage{enumitem}
+\RequirePackage{xstring}
 \newgeometry{left=0.86 in,right=0.86 in,top=1 in,bottom=1 in}
 \savegeometry{formulaesheet}
 \loadgeometry{main}
@@ -880,6 +881,9 @@
                 consists of {\bfseries \pageref{LastPage}} pages.\fi
                 The Question Paper consists of {\bfseries
                 \pageref{lastpageofquestionpaper}} pages.
+                \if@extrainfo
+                    \item {\let \\ \item \@extrainfo}
+                \fi
             \end{itemize}
             \fi
         \end{flushleft}
