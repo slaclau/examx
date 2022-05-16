@@ -178,6 +178,7 @@
 \ifexamx@shortpaper
     \AtBeginDocument{\soln}
 \fi
+\AtEndOfClass{\InputIfFileExists{examx.cfg}{}{}}
 %    \end{macrocode}
 %\end{macro}
 
@@ -321,7 +322,6 @@
 \RequirePackage{tabstackengine}
 \stackMath
 \RequirePackage{refcount}
-\AtEndOfClass{\InputIfFileExists{examx.cfg}{}{}}
 \ifexamx@book
     \RequirePackage{examx-book}
 \fi
@@ -393,8 +393,9 @@
 %    |\examcover| inserts a coverpage for the exam.
 %    \begin{macrocode}
 \newif\if@extrainfo \@extrainfofalse
+\def\@extrainfo{}
 \newcommand{\addcoverinformation}[1]{
-    \newcommand{\@extrainfo}{#1}
+    \renewcommand{\@extrainfo}{#1}
     \@extrainfotrue
 }
 \newcommand{\examcover}{
