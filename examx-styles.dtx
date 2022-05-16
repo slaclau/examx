@@ -543,7 +543,7 @@
             (continued)};
             \setcounter{numlinesinquestion}{\thelinesleft}
             \else
-            \ifnum \thecurrentline=0 \else \ifnum \thepartlevel>0
+            \ifnum \thecurrentline=0 \else \ifnum \thepartlevel>-1
             \draw[very thick]
             (\lpos,-\thecurrentline)--(\rpos,-\thecurrentline);
             \fi \fi
