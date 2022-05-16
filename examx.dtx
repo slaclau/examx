@@ -37,7 +37,7 @@
 %<*driver>
 \ProvidesFile{examx.dtx}
 %</driver>
-	[2022/02/28 v1.1.6
+	[2022/02/28 v1.1.7
 %<class> Adds features to the exam class]
 %    \end{macrocode}
 %
@@ -321,7 +321,7 @@
 \RequirePackage{tabstackengine}
 \stackMath
 \RequirePackage{refcount}
-\InputIfFileExists{examx.cfg}{}{}
+\AtEndOfClass{\InputIfFileExists{examx.cfg}{}{}}
 \ifexamx@book
     \RequirePackage{examx-book}
 \fi
@@ -335,14 +335,18 @@
 %
 %\begin{macro}{\institution}
 %\begin{macro}{\department}
+%\begin{macro}{\logo}
 %    These two macros provide information about the institution and department setting the exam.
 %    \begin{macrocode}
 \def\institution#1{\gdef\@institution{#1}} \institution{Institution}
 \def\department#1{\gdef\@department{#1}} \department{Department}
+\def\logo#1{\gdef\@logo{#1}} \logo{\relax}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
+% \end{macro}
 % \changes{v1.1.1}{2022/02/03}{Added institution and department macros}
+% \changes{v1.1.7}{2022/05/16}{Added logo macro}
 %
 %\begin{macro}{\examtitle}
 %\begin{macro}{\examtopic}
@@ -398,10 +402,10 @@
 	\loadgeometry{default}
 	\thispagestyle{empty}
 	\begin{center}
-		\includegraphics[scale=0.5]{Welly} \par
+		\if\@logo\relax\else\includegraphics[scale=0.5]{\@logo} \par\fi
 		\vspace{0.25in}
-		\huge\textsc{{Wellington College}} \par
-		\huge\textsc{{Mathematics Department}} \par
+		\huge\textsc{\@institution} \par
+		\huge\textsc{\@department} \par
 		\vspace{0.25in}
 		\LARGE \@examtitle \par
 		\large \@examtopic \par
@@ -829,6 +833,8 @@ There are \pointsinrange{Core} marks available.\\
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
+%\end{macro}
+%\end{macro}
 %\begin{macro}{\ifanswerbook}
 %    This swtich is set to true if an answer book has been inserted.
 %    \begin{macrocode}
@@ -870,8 +876,8 @@ There are \pointsinrange{Core} marks available.\\
     \begin{center}
         \includegraphics[scale=0.5]{Welly} \par
         \vspace{0.25in}
-        \huge\textsc{{Wellington College}} \par
-        \huge\textsc{{Mathematics Department}} \par
+        \huge\textsc{\@institution} \par
+        \huge\textsc{\@department} \par
         \vspace{0.25in}
         \LARGE \@examtitle \par
         \large \@examtopic \par

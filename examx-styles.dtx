@@ -814,11 +814,11 @@
         \loadgeometry{cover}
         \thispagestyle{empty}
         \begin{center}
-            \includegraphics[scale=0.25]{Welly} \par
+		  \if\@logo\relax\else\includegraphics[scale=0.25]{\@logo} \par\fi
             \vspace{0.25in}
             {\bfseries
-                \huge\textsc{{Wellington College}} \par
-                \huge\textsc{{Mathematics Department}} \par}
+                \huge\textsc{\@institution} \par
+                \huge\textsc{\@department} \par}
         \end{center}
         \begin{flushleft}
             \bfseries
@@ -901,11 +901,12 @@
         \loadgeometry{cover}
         \thispagestyle{empty}
         \begin{center}
-            \includegraphics[scale=0.25]{Welly} \par
+		      \if\@logo\relax\else\includegraphics[scale=0.25]{\@logo}
+		      \par\fi
             \vspace{0.25in}
             {\bfseries
-                \huge\textsc{{Wellington College}} \par
-                \huge\textsc{{Mathematics Department}} \par}
+                \huge\textsc{\@institution} \par
+                \huge\textsc{\@department} \par}
         \end{center}
         \begin{flushleft}
             \bfseries
