@@ -205,6 +205,14 @@
         \ClassWarning{examx}{Cover style {\examx@coverstyle} not found}}
     \fi
 }
+\DeclareStringOption{formulaestyle}[\relax]
+\AtEndOfClass{
+    \if\examx@formulaestyle\relax\else
+    \InputIfFileExists{examx-\examx@formulaestyle formulae.clo}{}{
+        \ClassWarning{examx}{Formulae style {\examx@formulaestyle} not
+        found}}
+    \fi
+}
 \DeclareStringOption{answerbookstyle}[\relax]
 \AtEndOfClass{
     \if\examx@answerbookstyle\relax\else

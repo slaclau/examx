@@ -27,6 +27,7 @@
 %<default&all>\ProvidesFile{examx-default.clo}
 %<OCRALevel&all>\ProvidesFile{examx-OCRALevel.clo}
 %<OCRALevel&answerbook>\ProvidesFile{examx-OCRALevelanswerbook.clo}
+%<OCRALevel&formulaesheet>\ProvidesFile{examx-OCRALevelformulae.clo}
 %<advanced&answerbook>\ProvidesFile{examx-advancedanswerbook.clo}
 %<veryadvanced&answerbook>\ProvidesFile{examx-veryadvancedanswerbook.clo}
 %<WellyOCR&covers>\ProvidesFile{examx-WellyOCRcovers.clo}
@@ -219,7 +220,7 @@
 \label{sec:\Alph{section}}
 ]
 
-\geometry{left=0.86 in,right=1.14 in,top=1 in,bottom=1 in}
+\newgeometry{left=0.86 in,right=1.14 in,top=1 in,bottom=1 in}
 \savegeometry{main}
 \newgeometry{left=0.68 in,right=0.68 in,top=1 in,bottom=1 in}
 \savegeometry{answerbook}
