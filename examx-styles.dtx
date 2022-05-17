@@ -168,7 +168,7 @@
     margin(s).
     \fillwithdottedlines{\stretch{1}}
     \ifexamx@fourside
-        \ifnum\the\numexpr(\thepage/4)*4-\thepage=2
+        \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
             \newpage
             \fillwithdottedlines{\stretch{1}}
             \newpage
@@ -601,10 +601,10 @@
 %    We then increment overwrite any lines which need to be left blank.
 %    \begin{macrocode}
             \ifnum\thenumblanklinesinquestion>0
-            \foreach \l in {1,...,\thenumblanklinesinquestion}{
+            \foreach \l in {2,...,\thenumblanklinesinquestion}{
                 \draw[white,thick]
-                    (\mpos,-\l-\thecurrentline)--
-                        (\rpos,-\l-\thecurrentline);
+                    (\mpos,1-\l-\thecurrentline)--
+                        (\rpos,1-\l-\thecurrentline);
             }
             \fi
 %    \end{macrocode}
