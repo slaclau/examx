@@ -143,18 +143,53 @@
 %metadata is usually included on covers for both the question paper and
 %the answer booklet but may be used as needed by the styles.
 % \begin{itemize}
-%    \item |\institution{arg}| -- the institution setting the exam.
-%    \item |\department{arg}| -- the department within the institution.
-%    \item |\logo{arg}| -- the logo of the institution or department --
+%    \item |\institution|\marg{institution} -- the institution setting the exam.
+%    \item |\department|\marg{department} -- the department within the institution.
+%    \item |\logo|\marg{logo} -- the logo of the institution or department --
 %this will usually be the name of a grahics file located somewhere
 %searchable by \TeX.
 % \end{itemize}
 %
 % \section{Configuration}
 % \subsection{Class options}
+% \subsection{\file{examx.cfg} file}
+%
+% Commands in the \file{examx.cfg} file are input at the end of the class file but before any style specific commands. This means that they provide defaults which are overriden by styles. An example is provided below and this full file is included with the distribution:
+%    \begin{macrocode}
+\institution{Wellington College}
+\department{Mathematics Department}
+\logo{Welly}
+\setmainfont{Linux Libertine O}
+\setmathfont{Libertinus Math}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+%    \end{macrocode}
+%
+% \Lpack{fontspec} and \Lpack{unicode-math} are loaded by the \Lpack{examx} class so |\setmainfont| and |\setmathfont| may both be used.
 %
 % \section{Styles}
+% Styles are used to define various features of an exam, including details such as font and geometry as well as whole pages such as covers or formulae sheets and even entire answer books.
 %
+% Two complete styles are currently provided, the default style, loaded by default, and the \Lopt{OCRALevel} style, loaded by using the class option \Lopt{style=OCRALevel}. This style is currently missing covers. The default style does not provide a formulae sheet.
+%
+% Incomplete styles are provided for covers and for answer books. Currently these are \Lopt{WellyOCR} for covers and \Lopt{advanced} and \Lopt{veryadvanced} for answer books. These are loaded using the class options \Lopt{coverstyle=\meta{style}} and \Lopt{answerbookstyle=\meta{style}}.
+%
+% These options can also be used to load elements of the complete styles in the same way. \Lopt{formulaestyle=\meta{style}} can also be used for this purpose.
+%
+% These options are summarised by the table below:
+% \begin{table}[h]
+% \begin{tabular}{l l}
+%    class option           & values \\ \hline
+%    \Lopt{style}           & \meta{OCRALevel} \\
+%    \Lopt{coverstyle}      & \meta{WellyOCR} \\
+%    \Lopt{formulaestyle}   & \meta{OCRALevel} \\
+%    \Lopt{answerbookstyle} & \meta{advanced}, \meta{veryadvanced}, \meta{OCRALevel}
+% \end{tabular}
+% \end{table}
+%
+% \subsection{\Lopt{OCRALevel}}
+% This style aims to replicate an OCR A Level Maths exam in the style of its covers (not yet implemented) as well as in font, general layout, formulae sheet, and answer book format.
+% \subsection{\Lopt{WellyOCR}}
+% This style provides an OCR feel to exam covers including replicating the rubrics but does not attempt to completely repricate all aspects of the cover.
 % \StopEventually{}
 %
 % \Finale
