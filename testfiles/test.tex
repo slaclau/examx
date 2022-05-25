@@ -1,15 +1,20 @@
 \documentclass[
-%    style=OCRALevel,
+    style=OCRALevel,
 %    coverstyle=WellyOCR,
 %    answerbookstyle=OCRALevel,
 %    solutionstyle=space
     ]{examx}
-\title{Test of examx}
+\examtitle{Test of examx}
+\examtopic{topic}
+\examcode{code}
+\examdate{date}
+\examtime{time}
 
 %\printanswers
 
 \begin{document}
 \examcover
+\begin{questionpaper}
 \begin{questions}
     \question[5][4] This is a sample question with no parts.
     
@@ -68,5 +73,6 @@ its
         \part[1][2] And again.
     \end{parts}
 \end{questions}
+\end{questionpaper}
 \answerbook
 \end{document}
