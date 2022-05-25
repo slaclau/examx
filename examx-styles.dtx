@@ -253,21 +253,244 @@
 \pointformat{\bfseries[\thepoints]}
 
 \renewcommand{\vec}[1]{{\bf#1}}
+\newcommand{\detailedreasoning}{\textbf{In this question you must show detailed reasoning.} \par }
 %</all>
 \DeclareMathOperator{\varexpec}{E}
 \DeclareMathOperator{\varprob}{P}
-%    \end{macrocode}
-%
-%\subsubsection{Formulae sheet}
-%\begin{macro}{\formulaesheet}
-%    This code redefines the formulae sheet.
-%    \begin{macrocode}
-%<*formulaesheet|all>
 \RequirePackage{lscape}
 \RequirePackage{afterpage}
 \RequirePackage{multirow}
 \RequirePackage{enumitem}
 \RequirePackage{xstring}
+\RequirePackage{microtype}
+%    \end{macrocode}
+%
+%\subsubsection{Covers}
+%\begin{macro}{\examcover}
+%    This code redefines the front cover of the question paper.
+%    \begin{macrocode}
+\usetikzlibrary{fit}
+\renewcommand{\examcover}{
+    \newgeometry{top=1.5cm, bottom=1cm, left=2.8cm, right=2.2cm}
+    \thispagestyle{empty}
+    \if\@logo\relax\else\includegraphics[height=2cm]{\@logo}\fi
+    
+    \vspace{2mm}
+    
+    {\sffamily
+    
+    {\LARGE \textbf{\@examdate}}
+    
+    \vspace{8pt}
+    
+    {\Large \textbf{\@examtitle}}
+    
+    \vspace{8pt}
+    
+    {\large \unless\if\@examcode\relax\textbf{\@examcode} $\quad$\fi\@examtopic}
+    
+    \vspace{8pt}
+    
+    {\normalsize \textbf{Time allowed: \@examtime}}
+    
+    \vspace{12pt}
+    
+    \begin{tikzpicture}
+    \node[draw, text width=7.87cm, text depth=4.19cm, rounded corners] at (0,0) {
+        {\footnotesize
+            \textbf{You must have:}
+            
+            \ifanswerbook$\bullet$ Printed Answer Booklet \\ \fi
+            \ifcalculatorrequired$\bullet$ a scientific or graphical calculator \\ \fi
+            
+            \ifcalculator
+            \vspace*{.5cm}
+            
+            \textbf{You may use:}
+            
+            $\bullet$ a scientific or graphical calculator \\
+            
+            \fi
+        }
+    };
+    \end{tikzpicture}
+    \vspace{0.6cm}
+    
+    \small
+        \textbf{INSTRUCTIONS}
+        \begin{itemize}[nolistsep]
+            \item Use black ink. You can use a HB pencil but only for graphs and diagrams.
+            \item Write your answer to each question in the space provided in the \textbf{Printed Answer Booklet.} If you need extra space use the lined pages at the end of the Printed Answer Booklet. The question numbers must be clearly shown.
+            \item Fill in the boxes on the front of the Printed Answer Booklet.
+            \item Answer \textbf{all} the questions.
+            \item Where appropriate, your answer should be supported with working. Marks might be given for using a correct method, even if your answer is wrong.
+            \item Give non-exact numerical answers correct to 3 significant figures unless a different degree of accuracy is specified in the question
+            \ifcalculator \item You are permitted to use a
+            scientific or graphical calculator in this paper.
+            \else \unless\ifcalculatorrequired \item You are not permitted to use a calculator in this paper. \fi \fi
+            \item The acceleration due to gravity is denoted by $\grav\,\unit{\m\per\s\squared}$. Unless otherwise instructed, when a numerical value is needed, use $\grav=9.8$.
+            \item Do \textbf{not} send this Question Paper for marking. Keep it in the centre or recycle it.
+        \end{itemize}
+        \vspace{4mm}
+        \small
+    
+        \textbf{INFORMATION}
+        \begin{itemize}[nolistsep]
+            \item The total mark for this paper is  {\bfseries \thetotalpoints}.
+            \item The marks for each question are shown in
+            brackets {\bfseries [ ]}.
+            \item This document consists of {\bfseries
+                \pageref{lastpageofquestionpaper}} pages.
+            \unless\if\@extrainfo\relax
+            \item {\let \\ \item \@extrainfo}
+            \fi
+        \end{itemize}
+        \vspace{4mm}
+        \small
+        
+        \textbf{ADVICE}
+        \begin{itemize}[nolistsep]
+            \item Read each question carefully before you start an answer.
+            \if\@extraadvice\relax\else
+            \item {\let \\ \item \@extraadvice}
+            \fi
+        \end{itemize}
+    \vfill
+    \hfill{\footnotesize \textbf{Turn over}}}
+    \newpage
+    \loadgeometry{main}
+    \ifprintanswers \else \ifexamx@formulae
+    \formulaesheet \fi \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\answerbookcover}
+%    This code redefines the front cover of the answer book.
+%    \begin{macrocode}
+\renewcommand{\answerbookcover}{
+    \newgeometry{top=1.5cm, bottom=1cm, left=2.8cm, right=2.2cm}
+    \thispagestyle{empty}
+    \if\@logo\relax\else\includegraphics[height=2cm]{\@logo}\fi
+    
+    \vspace{2mm}
+    
+    {\sffamily
+        
+        {\LARGE \textbf{\@examdate}}
+        
+        \vspace{8pt}
+        
+        {\Large \textbf{\@examtitle}}
+        
+        \vspace{8pt}
+        
+        {\large \unless\if\@examcode\relax\textbf{\@examcode} $\quad$\fi\@examtopic}
+        
+        \vspace{8pt}
+        
+        {\large Printed Answer Book}
+        
+        \vspace{8pt}
+        
+        {\normalsize \textbf{Time allowed: \@examtime}}
+        
+        \vspace{12pt}
+        
+        \begin{tikzpicture}
+        \node[draw, text width=7.87cm, text depth=3.18cm, rounded corners] at (0,0) {
+            {\footnotesize
+                \textbf{You must have:}
+                
+                \ifanswerbook$\bullet$ Printed Answer Booklet \\ \fi
+                \ifcalculatorrequired$\bullet$ a scientific or graphical calculator \\ \fi
+                
+                \ifcalculator
+                \vspace*{.5cm}
+                
+                \textbf{You may use:}
+                
+                $\bullet$ a scientific or graphical calculator \\
+                
+                \fi
+            }
+        };
+        \end{tikzpicture}
+        
+        \setlength{\fboxsep}{0pt}
+        \newcommand\abox{%
+            \raisebox{-3mm}{\framebox[9.4mm]{\vline width 0mm height 9.4mm}}%
+        }
+    
+    
+        \begin{tikzpicture}
+        \node[draw, text width=15.6cm, text depth=4.60cm, rounded corners=0.5cm, inner sep=0.3cm] at (0,0) {
+            \normalsize {\small Please write clearly in black ink. \textbf{Do not write in the barcodes.}}
+            
+            \vspace{0.5cm}
+            
+            Centre number \abox\abox\abox\abox\abox \enspace\enspace\thinspace Candidate number \abox\abox\abox\abox
+            
+            \vspace{0.8cm}
+            
+            First name(s) \hspace{\stretch{1}} \rule{10cm}{0.15mm}
+            
+            \vspace{0.4cm}
+            
+            Last name \hspace{\stretch{1}} \rule{10cm}{0.15mm}
+        };
+        \end{tikzpicture}
+        
+        \small
+        \textbf{INSTRUCTIONS}
+        \begin{itemize}[nolistsep]
+            \item Use black ink. You can use a HB pencil but only for graphs and diagrams.
+            \item Write your answer to each question in the space provided in the \textbf{Printed Answer Booklet.} If you need extra space use the lined pages at the end of the Printed Answer Booklet. The question numbers must be clearly shown.
+            \item Fill in the boxes on the front of the Printed Answer Booklet.
+            \item Answer \textbf{all} the questions.
+            \item Where appropriate, your answer should be supported with working. Marks might be given for using a correct method, even if your answer is wrong.
+            \item Give non-exact numerical answers correct to 3 significant figures unless a different degree of accuracy is specified in the question
+            \ifcalculator \item You are permitted to use a
+            scientific or graphical calculator in this paper.
+            \else \unless\ifcalculatorrequired \item You are not permitted to use a calculator in this paper. \fi \fi
+            \item The acceleration due to gravity is denoted by $\grav\,\unit{\m\per\s\squared}$. Unless otherwise instructed, when a numerical value is needed, use $\grav=9.8$.
+        \end{itemize}
+        \vspace{4mm}
+        \small
+        
+        \textbf{INFORMATION}
+        \begin{itemize}[nolistsep]
+            \item The total mark for this paper is  {\bfseries \thetotalpoints}.
+            \item The marks for each question are shown in
+            brackets {\bfseries [ ]}.
+            \item This document consists of {\bfseries
+                \pageref{lastpageofquestionpaper}} pages.
+            \unless\if\@extrainfo\relax
+            \item {\let \\ \item \@extrainfo}
+            \fi
+        \end{itemize}
+        \vspace{4mm}
+        \small
+        
+        \textbf{ADVICE}
+        \begin{itemize}[nolistsep]
+            \item Read each question carefully before you start an answer.
+            \if\@extraadvice\relax\else
+            \item {\let \\ \item \@extraadvice}
+            \fi
+        \end{itemize}
+        \vfill
+        \hfill{\footnotesize \textbf{Turn over}}}
+    \newpage
+    \loadgeometry{main}
+}
+%    \end{macrocode}
+%\end{macro}
+%\changes{v1.13}{2022/05/23}{Added cover for OCR A Level -- thanks to JCB}
+%\subsubsection{Formulae sheet}
+%\begin{macro}{\formulaesheet}
+%    This code redefines the formulae sheet.
+%    \begin{macrocode}
+%<*formulaesheet|all>
 \newgeometry{left=0.86 in,right=0.86 in,top=1 in,bottom=1 in}
 \savegeometry{formulaesheet}
 \loadgeometry{main}
@@ -659,7 +882,7 @@
         \fi
         \oddeven{\draw[draw=none]
         (\mpos,-1-\themaxlinesinpage)--(\rpos,-1-\themaxlinesinpage)
-            node[pos=0.9,above]{\bfseries Turn over};}{}
+            node[pos=0.9,above]{\sffamily \bfseries Turn over};}{}
         \end{tikzpicture}
     \end{center}
     \newpage
@@ -826,7 +1049,7 @@
             \Large \@examtopic \par
             \LARGE \@examdate \par
             \ifprintanswers \Large Marks available:
-            \pointsinrange{Core} \par \else \Large Time allowed:
+            \thetotalpoints \par \else \Large Time allowed:
             \@examtime \par \fi
             \normalsize
             \vspace{0.25in}
@@ -868,7 +1091,7 @@
             \begin{itemize}
                 \itemsep-1pt
                 \item The total number of marks for this paper is
-                {\bfseries \pointsinrange{Core}}.
+                {\bfseries \thetotalpoints}.
                 \item The marks for each question are shown in
                 brackets {\bfseries [ ]}.
                 \item {\bfseries You are reminded of the need for clear
@@ -877,8 +1100,8 @@
                 consists of {\bfseries \pageref{LastPage}} pages.\fi
                 The Question Paper consists of {\bfseries
                 \pageref{lastpageofquestionpaper}} pages.
-                \if@extrainfo
-                    \item {\let \\ \item \@extrainfo}
+                \unless\if\@extrainfo\relax
+                \item {\let \\ \item \@extrainfo}
                 \fi
             \end{itemize}
             \fi
