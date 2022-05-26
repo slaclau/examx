@@ -617,13 +617,13 @@ There are \thetotalpoints marks available.\\
 %    \begin{macrocode}
 \newcommand{\examx@partshook}{
     \let\oldpart\part
-    \RenewDocumentCommand{\part}{o O{\@linesperpart} O{0}}{
+    \RenewDocumentCommand{\part}{o O{\@linesperpart} O{0} O{\relax}}{
         \@droppoints
 
         \IfNoValueTF{##1}
-        {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}{0}}
+        {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}{0}{\relax}}
         {\ifnum ##1<0 \oldpart \else \oldpart[##1] \@droptrue \fi
-        \@storequestiondata{\arabic{partno}}{##2}{1}{##3}}
+        \@storequestiondata{\arabic{partno}}{##2}{1}{##3}{##4}}
     }
 }
 
