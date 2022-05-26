@@ -359,8 +359,6 @@
 % \end{macro}
 % \changes{v1.1.1}{2022/02/03}{Added macro}
 % \end{macro}
-% \changes{v1.1.1}{2022/02/03}{Added institution and department macros}
-% \changes{v1.1.7}{2022/05/16}{Added logo macro}
 %
 %\begin{macro}{\examtitle}
 %\begin{macro}{\examtopic}
@@ -381,8 +379,6 @@
 %\end{macro}
 %\end{macro}
 %\end{macro}
-%\changes{v1.1.7}{2022/05/23}{Added |\examcode|}
-
 %\begin{macro}{\ifcalculator}
 %\begin{macro}{\calculator}
 %\begin{macro}{\nocalculator}
@@ -481,6 +477,8 @@ There are \thetotalpoints marks available.\\
 \def\@lines{{}}
 \def\@blanklines{{}}
 \def\@partlevel{{}}
+\ExplSyntaxOn
+\seq_new:N \g_images_seq
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -491,12 +489,14 @@ There are \thetotalpoints marks available.\\
 %\begin{macro}{\@storequestiondata}
 %    |\@storequestiondata| stores the aforementioned information about a question or (sub)part.
 %    \begin{macrocode}
-\newcommand{\@storequestiondata}[4]{
+\newcommand{\@storequestiondata}[5]{
     \xdef\@questionorpartnumber{\@questionorpartnumber,#1}
     \xdef\@lines{\@lines,#2}
     \xdef\@partlevel{\@partlevel,#3}
     \xdef\@blanklines{\@blanklines,#4}
+    \seq_put_right:Nn \g_images_seq {#5}
 }
+\ExplSyntaxOff
 %    \end{macrocode}
 %\end{macro}
 
