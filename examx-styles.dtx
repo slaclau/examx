@@ -275,48 +275,48 @@
     \newgeometry{top=1.5cm, bottom=1cm, left=2.8cm, right=2.2cm}
     \thispagestyle{empty}
     \if\@logo\relax\else\includegraphics[height=2cm]{\@logo}\fi
-    
+
     \vspace{2mm}
-    
+
     {\sffamily
-    
+
     {\LARGE \textbf{\@examdate}}
-    
+
     \vspace{8pt}
-    
+
     {\Large \textbf{\@examtitle}}
-    
+
     \vspace{8pt}
-    
+
     {\large \unless\if\@examcode\relax\textbf{\@examcode} $\quad$\fi\@examtopic}
-    
+
     \vspace{8pt}
-    
+
     {\normalsize \textbf{Time allowed: \@examtime}}
-    
+
     \vspace{12pt}
-    
+
     \begin{tikzpicture}
     \node[draw, text width=7.87cm, text depth=4.19cm, rounded corners] at (0,0) {
         {\footnotesize
             \textbf{You must have:}
-            
+
             \ifanswerbook$\bullet$ Printed Answer Booklet \\ \fi
             \ifcalculatorrequired$\bullet$ a scientific or graphical calculator \\ \fi
-            
+
             \ifcalculator
             \vspace*{.5cm}
-            
+
             \textbf{You may use:}
-            
+
             $\bullet$ a scientific or graphical calculator \\
-            
+
             \fi
         }
     };
     \end{tikzpicture}
     \vspace{0.6cm}
-    
+
     \small
         \textbf{INSTRUCTIONS}
         \begin{itemize}[nolistsep]
@@ -334,7 +334,7 @@
         \end{itemize}
         \vspace{4mm}
         \small
-    
+
         \textbf{INFORMATION}
         \begin{itemize}[nolistsep]
             \item The total mark for this paper is  {\bfseries \thetotalpoints}.
@@ -348,7 +348,7 @@
         \end{itemize}
         \vspace{4mm}
         \small
-        
+
         \textbf{ADVICE}
         \begin{itemize}[nolistsep]
             \item Read each question carefully before you start an answer.
@@ -372,75 +372,75 @@
     \newgeometry{top=1.5cm, bottom=1cm, left=2.8cm, right=2.2cm}
     \thispagestyle{empty}
     \if\@logo\relax\else\includegraphics[height=2cm]{\@logo}\fi
-    
+
     \vspace{2mm}
-    
+
     {\sffamily
-        
+
         {\LARGE \textbf{\@examdate}}
-        
+
         \vspace{8pt}
-        
+
         {\Large \textbf{\@examtitle}}
-        
+
         \vspace{8pt}
-        
+
         {\large \unless\if\@examcode\relax\textbf{\@examcode} $\quad$\fi\@examtopic}
-        
+
         \vspace{8pt}
-        
+
         {\large Printed Answer Book}
-        
+
         \vspace{8pt}
-        
+
         {\normalsize \textbf{Time allowed: \@examtime}}
-        
+
         \vspace{12pt}
-        
+
         \begin{tikzpicture}
         \node[draw, text width=7.87cm, text depth=3.18cm, rounded corners] at (0,0) {
             {\footnotesize
                 \textbf{You must have:}
-                
+
                 \ifanswerbook$\bullet$ Printed Answer Booklet \\ \fi
                 \ifcalculatorrequired$\bullet$ a scientific or graphical calculator \\ \fi
-                
+
                 \ifcalculator
                 \vspace*{.5cm}
-                
+
                 \textbf{You may use:}
-                
+
                 $\bullet$ a scientific or graphical calculator \\
-                
+
                 \fi
             }
         };
         \end{tikzpicture}
-        
+
         \setlength{\fboxsep}{0pt}
         \newcommand\abox{%
             \raisebox{-3mm}{\framebox[9.4mm]{\vline width 0mm height 9.4mm}}%
         }
-    
-    
+
+
         \begin{tikzpicture}
         \node[draw, text width=15.6cm, text depth=4.60cm, rounded corners=0.5cm, inner sep=0.3cm] at (0,0) {
             \normalsize {\small Please write clearly in black ink. \textbf{Do not write in the barcodes.}}
-            
+
             \vspace{0.5cm}
-            
+
             Centre number \abox\abox\abox\abox\abox \enspace\enspace\thinspace Candidate number \abox\abox\abox\abox
-            
+
             \vspace{0.8cm}
-            
+
             First name(s) \hspace{\stretch{1}} \rule{10cm}{0.15mm}
-            
+
             \vspace{0.4cm}
-            
+
             Last name \hspace{\stretch{1}} \rule{10cm}{0.15mm}
         };
         \end{tikzpicture}
-        
+
         \small
         \textbf{INSTRUCTIONS}
         \begin{itemize}[nolistsep]
@@ -457,7 +457,7 @@
         \end{itemize}
         \vspace{4mm}
         \small
-        
+
         \textbf{INFORMATION}
         \begin{itemize}[nolistsep]
             \item The total mark for this paper is  {\bfseries \thetotalpoints}.
@@ -471,7 +471,7 @@
         \end{itemize}
         \vspace{4mm}
         \small
-        
+
         \textbf{ADVICE}
         \begin{itemize}[nolistsep]
             \item Read each question carefully before you start an answer.
@@ -847,7 +847,7 @@
                 \def\filename{na}
             \fi\fi\fi\fi
             \InputIfFileExists{\filename}{
-                
+
             }{
 
             }
@@ -1056,9 +1056,9 @@
 
 \renewcommand{\printtotalpoints}{
     \hspace*{\fill}{\bfseries (Total for Question \thequestion\space is \totalpoints)}
-    
+
     \hspace{-\leftmargin}\textcolor{lightgray}{\rule[\baselineskip]{\textwidth}{1pt}}
-    
+
 }
 
 \sisetup{inter-unit-product = \,}
@@ -1097,9 +1097,9 @@
     \begin{center}
         \bfseries
         Answer ALL TWENTY FOUR questions.
-        
+
         Write your answers in the spaces provided.
-        
+
         You must write down all the stages in your working.
     \end{center}
     \fi
@@ -1111,13 +1111,13 @@
         \footer{\sffamily\bfseries\oddeven{}{\footnotesize\thepage}}
         {}
         {\sffamily\bfseries\oddeven{\footnotesize\thepage}{}}
-        
+
         \textcolor{lightgray}{\rule{\textwidth}{4pt}}
         \hspace*{\fill}\bfseries TOTAL FOR PAPER IS \pointsinrange{Core} MARKS \hspace{1cm}
         \vfill
         Do NOT write in this space
         \vfill
-        
+
         \oddeven{\newpage {\vspace*{\fill} BLANK PAGE \\ \vspace{0.5in} Do NOT write on this page \vspace*{\fill}}}{}
         \ifexamx@fourside
         \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
@@ -1154,33 +1154,33 @@
     };
 
     \draw[line width=2pt, draw=gray] (10.7cm,-0.5cm)--(10.7cm,-1.4cm) node[pos=0,below right,inner sep=0.1cm] {\scriptsize Other names};
-    
+
     \node[below right, inner sep=0cm, text width=8cm] at (0.5cm,-1.7cm) {\large\bfseries\@institution\\ \@department};
-    
+
     \draw[line width=2pt, draw=gray,rounded corners] (8.9,-2) rectangle (11.9,-2.8) node[pos=-0.05,above right] {\scriptsize Centre number};
     \draw[line width=2pt, draw=gray] (9.5,-2)--(9.5,-2.8);
     \draw[line width=2pt, draw=gray] (10.1,-2)--(10.1,-2.8);
     \draw[line width=2pt, draw=gray] (10.7,-2)--(10.7,-2.8);
     \draw[line width=2pt, draw=gray] (11.3,-2)--(11.3,-2.8);
-    
+
     \draw[line width=2pt, draw=gray,rounded corners] (12.1,-2) rectangle (14.5,-2.8) node[pos=-0.05,above right] {\scriptsize Candidate number};
     \draw[line width=2pt, draw=gray] (12.7,-2)--(12.7,-2.8);
     \draw[line width=2pt, draw=gray] (13.3,-2)--(13.3,-2.8);
     \draw[line width=2pt, draw=gray] (13.9,-2)--(13.9,-2.8);
-    
+
     \node[below right, line width=2pt, draw=gray, text width=13.8cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-3cm) {\Huge\bfseries \@examdate};
-    
+
     \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=3cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-4cm) {\bfseries\Large\@examtitle\\ \large\@examtopic};
-    
+
     \node[below right, line width=2pt, draw=gray, text width=11.4cm, text depth=1cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.2cm] at (0.5cm,-7.8cm) {
         \scriptsize \textbf{You must have:}
-        
+
         Ruler graduated in centimetres and millimetres, protractor, compasses, pen, HB pencil, eraser\ifcalculator, calculator\fi. Tracing paper may be used.
     };
-    
+
     \node[below right, line width=2pt, draw=gray, text width=1.6cm, text depth=1cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.2cm] at (12.5cm,-7.8cm) {\scriptsize Total marks};
     \end{tikzpicture}
-    
+
         {\large\sffamily
         \textbf{Instructions}
         \begin{itemize}[nolistsep]
@@ -1194,10 +1194,10 @@
             \end{itemize}
             \ifcalculator \item \textbf{Calculators may be used} \fi
             \item You must \textbf{NOT} write anything on the formulae page.
-            
+
             Anything you write on the formulae page will gain NO credit.
         \end{itemize}
-    
+
         \textbf{Information}
         \begin{itemize}[nolistsep]
             \item The total mark for this paper is \pointsinrange{Core}.
@@ -1206,7 +1206,7 @@
                 \item \textit{use this as a guide as to how much time to spend on each question.}
             \end{itemize}
         \end{itemize}
-        
+
         \textbf{Advice}
         \begin{itemize}[nolistsep]
             \item Read each question carefully before you start to answer it.
@@ -1226,6 +1226,8 @@
 %</covers|all>
 %    \end{macrocode}
 %\end{macro}
+%    \begin{macrocode}
+
 %<*answerbook|all>
 
 %</answerbook|all>
