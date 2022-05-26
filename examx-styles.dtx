@@ -26,6 +26,7 @@
 %<OCRALevel&all>\ProvidesFile{examx-OCRALevel.clo}
 %<OCRALevel&answerbook>\ProvidesFile{examx-OCRALevelanswerbook.clo}
 %<OCRALevel&formulaesheet>\ProvidesFile{examx-OCRALevelformulae.clo}
+%<EdexcelGCSE&all>\ProvidesFile{examx-EdexcelGCSE.clo}
 %<advanced&answerbook>\ProvidesFile{examx-advancedanswerbook.clo}
 %<veryadvanced&answerbook>\ProvidesFile{examx-veryadvancedanswerbook.clo}
 %<WellyOCR&covers>\ProvidesFile{examx-WellyOCRcovers.clo}
@@ -257,8 +258,6 @@
 \renewcommand{\vec}[1]{{\bf#1}}
 \newcommand{\detailedreasoning}{\textbf{In this question you must show detailed reasoning.} \par }
 %</all>
-\DeclareMathOperator{\varexpec}{E}
-\DeclareMathOperator{\varprob}{P}
 \RequirePackage{lscape}
 \RequirePackage{afterpage}
 \RequirePackage{multirow}
@@ -271,7 +270,7 @@
 %\begin{macro}{\examcover}
 %    This code redefines the front cover of the question paper.
 %    \begin{macrocode}
-\usetikzlibrary{fit}
+%<*covers|all>
 \renewcommand{\examcover}{
     \newgeometry{top=1.5cm, bottom=1cm, left=2.8cm, right=2.2cm}
     \thispagestyle{empty}
@@ -485,6 +484,7 @@
     \newpage
     \loadgeometry{main}
 }
+%</covers|all>
 %    \end{macrocode}
 %\end{macro}
 %\changes{v1.13}{2022/05/23}{Added cover for OCR A Level -- thanks to JCB}
@@ -618,11 +618,12 @@
 %\begin{macro}{partlevel}
 %\begin{macro}{linesleft}
 %\begin{macro}{lastques}
+%\begin{macro}{lastpart}
 %\begin{macro}{tempa}
 %\begin{macro}{tempb}
 %\begin{macro}{tempc}
 %\begin{macro}{\ifquestioncomplete}
-%    We begin by defining several counters, the names of the first ten
+%    We begin by defining several counters, the names of the first eleven
 %are self-explanatory, the remaining three are used as loop counters.
 %We
 %also define a switch used to check if a question has had all its lines
@@ -639,11 +640,13 @@
 \newcounter{partlevel}
 \newcounter{linesleft}
 \newcounter{lastques}
+\newcounter{lastpart}
 \newcounter{tempa}
 \newcounter{tempb}
 \newcounter{tempc}
 \newif\ifquestioncomplete
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -816,22 +819,38 @@
 %\Lcount{lastques}) and the part number.
 %    \begin{macrocode}
             \ifnum \thepartlevel=1
+            \setcounter{lastpart}{\thequestionnumber}
             \draw[draw=none]
                 (\lpos,-1-\thecurrentline)--(\mpos,-1-\thecurrentline)
                     node[pos=0.65,above]{\bfseries
-             \thelastques(\alph{questionnumber})};
+             \thelastques(\alph{lastpart})};
             \fi
             \fi
 %    \end{macrocode}
-%    We then increment overwrite any lines which need to be left blank.
+%    We then overwrite any lines which need to be left blank.
 %    \begin{macrocode}
             \ifnum\thenumblanklinesinquestion>0
             \foreach \l in {2,...,\thenumblanklinesinquestion}{
                 \draw[white,thick]
-                    (\mpos,1-\l-\thecurrentline)--
-                        (\rpos,1-\l-\thecurrentline);
+                    (\mpos+0.2pt,1-\l-\thecurrentline)--
+                        (\rpos-0.2pt,1-\l-\thecurrentline);
             }
             \fi
+%    \end{macrocode}
+%    \begin{macrocode}
+            \ifnum\thepartlevel=-1\else
+            \ifnum\thepartlevel=0
+                \def\filename{\thequestionnumber.tex}
+            \else\ifnum\thepartlevel=1
+                \def\filename{\thelastques(\alph{lastpart}).tex}
+            \else\ifnum\thepartlevel=2
+                \def\filename{na}
+            \fi\fi\fi\fi
+            \InputIfFileExists{\filename}{
+                
+            }{
+
+            }
 %    \end{macrocode}
 %    We then increment \Lcount{currentline} by
 %\Lcount{numlinesinquestion} and set \Lcount{linesleft} to 0.
@@ -1016,6 +1035,202 @@
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
+%
+%\subsection{EdexcelGCSE style}
+%\subsubsection{Initial code}
+%    The initial code configures various features of the examx
+%class.
+%    \begin{macrocode}
+%<*EdexcelGCSE>
+%<*all>
+\@alwaysdroppointsbelowatright
+\setlength{\rightpointsmargin}{2.7cm}
+
+\renewcommand{\questionlabel}{\bfseries\thequestion}
+\renewcommand{\partlabel}{\bfseries(\thepartno)}
+\renewcommand{\subpartlabel}{\bfseries(\thesubpart)}
+\renewcommand{\subsubpartlabel}{\bfseries(\thesubsubpart)}
+
+\pointname{}
+\pointformat{\bfseries\color{lightgray} (\thepoints)}
+
+\renewcommand{\printtotalpoints}{
+    \hspace*{\fill}{\bfseries (Total for Question \thequestion\space is \totalpoints)}
+    
+    \hspace{-\leftmargin}\textcolor{lightgray}{\rule[\baselineskip]{\textwidth}{1pt}}
+    
+}
+
+\sisetup{inter-unit-product = \,}
+
+\setmainfont[Ligatures=TeX]{TeX Gyre Termes}
+\setmathfont[math-style=ISO,bold-style=ISO]{TeX Gyre Termes Math}
+\setsansfont{Arial}
+
+\newgeometry{left=1.2cm,right=1.2 cm,top=1.8 cm,bottom=1.7 cm,footskip=0.4cm}
+\savegeometry{main}
+
+\footer{\sffamily\bfseries\oddeven{}{\footnotesize\thepage}}
+    {}
+    {\sffamily\bfseries\oddeven{{\footnotesize\thepage}\\Turn over}{}}
+
+\RequirePackage{background}
+
+\SetBgScale{1}
+\SetBgAngle{0}
+\SetBgColor{black}
+\SetBgPosition{current page.north west}
+\SetBgContents{\background}
+\def\borderwidth{1cm}
+
+\newcommand{\background}{
+    \begin{tikzpicture}[overlay,remember picture,]
+    \draw [line width=2pt,rounded corners=5mm, color=lightgray]
+    (\borderwidth,-\borderwidth)
+    rectangle
+    (\paperwidth-\borderwidth,0.5cm+\borderwidth-\paperheight);
+    \end{tikzpicture}
+}
+\renewcommand{\questionstart}{
+    \list{}{\leftmargin0cm \rightmargin1cm}\item[]
+    \ifprintanswers \else
+    \begin{center}
+        \bfseries
+        Answer ALL TWENTY FOUR questions.
+        
+        Write your answers in the spaces provided.
+        
+        You must write down all the stages in your working.
+    \end{center}
+    \fi
+}
+\renewcommand{\questionend}{\endlist}
+
+\renewcommand{\questionpaperend}{
+    \begin{center}
+        \footer{\sffamily\bfseries\oddeven{}{\footnotesize\thepage}}
+        {}
+        {\sffamily\bfseries\oddeven{\footnotesize\thepage}{}}
+        
+        \textcolor{lightgray}{\rule{\textwidth}{4pt}}
+        \hspace*{\fill}\bfseries TOTAL FOR PAPER IS \pointsinrange{Core} MARKS \hspace{1cm}
+        \vfill
+        Do NOT write in this space
+        \vfill
+        
+        \oddeven{\newpage {\vspace*{\fill} BLANK PAGE \\ \vspace{0.5in} Do NOT write on this page \vspace*{\fill}}}{}
+        \ifexamx@fourside
+        \ifnum\the\numexpr(\thepage/4)*4-\thepage\relax=2
+        \newpage {\vspace*{\fill} BLANK PAGE \\ \vspace{0.5in} Do NOT write on this page \vspace*{\fill}}
+        \newpage {\vspace*{\fill} BLANK PAGE \\ \vspace{0.5in} Do NOT write on this page \vspace*{\fill}}
+        \fi
+        \fi
+    \end{center}
+}
+%</all>
+\RequirePackage{enumitem}
+%    \end{macrocode}
+%\subsubsection{Covers}
+%\begin{macro}{\examcover}
+%    This code redefines the front cover of the question paper.
+%    \begin{macrocode}
+%<*covers|all>
+\renewcommand{\examcover}{
+    \newgeometry{top=2cm, bottom=1cm, left=3cm, right=3cm}
+    \thispagestyle{empty}
+    \NoBgThispage
+    \usetikzlibrary{fit}
+    \begin{tikzpicture}
+    \sffamily
+    \node[below right, line width=2pt, draw=gray, text width=15cm, text depth=9.6cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0cm] at (0,0) {
+        \begin{center}
+            \vspace{-\baselineskip}
+            \textbf{\scriptsize Please check the examination details below before entering your candidate information}
+        \end{center}
+    };
+
+    \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=0.5cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-0.5cm) {
+        \scriptsize Candidate surname
+    };
+
+    \draw[line width=2pt, draw=gray] (10.7cm,-0.5cm)--(10.7cm,-1.4cm) node[pos=0,below right,inner sep=0.1cm] {\scriptsize Other names};
+    
+    \node[below right, inner sep=0cm, text width=8cm] at (0.5cm,-1.7cm) {\large\bfseries\@institution\\ \@department};
+    
+    \draw[line width=2pt, draw=gray,rounded corners] (8.9,-2) rectangle (11.9,-2.8) node[pos=-0.05,above right] {\scriptsize Centre number};
+    \draw[line width=2pt, draw=gray] (9.5,-2)--(9.5,-2.8);
+    \draw[line width=2pt, draw=gray] (10.1,-2)--(10.1,-2.8);
+    \draw[line width=2pt, draw=gray] (10.7,-2)--(10.7,-2.8);
+    \draw[line width=2pt, draw=gray] (11.3,-2)--(11.3,-2.8);
+    
+    \draw[line width=2pt, draw=gray,rounded corners] (12.1,-2) rectangle (14.5,-2.8) node[pos=-0.05,above right] {\scriptsize Candidate number};
+    \draw[line width=2pt, draw=gray] (12.7,-2)--(12.7,-2.8);
+    \draw[line width=2pt, draw=gray] (13.3,-2)--(13.3,-2.8);
+    \draw[line width=2pt, draw=gray] (13.9,-2)--(13.9,-2.8);
+    
+    \node[below right, line width=2pt, draw=gray, text width=13.8cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-3cm) {\Huge\bfseries \@examdate};
+    
+    \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=3cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-4cm) {\bfseries\Large\@examtitle\\ \large\@examtopic};
+    
+    \node[below right, line width=2pt, draw=gray, text width=11.4cm, text depth=1cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.2cm] at (0.5cm,-7.8cm) {
+        \scriptsize \textbf{You must have:}
+        
+        Ruler graduated in centimetres and millimetres, protractor, compasses, pen, HB pencil, eraser\ifcalculator, calculator\fi. Tracing paper may be used.
+    };
+    
+    \node[below right, line width=2pt, draw=gray, text width=1.6cm, text depth=1cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.2cm] at (12.5cm,-7.8cm) {\scriptsize Total marks};
+    \end{tikzpicture}
+    
+        {\large\sffamily
+        \textbf{Instructions}
+        \begin{itemize}[nolistsep]
+            \item Use \textbf{black} ink or ball-point pen.
+            \item \textbf{Fill in the boxes} at the top of this page with your name, centre number, and candidate number.
+            \item Answer \textbf{all} questions.
+            \item Without sufficient working, correct answers may be awarded no marks.
+            \item Answer the questions in the spaces provided
+            \begin{itemize}[nolistsep]
+                \item \textit{there may be more space than you need.}
+            \end{itemize}
+            \ifcalculator \item \textbf{Calculators may be used} \fi
+            \item You must \textbf{NOT} write anything on the formulae page.
+            
+            Anything you write on the formulae page will gain NO credit.
+        \end{itemize}
+    
+        \textbf{Information}
+        \begin{itemize}[nolistsep]
+            \item The total mark for this paper is \pointsinrange{Core}.
+            \item The marks for \textbf{each} question are shown in brackets.
+            \begin{itemize}[nolistsep]
+                \item \textit{use this as a guide as to how much time to spend on each question.}
+            \end{itemize}
+        \end{itemize}
+        
+        \textbf{Advice}
+        \begin{itemize}[nolistsep]
+            \item Read each question carefully before you start to answer it.
+            \item Check your answers if you have time at the end.
+        \end{itemize}}
+    \newpage
+    \loadgeometry{main}
+    \ifprintanswers \else \ifexamx@formulae
+    \formulaesheet \fi \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%\begin{macro}{\answerbookcover}
+%    This code redefines the front cover of the answer book.
+%    \begin{macrocode}
+\renewcommand{\answerbook}{}
+%</covers|all>
+%    \end{macrocode}
+%\end{macro}
+%<*answerbook|all>
+
+%</answerbook|all>
+%</EdexcelGCSE>
+%    \end{macrocode}
 %
 %\section{Incomplete styles}
 %
