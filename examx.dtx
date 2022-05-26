@@ -503,17 +503,28 @@ There are \thetotalpoints marks available.\\
 % \subsubsection{Dropping points}
 
 %\begin{macro}{\if@drop}
+%\begin{macro}{\if@droptotal}
 %	 |\if@drop| is set to true after every question or (sub)part with points to flag that there are points which need to be dropped.
 %    \begin{macrocode}
 \newif\if@drop
+\newif\if@droptotal
 \@dropfalse
+\@droptotalfalse
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 
 %\begin{macro}{\@droppoints}
-%    |\@droppoints| is an internal macro whose definition changes depending on the point formatting required.
+%\begin{macro}{\@droptotalpoints}
+%    |\@droppoints| and |\@droptotalpoints| are internal macros whose definition changes depending on the point formatting required.
 %    \begin{macrocode}
 \newcommand{\@droppoints}{}
+\newcommand{\@droptotalpoints}{
+    \if@droptotal
+        \printtotalpoints
+    \fi
+}
+\newcommand{\printtotalpoints}{}
 %    \end{macrocode}
 %\end{macro}
 
@@ -534,6 +545,24 @@ There are \thetotalpoints marks available.\\
 }
 %    \end{macrocode}
 %\end{macro}
+
+%\begin{macro}{\@alwaysdroppointsbelowatright}
+%    The command |\@alwaysdroppointsbelowatright| positions the points for each question or (sub)part in the right margin after the end of the question.
+%    \begin{macrocode}
+\newcommand{\@alwaysdroppointsbelowatright}{
+    \pointsdroppedatright
+    \renewcommand{\@droppoints}{
+        \if@drop
+        
+        \droppoints
+        
+        \@dropfalse
+        \fi
+    }
+}
+%    \end{macrocode}
+%\end{macro}
+
 %    The following code ensures points are dropped before opening or
 %closing a subparts, parts, or questions environment.
 %    \begin{macrocode}
@@ -543,7 +572,7 @@ There are \thetotalpoints marks available.\\
 
 \AtEndEnvironment{subparts}{\@droppoints}
 \AtEndEnvironment{parts}{\@droppoints}
-\AtEndEnvironment{questions}{\@droppoints}
+\AtEndEnvironment{questions}{\@droppoints\@droptotalpoints}
 %    \end{macrocode}
 
 % \subsubsection{Putting it all together}
@@ -552,7 +581,7 @@ There are \thetotalpoints marks available.\\
 %    \begin{macrocode}
 \ifexamx@book\else
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}[
-    \@storequestiondata{\arabic{section}}{1}{-1}{0}
+    \@storequestiondata{\arabic{section}}{1}{-1}{0}{}
     \label{sec:\Alph{section}}
 ]
 \fi
@@ -563,17 +592,19 @@ There are \thetotalpoints marks available.\\
 %    \begin{macrocode}
 \appto{\questions}{
     \let\oldquestion\question
-    \RenewDocumentCommand{\question}{o O{\@linesperpart} O{0}}{
+    \RenewDocumentCommand{\question}{o O{\@linesperpart} O{0} O{\relax}}{
+        \@droptotalpoints
         \@droppoints
 
         \IfNoValueTF{#1}
-        {\oldquestion \@storequestiondata{\thequestion}{0}{0}{0}}
+        {\oldquestion \@storequestiondata{\thequestion}{0}{0}{0}{\relax}}
         {\ifnum #1<0
             \oldquestion
         \else
             \oldquestion[#1] \@droptrue
         \fi
-        \@storequestiondata{\thequestion}{#2}{0}{#3}}
+        \@storequestiondata{\thequestion}{#2}{0}{#3}{#4}}
+        \@droptotaltrue
     }
 }
 %    \end{macrocode}
@@ -634,6 +665,7 @@ There are \thetotalpoints marks available.\\
 \totalformat{\textbf{Total \totalpoints\ marks}}
 %    \end{macrocode}
 %\begin{macro}{\questionstart}
+%\begin{macro}{\questionend}
 %\begin{macro}{\questionpaperend}
 %    |\questionstart| and |\questionpaperend| may be redefined to
 %text that should appear at the start or end of the questions
@@ -641,10 +673,13 @@ There are \thetotalpoints marks available.\\
 %|\pageref{lastpageofquestionpaper}|.
 %    \begin{macrocode}
 \newcommand{\questionstart}{}
+\newcommand{\questionend}{}
 \newcommand{\questionpaperend}{}
 
 \AtBeginEnvironment{questions}{\questionstart}
+\AtEndEnvironment{questions}{\questionend}
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\begin{environment}{questionpaper}
@@ -665,6 +700,8 @@ There are \thetotalpoints marks available.\\
 %    \begin{macrocode}
 \newcommand{\msexamnewpage}{
     \@droppoints
+    \@droptotalpoints
+    \@droptotalfalse
     \ifexamx@shortpaper \else \clearpage \fi
 }
 %    \end{macrocode}
@@ -675,6 +712,8 @@ There are \thetotalpoints marks available.\\
 %    \begin{macrocode}
 \newcommand{\examnewpage}{
     \@droppoints
+    \@droptotalpoints
+    \@droptotalfalse
     \ifexamx@shortpaper \else \ifprintanswers \else \clearpage \fi \fi
 }
 %    \end{macrocode}
