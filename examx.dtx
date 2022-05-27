@@ -352,6 +352,7 @@
 \def\institution#1{\gdef\@institution{#1}} \institution{Institution}
 \def\department#1{\gdef\@department{#1}} \department{Department}
 \def\logo#1{\gdef\@logo{#1}} \logo{\relax}
+\def\imagefilename{}
 %    \end{macrocode}
 % \changes{v1.1.7}{2022/05/16}{Added macro}
 % \end{macro}
@@ -370,7 +371,7 @@
 \def\examtitle#1{\gdef\@examtitle{#1}} \examtitle{\@title}
 \def\examtopic#1{\gdef\@examtopic{#1}} \examtopic{}
 \def\examdate#1{\gdef\@examdate{#1}} \examdate{}
-\def\examtime#1{\gdef\@examtime{#1}} \examtime{}
+\def\examtime#1{\gdef\@examtime{#1}} \examtime{\relax}
 \def\examcode#1{\gdef\@examcode{#1}} \examcode{\relax}
 %    \end{macrocode}
 %\changes{v1.1.7}{2022/05/23}{Added macro}

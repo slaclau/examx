@@ -846,7 +846,7 @@
             \else\ifnum\thepartlevel=2
                 \def\filename{na}
             \fi\fi\fi\fi
-            \InputIfFileExists{\filename}{
+            \InputIfFileExists{\imagefilename\filename}{
 
             }{
 
@@ -1096,7 +1096,7 @@
     \ifprintanswers \else
     \begin{center}
         \bfseries
-        Answer ALL TWENTY FOUR questions.
+        Answer ALL \numqinrange{Core} questions.
 
         Write your answers in the spaces provided.
 
@@ -1111,7 +1111,7 @@
         \footer{\sffamily\bfseries\oddeven{}{\footnotesize\thepage}}
         {}
         {\sffamily\bfseries\oddeven{\footnotesize\thepage}{}}
-
+        \vspace{-1cm}
         \textcolor{lightgray}{\rule{\textwidth}{4pt}}
         \hspace*{\fill}\bfseries TOTAL FOR PAPER IS \pointsinrange{Core} MARKS \hspace{1cm}
         \vfill
@@ -1139,7 +1139,6 @@
     \newgeometry{top=2cm, bottom=1cm, left=3cm, right=3cm}
     \thispagestyle{empty}
     \NoBgThispage
-    \usetikzlibrary{fit}
     \begin{tikzpicture}
     \sffamily
     \node[below right, line width=2pt, draw=gray, text width=15cm, text depth=9.6cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0cm] at (0,0) {
@@ -1170,7 +1169,15 @@
 
     \node[below right, line width=2pt, draw=gray, text width=13.8cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-3cm) {\Huge\bfseries \@examdate};
 
-    \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=3cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-4cm) {\bfseries\Large\@examtitle\\ \large\@examtopic};
+    \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=3cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-4cm) {
+        \if\@examtime\relax\else\large(Time: \@examtime)\fi
+    };
+    
+    \draw[line width=2pt, draw=gray] (7.5cm,-4cm)--(7.5cm,-5cm) node[pos=0,below right,inner sep=0.1cm] {
+        \if\@examcode\relax\else\large Paper Reference \Large \bfseries \@examcode \fi
+    };
+    
+    \draw[draw=gray, line width=2pt] (0.5,-5)--(14.5,-5) node[below right, pos=0, align=left] {\bfseries\Large\@examtitle\\ \bfseries \large\@examtopic};
 
     \node[below right, line width=2pt, draw=gray, text width=11.4cm, text depth=1cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.2cm] at (0.5cm,-7.8cm) {
         \scriptsize \textbf{You must have:}
