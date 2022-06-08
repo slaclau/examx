@@ -218,8 +218,8 @@
 \setsansfont{Arial}
 
 \titleformat{\section}{\bfseries\centering}{Section \Alph{section}:
-}{0pt}{}[\@storequestiondata{\arabic{section}}{1}{-1}{0}
-\label{sec:\Alph{section}}
+}{0pt}{}[\@storequestiondata{\arabic{section}}{1}{-1}{0}{\relax}
+\label{sec:\Alph{section}}%
 ]
 
 \newgeometry{left=0.86 in,right=1.14 in,top=1 in,bottom=1 in}
@@ -402,7 +402,7 @@
             {\footnotesize
                 \textbf{You must have:}
 
-                \ifanswerbook$\bullet$ Printed Answer Booklet \\ \fi
+                $\bullet$ Question Paper \\
                 \ifcalculatorrequired$\bullet$ a scientific or graphical calculator \\ \fi
 
                 \ifcalculator
@@ -464,7 +464,7 @@
             \item The marks for each question are shown in
             brackets {\bfseries [ ]}.
             \item This document consists of {\bfseries
-                \pageref{lastpageofquestionpaper}} pages.
+                \pageref{LastPage}} pages.
             \unless\if\@extrainfo\relax
             \item {\let \\ \item \@extrainfo}
             \fi
@@ -846,11 +846,13 @@
             \else\ifnum\thepartlevel=2
                 \def\filename{na}
             \fi\fi\fi\fi
+            \ifabookimages
             \InputIfFileExists{\imagefilename\filename}{
 
             }{
 
             }
+            \fi
 %    \end{macrocode}
 %    We then increment \Lcount{currentline} by
 %\Lcount{numlinesinquestion} and set \Lcount{linesleft} to 0.
@@ -1043,8 +1045,26 @@
 %    \begin{macrocode}
 %<*EdexcelGCSE>
 %<*all>
+\solnaline
+\@stretchsolnfalse
+\@dropbelowsolntrue
+\@dropfromquesfalse
+\renewcommand{\linesperpart}{4}
+
+\renewcommand \dotfill {
+    \leavevmode
+    \ifx\@queslevel\ques@ref\hspace{-\leftmargin}\fi
+    \ifx\@queslevel\part@ref\hspace{3pt-2\leftmargin}\fi
+    \ifx\@queslevel\subpart@ref\hspace{3pt-3\leftmargin}\fi
+    \cleaders \hb@xt@ 2pt{\hss\scriptsize.\hss }\hfill \kern \z@
+}
+
+\renewcommand\answerdotsep{2pt}
+\renewcommand\answerlinetowidth[1][0pt]{\hbox to #1{\leaders\hbox to \answerdotsep{\hss\scriptsize.\hss}\hfill}}
+\setlength\dottedlinefillheight{1cm}
+
 \@alwaysdroppointsbelowatright
-\setlength{\rightpointsmargin}{2.7cm}
+\setlength{\rightpointsmargin}{2.55cm}
 
 \renewcommand{\questionlabel}{\bfseries\thequestion}
 \renewcommand{\partlabel}{\bfseries(\thepartno)}
@@ -1053,6 +1073,8 @@
 
 \pointname{}
 \pointformat{\bfseries\color{lightgray} (\thepoints)}
+
+\newcommand{\algebraicworking}{\par Show clear algebraic working.}
 
 \renewcommand{\printtotalpoints}{
     \hspace*{\fill}{\bfseries (Total for Question \thequestion\space is \totalpoints)}
@@ -1169,8 +1191,10 @@
 
     \node[below right, line width=2pt, draw=gray, text width=13.8cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-3cm) {\Huge\bfseries \@examdate};
 
-    \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=3cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-4cm) {
-        \if\@examtime\relax\else\large(Time: \@examtime)\fi
+    \node[below right, line width=2pt, draw=gray, text width=13.8cm, text depth=3cm, rounded corners=0.25cm, outer sep=0cm, inner sep=0.1cm] at (0.5cm,-4cm) {};
+    
+    \draw[line width=0pt, draw=gray] (0.5cm,-4cm)--(0.5cm,-5cm) node[pos=0,below right,inner sep=0.1cm] {
+        \if\@examtime\relax\else\large(Time: \@examtime) \phantom{\Large A}\fi
     };
     
     \draw[line width=2pt, draw=gray] (7.5cm,-4cm)--(7.5cm,-5cm) node[pos=0,below right,inner sep=0.1cm] {

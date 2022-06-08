@@ -353,6 +353,7 @@
 \def\department#1{\gdef\@department{#1}} \department{Department}
 \def\logo#1{\gdef\@logo{#1}} \logo{\relax}
 \def\imagefilename{}
+\newif\ifabookimages
 %    \end{macrocode}
 % \changes{v1.1.7}{2022/05/16}{Added macro}
 % \end{macro}
@@ -503,14 +504,18 @@ There are \thetotalpoints marks available.\\
 
 % \subsubsection{Dropping points}
 
-%\begin{macro}{\if@drop}
+%\begin{macro}{@drop}
 %\begin{macro}{\if@droptotal}
-%	 |\if@drop| is set to true after every question or (sub)part with points to flag that there are points which need to be dropped.
+%	 |\@drop| is set to true after every question or (sub)part with points to flag that there are points which need to be dropped.
 %    \begin{macrocode}
-\newif\if@drop
+\newbool{@drop}
 \newif\if@droptotal
-\@dropfalse
+\newif\if@dropbelowsoln
+\newif\if@dropfromques
+\setbool{@drop}{false}
 \@droptotalfalse
+\@dropbelowsolnfalse
+\@dropfromquestrue
 %    \end{macrocode}
 %\end{macro}
 %\end{macro}
@@ -536,13 +541,13 @@ There are \thetotalpoints marks available.\\
 \newcommand{\@alwaysdroppointsatright}{
     \pointsdroppedatright
     \renewcommand{\@droppoints}{
-        \if@drop
+        \ifbool{@drop}{
         \vspace{-\parskip-\baselineskip}
 
         \droppoints
 
-        \@dropfalse
-        \fi
+        \setbool{@drop}{false}
+        }{}
     }
 }
 %    \end{macrocode}
@@ -554,12 +559,12 @@ There are \thetotalpoints marks available.\\
 \newcommand{\@alwaysdroppointsbelowatright}{
     \pointsdroppedatright
     \renewcommand{\@droppoints}{
-        \if@drop
+        \ifbool{@drop}{
 
         \droppoints
 
-        \@dropfalse
-        \fi
+        \setbool{@drop}{false}
+        }{}
     }
 }
 %    \end{macrocode}
@@ -603,7 +608,7 @@ There are \thetotalpoints marks available.\\
         {\ifnum #1<0
             \oldquestion
         \else
-            \oldquestion[#1] \@droptrue
+            \oldquestion[#1] \if@dropfromques\setbool{@drop}{true}\fi
         \fi
         \@storequestiondata{\thequestion}{#2}{0}{#3}{#4}}
         \@droptotaltrue
@@ -624,7 +629,7 @@ There are \thetotalpoints marks available.\\
 
         \IfNoValueTF{##1}
         {\oldpart \@storequestiondata{\arabic{partno}}{0}{1}{0}{\relax}}
-        {\ifnum ##1<0 \oldpart \else \oldpart[##1] \@droptrue \fi
+        {\ifnum ##1<0 \oldpart \else \oldpart[##1] \setbool{@drop}{true} \fi
         \@storequestiondata{\arabic{partno}}{##2}{1}{##3}{##4}}
     }
 }
@@ -636,7 +641,7 @@ There are \thetotalpoints marks available.\\
 
         \IfNoValueTF{##1}
         {\oldsubpart}
-        {\ifnum ##1<0 \oldsubpart \else \oldsubpart[##1] \@droptrue \fi
+        {\ifnum ##1<0 \oldsubpart \else \oldsubpart[##1] \setbool{@drop}{true} \fi
         }
     }
 }
@@ -728,6 +733,7 @@ There are \thetotalpoints marks available.\\
 %\begin{macro}{\ifsolndots}
 %\begin{macro}{\ifsolnlines}
 %\begin{macro}{\ifsolngrid}
+%\begin{macro}{\ifsolnaline}
 %    These switches determine the type of answer space used by the
 %generic answer macro solnor.
 %    \begin{macrocode}
@@ -736,7 +742,9 @@ There are \thetotalpoints marks available.\\
 \newif\ifsolndots
 \newif\ifsolnlines
 \newif\ifsolngrid
+\newif\ifsolnaline
 %    \end{macrocode}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -748,20 +756,24 @@ There are \thetotalpoints marks available.\\
 %\begin{macro}{\solndots}
 %\begin{macro}{\solnlines}
 %\begin{macro}{\solngrid}
+%\begin{macro}{\solnaline}
 %    These macros set the aforementioned switches.
 %    \begin{macrocode}
 \newcommand{\soln}{
-    \solntrue\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse}
+    \solntrue\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse\solnalinefalse}
 \newcommand{\solnspace}{
-    \solnfalse\solnspacetrue\solndotsfalse\solnlinesfalse\solngridfalse}
+    \solnfalse\solnspacetrue\solndotsfalse\solnlinesfalse\solngridfalse\solnalinefalse}
 \newcommand{\solndots}{
-    \solnfalse\solnspacefalse\solndotstrue\solnlinesfalse\solngridfalse}
+    \solnfalse\solnspacefalse\solndotstrue\solnlinesfalse\solngridfalse\solnalinefalse}
 \newcommand{\solnlines}{
-    \solnfalse\solnspacefalse\solndotsfalse\solnlinestrue\solngridfalse}
+    \solnfalse\solnspacefalse\solndotsfalse\solnlinestrue\solngridfalse\solnalinefalse}
 \newcommand{\solngrid}{
-    \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridtrue}
+    \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridtrue\solnalinefalse}
+\newcommand{\solnaline}{
+    \solnfalse\solnspacefalse\solndotsfalse\solnlinesfalse\solngridfalse\solnalinetrue}
 %    \end{macrocode}
 % \changes{v1.1.3}{2022/02/28}{Added macro}
+%\end{macro}
 %\end{macro}
 %\end{macro}
 %\end{macro}
@@ -793,8 +805,19 @@ There are \thetotalpoints marks available.\\
 %    This is the generic answer macro. What it does depends on the
 %switches described previously.
 %    \begin{macrocode}
-\newcommand{\solnor}[2][1]{%
-    \@droppoints
+\newcommand\answerlinetowidth[1][0pt]{\hbox to #1{\leaders\hbox to \answerdotsep{\hss.\hss}\hfill}}
+\newcommand\answerdotsep{6pt}
+\newif\if@stretchsoln \@stretchsolntrue
+\newcommand{\@solnorlength}[1]{
+    \if@stretchsoln
+        \stretch{#1}
+    \else
+        #1\dottedlinefillheight
+    \fi
+}
+
+\newcommand{\solnor}[2][\if@stretchsoln 1 \else \linesperpart\fi]{%
+    \unless\if@dropbelowsoln\@droppoints\fi
     \begingroup
     \@solnorhook
     \ifsoln
@@ -802,23 +825,30 @@ There are \thetotalpoints marks available.\\
         #2
     \end{solution}
     \else \ifsolnspace
-    \begin{solution}[\stretch{#1}]
+    \begin{solution}[\@solnorlength{#1}]
         #2
     \end{solution}
     \else \ifsolndots
-    \begin{solutionordottedlines}[\stretch{#1}]
+    \begin{solutionordottedlines}[\@solnorlength{#1}]
         #2
     \end{solutionordottedlines}
     \else \ifsolnlines
-    \begin{solutionorlines}[\stretch{#1}]
+    \begin{solutionorlines}[\@solnorlength{#1}]
         #2
     \end{solutionorlines}
     \else \ifsolngrid
-    \begin{solutionorgrid}[\stretch{#1}]
+    \begin{solutionorgrid}[\@solnorlength{#1}]
         #2
     \end{solutionorgrid}
-    \fi\fi\fi\fi\fi
+    \else \ifsolnaline
+    \begin{solution}[\@solnorlength{#1}]
+        #2
+    \end{solution}
+    \hspace*{\fill}\answerlinetowidth[5cm]\hspace{-1cm}
+    
+    \fi\fi\fi\fi\fi\fi
     \endgroup
+    \@droppoints
 }
 %    \end{macrocode}
 %\changes{v1.02a}{2022/02/02}{Fixed issue with extra points being
@@ -830,17 +860,19 @@ There are \thetotalpoints marks available.\\
 %should be used along with |\solndots| unless there is a need for
 %different types of answer macro within the same document.
 %    \begin{macrocode}
-\newcommand{\solnordots}[2][1]{%
+\newcommand{\solnordots}[2][\if@stretchsoln 1 \else \linesperpart\fi]{%
+    \unless\if@dropbelowsoln\@droppoints\fi
     \@solnorhook
     \ifsoln
     \begin{solution}
         #2
     \end{solution}
     \else
-    \begin{solutionordottedlines}[\stretch{#1}]
+    \begin{solutionordottedlines}[\@solnorlength{#1}]
         #2
     \end{solutionordottedlines}
     \fi
+    \@droppoints
 }
 %    \end{macrocode}
 %\end{macro}
@@ -850,17 +882,19 @@ There are \thetotalpoints marks available.\\
 %should be used along with |\solndots| unless there is a need for
 %different types of answer macro within the same document.
 %    \begin{macrocode}
-\newcommand{\solnorlines}[2][1]{%
+\newcommand{\solnorlines}[2][\if@stretchsoln 1 \else \linesperpart\fi]{%
+    \unless\if@dropbelowsoln\@droppoints\fi
     \@solnorhook
     \ifsoln
     \begin{solution}
         #2
     \end{solution}
     \else
-    \begin{solutionorlines}[\stretch{#1}]
+    \begin{solutionorlines}[\@solnorlength{#1}]
         #2
     \end{solutionorlines}
     \fi
+    \@droppoints
 }
 %    \end{macrocode}
 %\end{macro}
@@ -870,17 +904,19 @@ There are \thetotalpoints marks available.\\
 %should be used along with |\solndots| unless there is a need for
 %different types of answer macro within the same document.
 %    \begin{macrocode}
-\newcommand{\solnorgrid}[2][1]{%
+\newcommand{\solnorgrid}[2][\if@stretchsoln 1 \else \linesperpart\fi]{%
+    \unless\if@dropbelowsoln\@droppoints\fi
     \@solnorhook
     \ifsoln
     \begin{solution}
         #2
     \end{solution}
     \else
-    \begin{solutionorgrid}[\stretch{#1}]
+    \begin{solutionorgrid}[\@solnorlength{#1}]
         #2
     \end{solutionorgrid}
     \fi
+    \@droppoints
 }
 %    \end{macrocode}
 %\end{macro}
@@ -890,17 +926,19 @@ There are \thetotalpoints marks available.\\
 %should be used along with |\solndots| unless there is a need for
 %different types of answer macro within the same document.
 %    \begin{macrocode}
-\newcommand{\solnorspace}[2][1]{%
+\newcommand{\solnorspace}[2][\if@stretchsoln 1 \else \linesperpart\fi]{%
+    \unless\if@dropbelowsoln\@droppoints\fi
     \@solnorhook
     \ifsoln
     \begin{solution}
         #2
     \end{solution}
     \else
-    \begin{solution}[\stretch{#1}]
+    \begin{solution}[\@solnorlength{#1}]
         #2
     \end{solution}
     \fi
+    \@droppoints
 }
 %    \end{macrocode}
 %\end{macro}
@@ -912,7 +950,7 @@ There are \thetotalpoints marks available.\\
 %\cs{solnpage}}
 %    \begin{macrocode}
 \newcommand{\solnpage}{
-    \@droppoints
+    \unless\if@dropbelowsoln\@droppoints\fi
     \ifexamx@shortpaper \else \ifprintanswers \else \ifsoln\else
         \newpage
     \ifsolnspace
@@ -926,6 +964,7 @@ There are \thetotalpoints marks available.\\
     \fi\fi\fi\fi
         \newpage
     \fi\fi\fi
+    \@droppoints
 }
 %    \end{macrocode}
 %\end{macro}
